@@ -20,6 +20,7 @@ namespace Angela.Tests
         // age
         public int Age { get; set; }
 
+        public DateTime BirthDate { get; set; }
 
         public int NumberOfKids { get; set; }
 

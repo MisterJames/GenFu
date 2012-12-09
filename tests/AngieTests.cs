@@ -35,6 +35,7 @@ namespace Angela.Tests
             // for test brievity
             Assert.IsTrue(!string.IsNullOrEmpty(person.FirstName), "String property was not populated. Aborting additional asserts in test.");
             Assert.IsTrue(person.Age != default(int), "Int property was not populated. Aborting additional asserts in test.");
+            Assert.IsTrue(person.BirthDate != default(DateTime), "DateTime was left as default value. Aborting additional asserts in test.");
         }
 
         [Test]
@@ -42,11 +43,13 @@ namespace Angela.Tests
         {
             var firstName = "Angie";
             var age = 29;
-            var person = Angie.FastFill<Person>(new Person { FirstName = firstName, Age = age });
+            var date = DateTime.Now.AddYears(-29);
+            var person = Angie.FastFill<Person>(new Person { FirstName = firstName, Age = age, BirthDate = date });
 
             // for test brievity
             Assert.AreEqual(person.FirstName, firstName, "String property was altered. Aborting additional asserts in test.");
             Assert.AreEqual(person.Age, age, "Int property was altered. Aborting additional asserts in test.");
+            Assert.AreEqual(person.BirthDate, date, "Date was altered. Aborting additional asserts in test.");
         }
 
         [Test]
@@ -164,6 +167,31 @@ namespace Angela.Tests
         {
             var post = Angie.FastMake<BlogPost>();
             Assert.IsTrue(post.CreateDate != default(DateTime));
+        }
+
+        [Test]
+        public void DateTimesStayWithinConfiguredDates()
+        {
+            var success = true;
+
+            // use a small window to try to force collisions
+            var minDate = DateTime.Now.AddMilliseconds(-5);
+            var maxDate = DateTime.Now.AddMilliseconds(5);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var person = Angie
+                    .Configure()
+                    .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10))
+                    .Make<Person>();
+
+                if (!(person.BirthDate >= minDate && person.BirthDate <= maxDate))
+                    success = false;
+                else
+                    Assert.IsTrue(success, "Date was generated outside of range.{0}", person.BirthDate);
+            }
+
+
         }
 
     }
