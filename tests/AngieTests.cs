@@ -140,6 +140,26 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void MakeListDefaultsTo25Entries()
+        {
+            var people = Angie
+                .Configure()                // get an instantiated object for the non-static call
+                .MakeList<Person>();
+            Assert.IsTrue(people.Count() == Angie.Defaults.LIST_COUNT);
+        }
+
+        [Test]
+        public void MakeListGeneratesCorrectNumberOfEntries()
+        {
+            var personCount = 13;
+            var people = Angie
+                .Configure()
+                .ListCount(personCount)
+                .MakeList<Person>();
+            Assert.IsTrue(people.Count() == personCount);
+        }
+
+        [Test]
         public void DateTimesAreInitialized()
         {
             var post = Angie.FastMake<BlogPost>();

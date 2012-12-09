@@ -64,6 +64,12 @@ namespace Angela.Core
             return BuildList<T>(personCount);
         }
 
+        public List<T> MakeList<T>() where T : new()
+        {
+            return FastList<T>();
+        }
+
+
         private static List<T> BuildList<T>(int personCount) where T : new()
         {
             var result = new List<T>();
@@ -166,7 +172,6 @@ namespace Angela.Core
             public const string FILE_WORDS = "Words";
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
-
 
     }
 }
