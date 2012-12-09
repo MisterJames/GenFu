@@ -18,28 +18,16 @@ namespace Angela.Core
         private static List<string> _words = LoadStrings(Angie.Defaults.FILE_WORDS);
         private static List<string> _titles = LoadStrings(Angie.Defaults.FILE_TITLES);
 
-        private static Dictionary<string, Func<int>> _propertyIntFillers = new Dictionary<string, Func<int>>();
-        private static Dictionary<string, Func<string>> _propertyStringFillers = new Dictionary<string, Func<string>>();
+        private static Dictionary<string, object> _propertyFillers = new Dictionary<string, object>();
 
-        internal static Dictionary<string, Func<int>> PropertyIntFillers
+        internal static Dictionary<string, object> PropertyFillers
         {
-            get { return _propertyIntFillers; }
-        }
-
-        internal static Dictionary<string, Func<string>> PropertyStringFillers
-        {
-            get { return _propertyStringFillers; }
+            get { return _propertyFillers; }
         }
         
         internal static string StringFill(string propertyName)
         {
             var propName = propertyName.ToLower();
-
-            // use a custom filler if there is one
-            if (_propertyStringFillers.ContainsKey(propName))
-            {
-                return _propertyStringFillers[propName].Invoke();
-            }
 
             // for common property names we'll try a resource
             int index = 0;
@@ -72,12 +60,6 @@ namespace Angela.Core
         internal static int IntFill(string propertyName, int min, int max)
         {
             var propName = propertyName.ToLower();
-
-            // see if we have any custom fillers for the property
-            if (_propertyIntFillers.ContainsKey(propName))
-            {
-                return _propertyIntFillers[propName].Invoke();
-            }
 
             // check to see if we can be smart about the name of the prop
             switch (propName)

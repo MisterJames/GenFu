@@ -84,16 +84,28 @@ namespace Angela.Core
 
         private static void SetPropertyValue<T>(T instance, PropertyInfo property)
         {
+            var propName = property.Name.ToString().ToLower();
+            var customFillerExists = Susan.PropertyFillers.ContainsKey(propName);
+
             switch (property.PropertyType.Name.ToLower())
             {
                 case "int32":
-                    property.SetValue(instance, Susan.IntFill(property.Name, _minInt, _maxInt), null);
+                    if (customFillerExists)
+                        property.SetValue(instance, ((Func<int>)Susan.PropertyFillers[propName]).Invoke(), null);
+                    else
+                        property.SetValue(instance, Susan.IntFill(property.Name, _minInt, _maxInt), null);
                     break;
                 case "string":
-                    property.SetValue(instance, Susan.StringFill(property.Name), null);
+                    if (customFillerExists)
+                        property.SetValue(instance, ((Func<string>)Susan.PropertyFillers[propName]).Invoke(), null);
+                    else
+                        property.SetValue(instance, Susan.StringFill(property.Name), null);
                     break;
                 case "datetime":
-                    property.SetValue(instance, Susan.DateTimeFill(property.Name, _minDateTime, _maxDateTime), null);
+                    if (customFillerExists)
+                        property.SetValue(instance, ((Func<DateTime>)Susan.PropertyFillers[propName]).Invoke(), null);
+                    else
+                        property.SetValue(instance, Susan.DateTimeFill(property.Name, _minDateTime, _maxDateTime), null);
                     break;
                 default:
                     break;
@@ -110,6 +122,8 @@ namespace Angela.Core
             _minInt = Defaults.MIN_INT;
             _maxInt = Defaults.MAX_INT;
             _listCount = Defaults.LIST_COUNT;
+
+            Susan.PropertyFillers.Clear();
 
             return _angie;
         }
@@ -160,14 +174,14 @@ namespace Angela.Core
         public Angie FillBy(string propertyName, Func<int> filler)
         {
             var propName = propertyName.ToLower();
-            Susan.PropertyIntFillers.Add(propName, filler);
+            Susan.PropertyFillers.Add(propName, filler);
             return _angie;
         }
 
         public Angie FillBy(string propertyName, Func<string> filler)
         {
             var propName = propertyName.ToLower();
-            Susan.PropertyStringFillers.Add(propName, filler);
+            Susan.PropertyFillers.Add(propName, filler);
             return _angie;
         }
 
