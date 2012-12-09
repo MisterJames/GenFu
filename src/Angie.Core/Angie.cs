@@ -12,9 +12,12 @@ namespace Angela.Core
     {
         private static Angie _angie = new Angie();
 
-        private static int _minInt = Defaults.DEFAULT_MIN_INT;
-        private static int _maxInt = Defaults.DEFAULT_MAX_INT;
-        private static int _listCount = Defaults.DEFAULT_LIST_COUNT;
+        private static int _minInt = Defaults.MIN_INT;
+        private static int _maxInt = Defaults.MAX_INT;
+        private static int _listCount = Defaults.LIST_COUNT;
+
+        private static DateTime _minDateTime = Defaults.MIN_DATETIME;
+        private static DateTime _maxDateTime = Defaults.MAX_DATETIME;
 
         public static T FastMake<T>() where T : new()
         {
@@ -53,9 +56,19 @@ namespace Angela.Core
 
         public static List<T> FastList<T>() where T : new()
         {
+            return BuildList<T>(_listCount);
+        }
+        
+        public static List<T> FastList<T>(int personCount) where T : new()
+        {
+            return BuildList<T>(personCount);
+        }
+
+        private static List<T> BuildList<T>(int personCount) where T : new()
+        {
             var result = new List<T>();
 
-            for (int i = 0; i < _listCount; i++)
+            for (int i = 0; i < personCount; i++)
             {
                 result.Add(Angie.FastMake<T>());
             }
@@ -73,6 +86,9 @@ namespace Angela.Core
                 case "string":
                     property.SetValue(instance, Susan.StringFill(property.Name), null);
                     break;
+                case "datetime":
+                    property.SetValue(instance, Susan.DateTimeFill(property.Name, _minDateTime, _maxDateTime), null);
+                    break;
                 default:
                     break;
             }
@@ -85,9 +101,9 @@ namespace Angela.Core
         /// <returns></returns>
         public static Angie Configure()
         {
-            _minInt = Defaults.DEFAULT_MIN_INT;
-            _maxInt = Defaults.DEFAULT_MAX_INT;
-            _listCount = Defaults.DEFAULT_LIST_COUNT;
+            _minInt = Defaults.MIN_INT;
+            _maxInt = Defaults.MAX_INT;
+            _listCount = Defaults.LIST_COUNT;
 
             return _angie;
         }
@@ -130,17 +146,27 @@ namespace Angela.Core
             return _angie;
         }
 
+        public Angie DateRange(DateTime minDateTime, DateTime maxDateTime)
+        {
+            return _angie;
+        }
+
         public class Defaults
         {
-            public const int DEFAULT_MIN_INT = 1;
-            public const int DEFAULT_MAX_INT = 100;
-            public const int DEFAULT_LIST_COUNT = 25;
+            public const int MIN_INT = 1;
+            public const int MAX_INT = 100;
+            public const int LIST_COUNT = 25;
+
+            public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
+            public static DateTime MAX_DATETIME = DateTime.Now.AddDays(30);
 
             public const string FILE_FIRST_NAMES = "FirstNames";
             public const string FILE_LAST_NAMES = "LastNames";
+            public const string FILE_TITLES = "Titles";
             public const string FILE_WORDS = "Words";
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
+
 
     }
 }

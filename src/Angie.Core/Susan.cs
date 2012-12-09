@@ -16,6 +16,7 @@ namespace Angela.Core
         private static List<string> _firstNames = LoadStrings(Angie.Defaults.FILE_FIRST_NAMES);
         private static List<string> _lastNames = LoadStrings(Angie.Defaults.FILE_LAST_NAMES);
         private static List<string> _words = LoadStrings(Angie.Defaults.FILE_WORDS);
+        private static List<string> _titles = LoadStrings(Angie.Defaults.FILE_TITLES);
         
         internal static string StringFill(string propertyName)
         {
@@ -33,6 +34,10 @@ namespace Angela.Core
                 case "last_name":
                     index = _random.Next(0, _lastNames.Count());
                     return _lastNames[index];
+
+                case "title":
+                    index = _random.Next(0, _titles.Count());
+                    return _titles[index];
                 
                 default:
                     index = _random.Next(0, _words.Count());
@@ -41,7 +46,7 @@ namespace Angela.Core
 
         }
 
-        internal static object IntFill(string propertyName, int min, int max)
+        internal static int IntFill(string propertyName, int min, int max)
         {
             switch (propertyName.ToLower())
             {
@@ -50,6 +55,14 @@ namespace Angela.Core
                 default:
                     return _random.Next(min, max);
             }
+        }
+
+        internal static DateTime DateTimeFill(string propertyName, DateTime min, DateTime max)
+        {
+            int totalDays = ((TimeSpan)(max - min)).Days;
+            int randomDays = _random.Next(totalDays);
+            int seconds = _random.Next(24 * 60 * 60);
+            return min.AddDays(randomDays).AddSeconds(seconds);
         }
 
         private static List<string> LoadStrings(string resourceName)

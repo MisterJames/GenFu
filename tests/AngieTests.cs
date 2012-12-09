@@ -121,20 +121,29 @@ namespace Angela.Tests
         }
 
         [Test]
-        public void DefaultListGenerates25Entries()
+        public void FastListDefaultGenerates25Entries()
         {
             var people = Angie.FastList<Person>();
 
-            foreach (var person in people)
-            {
-                // just because we can :)
-                Debug.WriteLine("{0} {1}", person.FirstName, person.LastName);
-            }
-
-            Assert.AreEqual(Angie.Defaults.DEFAULT_LIST_COUNT, people.Count(),
+            Assert.AreEqual(Angie.Defaults.LIST_COUNT, people.Count(),
                 string.Format("Expected {0} but collection contained {1}", 
-                Angie.Defaults.DEFAULT_LIST_COUNT, people.Count())
+                Angie.Defaults.LIST_COUNT, people.Count())
                 );
+        }
+
+        [Test]
+        public void FastListGeneratesCorrectNumberOfEntries()
+        {
+            var personCount = 17;
+            var people = Angie.FastList<Person>(personCount);
+            Assert.AreEqual(people.Count(), personCount);
+        }
+
+        [Test]
+        public void DateTimesAreInitialized()
+        {
+            var post = Angie.FastMake<BlogPost>();
+            Assert.IsTrue(post.CreateDate != default(DateTime));
         }
 
     }

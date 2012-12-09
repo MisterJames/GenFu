@@ -30,6 +30,15 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void TitleResourcesLoad()
+        {
+            var post = Angie.FastMake<BlogPost>();
+            string titleFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_TITLES);
+
+            Assert.AreNotEqual(titleFail, post.Title, titleFail);
+        }
+
+        [Test]
         public void WordsResourcesLoad()
         {
             var person = Angie.FastMake<Person>();

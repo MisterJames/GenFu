@@ -45,6 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Titles.en.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\FirstNames.en.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

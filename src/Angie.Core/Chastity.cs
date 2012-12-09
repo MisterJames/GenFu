@@ -24,6 +24,10 @@ namespace Angela.Core
                     if ((string)value != default(string))
                         valueSet = true;
                     break;
+                case "datetime":
+                    if ((DateTime)value != default(DateTime))
+                        valueSet = true;
+                    break;
                 default:
                     break;
             }
