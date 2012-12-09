@@ -194,5 +194,30 @@ namespace Angela.Tests
 
         }
 
+        [Test]
+        public void IntPropertyFilledBySpecificMethod()
+        {
+            var age = 11;
+
+            var person = Angie.Configure()
+                .FillBy("age", delegate() { return age; })
+                .Make<Person>();
+
+            Assert.IsTrue(person.Age == age);
+
+        }
+
+        [Test]
+        public void StringPropertyFilledBySpecificMethod()
+        {
+            var blogTitle = "Angie";
+
+            var post = Angie.Configure()
+                .FillBy("title", delegate() { return blogTitle; })
+                .Make<BlogPost>();
+
+            Assert.IsTrue(post.Title == blogTitle);
+        }
+
     }
 }

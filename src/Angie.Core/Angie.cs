@@ -19,6 +19,7 @@ namespace Angela.Core
         private static DateTime _minDateTime = Defaults.MIN_DATETIME;
         private static DateTime _maxDateTime = Defaults.MAX_DATETIME;
 
+
         public static T FastMake<T>() where T : new()
         {
             var instance = new T();
@@ -68,7 +69,6 @@ namespace Angela.Core
         {
             return FastList<T>();
         }
-
 
         private static List<T> BuildList<T>(int personCount) where T : new()
         {
@@ -154,6 +154,20 @@ namespace Angela.Core
 
         public Angie DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
+            return _angie;
+        }
+    
+        public Angie FillBy(string propertyName, Func<int> filler)
+        {
+            var propName = propertyName.ToLower();
+            Susan.PropertyIntFillers.Add(propName, filler);
+            return _angie;
+        }
+
+        public Angie FillBy(string propertyName, Func<string> filler)
+        {
+            var propName = propertyName.ToLower();
+            Susan.PropertyStringFillers.Add(propName, filler);
             return _angie;
         }
 
