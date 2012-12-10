@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,14 +83,20 @@ namespace Angela.Core
 
         private static List<string> LoadStrings(string resourceName)
         {
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            path = Path.GetDirectoryName(path);
+            path = path.Replace(@"file:\", "");
 
             var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var filename = string.Format(@"Resources\{0}.{1}.txt",resourceName, culture);
+            string filename = string.Format(@"{0}\Resources\{1}.{2}.txt", path, resourceName, culture);
 
             if (File.Exists(filename))
-            {
                 return File.ReadAllLines(filename).ToList();
-            }
+
+            filename = string.Format(@"Resources\{0}.{1}.txt", resourceName, culture);
+            if (File.Exists(filename))
+                return File.ReadAllLines(filename).ToList();
+
 
             // fallback
             string failedStringLoad = string.Format(Angie.Defaults.STRING_LOAD_FAIL, resourceName);

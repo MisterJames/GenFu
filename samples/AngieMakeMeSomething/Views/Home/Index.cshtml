@@ -1,0 +1,22 @@
+﻿@model IEnumerable<AngieMakeMeSomething.Models.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome To My Super-Fast Blog</h2>
+
+
+@foreach (var item in Model) {
+    
+    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+    
+    <div style="color:darkgray;">
+        <em>@Html.DisplayFor(modelItem => item.CreateDate)</em>
+    </div>
+    
+    <p>
+        @Html.DisplayFor(modelItem => item.Body)
+    </p>
+}
+
