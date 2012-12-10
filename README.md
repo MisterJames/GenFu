@@ -31,7 +31,18 @@ And you want a new instance of Person.  With AngelaSmith, you just do this:
 Tada!  Your `person` is now filled with all the data you could ever dream of!
 
 ## But Wait!
-"I don't need no stickin' person!" you say. "I need a whole list of them! And they have to be between the ages of 19 and 25!" 
+
+>"I don't need no stickin' person! I need a whole list of them! 
+
+Easy-peasy lemon squeezy, my friend!  Ask for a list instead of a single instance like so:
+
+```
+    var people = Angie.FastList<Person>();
+```
+
+There...you have 25 people, this is the default in a list.
+
+>"Yeah, sure, fine, but they have to be between the ages of 19 and 25!" 
 
 Cool beans, my brother or sister.  Here's how AngelaSmith rolls:
 
@@ -39,7 +50,7 @@ Cool beans, my brother or sister.  Here's how AngelaSmith rolls:
     var people = Angie
         .Configure()
         .IntRange(19, 25)
-        .FastList<Person>();
+        .MakeList<Person>();
 ```
 
 And you're off to the races!  Don't worry, I won't tell your boss how long that took.  ;)
