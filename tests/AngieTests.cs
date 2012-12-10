@@ -12,6 +12,11 @@ namespace Angela.Tests
     [TestFixture]
     class AngieTests
     {
+        [SetUp]
+        public void ResetAngie()
+        {
+            Angie.Reset();
+        }
 
         [Test]
         public void StringInNewClassIsPopulated()
@@ -218,6 +223,41 @@ namespace Angela.Tests
 
             Assert.IsTrue(post.Title == blogTitle);
         }
+
+        [Test]
+        public void DateTimeFilledWithExpectedDateGivenRules()
+        {
+            var future = DateTime.Now.AddSeconds(1);
+
+            var comments = Angie
+                .Configure()
+                .ListCount(1000)
+                .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.FutureDates); })
+                .MakeList<BlogComment>();
+
+            foreach (var comment in comments)
+            {
+                Assert.Greater(comment.CommentDate, future);
+            }
+        }
+
+        [Test]
+        public void MakeDateRuleFutureIsCorrect()
+        {
+            var future = DateTime.Now.AddMilliseconds(1);
+            var date = Angie.MakeDate(DateRules.FutureDates);
+            Assert.Greater(date, future);
+        }
+
+        [Test]
+        public void MakeDateRulePastIsCorrect()
+        {
+            var past = DateTime.Now.AddMilliseconds(-1);
+            var date = Angie.MakeDate(DateRules.PastDate);
+            Assert.Greater(past, date);
+        }
+
+
 
     }
 }

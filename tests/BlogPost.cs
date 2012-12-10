@@ -20,7 +20,7 @@ namespace Angela.Tests
         public int BlogCommentId { get; set; }
         public string Comment { get; set; }
         public string Username { get; set; }
-        public DateTime PostDate { get; set; }
+        public DateTime CommentDate { get; set; }
     }
 
 }

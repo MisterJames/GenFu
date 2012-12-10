@@ -119,13 +119,21 @@ namespace Angela.Core
         /// <returns></returns>
         public static Angie Configure()
         {
+            Reset();
+
+            return _angie;
+        }
+
+        public static void Reset()
+        {
             _minInt = Defaults.MIN_INT;
             _maxInt = Defaults.MAX_INT;
             _listCount = Defaults.LIST_COUNT;
 
-            Susan.PropertyFillers.Clear();
+            _minDateTime = DateTime.MinValue;
+            _maxDateTime = DateTime.MaxValue;
 
-            return _angie;
+            Susan.PropertyFillers.Clear();
         }
 
         //public Angie SomeSetterIAmComtemplating<T>(Expression<Func<T, object>> property, object value)
@@ -171,18 +179,57 @@ namespace Angela.Core
             return _angie;
         }
     
-        public Angie FillBy(string propertyName, Func<int> filler)
+        public Angie FillBy<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
             Susan.PropertyFillers.Add(propName, filler);
             return _angie;
         }
 
-        public Angie FillBy(string propertyName, Func<string> filler)
+        public static DateTime MakeDate(DateRules rules)
         {
-            var propName = propertyName.ToLower();
-            Susan.PropertyFillers.Add(propName, filler);
-            return _angie;
+            // grab a copy of the current config
+            var minDate = _minDateTime;
+            var maxDate = _maxDateTime;
+
+            // apply rule restrictions
+            if (rules == DateRules.Within1Year)
+            {
+                _minDateTime = DateTime.Now.AddYears(-1);
+                _maxDateTime = DateTime.Now.AddYears(1);
+            }
+
+            if (rules == DateRules.Within10Years)
+            {
+                _minDateTime = DateTime.Now.AddYears(-10);
+                _maxDateTime = DateTime.Now.AddYears(10);
+            }
+
+            if (rules == DateRules.Within25years)
+            {
+                _minDateTime = DateTime.Now.AddYears(-25);
+                _maxDateTime = DateTime.Now.AddYears(25);
+            }
+
+            if (rules == DateRules.Within50Years)
+            {
+                _minDateTime = DateTime.Now.AddYears(-50);
+                _maxDateTime = DateTime.Now.AddYears(50);
+            }
+
+            if (rules == DateRules.Within100Years)
+            {
+                _minDateTime = DateTime.Now.AddYears(-100);
+                _maxDateTime = DateTime.Now.AddYears(100);
+            }
+
+            if (rules == DateRules.FutureDates)
+                _minDateTime = DateTime.Now;
+
+            if (rules == DateRules.PastDate)
+                _maxDateTime = DateTime.Now;
+
+            return Susan.DateTimeFill("", _minDateTime, _maxDateTime);
         }
 
         public class Defaults
@@ -202,4 +249,17 @@ namespace Angela.Core
         }
 
     }
+
+    [Flags]
+    public enum DateRules
+    {
+        FutureDates = 0,
+        Within1Year = 1,
+        Within10Years = 2,
+        Within25years = 4,
+        Within50Years = 8,
+        Within100Years = 16,
+        PastDate = 32
+    }
+
 }
