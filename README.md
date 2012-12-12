@@ -74,7 +74,7 @@ Or, you can use one of the built-in helper methods, to, for example, spin up 100
      var comments = Angie
         .Configure()
         .ListCount(1000)
-        .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.FutureDates); })
+        .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.PastDates); })
         .MakeList<BlogComment>();
 ```
 
