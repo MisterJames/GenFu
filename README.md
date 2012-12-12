@@ -55,6 +55,30 @@ Cool beans, my brother or sister.  Here's how AngelaSmith rolls:
 
 And you're off to the races!  Don't worry, I won't tell your boss how long that took.  ;)
 
+Custom Property Fillers
+===========
+
+If you want to control how the property is set, you can use your own function (anonymous or otherwise) to do so.
+
+```
+    var blogTitle = "Angie";
+
+    var post = Angie.Configure()
+        .FillBy("title", delegate() { return blogTitle; })
+        .Make<BlogPost>();
+```
+
+Or, you can use one of the built-in helper methods, to, for example, spin up 1000 comments that happened in the past.
+
+```
+     var comments = Angie
+        .Configure()
+        .ListCount(1000)
+        .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.FutureDates); })
+        .MakeList<BlogComment>();
+```
+
+
 More To Come
 ===========
 I've been tinkering with this idea for a while, and once I added the fluent bits it really came to life and made my work easier. Talking with a co-worker, we both agreed that this was a useful idea, so hopefully it helps you out, too.
