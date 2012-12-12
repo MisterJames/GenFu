@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angie.cs" />
+    <Compile Include="AngieFluent.cs" />
     <Compile Include="Chastity.cs" />
     <Compile Include="Susan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
