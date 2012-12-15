@@ -18,7 +18,7 @@ namespace Angela.Core
         private static List<string> _lastNames = LoadStrings(Angie.Defaults.FILE_LAST_NAMES);
         private static List<string> _words = LoadStrings(Angie.Defaults.FILE_WORDS);
         private static List<string> _titles = LoadStrings(Angie.Defaults.FILE_TITLES);
-        private static List<string> _domains = LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES); 
+        private static List<string> _domains = LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES);
 
         private static Dictionary<string, object> _propertyFillers = new Dictionary<string, object>();
 
@@ -26,7 +26,7 @@ namespace Angela.Core
         {
             get { return _propertyFillers; }
         }
-        
+
         internal static string StringFill(string propertyName)
         {
             var propName = propertyName.ToLower();
@@ -80,7 +80,7 @@ namespace Angela.Core
             int seconds = _random.Next(24 * 60 * 60);
             return min.AddDays(randomDays).AddSeconds(seconds);
         }
-        
+
         public static string FillWord()
         {
             // aww, shucks.  we did our best!
@@ -169,17 +169,40 @@ namespace Angela.Core
             var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             string filename = string.Format(@"{0}\Resources\{1}.{2}.txt", path, resourceName, culture);
 
+            // attempt load from absolute path
             if (File.Exists(filename))
                 return File.ReadAllLines(filename).ToList();
 
+            // attempt load from relative path
             filename = string.Format(@"Resources\{0}.{1}.txt", resourceName, culture);
             if (File.Exists(filename))
                 return File.ReadAllLines(filename).ToList();
 
+            // attempt load from embedded resource
+            var namespaceName = typeof(Angie).Namespace;
+            filename = string.Format("{0}.Resources.{1}.txt", namespaceName, resourceName);
+            List<string> lines = new List<string>();
+            try
+            {
+                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(filename)))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        lines.Add(line); // Add to list.
+                    }
+                }
 
-            // fallback
-            string failedStringLoad = string.Format(Angie.Defaults.STRING_LOAD_FAIL, resourceName);
-            return new List<string>() { failedStringLoad };
+            }
+            catch (Exception)
+            {
+                // fallback
+                string failedStringLoad = string.Format(Angie.Defaults.STRING_LOAD_FAIL, resourceName);
+                lines.Add(failedStringLoad);
+            }
+
+            return lines;
+
         }
 
 
