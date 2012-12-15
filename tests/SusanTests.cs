@@ -46,5 +46,14 @@ namespace Angela.Tests
 
             Assert.AreNotEqual(wordFail, person.Title, wordFail);
         }
+
+        [Test]
+        public void DomainResourceTest()
+        {
+            var person = Angie.FastMake<Person>();
+            string emailFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_DOMAIN_NAMES);
+
+            Assert.AreNotEqual(emailFail, person.EmailAddress, emailFail);
+        }
     }
 }

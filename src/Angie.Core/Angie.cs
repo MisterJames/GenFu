@@ -166,7 +166,8 @@ namespace Angela.Core
 
             public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
             public static DateTime MAX_DATETIME = DateTime.Now.AddDays(30);
-
+            
+            public static string FILE_DOMAIN_NAMES = "DomainNames";
             public const string FILE_FIRST_NAMES = "FirstNames";
             public const string FILE_LAST_NAMES = "LastNames";
             public const string FILE_TITLES = "Titles";

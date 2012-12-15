@@ -18,6 +18,7 @@ namespace Angela.Core
         private static List<string> _lastNames = LoadStrings(Angie.Defaults.FILE_LAST_NAMES);
         private static List<string> _words = LoadStrings(Angie.Defaults.FILE_WORDS);
         private static List<string> _titles = LoadStrings(Angie.Defaults.FILE_TITLES);
+        private static List<string> _domains = LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES); 
 
         private static Dictionary<string, object> _propertyFillers = new Dictionary<string, object>();
 
@@ -49,7 +50,15 @@ namespace Angela.Core
                 case "title":
                     index = _random.Next(0, _titles.Count());
                     return _titles[index];
-                
+
+                case "email":
+                case "emailaddress":
+                case "email_address":
+                    int firstNameIndex = _random.Next(0, _firstNames.Count());
+                    int lastNameIndex = _random.Next(0, _lastNames.Count());
+                    int domainNameIndex = _random.Next(0, _domains.Count());
+                    return string.Format("{0}.{1}@{2}", _firstNames[firstNameIndex], _lastNames[lastNameIndex], _domains[domainNameIndex]);
+
                 default:
                     // aww, shucks.  we did our best!
                     index = _random.Next(0, _words.Count());

@@ -24,5 +24,7 @@ namespace Angela.Tests
 
         public int NumberOfKids { get; set; }
 
+        public string EmailAddress { get; set; }
+
     }
 }

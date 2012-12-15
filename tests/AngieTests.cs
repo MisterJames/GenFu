@@ -1,4 +1,5 @@
-﻿using Angela.Core;
+﻿using System.Text.RegularExpressions;
+using Angela.Core;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,16 @@ namespace Angela.Tests
         {
             var person = Angie.FastMake<Person>();
             Assert.IsTrue(!string.IsNullOrEmpty(person.FirstName));
+        }
+
+        [Test]
+        public void EmailAddressInNewClassIsValid()
+        {
+            Person person = Angie.FastMake<Person>();
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(person.EmailAddress);
+            Assert.IsTrue(match.Success, "Invalid Email Address: {0}", person.EmailAddress);
+
         }
 
         [Test]
@@ -256,8 +267,6 @@ namespace Angela.Tests
             var date = Angie.MakeDate(DateRules.PastDate);
             Assert.Greater(past, date);
         }
-
-
 
     }
 }
