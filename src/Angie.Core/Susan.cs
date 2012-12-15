@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Angela.Core
 {
-    class Susan
+    public class Susan
     {
 
         private static Random _random = new Random(Environment.TickCount);
@@ -32,37 +32,28 @@ namespace Angela.Core
             var propName = propertyName.ToLower();
 
             // for common property names we'll try a resource
-            int index = 0;
             switch (propName)
             {
                 case "firstname":
                 case "fname":
                 case "first_name":
-                    index = _random.Next(0, _firstNames.Count());
-                    return _firstNames[index];
+                    return FillFirstName();
 
                 case "lastname":
                 case "lname":
                 case "last_name":
-                    index = _random.Next(0, _lastNames.Count());
-                    return _lastNames[index];
+                    return FillLastName();
 
                 case "title":
-                    index = _random.Next(0, _titles.Count());
-                    return _titles[index];
+                    return FillTitle();
 
                 case "email":
                 case "emailaddress":
                 case "email_address":
-                    int firstNameIndex = _random.Next(0, _firstNames.Count());
-                    int lastNameIndex = _random.Next(0, _lastNames.Count());
-                    int domainNameIndex = _random.Next(0, _domains.Count());
-                    return string.Format("{0}.{1}@{2}", _firstNames[firstNameIndex], _lastNames[lastNameIndex], _domains[domainNameIndex]);
+                    return FillEmail();
 
                 default:
-                    // aww, shucks.  we did our best!
-                    index = _random.Next(0, _words.Count());
-                    return _words[index];
+                    return FillWord();
             }
 
         }
@@ -88,6 +79,85 @@ namespace Angela.Core
             int randomDays = _random.Next(totalDays);
             int seconds = _random.Next(24 * 60 * 60);
             return min.AddDays(randomDays).AddSeconds(seconds);
+        }
+        
+        public static string FillWord()
+        {
+            // aww, shucks.  we did our best!
+            int index = _random.Next(0, _words.Count());
+            return _words[index];
+        }
+
+        public static string FillEmail()
+        {
+            int firstNameIndex = _random.Next(0, _firstNames.Count());
+            int lastNameIndex = _random.Next(0, _lastNames.Count());
+            int domainNameIndex = _random.Next(0, _domains.Count());
+            return string.Format("{0}.{1}@{2}", _firstNames[firstNameIndex], _lastNames[lastNameIndex], _domains[domainNameIndex]);
+        }
+
+        public static string FillTitle()
+        {
+            int index = _random.Next(0, _titles.Count());
+            return _titles[index];
+        }
+
+        public static string FillLastName()
+        {
+            int index = _random.Next(0, _lastNames.Count());
+            return _lastNames[index];
+        }
+
+        public static string FillFirstName()
+        {
+            int index = _random.Next(0, _firstNames.Count());
+            return _firstNames[index];
+        }
+
+        public static DateTime FillDate(DateRules rules)
+        {
+            // grab a copy of the current config
+            var minDate = Angie.MinDateTime;
+            var maxDate = Angie.MaxDateTime;
+
+            // apply rule restrictions
+            if (rules == DateRules.Within1Year)
+            {
+                Angie.MinDateTime = DateTime.Now.AddYears(-1);
+                Angie.MaxDateTime = DateTime.Now.AddYears(1);
+            }
+
+            if (rules == DateRules.Within10Years)
+            {
+                Angie.MinDateTime = DateTime.Now.AddYears(-10);
+                Angie.MaxDateTime = DateTime.Now.AddYears(10);
+            }
+
+            if (rules == DateRules.Within25years)
+            {
+                Angie.MinDateTime = DateTime.Now.AddYears(-25);
+                Angie.MaxDateTime = DateTime.Now.AddYears(25);
+            }
+
+            if (rules == DateRules.Within50Years)
+            {
+                Angie.MinDateTime = DateTime.Now.AddYears(-50);
+                Angie.MaxDateTime = DateTime.Now.AddYears(50);
+            }
+
+            if (rules == DateRules.Within100Years)
+            {
+                Angie.MinDateTime = DateTime.Now.AddYears(-100);
+                Angie.MaxDateTime = DateTime.Now.AddYears(100);
+            }
+
+            if (rules == DateRules.FutureDates)
+                Angie.MinDateTime = DateTime.Now;
+
+            if (rules == DateRules.PastDate)
+                Angie.MaxDateTime = DateTime.Now;
+
+            return Susan.DateTimeFill("", Angie.MinDateTime, Angie.MaxDateTime);
         }
 
         private static List<string> LoadStrings(string resourceName)

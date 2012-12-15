@@ -11,6 +11,12 @@ namespace Angela.Tests
     [TestFixture]
     class SusanTests
     {
+        [SetUp]
+        public void ResetAngie()
+        {
+            Angie.Reset();
+        }
+
         [Test]
         public void FirstNamesResourcesLoad()
         {
@@ -55,5 +61,22 @@ namespace Angela.Tests
 
             Assert.AreNotEqual(emailFail, person.EmailAddress, emailFail);
         }
+
+        [Test]
+        public void MakeDateRuleFutureIsCorrect()
+        {
+            var future = DateTime.Now.AddMilliseconds(1);
+            var date = Susan.FillDate(DateRules.FutureDates);
+            Assert.Greater(date, future);
+        }
+
+        [Test]
+        public void MakeDateRulePastIsCorrect()
+        {
+            var past = DateTime.Now.AddMilliseconds(-1);
+            var date = Susan.FillDate(DateRules.PastDate);
+            Assert.Greater(past, date);
+        }
+
     }
 }

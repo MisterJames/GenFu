@@ -112,50 +112,29 @@ namespace Angela.Core
             }
         }
 
-        public static DateTime MakeDate(DateRules rules)
+        public static DateTime MinDateTime
         {
-            // grab a copy of the current config
-            var minDate = _minDateTime;
-            var maxDate = _maxDateTime;
-
-            // apply rule restrictions
-            if (rules == DateRules.Within1Year)
+            get
             {
-                _minDateTime = DateTime.Now.AddYears(-1);
-                _maxDateTime = DateTime.Now.AddYears(1);
+                return _minDateTime;
             }
 
-            if (rules == DateRules.Within10Years)
+            set
             {
-                _minDateTime = DateTime.Now.AddYears(-10);
-                _maxDateTime = DateTime.Now.AddYears(10);
+                _minDateTime = value;
             }
+        }
 
-            if (rules == DateRules.Within25years)
+        public static DateTime MaxDateTime
+        {
+            get
             {
-                _minDateTime = DateTime.Now.AddYears(-25);
-                _maxDateTime = DateTime.Now.AddYears(25);
+                return _maxDateTime;
             }
-
-            if (rules == DateRules.Within50Years)
+            set
             {
-                _minDateTime = DateTime.Now.AddYears(-50);
-                _maxDateTime = DateTime.Now.AddYears(50);
+                _maxDateTime = value;
             }
-
-            if (rules == DateRules.Within100Years)
-            {
-                _minDateTime = DateTime.Now.AddYears(-100);
-                _maxDateTime = DateTime.Now.AddYears(100);
-            }
-
-            if (rules == DateRules.FutureDates)
-                _minDateTime = DateTime.Now;
-
-            if (rules == DateRules.PastDate)
-                _maxDateTime = DateTime.Now;
-
-            return Susan.DateTimeFill("", _minDateTime, _maxDateTime);
         }
 
         public class Defaults
@@ -174,6 +153,7 @@ namespace Angela.Core
             public const string FILE_WORDS = "Words";
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
+
 
     }
 

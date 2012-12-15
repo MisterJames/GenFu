@@ -243,7 +243,7 @@ namespace Angela.Tests
             var comments = Angie
                 .Configure()
                 .ListCount(1000)
-                .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.FutureDates); })
+                .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -252,21 +252,7 @@ namespace Angela.Tests
             }
         }
 
-        [Test]
-        public void MakeDateRuleFutureIsCorrect()
-        {
-            var future = DateTime.Now.AddMilliseconds(1);
-            var date = Angie.MakeDate(DateRules.FutureDates);
-            Assert.Greater(date, future);
-        }
 
-        [Test]
-        public void MakeDateRulePastIsCorrect()
-        {
-            var past = DateTime.Now.AddMilliseconds(-1);
-            var date = Angie.MakeDate(DateRules.PastDate);
-            Assert.Greater(past, date);
-        }
 
     }
 }
