@@ -16,6 +16,11 @@ namespace Angela.Core
             return _angie;
         }
 
+        public static Angie Set()
+        {
+            return _angie;
+        }
+
         public static void Reset()
         {
             _minInt = Defaults.MIN_INT;
@@ -74,7 +79,8 @@ namespace Angela.Core
         public Angie FillBy<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
-            Susan.PropertyFillers.Add(propName, filler);
+            if (!Susan.PropertyFillers.ContainsKey(propName))
+                Susan.PropertyFillers.Add(propName, filler);
             return _angie;
         }
     }

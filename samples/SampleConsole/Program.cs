@@ -20,19 +20,20 @@ namespace SampleConsole
                 Console.WriteLine(person);
             }
 
-            var postcomments = Angie
-                        .Configure()
-                        .ListCount(5)
-                        .MakeList<BlogComment>();
-
             var blogposts = Angie
                 .Configure()
                 .ListCount(3)
-                .FillBy("Comments", delegate() {
-                    return postcomments;
-                })
+                .FillBy("CreateDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                .FillBy("Comments", delegate()
+            {
+                return Angie
+                    .Set()
+                    .ListCount(5)
+                    .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                    .MakeList<BlogComment>();
+            })
                 .MakeList<BlogPost>();
-
+            
             foreach (var post in blogposts)
             {
                 Console.WriteLine(post.Title);
