@@ -83,6 +83,17 @@ namespace Angela.Core
             var propName = property.Name.ToString().ToLower();
             var customFillerExists = Susan.PropertyFillers.ContainsKey(propName);
 
+            // try first our custom fillers for any objects
+            if (customFillerExists)
+            {
+                var filler = Susan.PropertyFillers[propName] as Func<object>;
+                if (filler != null)
+                {
+                    property.SetValue(instance, filler.Invoke(), null);
+                }                
+            }
+
+            // try value types and other known types we can test for
             switch (property.PropertyType.Name.ToLower())
             {
                 case "int32":

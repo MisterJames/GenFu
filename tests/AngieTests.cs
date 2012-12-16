@@ -259,7 +259,22 @@ namespace Angela.Tests
             }
         }
 
+        [Test]
+        public void ComplexPropertyFillsExecuted()
+        {
+            var postcomments = Angie
+            .Configure()
+            .ListCount(5)
+            .MakeList<BlogComment>();
 
+            var blogpost = Angie
+                .Configure()
+                .FillBy("Comments", delegate() { return postcomments; })
+                .Make<BlogPost>();
+
+            Assert.IsNotNull(blogpost.Comments);
+
+        }
 
     }
 }
