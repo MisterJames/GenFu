@@ -52,6 +52,14 @@ namespace Angela.Core
                 case "email_address":
                     return FillEmail();
 
+                case "fax":
+                case "phone":
+                case "phonenumber":
+                case "phone_number":
+                case "homenumber":
+                case "worknumber":
+                    return FillPhoneNumber();
+
                 default:
                     return FillWord();
             }
@@ -112,6 +120,19 @@ namespace Angela.Core
         {
             int index = _random.Next(0, _firstNames.Count());
             return _firstNames[index];
+        }
+
+        public static string FillPhoneNumber()
+        {
+            string result = string.Empty;
+
+            int areacode = _random.Next(200, 799);
+            int prefix = _random.Next(200, 799);
+            int digits = _random.Next(0, 9999);
+
+            result = string.Format("({0}) {1}-{2}", areacode, prefix, digits);
+
+            return result;
         }
 
         public static DateTime FillDate(DateRules rules)

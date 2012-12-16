@@ -37,6 +37,13 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void PhoneNumberInNewClassIsPopulated()
+        {
+            var person = Angie.FastMake<Person>();
+            Assert.IsTrue(!string.IsNullOrEmpty(person.PhoneNumber));
+        }
+
+        [Test]
         public void IntInNewClassIsPopulated()
         {
             var person = Angie.FastMake<Person>();

@@ -11,15 +11,19 @@ namespace SampleConsole
     {
         static void Main(string[] args)
         {
+            var t = Environment.TickCount;
+
             var people = Angie
                 .Configure()
-                .ListCount(5)
+                .ListCount(8)
                 .MakeList<Person>();
 
-            foreach (var person in people)
-            {
-                Console.WriteLine(person);
-            }
+            //foreach (var person in people)
+            //{
+            //    Console.WriteLine(person);
+            //}
+
+            Console.WriteLine(Environment.TickCount - t);
 
             Console.ReadLine();
         }
