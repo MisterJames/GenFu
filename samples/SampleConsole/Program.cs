@@ -25,13 +25,13 @@ namespace SampleConsole
                 .ListCount(3)
                 .FillBy("CreateDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
                 .FillBy("Comments", delegate()
-            {
-                return Angie
-                    .Set()
-                    .ListCount(5)
-                    .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
-                    .MakeList<BlogComment>();
-            })
+                {
+                    return Angie
+                        .Set()
+                        .ListCount(5)
+                        .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                        .MakeList<BlogComment>();
+                })
                 .MakeList<BlogPost>();
             
             foreach (var post in blogposts)

@@ -276,5 +276,26 @@ namespace Angela.Tests
 
         }
 
+        [Test]
+        public void CustomPropertyFillsAreChainableUsingSet()
+        {
+            var blogpost = Angie
+                .Configure()
+                .FillBy("CreateDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                .FillBy("Comments", delegate()
+                {
+                    return Angie
+                        .Set()
+                        .ListCount(5)
+                        .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                        .MakeList<BlogComment>();
+                })
+                .Make<BlogPost>();
+
+            Assert.IsNotNull(blogpost.Comments);
+
+        }
+
+
     }
 }
