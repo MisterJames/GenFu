@@ -16,6 +16,7 @@ namespace SampleConsole
             sb.AppendLine("==================================================");
             sb.AppendLine("  1) Post me some blogs");
             sb.AppendLine("  2) Write some peeps out");
+            sb.AppendLine("  3) Please address me");
             sb.AppendLine();
             sb.AppendLine("  x to exit");
             sb.AppendLine();
@@ -39,6 +40,12 @@ namespace SampleConsole
                         Console.WriteLine();
                         Console.WriteLine();
                         WriteSomePeepsOut();
+                        Console.WriteLine();
+                        break;
+                    case "d3":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        PleaseAddressMe();
                         Console.WriteLine();
                         break;
                     case "x":
@@ -89,6 +96,19 @@ namespace SampleConsole
                 Console.WriteLine(person);
             }
         }
+
+        private static void PleaseAddressMe()
+        {
+            var addresses = Angie
+                .Configure()
+                .ListCount(3)
+                .MakeList<Location>();
+
+            foreach (var location in addresses)
+            {
+                Console.WriteLine(location);
+            }
+        }
     }
 
     public class Person
@@ -120,5 +140,29 @@ namespace SampleConsole
         public string Comment { get; set; }
         public string Username { get; set; }
         public DateTime CommentDate { get; set; }
+    }
+
+    internal class Location
+    {
+        public string Address { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string PostalCode { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+
+            // this will be fleshed out as properties are added
+            result.AppendLine(Address);
+            result.Append(string.IsNullOrEmpty(Address2) ? string.Empty : string.Format("{0}\n", Address2));
+            result.AppendLine(City);
+
+            return result.ToString();
+        }
     }
 }

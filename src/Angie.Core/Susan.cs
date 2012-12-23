@@ -139,13 +139,15 @@ namespace Angela.Core
             int index = _random.Next(0, _streetNames.Count());
             var suffixes = new List<string> { "NW", "N", "NE", "E", "SE", "S", "SW", "W" };
 
-            var number = _random.Next(100, 99999);
+            var number = _random.Next(100, 9999);
+            number = _random.Next(1, 5) == 5 ? _random.Next(100, 99999 ) : number;
+
             var streetName = _streetNames[index];
             var direction = _random.Next(1, 1) > 8 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
 
             var result = string.Format("{0} {1} {2}", number, streetName, direction);
 
-            return _streetNames[index];
+            return result;
         }
 
         public static string FillAddressLine2()
@@ -160,6 +162,7 @@ namespace Angela.Core
             var suffix = _random.Next(1, 4) > 2 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
 
             result = string.Format("{0}{1}{2}", unit, number, suffix);
+            result = _random.Next(1, 4) == 1 ? result : string.Empty;
 
             return result;
         }

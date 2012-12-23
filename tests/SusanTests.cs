@@ -79,6 +79,18 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void AddressContainsNumbers()
+        {
+            var addressLine = Susan.FillAddressLine();
+
+            var streetNumber = 0;
+            var addressPrefix = addressLine.Split(' ')[0];
+
+            Assert.IsTrue(int.TryParse(addressPrefix, out streetNumber));
+            
+        }
+
+        [Test]
         public void StreetNameResourceTest()
         {
             string addressFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_STREET_NAMES);
