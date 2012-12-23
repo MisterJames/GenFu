@@ -78,5 +78,25 @@ namespace Angela.Tests
             Assert.Greater(past, date);
         }
 
+        [Test]
+        public void StreetNameResourceTest()
+        {
+            string addressFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_STREET_NAMES);
+            var addressLine = Susan.FillAddressLine();
+
+            Assert.AreNotEqual(addressFail, addressLine, addressFail);
+        }
+
+        [Test]
+        public void CityNameResourceTest()
+        {
+            string cityFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_CITY_NAMES);
+            var city = Susan.FillCity();
+
+            Assert.AreNotEqual(cityFail, city, cityFail);
+        }
+
+
+
     }
 }

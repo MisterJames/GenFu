@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace Angela.Core
 {
@@ -17,6 +18,8 @@ namespace Angela.Core
         private static List<string> _words = LoadStrings(Angie.Defaults.FILE_WORDS);
         private static List<string> _titles = LoadStrings(Angie.Defaults.FILE_TITLES);
         private static List<string> _domains = LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES);
+        private static List<string> _streetNames = LoadStrings(Angie.Defaults.FILE_STREET_NAMES);
+        private static List<string> _cityNames = LoadStrings(Angie.Defaults.FILE_CITY_NAMES);
 
         private static Dictionary<string, object> _propertyFillers = new Dictionary<string, object>();
 
@@ -49,6 +52,17 @@ namespace Angela.Core
                 case "emailaddress":
                 case "email_address":
                     return FillEmail();
+
+                case "address":
+                case "address1":
+                    return FillAddressLine();
+
+                case "address2":
+                case "address_2":
+                    return FillAddressLine2();
+
+                case "city":
+                    return FillCity();
 
                 case "fax":
                 case "phone":
@@ -118,6 +132,42 @@ namespace Angela.Core
         {
             int index = _random.Next(0, _firstNames.Count());
             return _firstNames[index];
+        }
+
+        public static string FillAddressLine()
+        {
+            int index = _random.Next(0, _streetNames.Count());
+            var suffixes = new List<string> { "NW", "N", "NE", "E", "SE", "S", "SW", "W" };
+
+            var number = _random.Next(100, 99999);
+            var streetName = _streetNames[index];
+            var direction = _random.Next(1, 1) > 8 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
+
+            var result = string.Format("{0} {1} {2}", number, streetName, direction);
+
+            return _streetNames[index];
+        }
+
+        public static string FillAddressLine2()
+        {
+            string result = string.Empty;
+
+            List<string> units = new List<string> { "Apt ", "Unit ", "#", "Studio "};
+            List<string> suffixes = new List<string> { "A", "B", "C", "D", "E", "F", "G" };
+
+            var unit = _random.Next(1, 4) > 2 ? units[_random.Next(units.Count)] : string.Empty;
+            var number = _random.Next(100, 999);
+            var suffix = _random.Next(1, 4) > 2 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
+
+            result = string.Format("{0}{1}{2}", unit, number, suffix);
+
+            return result;
+        }
+
+        public static string FillCity()
+        {
+            int index = _random.Next(0, _cityNames.Count());
+            return _cityNames[index];
         }
 
         public static string FillPhoneNumber()

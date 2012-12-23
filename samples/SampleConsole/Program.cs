@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SampleConsole
 {
@@ -10,16 +11,52 @@ namespace SampleConsole
     {
         static void Main(string[] args)
         {
-            var people = Angie
-                .Configure()
-                .ListCount(8)
-                .MakeList<Person>();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Angie does whatever you tell her to.");
+            sb.AppendLine("==================================================");
+            sb.AppendLine("  1) Post me some blogs");
+            sb.AppendLine("  2) Write some peeps out");
+            sb.AppendLine();
+            sb.AppendLine("  x to exit");
+            sb.AppendLine();
 
-            foreach (var person in people)
+            var instructions = sb.ToString();
+
+            string input = string.Empty;
+            while (input.ToLower() != "x")
             {
-                Console.WriteLine(person);
+                Console.WriteLine(instructions);
+                input = Console.ReadKey().Key.ToString().ToLower();
+                switch (input)
+                {
+                    case "d1":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        PostMeSomeBlogs();
+                        Console.WriteLine();
+                        break;
+                    case "d2":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        WriteSomePeepsOut();
+                        Console.WriteLine();
+                        break;
+                    case "x":
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("Aw. So close. Try again.");
+                        Console.WriteLine();
+                        break;
+                }
             }
+            
 
+
+        }
+
+        private static void PostMeSomeBlogs()
+        {
             var blogposts = Angie
                 .Configure()
                 .ListCount(3)
@@ -33,13 +70,24 @@ namespace SampleConsole
                         .MakeList<BlogComment>();
                 })
                 .MakeList<BlogPost>();
-            
+
             foreach (var post in blogposts)
             {
                 Console.WriteLine(post.Title);
             }
+        }
 
-            Console.ReadLine();
+        private static void WriteSomePeepsOut()
+        {
+            var people = Angie
+                .Configure()
+                .ListCount(8)
+                .MakeList<Person>();
+
+            foreach (var person in people)
+            {
+                Console.WriteLine(person);
+            }
         }
     }
 
