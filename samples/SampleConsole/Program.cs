@@ -160,7 +160,7 @@ namespace SampleConsole
             // this will be fleshed out as properties are added
             result.AppendLine(Address);
             result.Append(string.IsNullOrEmpty(Address2) ? string.Empty : string.Format("{0}\n", Address2));
-            result.AppendLine(City);
+            result.AppendFormat("{0}, {1}\n", City, State);
 
             return result.ToString();
         }

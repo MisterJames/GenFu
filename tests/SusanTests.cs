@@ -108,6 +108,37 @@ namespace Angela.Tests
             Assert.AreNotEqual(cityFail, city, cityFail);
         }
 
+        [Test]
+        public void CanadianProvinceResourceTest()
+        {
+            string provinceFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_CDN_PROVINCE_NAMES);
+            var city = Susan.FillCity();
+
+            Assert.AreNotEqual(provinceFail, city, provinceFail);
+        }
+
+        [Test]
+        public void CanadianProvinceIsFilled()
+        {
+            var location = Angie.FastMake<CanadianLocation>();
+            Assert.IsFalse(string.IsNullOrEmpty(location.Province));
+        }
+
+        [Test]
+        public void UsaStatesResourceTest()
+        {
+            string statesFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
+            var city = Susan.FillCity();
+
+            Assert.AreNotEqual(statesFail, city, statesFail);
+        }
+
+        [Test]
+        public void UsaStateIsFilled()
+        {
+            var location = Angie.FastMake<AmericanLocation>();
+            Assert.IsFalse(string.IsNullOrEmpty(location.State));
+        }
 
 
     }

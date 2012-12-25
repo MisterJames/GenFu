@@ -160,6 +160,8 @@ namespace Angela.Core
             public const string FILE_WORDS = "Words";
             public const string FILE_STREET_NAMES = "StreetNames";
             public const string FILE_CITY_NAMES = "CityNames";
+            public const string FILE_USA_STATE_NAMES = "USAStateNames";
+            public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
 
