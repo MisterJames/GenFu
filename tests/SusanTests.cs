@@ -140,6 +140,16 @@ namespace Angela.Tests
             Assert.IsFalse(string.IsNullOrEmpty(location.State));
         }
 
+        [Test]
+        public void PhoneNumberIsExpectedLength()
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                var phoneNumber = Susan.FillPhoneNumber();
+                Assert.AreEqual(14, phoneNumber.Length);
+            }
+        }
+
 
     }
 }

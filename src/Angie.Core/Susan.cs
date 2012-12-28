@@ -204,7 +204,7 @@ namespace Angela.Core
             int prefix = _random.Next(200, 799);
             int digits = _random.Next(0, 9999);
 
-            result = string.Format("({0}) {1}-{2}", areacode, prefix, digits);
+            result = string.Format("({0}) {1}-{2:0000}", areacode, prefix, digits);
 
             return result;
         }
