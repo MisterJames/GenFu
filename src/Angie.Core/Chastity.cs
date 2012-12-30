@@ -8,8 +8,7 @@ namespace Angela.Core
         internal static bool HasValue<T>(T instance, PropertyInfo property)
         {
             var value = property.GetValue(instance);
-            bool valueSet = false;
-
+            bool valueSet = false;           
             switch (property.PropertyType.Name.ToLower())
             {
                 case "int32":

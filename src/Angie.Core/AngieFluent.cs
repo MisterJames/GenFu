@@ -23,8 +23,8 @@ namespace Angela.Core
 
         public static void Reset()
         {
-            _minInt = Defaults.MIN_INT;
-            _maxInt = Defaults.MAX_INT;
+            _maggie.SetMinInt(Defaults.MIN_INT);
+            _maggie.SetMaxInt(Defaults.MAX_INT);
             _listCount = Defaults.LIST_COUNT;
 
             _minDateTime = DateTime.MinValue;
@@ -45,21 +45,21 @@ namespace Angela.Core
 
         public Angie MaxInt(int max)
         {
-            _maxInt = max;
+            _maggie.SetMaxInt(max);
             return _angie;
 
         }
 
         public Angie MinInt(int min)
         {
-            _minInt = min;
+            _maggie.SetMinInt(min);
             return _angie;
         }
 
         public Angie IntRange(int min, int max)
         {
-            _minInt = min;
-            _maxInt = max;
+            MinInt(min);
+            MaxInt(max);
 
             return _angie;
 
