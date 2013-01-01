@@ -290,7 +290,7 @@ namespace Angela.Tests
                         .FillBy<BlogComment, DateTime>(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
-                .Make<BlogPost>();
+            .Make<BlogPost>();
 
             Assert.IsNotNull(blogpost.Comments);
 

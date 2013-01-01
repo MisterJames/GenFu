@@ -113,11 +113,15 @@ namespace Angela.Core
             public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
             public static DateTime MAX_DATETIME = DateTime.Now.AddDays(30);
             
-            public static string FILE_DOMAIN_NAMES = "DomainNames";
+            public const string FILE_DOMAIN_NAMES = "DomainNames";
             public const string FILE_FIRST_NAMES = "FirstNames";
             public const string FILE_LAST_NAMES = "LastNames";
             public const string FILE_TITLES = "Titles";
             public const string FILE_WORDS = "Words";
+            public const string FILE_STREET_NAMES = "StreetNames";
+            public const string FILE_CITY_NAMES = "CityNames";
+            public const string FILE_USA_STATE_NAMES = "USAStateNames";
+            public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
 

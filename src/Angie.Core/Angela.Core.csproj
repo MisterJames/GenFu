@@ -54,6 +54,16 @@
     <EmbeddedResource Include="Resources\Titles.txt" />
     <EmbeddedResource Include="Resources\Words.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\StreetNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CityNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CanadianProvinceNames.txt" />
+    <EmbeddedResource Include="Resources\USAStateNames.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
