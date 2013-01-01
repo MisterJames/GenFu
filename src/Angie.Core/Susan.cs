@@ -35,15 +35,15 @@ namespace Angela.Core
                 case "firstname":
                 case "fname":
                 case "first_name":
-                    return FillFirstName();
+                    return GetFirstName();
 
                 case "lastname":
                 case "lname":
                 case "last_name":
-                    return FillLastName();
+                    return GetLastName();
 
                 case "title":
-                    return FillTitle();
+                    return GetTitle();
 
                 case "email":
                 case "emailaddress":
@@ -59,35 +59,20 @@ namespace Angela.Core
                     return FillPhoneNumber();
 
                 default:
-                    return FillWord();
+                    return GetWord();
             }
 
         }
 
-        internal static int IntFill(string propertyName, int min, int max)
+        private static DateTime DateTimeFill(DateTime min, DateTime max)
         {
-            var propName = propertyName.ToLower();
-
-            // check to see if we can be smart about the name of the prop
-            switch (propName)
-            {
-                case "age":
-                    return Math.Abs(_random.Next(min, max));
-                default:
-                    // oh well, we tried!
-                    return _random.Next(min, max);
-            }
-        }
-
-        internal static DateTime DateTimeFill(string propertyName, DateTime min, DateTime max)
-        {
-            int totalDays = ((TimeSpan)(max - min)).Days;
+            int totalDays = (max - min).Days;
             int randomDays = _random.Next(totalDays);
             int seconds = _random.Next(24 * 60 * 60);
             return min.AddDays(randomDays).AddSeconds(seconds);
         }
 
-        public static string FillWord()
+        public static string GetWord()
         {
             // aww, shucks.  we did our best!
             int index = _random.Next(0, _words.Count());
@@ -102,22 +87,28 @@ namespace Angela.Core
             return string.Format("{0}.{1}@{2}", _firstNames[firstNameIndex], _lastNames[lastNameIndex], _domains[domainNameIndex]);
         }
 
-        public static string FillTitle()
+        public static string GetTitle()
         {
             int index = _random.Next(0, _titles.Count());
             return _titles[index];
         }
 
-        public static string FillLastName()
+        public static string GetLastName()
         {
             int index = _random.Next(0, _lastNames.Count());
             return _lastNames[index];
         }
 
-        public static string FillFirstName()
+        public static string GetFirstName()
         {
             int index = _random.Next(0, _firstNames.Count());
             return _firstNames[index];
+        }
+
+        public static string GetDomainName()
+        {
+            int index = _random.Next(0, _domains.Count());
+            return _domains[index];
         }
 
         public static string FillPhoneNumber()
@@ -136,6 +127,7 @@ namespace Angela.Core
         public static DateTime FillDate(DateRules rules)
         {
             // grab a copy of the current config
+            
             var minDate = Angie.MinDateTime;
             var maxDate = Angie.MaxDateTime;
 
@@ -176,7 +168,7 @@ namespace Angela.Core
             if (rules == DateRules.PastDate)
                 Angie.MaxDateTime = DateTime.Now;
 
-            return Susan.DateTimeFill("", Angie.MinDateTime, Angie.MaxDateTime);
+            return DateTimeFill(Angie.MinDateTime, Angie.MaxDateTime);
         }
 
         private static List<string> LoadStrings(string resourceName)

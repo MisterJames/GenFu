@@ -10,12 +10,7 @@ namespace Angela.Core
         private static Angie _angie = new Angie();
         private static Maggie _maggie = new Maggie();
 
-        private static int _minInt = Defaults.MIN_INT;
-        private static int _maxInt = Defaults.MAX_INT;
         private static int _listCount = Defaults.LIST_COUNT;
-
-        private static DateTime _minDateTime = Defaults.MIN_DATETIME;
-        private static DateTime _maxDateTime = Defaults.MAX_DATETIME;
 
         static Angie()
         {
@@ -88,68 +83,24 @@ namespace Angela.Core
         {
             IPropertyFiller filler = _maggie.GetFiller(property);
             property.SetValue(instance, filler.GetValue());
-
-            //var propName = property.Name.ToLower();
-            //var customFillerExists = Susan.PropertyFillers.ContainsKey(propName);
-
-            //// try first our custom fillers for any objects
-            //if (customFillerExists)
-            //{
-            //    var filler = Susan.PropertyFillers[propName] as Func<object>;
-            //    if (filler != null)
-            //    {
-            //        property.SetValue(instance, filler.Invoke(), null);
-            //    }                
-            //}
-
-            //// try value types and other known types we can test for
-            //switch (property.PropertyType.Name.ToLower())
-            //{
-            //    case "int32":
-            //        if (customFillerExists)
-            //            property.SetValue(instance, ((Func<int>)Susan.PropertyFillers[propName]).Invoke(), null);
-            //        else
-            //            property.SetValue(instance, Susan.IntFill(property.Name, _minInt, _maxInt), null);
-            //        break;
-            //    case "string":
-            //        if (customFillerExists)
-            //            property.SetValue(instance, ((Func<string>)Susan.PropertyFillers[propName]).Invoke(), null);
-            //        else
-            //            property.SetValue(instance, Susan.StringFill(property.Name), null);
-            //        break;
-            //    case "datetime":
-            //        if (customFillerExists)
-            //            property.SetValue(instance, ((Func<DateTime>)Susan.PropertyFillers[propName]).Invoke(), null);
-            //        else
-            //            property.SetValue(instance, Susan.DateTimeFill(property.Name, _minDateTime, _maxDateTime), null);
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         public static DateTime MinDateTime
         {
-            get
-            {
-                return _minDateTime;
-            }
+            get { return _maggie.GetMinDateTime(); }
 
             set
             {
-                _minDateTime = value;
+                _maggie.SetMinDateTime(value);
             }
         }
 
         public static DateTime MaxDateTime
         {
-            get
-            {
-                return _maxDateTime;
-            }
+            get { return _maggie.GetMaxDateTime(); }
             set
             {
-                _maxDateTime = value;
+                _maggie.SetMaxDateTime(value);
             }
         }
 

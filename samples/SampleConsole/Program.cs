@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Angela.Core.Fillers;
 
 namespace SampleConsole
 {
@@ -10,6 +11,21 @@ namespace SampleConsole
     {
         static void Main(string[] args)
         {
+
+            var newPeep = Angie.Configure<Person>()
+                              .WithProperty(p => p.Age)
+                                .WithinRange(2, 7)
+                              .WithProperty(p => p.LastName)
+                                .AsEmailAddress()
+                              .Make<Person>();
+
+            Console.WriteLine("First Person");
+            Console.WriteLine(newPeep);
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+
             var people = Angie
                 .Configure()
                 .ListCount(8)
@@ -49,10 +65,11 @@ namespace SampleConsole
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public int Age { get; set; }
 
         public override string ToString()
         {
-            return string.Format("You can reach {0} {1} at \n\te:{2}\n\tp:{3}\n", FirstName, LastName, Email, PhoneNumber);
+            return string.Format("You can reach {0} {1} (age {2}) at \n\te:{3}\n\tp:{4}\n", FirstName, LastName, Age, Email, PhoneNumber);
         }
         
     }

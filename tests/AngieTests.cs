@@ -78,17 +78,17 @@ namespace Angela.Tests
         [Test]
         public void IntMaxNotExceededOnGeneratedValue()
         {
-            var maxAge = 5;
+            var maxNumberOfKids = 5;
 
             for (int i = 0; i < 2500; i++)
             {
                 var person = Angie
                     .Configure()
-                    .MaxInt(maxAge)
+                    .MaxInt(maxNumberOfKids)
                     .Make<Person>();
 
-                if (!(person.Age <= maxAge))
-                    Assert.Fail("Int max was exceeded: {0} ", person.Age);
+                if (!(person.NumberOfKids <= maxNumberOfKids))
+                    Assert.Fail("Int max was exceeded: {0} ", person.NumberOfKids);
             }
 
         }
@@ -96,17 +96,17 @@ namespace Angela.Tests
         [Test]
         public void IntMinNotExceededOnGeneratedValue()
         {
-            var minAge = 5;
+            var minNumberOfKids = 5;
 
             for (int i = 0; i < 2500; i++)
             {
                 var person = Angie
                     .Configure()
-                    .MinInt(minAge)
+                    .MinInt(minNumberOfKids)
                     .Make<Person>();
 
-                if (!(person.Age >= minAge))
-                    Assert.Fail("Int min was exceeded: {0} ", person.Age);
+                if (!(person.NumberOfKids >= minNumberOfKids))
+                    Assert.Fail("Int min was exceeded: {0} ", person.NumberOfKids);
             }
 
             
@@ -223,7 +223,7 @@ namespace Angela.Tests
             var age = 11;
 
             var person = Angie.Configure()
-                .FillBy("age", delegate() { return age; })
+                .FillBy<Person, int>(p => p.Age, delegate() { return age; })
                 .Make<Person>();
 
             Assert.IsTrue(person.Age == age);
@@ -236,10 +236,10 @@ namespace Angela.Tests
             var blogTitle = "Angie";
 
             var post = Angie.Configure()
-                .FillBy("title", delegate() { return blogTitle; })
+                .FillBy<BlogPost, string>(b => b.Title, () => blogTitle)
                 .Make<BlogPost>();
 
-            Assert.IsTrue(post.Title == blogTitle);
+            Assert.AreEqual(blogTitle, post.Title);
         }
 
         [Test]
@@ -250,7 +250,7 @@ namespace Angela.Tests
             var comments = Angie
                 .Configure()
                 .ListCount(1000)
-                .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.FutureDates); })
+                .FillBy<BlogComment, DateTime>(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -269,7 +269,7 @@ namespace Angela.Tests
 
             var blogpost = Angie
                 .Configure()
-                .FillBy("Comments", delegate() { return postcomments; })
+                .FillBy<BlogPost, ICollection<BlogComment>>(b => b.Comments, delegate { return postcomments; })
                 .Make<BlogPost>();
 
             Assert.IsNotNull(blogpost.Comments);
@@ -281,13 +281,13 @@ namespace Angela.Tests
         {
             var blogpost = Angie
                 .Configure()
-                .FillBy("CreateDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
-                .FillBy("Comments", delegate()
+                .FillBy<BlogPost, DateTime>(b => b.CreateDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
+                .FillBy<BlogPost, ICollection<BlogComment>>(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set()
                         .ListCount(5)
-                        .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
+                        .FillBy<BlogComment, DateTime>(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
                 .Make<BlogPost>();

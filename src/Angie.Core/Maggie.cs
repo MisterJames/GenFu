@@ -6,7 +6,7 @@ using Angela.Core.Fillers;
 
 namespace Angela.Core
 {
-    internal class Maggie
+    public class Maggie
     {
         private IDictionary<Type, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
@@ -24,7 +24,8 @@ namespace Angela.Core
 
             _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
             _genericPropertyFillersByPropertyType.Add(typeof(string), new GenericStringFiller());
-            _genericPropertyFillersByPropertyType.Add(typeof(int), new GenericIntFiller());
+            _genericPropertyFillersByPropertyType.Add(typeof(int), new IntFiller());
+            _genericPropertyFillersByPropertyType.Add(typeof(DateTime), new GenericDateTimeFiller());
         }
 
         public void RegisterFiller(IPropertyFiller filler)
@@ -45,7 +46,7 @@ namespace Angela.Core
         {
             IPropertyFiller result = null;
             Type objectType = propertyInfo.DeclaringType;
-            while (objectType != null)
+            while (objectType != null && result ==  null)
             {
                 if (_specificPropertyFillersByObjectType.ContainsKey(objectType))
                 {
@@ -71,7 +72,8 @@ namespace Angela.Core
                 }
                 else
                 {
-                    result = new CustomFiller("*", typeof (object), propertyInfo.PropertyType, () => null);
+                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
+                    result = new CustomFiller<object>("*", typeof (object), () => null);
                     _genericPropertyFillersByPropertyType.Add(propertyInfo.PropertyType, result);
                 }
             }
@@ -81,14 +83,38 @@ namespace Angela.Core
 
         public void SetMinInt(int min)
         {
-            GenericIntFiller intFiller = (GenericIntFiller) _genericPropertyFillersByPropertyType[typeof(int)];
+            IntFiller intFiller = (IntFiller) _genericPropertyFillersByPropertyType[typeof(int)];
             intFiller.Min = min;
         }
 
         public void SetMaxInt(int max)
         {
-            GenericIntFiller intFiller = (GenericIntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
-            intFiller.Min = max;
+            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
+            intFiller.Max = max;
+        }
+
+        public void SetMinDateTime(DateTime minValue)
+        {
+            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            dateTimeFiller.Min = minValue;
+        }
+
+        public void SetMaxDateTime(DateTime maxValue)
+        {
+            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            dateTimeFiller.Max = maxValue;
+        }
+
+        public DateTime GetMinDateTime()
+        {
+            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            return dateTimeFiller.Min;
+        }
+
+        public DateTime GetMaxDateTime()
+        {
+            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            return dateTimeFiller.Max;
         }
     }
 }
