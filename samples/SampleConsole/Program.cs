@@ -3,11 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-<<<<<<< HEAD
-using Angela.Core.Fillers;
-=======
 using System.Text;
->>>>>>> master
 
 namespace SampleConsole
 {
