@@ -12,7 +12,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.GetWord();
+            return Jen.Word();
         }
     }
 
@@ -28,7 +28,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.GetTitle();
+            return Jen.Title();
         }
     }
 
@@ -44,7 +44,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.GetFirstName();
+            return Jen.FirstName();
         }
     }
 
@@ -60,7 +60,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.GetLastName();
+            return Jen.LastName();
         }
     }
 
@@ -76,7 +76,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillEmail();
+            return Jen.Email();
         }
     }
 
@@ -92,7 +92,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillAddressLine();
+            return Jen.AddressLine();
         }
     }
 
@@ -108,7 +108,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillAddressLine2();
+            return Jen.AddressLine2();
         }
     }
 
@@ -124,7 +124,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillCity();
+            return Jen.City();
         }
     }
 
@@ -140,7 +140,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillUsaState();
+            return Jen.UsaState();
         }
     }
 
@@ -156,7 +156,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillCanadianProvince();
+            return Jen.CanadianProvince();
         }
     }
 
@@ -172,7 +172,7 @@ namespace Angela.Core.Fillers
 
         public object GetValue()
         {
-            return Susan.FillPhoneNumber();
+            return Jen.PhoneNumber();
         }
     }
 
@@ -180,70 +180,70 @@ namespace Angela.Core.Fillers
     {
         public static AngieStringConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillEmail());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.GetTitle());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillPhoneNumber());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.PhoneNumber());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.GetFirstName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.FirstName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.GetLastName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.LastName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillAddressLine());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillAddressLine2());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine2());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillCity());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.City());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillCanadianProvince());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.CanadianProvince());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
         public static AngieStringConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Susan.FillUsaState());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.UsaState());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

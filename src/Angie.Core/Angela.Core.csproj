@@ -43,11 +43,13 @@
     <Compile Include="AngieConfigurator.cs" />
     <Compile Include="AngieFluent.cs" />
     <Compile Include="Chastity.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />
     <Compile Include="Fillers\DateTimeFillers.cs" />
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
+    <Compile Include="Jen.cs" />
     <Compile Include="Maggie.cs" />
     <Compile Include="Susan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -122,20 +122,20 @@ namespace Angela.Tests
             var minAge = 20;
             var maxAge = 22;
 
+            Angie.Reset();
+
             for (int i = 0; i < 1000; i++)
             {
-                var person = Angie
-                    .Configure()
+                var person = Angie                    
+                    .Configure<Person>()
+                    .FillProperty(p=> p.Age)
                     .IntRange(minAge, maxAge)
                     .Make<Person>();
 
-                if (!(person.Age >= minAge && person.Age <= maxAge))
-                    success = false;
-                else
-                    Assert.IsTrue(success, "Int was generated outside of range.{0}", person.Age);
-            }
+                success = (person.Age >= minAge && person.Age <= maxAge);
 
-            
+                Assert.IsTrue(success, "Int was generated outside of range.{0}", person.Age);
+            }            
 
         }
 
@@ -249,7 +249,7 @@ namespace Angela.Tests
 
             var comments = Angie
                 .Configure<BlogComment>()                
-                .FillBy(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.FutureDates); })
+                .FillBy(b => b.CommentDate, delegate() { return Jen.Date(DateRules.FutureDates); })
                 .ListCount(1000)
                 .MakeList<BlogComment>();
 
@@ -277,16 +277,30 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void CanadianProvinceIsFilled()
+        {
+            var location = Angie.FastMake<CanadianLocation>();
+            Assert.IsFalse(string.IsNullOrEmpty(location.Province));
+        }
+
+        [Test]
+        public void UsaStateIsFilled()
+        {
+            var location = Angie.FastMake<AmericanLocation>();
+            Assert.IsFalse(string.IsNullOrEmpty(location.State));
+        }
+
+        [Test]
         public void CustomPropertyFillsAreChainableUsingSet()
         {
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .FillBy(b => b.CreateDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
+                .FillBy(b => b.CreateDate, delegate() { return Jen.Date(DateRules.PastDate); })
                 .FillBy(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()                        
-                        .FillBy(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
+                        .FillBy(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
                         .ListCount(5)
                         .MakeList<BlogComment>();
                 })

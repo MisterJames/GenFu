@@ -63,38 +63,10 @@ namespace Angela.Tests
         }
 
         [Test]
-        public void MakeDateRuleFutureIsCorrect()
-        {
-            var future = DateTime.Now.AddMilliseconds(1);
-            var date = Susan.FillDate(DateRules.FutureDates);
-            Assert.Greater(date, future);
-        }
-
-        [Test]
-        public void MakeDateRulePastIsCorrect()
-        {
-            var past = DateTime.Now.AddMilliseconds(-1);
-            var date = Susan.FillDate(DateRules.PastDate);
-            Assert.Greater(past, date);
-        }
-
-        [Test]
-        public void AddressContainsNumbers()
-        {
-            var addressLine = Susan.FillAddressLine();
-
-            var streetNumber = 0;
-            var addressPrefix = addressLine.Split(' ')[0];
-
-            Assert.IsTrue(int.TryParse(addressPrefix, out streetNumber));
-            
-        }
-
-        [Test]
         public void StreetNameResourceTest()
         {
             string addressFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_STREET_NAMES);
-            var addressLine = Susan.FillAddressLine();
+            var addressLine = Jen.AddressLine();
 
             Assert.AreNotEqual(addressFail, addressLine, addressFail);
         }
@@ -103,7 +75,7 @@ namespace Angela.Tests
         public void CityNameResourceTest()
         {
             string cityFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_CITY_NAMES);
-            var city = Susan.FillCity();
+            var city = Jen.City();
 
             Assert.AreNotEqual(cityFail, city, cityFail);
         }
@@ -112,43 +84,24 @@ namespace Angela.Tests
         public void CanadianProvinceResourceTest()
         {
             string provinceFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_CDN_PROVINCE_NAMES);
-            var city = Susan.FillCity();
+            var city = Jen.City();
 
             Assert.AreNotEqual(provinceFail, city, provinceFail);
         }
 
-        [Test]
-        public void CanadianProvinceIsFilled()
-        {
-            var location = Angie.FastMake<CanadianLocation>();
-            Assert.IsFalse(string.IsNullOrEmpty(location.Province));
-        }
+
 
         [Test]
         public void UsaStatesResourceTest()
         {
             string statesFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
-            var city = Susan.FillCity();
+            var city = Jen.City();
 
             Assert.AreNotEqual(statesFail, city, statesFail);
         }
 
-        [Test]
-        public void UsaStateIsFilled()
-        {
-            var location = Angie.FastMake<AmericanLocation>();
-            Assert.IsFalse(string.IsNullOrEmpty(location.State));
-        }
 
-        [Test]
-        public void PhoneNumberIsExpectedLength()
-        {
-            for (int i = 0; i < 1000; i++)
-            {
-                var phoneNumber = Susan.FillPhoneNumber();
-                Assert.AreEqual(14, phoneNumber.Length);
-            }
-        }
+
 
 
     }
