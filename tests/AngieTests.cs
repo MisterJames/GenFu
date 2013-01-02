@@ -53,7 +53,7 @@ namespace Angela.Tests
         [Test]
         public void BasicTypesInExistingClassArePopulated()
         {
-            var person = Angie.FastFill<Person>(new Person());
+            var person = Angie.FastFill(new Person());
 
             // for test brievity
             Assert.IsTrue(!string.IsNullOrEmpty(person.FirstName), "String property was not populated. Aborting additional asserts in test.");
@@ -67,7 +67,7 @@ namespace Angela.Tests
             var firstName = "Angie";
             var age = 29;
             var date = DateTime.Now.AddYears(-29);
-            var person = Angie.FastFill<Person>(new Person { FirstName = firstName, Age = age, BirthDate = date });
+            var person = Angie.FastFill(new Person { FirstName = firstName, Age = age, BirthDate = date });
 
             // for test brievity
             Assert.AreEqual(person.FirstName, firstName, "String property was altered. Aborting additional asserts in test.");
@@ -222,8 +222,8 @@ namespace Angela.Tests
         {
             var age = 11;
 
-            var person = Angie.Configure()
-                .FillBy<Person, int>(p => p.Age, delegate() { return age; })
+            var person = Angie.Configure<Person>()
+                .FillBy(p => p.Age, delegate() { return age; })
                 .Make<Person>();
 
             Assert.IsTrue(person.Age == age);
@@ -235,8 +235,8 @@ namespace Angela.Tests
         {
             var blogTitle = "Angie";
 
-            var post = Angie.Configure()
-                .FillBy<BlogPost, string>(b => b.Title, () => blogTitle)
+            var post = Angie.Configure<BlogPost>()
+                .FillBy(b => b.Title, () => blogTitle)
                 .Make<BlogPost>();
 
             Assert.AreEqual(blogTitle, post.Title);
@@ -248,9 +248,9 @@ namespace Angela.Tests
             var future = DateTime.Now.AddSeconds(1);
 
             var comments = Angie
-                .Configure()
+                .Configure<BlogComment>()                
+                .FillBy(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.FutureDates); })
                 .ListCount(1000)
-                .FillBy<BlogComment, DateTime>(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -268,8 +268,8 @@ namespace Angela.Tests
             .MakeList<BlogComment>();
 
             var blogpost = Angie
-                .Configure()
-                .FillBy<BlogPost, ICollection<BlogComment>>(b => b.Comments, delegate { return postcomments; })
+                .Configure<BlogPost>()
+                .FillBy(b => b.Comments, delegate { return postcomments; })
                 .Make<BlogPost>();
 
             Assert.IsNotNull(blogpost.Comments);
@@ -280,22 +280,19 @@ namespace Angela.Tests
         public void CustomPropertyFillsAreChainableUsingSet()
         {
             var blogpost = Angie
-                .Configure()
-                .FillBy<BlogPost, DateTime>(b => b.CreateDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
-                .FillBy<BlogPost, ICollection<BlogComment>>(b => b.Comments, delegate()
+                .Configure<BlogPost>()
+                .FillBy(b => b.CreateDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
+                .FillBy(b => b.Comments, delegate()
                 {
                     return Angie
-                        .Set()
+                        .Set<BlogComment>()                        
+                        .FillBy(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
                         .ListCount(5)
-                        .FillBy<BlogComment, DateTime>(b => b.CommentDate, delegate() { return Susan.FillDate(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .Make<BlogPost>();
 
             Assert.IsNotNull(blogpost.Comments);
-
         }
-
-
     }
 }

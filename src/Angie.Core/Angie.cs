@@ -21,7 +21,7 @@ namespace Angela.Core
         {
             var instance = new T();
 
-            FastFill<T>(instance);
+            FastFill(instance);
 
             return instance;
         }

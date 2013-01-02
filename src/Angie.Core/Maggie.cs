@@ -13,19 +13,30 @@ namespace Angela.Core
 
         public Maggie()
         {
+            ResetFillers();
+        }
+        public void ResetFillers()
+        {
+            //TODO: Need to automatically discover all the IPropertyFillers.  Perhaps use NInject
             _specificPropertyFillersByObjectType = new Dictionary<Type, IList<IPropertyFiller>>();
             IList<IPropertyFiller> objectFillers = new List<IPropertyFiller>();
             objectFillers.Add(new FirstNameFiller());
+            objectFillers.Add(new LastNameFiller());
             objectFillers.Add(new AgeFiller());
             objectFillers.Add(new EmailFiller());
+            objectFillers.Add(new PhoneNumberFiller());
+            objectFillers.Add(new AddressFiller());
+            objectFillers.Add(new AddressLine2Filler());
+            objectFillers.Add(new ProvinceFiller());
+            objectFillers.Add(new StateFiller());
+            objectFillers.Add(new CityFiller());
+            objectFillers.Add(new ArticleTitleFiller());
             _specificPropertyFillersByObjectType.Add(typeof(object), objectFillers);
 
-         
-
             _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
-            _genericPropertyFillersByPropertyType.Add(typeof(string), new GenericStringFiller());
+            _genericPropertyFillersByPropertyType.Add(typeof(string), new StringFiller());
             _genericPropertyFillersByPropertyType.Add(typeof(int), new IntFiller());
-            _genericPropertyFillersByPropertyType.Add(typeof(DateTime), new GenericDateTimeFiller());
+            _genericPropertyFillersByPropertyType.Add(typeof(DateTime), new DateTimeFiller());
         }
 
         public void RegisterFiller(IPropertyFiller filler)
@@ -95,26 +106,27 @@ namespace Angela.Core
 
         public void SetMinDateTime(DateTime minValue)
         {
-            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
             dateTimeFiller.Min = minValue;
         }
 
         public void SetMaxDateTime(DateTime maxValue)
         {
-            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
             dateTimeFiller.Max = maxValue;
         }
 
         public DateTime GetMinDateTime()
         {
-            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
             return dateTimeFiller.Min;
         }
 
         public DateTime GetMaxDateTime()
         {
-            GenericDateTimeFiller dateTimeFiller = (GenericDateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
             return dateTimeFiller.Max;
         }
+
     }
 }

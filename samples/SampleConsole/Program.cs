@@ -1,9 +1,8 @@
 ﻿using Angela.Core;
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Angela.Core.Fillers;
 
 namespace SampleConsole
 {
@@ -66,18 +65,17 @@ namespace SampleConsole
         private static void PostMeSomeBlogs()
         {
             var blogposts = Angie
-                .Configure()
-                .ListCount(3)
-                .FillBy("CreateDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
-                .FillBy("Comments", delegate()
-                {
-                    return Angie
-                        .Set()
-                        .ListCount(5)
-                        .FillBy("CommentDate", delegate() { return Susan.FillDate(DateRules.PastDate); })
-                        .MakeList<BlogComment>();
-                })
-                .MakeList<BlogPost>();
+                .Configure<BlogPost>()   
+                .FillProperty(d => d.CreateDate).AsPastDate()
+                .FillBy(b => b.Comments, delegate
+                    {
+                        return Angie
+                            .Set<BlogComment>()
+                            .FillProperty(d => d.CommentDate).AsPastDate()
+                            .ListCount(5)
+                            .MakeList<BlogComment>();
+                    })
+                .ListCount(3).MakeList<BlogPost>();
 
             foreach (var post in blogposts)
             {

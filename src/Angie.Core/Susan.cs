@@ -30,62 +30,6 @@ namespace Angela.Core
             get { return _propertyFillers; }
         }
 
-        internal static string StringFill(string propertyName)
-        {
-            var propName = propertyName.ToLower();
-
-            // for common property names we'll try a resource
-            switch (propName)
-            {
-                case "firstname":
-                case "fname":
-                case "first_name":
-                    return GetFirstName();
-
-                case "lastname":
-                case "lname":
-                case "last_name":
-                    return GetLastName();
-
-                case "title":
-                    return GetTitle();
-
-                case "email":
-                case "emailaddress":
-                case "email_address":
-                    return FillEmail();
-
-                case "address":
-                case "address1":
-                    return FillAddressLine();
-
-                case "address2":
-                case "address_2":
-                    return FillAddressLine2();
-
-                case "city":
-                    return FillCity();
-
-                case "state":
-                    return FillUsaState();
-
-                case "province":
-                    return FillCanadianProvince();
-
-                case "fax":
-                case "phone":
-                case "phonenumber":
-                case "phone_number":
-                case "homenumber":
-                case "worknumber":
-                    return FillPhoneNumber();
-
-                default:
-                    return GetWord();
-            }
-
-        }
-
         private static DateTime DateTimeFill(DateTime min, DateTime max)
         {
             int totalDays = (max - min).Days;
