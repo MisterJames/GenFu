@@ -15,7 +15,7 @@ namespace Angela.Tests
         public void MakeDateRuleFutureIsCorrect()
         {
             Angie.Reset();
-            var date = Jen.Date(DateRules.FutureDates);
+            var date = Jen.FillDate(DateRules.FutureDates);
             Assert.Greater(date, DateTime.Now);
         }
 
@@ -23,7 +23,7 @@ namespace Angela.Tests
         public void MakeDateRulePastIsCorrect()
         {
             Angie.Reset();
-            var date = Jen.Date(DateRules.PastDate);
+            var date = Jen.FillDate(DateRules.PastDate);
             Assert.Greater(DateTime.Now, date);
         }
 

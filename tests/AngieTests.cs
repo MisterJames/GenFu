@@ -249,7 +249,7 @@ namespace Angela.Tests
 
             var comments = Angie
                 .Configure<BlogComment>()                
-                .FillBy(b => b.CommentDate, delegate() { return Jen.Date(DateRules.FutureDates); })
+                .FillBy(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.FutureDates); })
                 .ListCount(1000)
                 .MakeList<BlogComment>();
 
@@ -295,12 +295,12 @@ namespace Angela.Tests
         {
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .FillBy(b => b.CreateDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                .FillBy(b => b.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
                 .FillBy(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()                        
-                        .FillBy(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .FillBy(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
                         .ListCount(5)
                         .MakeList<BlogComment>();
                 })

@@ -127,7 +127,7 @@ namespace Angela.Core
             return result;
         }
 
-        public static DateTime Date(DateRules rules)
+        public static DateTime FillDate(DateRules rules)
         {
             // grab a copy of the current config
 
