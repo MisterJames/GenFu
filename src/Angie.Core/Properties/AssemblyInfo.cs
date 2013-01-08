@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Angela.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Just James and Dave")]
 [assembly: AssemblyProduct("Angela.Core")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCopyright("Copyright © James Chambers & Dave Paquette")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
