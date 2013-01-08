@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 
 namespace Angela.Core.Fillers
 {
@@ -12,6 +13,8 @@ namespace Angela.Core.Fillers
         public string[] PropertyNames { get { return new[] { "*" }; } }
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(DateTime); } }
+        public bool IsGenericFiller { get { return true; } }
+
         public object GetValue()
         {
             int totalDays = (Max - Min).Days;

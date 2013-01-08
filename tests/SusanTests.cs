@@ -99,10 +99,5 @@ namespace Angela.Tests
 
             Assert.AreNotEqual(statesFail, city, statesFail);
         }
-
-
-
-
-
     }
 }

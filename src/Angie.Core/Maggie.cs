@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
 using Angela.Core.Fillers;
@@ -11,32 +13,42 @@ namespace Angela.Core
         private IDictionary<Type, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
 
+        [ImportMany(typeof(IPropertyFiller))]
+        private IEnumerable<IPropertyFiller> _propertyFillers;
+
+
         public Maggie()
         {
             ResetFillers();
         }
+
         public void ResetFillers()
         {
-            //TODO: Need to automatically discover all the IPropertyFillers.  Perhaps use NInject
+            if (_propertyFillers == null)
+            {
+                AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+                CompositionContainer container = new CompositionContainer(catalog);
+                container.ComposeParts(this);
+            }
+
             _specificPropertyFillersByObjectType = new Dictionary<Type, IList<IPropertyFiller>>();
-            IList<IPropertyFiller> objectFillers = new List<IPropertyFiller>();
-            objectFillers.Add(new FirstNameFiller());
-            objectFillers.Add(new LastNameFiller());
-            objectFillers.Add(new AgeFiller());
-            objectFillers.Add(new EmailFiller());
-            objectFillers.Add(new PhoneNumberFiller());
-            objectFillers.Add(new AddressFiller());
-            objectFillers.Add(new AddressLine2Filler());
-            objectFillers.Add(new ProvinceFiller());
-            objectFillers.Add(new StateFiller());
-            objectFillers.Add(new CityFiller());
-            objectFillers.Add(new ArticleTitleFiller());
-            _specificPropertyFillersByObjectType.Add(typeof(object), objectFillers);
+
+            foreach (IGrouping<Type, IPropertyFiller> propertyFillersByType in _propertyFillers.Where(p => !p.IsGenericFiller).GroupBy(p => p.ObjectType))
+            {
+                IList<IPropertyFiller> typeFillers = new List<IPropertyFiller>();
+                foreach (IPropertyFiller propertyFiller in propertyFillersByType)
+                {
+                    typeFillers.Add(propertyFiller);
+                }
+                _specificPropertyFillersByObjectType.Add(propertyFillersByType.Key, typeFillers);
+            }
 
             _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
-            _genericPropertyFillersByPropertyType.Add(typeof(string), new StringFiller());
-            _genericPropertyFillersByPropertyType.Add(typeof(int), new IntFiller());
-            _genericPropertyFillersByPropertyType.Add(typeof(DateTime), new DateTimeFiller());
+            foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => p.IsGenericFiller))
+            {
+                _genericPropertyFillersByPropertyType.Add(propertyFiller.PropertyType, propertyFiller);
+            }
+            
         }
 
         public void RegisterFiller(IPropertyFiller filler)
@@ -84,7 +96,8 @@ namespace Angela.Core
                 else
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-                    result = new CustomFiller<object>("*", typeof (object), () => null);
+                    result = new CustomFiller<object>("*", typeof(object), () => null) { IsGenericFiller = true };
+                    
                     _genericPropertyFillersByPropertyType.Add(propertyInfo.PropertyType, result);
                 }
             }

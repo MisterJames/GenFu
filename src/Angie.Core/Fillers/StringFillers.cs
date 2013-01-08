@@ -1,14 +1,15 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 
 namespace Angela.Core.Fillers
 {
-
     public class StringFiller : IPropertyFiller
     {
         public string[] PropertyNames { get { return new[] { "*" }; } }
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return true; } }
 
         public object GetValue()
         {
@@ -25,6 +26,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -41,6 +43,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -57,6 +60,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -73,6 +77,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -89,6 +94,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -105,6 +111,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -121,6 +128,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -137,6 +145,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -153,6 +162,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
@@ -169,6 +179,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {

@@ -29,6 +29,8 @@ namespace Angela.Core.Fillers
         }
         public Type ObjectType { get { return _objectType; } }
         public Type PropertyType { get { return _propertyType; } }
+        public bool IsGenericFiller { get; set; }
+
         public object GetValue()
         {
             return _filler.Invoke();

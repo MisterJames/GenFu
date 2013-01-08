@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 
 namespace Angela.Core.Fillers
 {
@@ -26,6 +27,7 @@ namespace Angela.Core.Fillers
 
         public Type ObjectType { get; private set; }
         public Type PropertyType { get { return typeof(int); } }
+        public bool IsGenericFiller { get { return true; } }
 
         public int Min { get; set; }
         public int Max { get; set; }
@@ -49,6 +51,7 @@ namespace Angela.Core.Fillers
         }
         public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(int); } }
+        public bool IsGenericFiller { get { return false; } }
 
         public object GetValue()
         {
