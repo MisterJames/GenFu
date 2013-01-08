@@ -64,6 +64,9 @@ namespace SampleConsole
 
         private static void PostMeSomeBlogs()
         {
+            Angie.Default()
+                .ListCount(3);
+
             var blogposts = Angie
                 .Configure<BlogPost>()   
                 .Fill(d => d.CreateDate).AsPastDate()
@@ -72,10 +75,9 @@ namespace SampleConsole
                         return Angie
                             .Set<BlogComment>()
                             .Fill(d => d.CommentDate).AsPastDate()
-                            .ListCount(5)
                             .MakeList<BlogComment>();
                     })
-                .ListCount(3).MakeList<BlogPost>();
+                .MakeList<BlogPost>();
 
             foreach (var post in blogposts)
             {
@@ -85,9 +87,11 @@ namespace SampleConsole
 
         private static void WriteSomePeepsOut()
         {
+            Angie.Default()
+                .ListCount(3);
+
             var people = Angie
                 .Configure()
-                .ListCount(8)
                 .MakeList<Person>();
 
             foreach (var person in people)
@@ -98,9 +102,11 @@ namespace SampleConsole
 
         private static void PleaseAddressMe()
         {
+            Angie.Default()
+                .ListCount(3);
+
             var addresses = Angie
                 .Configure()
-                .ListCount(3)
                 .MakeList<Location>();
 
             foreach (var location in addresses)

@@ -16,43 +16,7 @@ namespace Angela.Core
             _angie = angie;
             _maggie = maggie;
         }
-
-
-        public AngieConfigurator MaxInt(int max)
-        {
-            _maggie.SetMaxInt(max);
-            return this;
-
-        }
-
-        public AngieConfigurator MinInt(int min)
-        {
-            _maggie.SetMinInt(min);
-            return this;
-        }
-
-        public AngieConfigurator IntRange(int min, int max)
-        {
-            MinInt(min);
-            MaxInt(max);
-
-            return this;
-
-        }
-
-        public AngieConfigurator ListCount(int count)
-        {
-            _angie.ListCount(count);
-            return this;
-        }
-
-        public AngieConfigurator DateRange(DateTime minDateTime, DateTime maxDateTime)
-        {
-            _maggie.SetMinDateTime(minDateTime);
-            _maggie.SetMaxDateTime(maxDateTime);
-            return this;
-        }
-
+        
         public AngieConfigurator Fill<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Angie.cs" />
     <Compile Include="AngieConfigurator.cs" />
+    <Compile Include="AngieDefaulturator.cs" />
     <Compile Include="AngieFluent.cs" />
     <Compile Include="Chastity.cs" />
     <Compile Include="Enums.cs" />

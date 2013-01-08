@@ -32,6 +32,11 @@ namespace Angela.Core
             return new AngieConfigurator<T>(_angie, _maggie);
         }
 
+        public static AngieDefaulturator Default()
+        {
+            return new AngieDefaulturator(_angie, _maggie);
+        }
+
         public static void Reset()
         {
             _maggie.ResetFillers();

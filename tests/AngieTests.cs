@@ -47,7 +47,7 @@ namespace Angela.Tests
         public void IntInNewClassIsPopulated()
         {
             var person = Angie.FastMake<Person>();
-            Assert.IsTrue(person.Age != default(int));
+            Assert.IsTrue(person.NumberOfKids != default(int));
         }
 
         [Test]
@@ -80,12 +80,13 @@ namespace Angela.Tests
         {
             var maxNumberOfKids = 5;
 
+            Angie.Default()
+                .MaxInt(maxNumberOfKids);
+
             for (int i = 0; i < 2500; i++)
             {
                 var person = Angie
-                    .Configure()
-                    .MaxInt(maxNumberOfKids)
-                    .Make<Person>();
+                    .FastMake<Person>();
 
                 if (!(person.NumberOfKids <= maxNumberOfKids))
                     Assert.Fail("Int max was exceeded: {0} ", person.NumberOfKids);
@@ -98,18 +99,17 @@ namespace Angela.Tests
         {
             var minNumberOfKids = 5;
 
+            Angie.Default()
+                .MinInt(minNumberOfKids);
+
             for (int i = 0; i < 2500; i++)
             {
                 var person = Angie
-                    .Configure()
-                    .MinInt(minNumberOfKids)
-                    .Make<Person>();
+                    .FastMake<Person>();
 
                 if (!(person.NumberOfKids >= minNumberOfKids))
                     Assert.Fail("Int min was exceeded: {0} ", person.NumberOfKids);
-            }
-
-            
+            }                      
 
         }
         
@@ -178,11 +178,14 @@ namespace Angela.Tests
         public void MakeListGeneratesCorrectNumberOfEntries()
         {
             var personCount = 13;
+
+            Angie.Default()
+                .ListCount(personCount);
+
             var people = Angie
-                .Configure()
-                .ListCount(personCount)
-                .MakeList<Person>();
-            Assert.IsTrue(people.Count() == personCount);
+                .FastList<Person>();
+
+            Assert.AreEqual(people.Count(), personCount);
         }
 
         [Test]
@@ -203,9 +206,11 @@ namespace Angela.Tests
 
             for (int i = 0; i < 1000; i++)
             {
+                Angie.Default()
+                    .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10));
+
                 var person = Angie
                     .Configure()
-                    .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10))
                     .Make<Person>();
 
                 if (!(person.BirthDate >= minDate && person.BirthDate <= maxDate))
@@ -247,10 +252,12 @@ namespace Angela.Tests
         {
             var future = DateTime.Now.AddSeconds(1);
 
+            Angie.Default()
+                .ListCount(1000);
+
             var comments = Angie
                 .Configure<BlogComment>()                
                 .Fill(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.FutureDates); })
-                .ListCount(1000)
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -262,9 +269,11 @@ namespace Angela.Tests
         [Test]
         public void ComplexPropertyFillsExecuted()
         {
+            Angie.Default()
+                .ListCount(5);
+
             var postcomments = Angie
             .Configure()
-            .ListCount(5)
             .MakeList<BlogComment>();
 
             var blogpost = Angie
@@ -293,15 +302,17 @@ namespace Angela.Tests
         [Test]
         public void CustomPropertyFillsAreChainableUsingSet()
         {
+            Angie.Default()
+                .ListCount(5);
+
             var blogpost = Angie
                 .Configure<BlogPost>()
                 .Fill(b => b.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
                 .Fill(b => b.Comments, delegate()
                 {
                     return Angie
-                        .Set<BlogComment>()                        
+                        .Set<BlogComment>()
                         .Fill(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
-                        .ListCount(5)
                         .MakeList<BlogComment>();
                 })
             .Make<BlogPost>();
