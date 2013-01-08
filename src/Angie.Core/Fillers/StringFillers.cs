@@ -189,70 +189,70 @@ namespace Angela.Core.Fillers
 
     public static class StringFillerExtensions
     {
-        public static AngieStringConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.PhoneNumber());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.FirstName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.LastName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine2());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.City());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.CanadianProvince());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
 
-        public static AngieStringConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        public static AngieConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.UsaState());
             configurator.Maggie.RegisterFiller(filler);

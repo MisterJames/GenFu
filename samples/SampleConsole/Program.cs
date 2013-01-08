@@ -66,12 +66,12 @@ namespace SampleConsole
         {
             var blogposts = Angie
                 .Configure<BlogPost>()   
-                .FillProperty(d => d.CreateDate).AsPastDate()
-                .FillBy(b => b.Comments, delegate
+                .Fill(d => d.CreateDate).AsPastDate()
+                .Fill(b => b.Comments, delegate
                     {
                         return Angie
                             .Set<BlogComment>()
-                            .FillProperty(d => d.CommentDate).AsPastDate()
+                            .Fill(d => d.CommentDate).AsPastDate()
                             .ListCount(5)
                             .MakeList<BlogComment>();
                     })

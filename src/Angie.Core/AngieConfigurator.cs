@@ -53,7 +53,7 @@ namespace Angela.Core
             return this;
         }
 
-        public AngieConfigurator FillBy<T>(string propertyName, Func<T> filler)
+        public AngieConfigurator Fill<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
             if (!Susan.PropertyFillers.ContainsKey(propName))
@@ -61,7 +61,7 @@ namespace Angela.Core
             return this;
         }
 
-        public AngieConfigurator FillBy<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
+        public AngieConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T1), filler);
@@ -154,7 +154,7 @@ namespace Angela.Core
             return propertyInfo;
         }
 
-        public AngieConfigurator<T> FillBy<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
+        public AngieConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T), filler);
@@ -162,19 +162,19 @@ namespace Angela.Core
             return this;
         }
 
-        public AngieIntegerConfigurator<T> FillProperty(Expression<Func<T, int>> expression)
+        public AngieIntegerConfigurator<T> Fill(Expression<Func<T, int>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieIntegerConfigurator<T>(_angie, _maggie, propertyInfo);
         }
 
-        public AngieStringConfigurator<T> FillProperty(Expression<Func<T, string>> expression)
+        public AngieStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieStringConfigurator<T>(_angie, _maggie, propertyInfo);
         }
 
-        public AngieDateTimeConfigurator<T> FillProperty(Expression<Func<T, DateTime>> expression)
+        public AngieDateTimeConfigurator<T> Fill(Expression<Func<T, DateTime>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieDateTimeConfigurator<T>(_angie, _maggie, propertyInfo);
@@ -191,7 +191,7 @@ namespace Angela.Core
             _propertyInfo = propertyInfo;
         }
 
-        public AngieIntegerConfigurator<T> WithinRange(int min, int max)
+        public AngieConfigurator<T> WithinRange(int min, int max)
         {
             IntFiller filler = new IntFiller(typeof(T), _propertyInfo.Name, min, max);
             _maggie.RegisterFiller(filler);

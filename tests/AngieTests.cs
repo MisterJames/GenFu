@@ -128,7 +128,7 @@ namespace Angela.Tests
             {
                 var person = Angie                    
                     .Configure<Person>()
-                    .FillProperty(p=> p.Age)
+                    .Fill(p=> p.Age)
                     .IntRange(minAge, maxAge)
                     .Make<Person>();
 
@@ -223,7 +223,7 @@ namespace Angela.Tests
             var age = 11;
 
             var person = Angie.Configure<Person>()
-                .FillBy(p => p.Age, delegate() { return age; })
+                .Fill(p => p.Age, delegate() { return age; })
                 .Make<Person>();
 
             Assert.IsTrue(person.Age == age);
@@ -236,7 +236,7 @@ namespace Angela.Tests
             var blogTitle = "Angie";
 
             var post = Angie.Configure<BlogPost>()
-                .FillBy(b => b.Title, () => blogTitle)
+                .Fill(b => b.Title, () => blogTitle)
                 .Make<BlogPost>();
 
             Assert.AreEqual(blogTitle, post.Title);
@@ -249,7 +249,7 @@ namespace Angela.Tests
 
             var comments = Angie
                 .Configure<BlogComment>()                
-                .FillBy(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.FutureDates); })
+                .Fill(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.FutureDates); })
                 .ListCount(1000)
                 .MakeList<BlogComment>();
 
@@ -269,7 +269,7 @@ namespace Angela.Tests
 
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .FillBy(b => b.Comments, delegate { return postcomments; })
+                .Fill(b => b.Comments, delegate { return postcomments; })
                 .Make<BlogPost>();
 
             Assert.IsNotNull(blogpost.Comments);
@@ -295,12 +295,12 @@ namespace Angela.Tests
         {
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .FillBy(b => b.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
-                .FillBy(b => b.Comments, delegate()
+                .Fill(b => b.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
+                .Fill(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()                        
-                        .FillBy(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
                         .ListCount(5)
                         .MakeList<BlogComment>();
                 })

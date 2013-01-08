@@ -26,7 +26,7 @@ namespace Angela.Core.Fillers
 
     public static class DateTimeFillerExtensions
     {
-        public static AngieDateTimeConfigurator<T> AsPastDate<T>(this AngieDateTimeConfigurator<T> configurator)
+        public static AngieConfigurator<T> AsPastDate<T>(this AngieDateTimeConfigurator<T> configurator)
             where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
