@@ -10,16 +10,6 @@ namespace Angela.Core
 {
     public class Susan
     {
-        //private static List<string> _firstNames =           LoadStrings(Angie.Defaults.FILE_FIRST_NAMES);
-        //private static List<string> _lastNames =            LoadStrings(Angie.Defaults.FILE_LAST_NAMES);
-        //private static List<string> _words =                LoadStrings(Angie.Defaults.FILE_WORDS);
-        //private static List<string> _titles =               LoadStrings(Angie.Defaults.FILE_TITLES);
-        //private static List<string> _domains =              LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES);
-        //private static List<string> _streetNames =          LoadStrings(Angie.Defaults.FILE_STREET_NAMES);
-        //private static List<string> _cityNames =            LoadStrings(Angie.Defaults.FILE_CITY_NAMES);
-        //private static List<string> _canadianProvinces =    LoadStrings(Angie.Defaults.FILE_CDN_PROVINCE_NAMES);
-        //private static List<string> _usaStates =            LoadStrings(Angie.Defaults.FILE_USA_STATE_NAMES);
-
         private static Dictionary<Properties, List<string>> _data;
 
         static Susan()
