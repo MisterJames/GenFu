@@ -129,7 +129,7 @@ namespace Angela.Tests
                 var person = Angie                    
                     .Configure<Person>()
                     .Fill(p=> p.Age)
-                    .IntRange(minAge, maxAge)
+                    .WithinRange(minAge, maxAge)
                     .Make<Person>();
 
                 success = (person.Age >= minAge && person.Age <= maxAge);
