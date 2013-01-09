@@ -87,7 +87,7 @@ More To Come
 ===========
 With David Paquette joinging this project I'm pleased to say we're moving quite quickly.
 
-Look for upcoming posts on the fluent interfaces - there is some great stuff there that you can infer from this overview - as well as our 1.1 release which will have many more properties.
+Look for some upcoming posts on the fluent interfaces - there is some great stuff there that you can infer from this overview - as well as our 1.1 release which will have support for automatic discovery of many more properties.
 
 We are also going to build in some "smarts", particularly around making properties aware of each other as they're being built (think of an email address lining up with a first name/last name or username).
 
