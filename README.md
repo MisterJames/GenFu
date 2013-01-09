@@ -85,7 +85,7 @@ Or, you can use one of the built-in helper methods, to, for example, spin up 100
 
 More To Come
 ===========
-With David Paquette joinging this project I'm pleased to say we're moving quite quickly.
+With David Paquette joining this project I'm pleased to say we're moving quite quickly.
 
 Look for some upcoming posts on the fluent interfaces - there is some great stuff there that you can infer from this overview - as well as our 1.1 release which will have support for automatic discovery of many more properties.
 
