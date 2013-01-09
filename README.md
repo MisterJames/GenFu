@@ -48,8 +48,9 @@ Cool beans, my brother or sister.  Here's how AngelaSmith rolls:
 
 ```
     var people = Angie
-        .Configure()
-        .IntRange(19, 25)
+        .Configure<Person>()
+        .Fill(p => p.Age)
+        .WithinRange(19, 25)
         .MakeList<Person>();
 ```
 
@@ -63,24 +64,31 @@ If you want to control how the property is set, you can use your own function (a
 ```
     var blogTitle = "Angie";
 
-    var post = Angie.Configure()
-        .FillBy("title", delegate() { return blogTitle; })
+    var post = Angie
+        .Configure<BlogPost>()
+        .Fill(b => b.Title, delegate() { return blogTitle; })
         .Make<BlogPost>();
 ```
 
-Or, you can use one of the built-in helper methods, to, for example, spin up 1000 comments that happened in the past.
+Or, you can use one of the built-in helper methods, to, for example, spin up 1000 comments that happened in the past.  There are a ton of helpers in "Jen", and you can use her to help "Jen"erate values for your objects.
 
 ```
-     var comments = Angie
-        .Configure()
-        .ListCount(1000)
-        .FillBy("CommentDate", delegate() { return Angie.MakeDate(DateRules.PastDates); })
-        .MakeList<BlogComment>();
+    Angie.Default()
+        .ListCount(1000);
+
+    var comments = Angie
+       .Configure<BlogPost>()
+       .Fill(c => c.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
+       .MakeList<BlogComment>();
 ```
 
 
 More To Come
 ===========
-I've been tinkering with this idea for a while, and once I added the fluent bits it really came to life and made my work easier. Talking with a co-worker, we both agreed that this was a useful idea, so hopefully it helps you out, too.
+With David Paquette joinging this project I'm pleased to say we're moving quite quickly.
 
-I am already working on a number of other recognized field types and common property names, and AngelaSmith will become more and more useful as I go.  The project layout is (I hope!) fairly straightforward, so please feel free to fork and contribute!
+Look for upcoming posts on the fluent interfaces - there is some great stuff there that you can infer from this overview - as well as our 1.1 release which will have many more properties.
+
+We are also going to build in some "smarts", particularly around making properties aware of each other as they're being built (think of an email address lining up with a first name/last name or username).
+
+
