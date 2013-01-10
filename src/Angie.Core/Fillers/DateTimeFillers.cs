@@ -30,7 +30,7 @@ namespace Angela.Core.Fillers
             where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
-                                                                   () => Jen.FillDate(DateRules.PastDate));
+                                                                   () => Jen.Date(DateRules.PastDate));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

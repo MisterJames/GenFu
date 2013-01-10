@@ -127,7 +127,12 @@ namespace Angela.Core
             return result;
         }
 
-        public static DateTime FillDate(DateRules rules)
+        public static DateTime Date(DateTime earliestDate, DateTime latestDate)
+        {
+            return DateTimeFill(earliestDate, latestDate);
+        }
+
+        public static DateTime Date(DateRules rules)
         {
             // grab a copy of the current config
 
