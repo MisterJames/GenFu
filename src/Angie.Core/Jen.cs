@@ -27,12 +27,28 @@ namespace Angela.Core
             return Susan.Data(Properties.Words)[index];
         }
 
+        /// <summary>
+        /// Generates a random emails address
+        /// </summary>
+        /// <returns>A complete email address with a random account and domain.</returns>
         public static string Email()
         {
             int firstNameIndex = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
             int lastNameIndex = _random.Next(0, Susan.Data(Properties.LastNames).Count());
             int domainNameIndex = _random.Next(0, Susan.Data(Properties.Domains).Count());
             return string.Format("{0}.{1}@{2}", Susan.Data(Properties.FirstNames)[firstNameIndex], Susan.Data(Properties.LastNames)[lastNameIndex], Susan.Data(Properties.Domains)[domainNameIndex]);
+        }
+        
+        /// <summary>
+        /// Only uses the specified domain for email generation
+        /// </summary>
+        /// <param name="domain">The domain that you want to have for all email addresses</param>
+        /// <returns>A complete email address for the specified domain.</returns>
+        public static string Email(string domain)
+        {
+            int firstNameIndex = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
+            int lastNameIndex = _random.Next(0, Susan.Data(Properties.LastNames).Count());
+            return string.Format("{0}.{1}@{2}", Susan.Data(Properties.FirstNames)[firstNameIndex], Susan.Data(Properties.LastNames)[lastNameIndex], domain);
         }
 
         public static string Title()

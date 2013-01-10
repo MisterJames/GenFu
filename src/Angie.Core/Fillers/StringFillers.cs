@@ -196,6 +196,13 @@ namespace Angela.Core.Fillers
             return configurator;
         }
 
+        public static AngieConfigurator<T> AsEmailAddressForDomain<T>(this AngieStringConfigurator<T> configurator, string domain) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email(domain));
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
         public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());

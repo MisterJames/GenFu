@@ -178,6 +178,8 @@ namespace Angela.Core
             _propertyInfo = propertyInfo;
         }
 
+
+
         public PropertyInfo PropertyInfo
         {
             get { return _propertyInfo; }

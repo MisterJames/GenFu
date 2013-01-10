@@ -56,6 +56,13 @@ namespace Angela.Tests
 
         }
 
+        [Test]
+        public void CanSetCustomDomainOnEmail()
+        {
+            var domain = "foofoofoobarbarbar.com";
+            var email = Jen.Email(domain);
+            Assert.True(email.Contains(domain));
+        }
 
         [Test]
         public void PhoneNumberIsExpectedLength()
