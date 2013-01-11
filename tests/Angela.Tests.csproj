@@ -49,6 +49,7 @@
     <Compile Include="ExtensionMethodTests.cs" />
     <Compile Include="JenTests.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="ObjectGraphTests.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SusanTests.cs" />
