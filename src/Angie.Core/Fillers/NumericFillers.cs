@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 
-namespace Angela.Core.Fillers
+namespace Angela.Core
 {
     public class IntFiller : IPropertyFiller
     {

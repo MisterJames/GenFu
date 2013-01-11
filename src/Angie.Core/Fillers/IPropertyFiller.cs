@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 
-namespace Angela.Core.Fillers
+namespace Angela.Core
 {
     [InheritedExport]
     public interface IPropertyFiller

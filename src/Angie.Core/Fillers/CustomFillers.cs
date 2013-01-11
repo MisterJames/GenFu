@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Angela.Core.Fillers
+namespace Angela.Core
 {
     public class CustomFiller<T> : IPropertyFiller
     {
