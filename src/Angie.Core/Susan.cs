@@ -77,9 +77,8 @@ namespace Angela.Core
             }
             catch (Exception)
             {
-                // fallback
-                string failedStringLoad = string.Format(Angie.Defaults.STRING_LOAD_FAIL, resourceName);
-                lines.Add(failedStringLoad);
+                // fallback - add one empty string
+                lines.Add(string.Empty);
             }
 
             return lines;

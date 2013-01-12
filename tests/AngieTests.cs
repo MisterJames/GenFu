@@ -83,7 +83,7 @@ namespace Angela.Tests
             Angie.Default()
                 .MaxInt(maxNumberOfKids);
 
-            for (int i = 0; i < 2500; i++)
+            for (int i = 0; i < 500; i++)
             {
                 var person = Angie
                     .FastMake<Person>();
@@ -102,7 +102,7 @@ namespace Angela.Tests
             Angie.Default()
                 .MinInt(minNumberOfKids);
 
-            for (int i = 0; i < 2500; i++)
+            for (int i = 0; i < 500; i++)
             {
                 var person = Angie
                     .FastMake<Person>();
@@ -124,7 +124,7 @@ namespace Angela.Tests
 
             Angie.Reset();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 500; i++)
             {
                 var person = Angie                    
                     .Configure<Person>()

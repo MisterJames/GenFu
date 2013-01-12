@@ -132,7 +132,7 @@ namespace Angela.Core
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
 
-            public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
+            public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
         }
 
 

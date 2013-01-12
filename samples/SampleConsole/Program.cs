@@ -87,6 +87,8 @@ namespace SampleConsole
             var album = Angie
                 .Configure<Album>()
                 .Fill(a => a.Price).WithinRange(7, 10)
+                .Fill(a => a.Artist).WithRandom(artists)
+                .Fill(a => a.Genre).WithRandom(genres)
                 .Make<Album>();
             Console.WriteLine(album.ToString());
         }
