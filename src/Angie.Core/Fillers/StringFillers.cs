@@ -265,5 +265,27 @@ namespace Angela.Core
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
+
+        public static AngieConfigurator<T> AsMusicArtistName<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Artist.Name());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        public static AngieConfigurator<T> AsMusicGenreName<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Name());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        public static AngieConfigurator<T> AsMusicGenreDescription<T>(this AngieStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Description());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
     }
+
 }

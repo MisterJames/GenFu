@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\BlogComment.cs" />
+    <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -24,8 +24,9 @@ namespace Angela.Core
             _data.Add(Properties.StreetNames, LoadStrings(Angie.Defaults.FILE_STREET_NAMES));
             _data.Add(Properties.CityNames, LoadStrings(Angie.Defaults.FILE_CITY_NAMES));
             _data.Add(Properties.CanadianProvinces, LoadStrings(Angie.Defaults.FILE_CDN_PROVINCE_NAMES));
-            _data.Add(Properties.UsaStates, LoadStrings(Angie.Defaults.FILE_USA_STATE_NAMES));            
-
+            _data.Add(Properties.UsaStates, LoadStrings(Angie.Defaults.FILE_USA_STATE_NAMES));
+            _data.Add(Properties.MusicArtists, LoadStrings(Angie.Defaults.FILE_MUSIC_ARTIST));
+            _data.Add(Properties.MusicAlbums, LoadStrings(Angie.Defaults.FILE_MUSIC_ALBUM));
         }
 
         public static List<string> Data (Properties propertyType) 

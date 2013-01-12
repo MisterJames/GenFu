@@ -17,7 +17,10 @@ namespace Angela.Core
         StreetNames,
         CityNames,
         CanadianProvinces,
-        UsaStates
+        UsaStates,
+        MusicArtists,
+        MusicGenre,
+        MusicAlbums
     }
 
     [Flags]

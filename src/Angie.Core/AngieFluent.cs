@@ -40,8 +40,13 @@ namespace Angela.Core
         public static void Reset()
         {
             _maggie.ResetFillers();
+            
             _maggie.SetMinInt(Angie.Defaults.MIN_INT);
             _maggie.SetMaxInt(Angie.Defaults.MAX_INT);
+            
+            _maggie.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
+            _maggie.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);
+
             _listCount = Angie.Defaults.LIST_COUNT;
 
             _maggie.SetMinDateTime(DateTime.MinValue);

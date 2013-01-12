@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Angela.Core
 {
-    public class Jen
+    public partial class Jen
     {
 
         private static Random _random = new Random(Environment.TickCount);
@@ -36,7 +36,12 @@ namespace Angela.Core
             int firstNameIndex = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
             int lastNameIndex = _random.Next(0, Susan.Data(Properties.LastNames).Count());
             int domainNameIndex = _random.Next(0, Susan.Data(Properties.Domains).Count());
-            return string.Format("{0}.{1}@{2}", Susan.Data(Properties.FirstNames)[firstNameIndex], Susan.Data(Properties.LastNames)[lastNameIndex], Susan.Data(Properties.Domains)[domainNameIndex]);
+
+            // failing test on names with spaces
+            string firstname = Susan.Data(Properties.FirstNames)[firstNameIndex].Replace(" ", "");
+            string lastname = Susan.Data(Properties.LastNames)[lastNameIndex].Replace(" ", "");
+
+            return string.Format("{0}.{1}@{2}", firstname, lastname, Susan.Data(Properties.Domains)[domainNameIndex]);
         }
         
         /// <summary>

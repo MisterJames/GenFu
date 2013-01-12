@@ -6,6 +6,7 @@ namespace Angela.Core
 {
     public partial class Angie
     {
+        
         private static Angie _angie = new Angie();
         private static Maggie _maggie = new Maggie();
 
@@ -14,6 +15,7 @@ namespace Angela.Core
         static Angie()
         {
             _maggie = new Maggie();
+            Random = new Random();
         }
 
         public static T FastMake<T>() where T : new()
@@ -103,10 +105,16 @@ namespace Angela.Core
             }
         }
 
+        public static Random Random { get; private set; }
+
         public class Defaults
         {
             public const int MIN_INT = 1;
             public const int MAX_INT = 100;
+            
+            public const decimal MIN_DECIMAL = 0;
+            public const decimal MAX_DECIMAL = 100;
+
             public const int LIST_COUNT = 25;
 
             public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
@@ -121,6 +129,9 @@ namespace Angela.Core
             public const string FILE_CITY_NAMES = "CityNames";
             public const string FILE_USA_STATE_NAMES = "USAStateNames";
             public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
+            public const string FILE_MUSIC_ARTIST = "MusicArtists";
+            public const string FILE_MUSIC_ALBUM = "MusicAlbums";
+
             public const string STRING_LOAD_FAIL = "The resource list for {0} failed to load.";
         }
 

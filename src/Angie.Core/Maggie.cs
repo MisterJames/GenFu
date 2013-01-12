@@ -106,7 +106,7 @@ namespace Angela.Core
 
         public void SetMinInt(int min)
         {
-            IntFiller intFiller = (IntFiller) _genericPropertyFillersByPropertyType[typeof(int)];
+            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
             intFiller.Min = min;
         }
 
@@ -114,6 +114,18 @@ namespace Angela.Core
         {
             IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
             intFiller.Max = max;
+        }
+
+        public void SetMinDecimal(decimal min)
+        {
+            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
+            decFiller.Min = min;
+        }
+
+        public void SetMaxDecimal(decimal max)
+        {
+            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
+            decFiller.Max = max;
         }
 
         public void SetMinDateTime(DateTime minValue)

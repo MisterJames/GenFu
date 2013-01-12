@@ -130,6 +130,11 @@ namespace Angela.Core
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieIntegerConfigurator<T>(_angie, _maggie, propertyInfo);
         }
+        public AngieDecimalConfigurator<T> Fill(Expression<Func<T, decimal>> expression)
+        {
+            PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
+            return new AngieDecimalConfigurator<T>(_angie, _maggie, propertyInfo);
+        }
 
         public AngieStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
         {
@@ -163,6 +168,29 @@ namespace Angela.Core
         public AngieConfigurator<T> WithinRange(int min, int max)
         {
             IntFiller filler = new IntFiller(typeof(T), _propertyInfo.Name, min, max);
+            _maggie.RegisterFiller(filler);
+            return this;
+        }
+
+        public PropertyInfo PropertyInfo
+        {
+            get { return _propertyInfo; }
+        }
+    }
+
+    public class AngieDecimalConfigurator<T> : AngieConfigurator<T> where T : new()
+    {
+        private PropertyInfo _propertyInfo;
+
+        public AngieDecimalConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
+            : base(angie, maggie)
+        {
+            _propertyInfo = propertyInfo;
+        }
+
+        public AngieConfigurator<T> WithinRange(int min, int max)
+        {
+            DecimalFiller filler = new DecimalFiller(typeof(T), _propertyInfo.Name, min, max);
             _maggie.RegisterFiller(filler);
             return this;
         }

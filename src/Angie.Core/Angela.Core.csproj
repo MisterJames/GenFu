@@ -51,7 +51,10 @@
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
-    <Compile Include="Jen.cs" />
+    <Compile Include="Jen\Jen.cs" />
+    <Compile Include="Jen\Music\Album.cs" />
+    <Compile Include="Jen\Music\Artist.cs" />
+    <Compile Include="Jen\Music\Genre.cs" />
     <Compile Include="Maggie.cs" />
     <Compile Include="Susan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +75,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\CanadianProvinceNames.txt" />
     <EmbeddedResource Include="Resources\USAStateNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\MusicArtists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\MusicAlbums.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

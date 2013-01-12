@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SampleConsole.Models;
 
 namespace SampleConsole
 {
@@ -16,6 +17,8 @@ namespace SampleConsole
             sb.AppendLine("  1) Post me some blogs");
             sb.AppendLine("  2) Write some peeps out");
             sb.AppendLine("  3) Please address me");
+            sb.AppendLine("  4) I'd listen to that");
+            sb.AppendLine("  5) A New Trend in Music");
             sb.AppendLine();
             sb.AppendLine("  x to exit");
             sb.AppendLine();
@@ -47,6 +50,18 @@ namespace SampleConsole
                         PleaseAddressMe();
                         Console.WriteLine();
                         break;
+                    case "d4":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        MyNewFavoriteMusicGenre();
+                        Console.WriteLine();
+                        break;
+                    case "d5":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        ANewTrendInMusic();
+                        Console.WriteLine();
+                        break;
                     case "x":
                         break;
                     default:
@@ -56,9 +71,31 @@ namespace SampleConsole
                         break;
                 }
             }
-            
+        }
 
+        private static void ANewTrendInMusic()
+        {
+            var artists = Angie.Configure<Artist>()
+                .Fill(a => a.Name).AsMusicArtistName()
+                .MakeList<Artist>();
 
+            var genres = Angie.Configure<Genre>()
+                .Fill(g => g.Description).AsMusicGenreDescription()
+                .Fill(g => g.Name).AsMusicGenreName()
+                .MakeList<Genre>();
+
+            var album = Angie
+                .Configure<Album>()
+                .Fill(a => a.Price).WithinRange(7, 10)
+                .Make<Album>();
+            Console.WriteLine(album.ToString());
+        }
+
+        private static void MyNewFavoriteMusicGenre()
+        {
+            Console.WriteLine(Jen.Music.Genre.Name());
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(Jen.Music.Genre.Description());
         }
 
         private static void PostMeSomeBlogs()
@@ -115,59 +152,11 @@ namespace SampleConsole
         }
     }
 
-    public class Person
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public int Age { get; set; }
 
-        public override string ToString()
-        {
-            return string.Format("You can reach {0} {1} (age {2}) at \n\te:{3}\n\tp:{4}\n", FirstName, LastName, Age, Email, PhoneNumber);
-        }
-        
-    }
 
-    internal class BlogPost
-    {
-        public int BlogPostId { get; set; }
-        public string Title { get; set; }
-        public string Body { get; set; }
-        public virtual ICollection<BlogComment> Comments { get; set; }
-        public DateTime CreateDate { get; set; }
-    }
 
-    internal class BlogComment
-    {
-        public int BlogCommentId { get; set; }
-        public string Comment { get; set; }
-        public string Username { get; set; }
-        public DateTime CommentDate { get; set; }
-    }
 
-    internal class Location
-    {
-        public string Address { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
-        public string PostalCode { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
 
-        public override string ToString()
-        {
-            var result = new StringBuilder();
 
-            // this will be fleshed out as properties are added
-            result.AppendLine(Address);
-            result.Append(string.IsNullOrEmpty(Address2) ? string.Empty : string.Format("{0}\n", Address2));
-            result.AppendFormat("{0}, {1}\n", City, State);
 
-            return result.ToString();
-        }
-    }
 }
