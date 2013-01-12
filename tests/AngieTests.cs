@@ -204,7 +204,7 @@ namespace Angela.Tests
             var minDate = DateTime.Now.AddMilliseconds(-5);
             var maxDate = DateTime.Now.AddMilliseconds(5);
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 500; i++)
             {
                 Angie.Default()
                     .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10));

@@ -94,7 +94,7 @@ namespace Angela.Tests
         [Test]
         public void UsaStatesResourceTest()
         {
-            string statesFail = string.Format(Angie.Defaults.STRING_LOAD_FAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
+            string statesFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
             var city = Jen.City();
 
             Assert.AreNotEqual(string.Empty, city, statesFail);
