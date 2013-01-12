@@ -62,6 +62,11 @@ namespace Angela.Core
             return FastList<T>();
         }
 
+        public List<T> MakeList<T>(int count) where T : new()
+        {
+            return FastList<T>(count);
+        }
+
         public Angie Angie
         {
             get { return _angie; }

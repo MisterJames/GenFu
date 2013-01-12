@@ -175,8 +175,9 @@ namespace Angela.Tests
         }
 
         [Test]
-        public void MakeListGeneratesCorrectNumberOfEntries()
+        public void MakeListGeneratesCorrectNumberOfEntriesWithDefaults()
         {
+            Angie.Reset();
             var personCount = 13;
 
             Angie.Default()
@@ -184,6 +185,31 @@ namespace Angela.Tests
 
             var people = Angie
                 .FastList<Person>();
+
+            Assert.AreEqual(people.Count(), personCount);
+        }
+
+        [Test]
+        public void MakeListGeneratesCorrectNumberOfEntriesWithStaticOverload()
+        {
+            Angie.Reset();
+            var personCount = 13;
+
+            var people = Angie
+                .FastList<Person>(personCount);
+
+            Assert.AreEqual(people.Count(), personCount);
+        }
+
+        [Test]
+        public void MakeListGeneratesCorrectNumberOfEntriesWithInstanceOverload()
+        {
+            Angie.Reset();
+            var personCount = 13;
+
+            var people = Angie
+                .Configure<Person>()
+                .MakeList<Person>(personCount);
 
             Assert.AreEqual(people.Count(), personCount);
         }

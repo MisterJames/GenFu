@@ -77,12 +77,12 @@ namespace SampleConsole
         {
             var artists = Angie.Configure<Artist>()
                 .Fill(a => a.Name).AsMusicArtistName()
-                .MakeList<Artist>();
+                .MakeList<Artist>(50);
 
             var genres = Angie.Configure<Genre>()
                 .Fill(g => g.Description).AsMusicGenreDescription()
                 .Fill(g => g.Name).AsMusicGenreName()
-                .MakeList<Genre>();
+                .MakeList<Genre>(20);
 
             var album = Angie
                 .Configure<Album>()
@@ -90,6 +90,7 @@ namespace SampleConsole
                 .Fill(a => a.Artist).WithRandom(artists)
                 .Fill(a => a.Genre).WithRandom(genres)
                 .Make<Album>();
+
             Console.WriteLine(album.ToString());
         }
 
