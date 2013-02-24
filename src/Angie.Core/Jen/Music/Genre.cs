@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
@@ -35,10 +33,7 @@ namespace Angela.Core
 
                     return string.Format("{0}{1}, {2}.", prefixes[prefixIndex], body[bodyIndex], suffixes[suffixIndex]);
                 }
-
             }
-
         }
-
     }
 }

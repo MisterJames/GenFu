@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
@@ -155,11 +153,6 @@ namespace Angela.Core
 
         public static DateTime Date(DateRules rules)
         {
-            // grab a copy of the current config
-
-            var minDate = Angie.MinDateTime;
-            var maxDate = Angie.MaxDateTime;
-
             // apply rule restrictions
             if (rules == DateRules.Within1Year)
             {

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Reflection;
+using System.Linq.Expressions;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
@@ -157,113 +157,6 @@ namespace Angela.Core
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieComplexPropertyConfigurator<T, T2>(_angie, _maggie, propertyInfo);
-        }
-    }
-
-    public class AngieIntegerConfigurator<T> : AngieConfigurator<T> where T : new()
-    {
-        private PropertyInfo _propertyInfo;
-
-        public AngieIntegerConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-        public AngieConfigurator<T> WithinRange(int min, int max)
-        {
-            IntFiller filler = new IntFiller(typeof(T), _propertyInfo.Name, min, max);
-            _maggie.RegisterFiller(filler);
-            return this;
-        }
-
-        public PropertyInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
-        }
-    }
-
-    public class AngieDecimalConfigurator<T> : AngieConfigurator<T> where T : new()
-    {
-        private PropertyInfo _propertyInfo;
-
-        public AngieDecimalConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-        public AngieConfigurator<T> WithinRange(int min, int max)
-        {
-            DecimalFiller filler = new DecimalFiller(typeof(T), _propertyInfo.Name, min, max);
-            _maggie.RegisterFiller(filler);
-            return this;
-        }
-
-        public PropertyInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
-        }
-    }
-
-    public class AngieStringConfigurator<T> : AngieConfigurator<T> where T : new()
-    {
-        private PropertyInfo _propertyInfo;
-
-        public AngieStringConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-
-
-        public PropertyInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
-        }
-    }
-
-    public class AngieDateTimeConfigurator<T> : AngieConfigurator<T> where T : new()
-    {
-        private PropertyInfo _propertyInfo;
-
-        public AngieDateTimeConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-        public PropertyInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
-        }
-    }
-
-    public class AngieComplexPropertyConfigurator<T, T2> : AngieConfigurator<T> where T : new()
-    {
-        private PropertyInfo _propertyInfo; 
-
-        public AngieComplexPropertyConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo) : base(angie, maggie)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-        public AngieConfigurator<T> WithRandom(IList<T2> values)
-        {
-            Random random = new Random(Environment.TickCount);
-
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () =>
-                {
-                    return values[random.Next(0, values.Count)];
-                });
-            _maggie.RegisterFiller(customFiller);
-            return this;
-        }
-
-        public PropertyInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
         }
     }
 }
