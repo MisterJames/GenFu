@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Angela.Tests
 {
@@ -26,6 +24,8 @@ namespace Angela.Tests
 
         // emailaddress EmailAddress email_address
         public string EmailAddress { get; set; }
+
+        public string Twitter { get; set; }
 
         // phonenumber PhoneNumber phone_number
         public string PhoneNumber { get; set; }

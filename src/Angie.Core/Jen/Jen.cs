@@ -41,6 +41,13 @@ namespace Angela.Core
 
             return string.Format("{0}.{1}@{2}", firstname, lastname, Susan.Data(Properties.Domains)[domainNameIndex]);
         }
+
+        public static string Twitter()
+        {
+            return string.Format("@{0}{1}", 
+                       Susan.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(), 
+                       Susan.Data(Properties.LastNames).GetRandomElement());
+        }
         
         /// <summary>
         /// Only uses the specified domain for email generation

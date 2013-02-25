@@ -63,6 +63,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />
     <Compile Include="Fillers\DateTimeFillers.cs" />
+    <Compile Include="Jen\EnnumerableExtensions.cs" />
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />

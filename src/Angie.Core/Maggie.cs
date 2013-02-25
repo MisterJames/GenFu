@@ -12,8 +12,10 @@ namespace Angela.Core
         private IDictionary<Type, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
 
+#pragma warning disable 0649 //property injected by MEF
         [ImportMany(typeof(IPropertyFiller))]
         private IEnumerable<IPropertyFiller> _propertyFillers;
+#pragma warning restore 0649
 
 
         public Maggie()
