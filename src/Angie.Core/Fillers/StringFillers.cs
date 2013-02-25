@@ -85,6 +85,23 @@ namespace Angela.Core
         }
     }
 
+    public class TwitterFiller : IPropertyFiller
+    {
+        public string[] PropertyNames
+        {
+            get { return new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" }; }
+        }
+
+        public Type ObjectType { get { return typeof(object); } }
+        public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
+
+        public object GetValue()
+        {
+            return Jen.Twitter();
+        }
+    }
+
     public class AddressFiller : IPropertyFiller
     {
         public string[] PropertyNames
@@ -203,6 +220,13 @@ namespace Angela.Core
             return configurator;
         }
 
+        public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T: new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Twitter());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
         public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());
@@ -230,6 +254,7 @@ namespace Angela.Core
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
+
 
         public static AngieConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {

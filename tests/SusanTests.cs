@@ -1,10 +1,8 @@
-﻿using Angela.Core;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Angela.Core;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Angela.Tests
 {
@@ -57,10 +55,20 @@ namespace Angela.Tests
         public void DomainResourceTest()
         {
             var person = Angie.FastMake<Person>();
+            string twitterFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_FIRST_NAMES);
+
+            Assert.AreNotEqual(string.Empty, person.Twitter, twitterFail);
+        }
+
+        [Test]
+        public void TwitterResourceTest()
+        {
+            var person = Angie.FastMake<Person>();
             string emailFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_DOMAIN_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.EmailAddress, emailFail);
         }
+
 
         [Test]
         public void StreetNameResourceTest()
@@ -88,8 +96,6 @@ namespace Angela.Tests
 
             Assert.AreNotEqual(string.Empty, city, provinceFail);
         }
-
-
 
         [Test]
         public void UsaStatesResourceTest()

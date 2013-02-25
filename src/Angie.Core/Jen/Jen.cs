@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
@@ -42,6 +40,13 @@ namespace Angela.Core
             string lastname = Susan.Data(Properties.LastNames)[lastNameIndex].Replace(" ", "");
 
             return string.Format("{0}.{1}@{2}", firstname, lastname, Susan.Data(Properties.Domains)[domainNameIndex]);
+        }
+
+        public static string Twitter()
+        {
+            return string.Format("@{0}{1}", 
+                       Susan.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(), 
+                       Susan.Data(Properties.LastNames).GetRandomElement());
         }
         
         /// <summary>
@@ -155,11 +160,6 @@ namespace Angela.Core
 
         public static DateTime Date(DateRules rules)
         {
-            // grab a copy of the current config
-
-            var minDate = Angie.MinDateTime;
-            var maxDate = Angie.MaxDateTime;
-
             // apply rule restrictions
             if (rules == DateRules.Within1Year)
             {

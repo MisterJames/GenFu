@@ -1,12 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
 using Angela.Core;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Angela.Tests
 {

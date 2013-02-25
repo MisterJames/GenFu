@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
@@ -17,9 +15,7 @@ namespace Angela.Core
                     int index = _random.Next(0, Susan.Data(Properties.MusicArtists).Count());
                     return Susan.Data(Properties.MusicArtists)[index];
                 }
-
             }
         }
-
     }
 }
