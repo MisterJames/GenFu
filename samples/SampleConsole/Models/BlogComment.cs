@@ -11,6 +11,7 @@ namespace SampleConsole.Models
         public int BlogCommentId { get; set; }
         public string Comment { get; set; }
         public string Username { get; set; }
+        public string Twitter { get; set; }
         public DateTime CommentDate { get; set; }
     }
 }

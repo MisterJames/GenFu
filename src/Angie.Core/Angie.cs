@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Angela.Core
 {
     public partial class Angie
     {
-        
         private static Angie _angie = new Angie();
         private static Maggie _maggie = new Maggie();
 
@@ -37,10 +36,8 @@ namespace Angela.Core
                     {
                         SetPropertyValue<T>(instance, property);
                     }
-
                 }
             }
-
             return instance;
         }
 
@@ -68,11 +65,11 @@ namespace Angela.Core
             return FastList<T>();
         }
 
-        private static List<T> BuildList<T>(int personCount) where T : new()
+        private static List<T> BuildList<T>(int itemCount) where T : new()
         {
             var result = new List<T>();
 
-            for (int i = 0; i < personCount; i++)
+            for (int i = 0; i < itemCount; i++)
             {
                 result.Add(Angie.FastMake<T>());
             }

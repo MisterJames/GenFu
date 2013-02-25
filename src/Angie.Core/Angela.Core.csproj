@@ -41,13 +41,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angie.cs" />
+    <Compile Include="AngieComplexPropertyConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
     <Compile Include="AngieConfigurator.cs" />
+    <Compile Include="AngieDateTimeConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AngieDecimalConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
     <Compile Include="AngieDefaulturator.cs" />
     <Compile Include="AngieFluent.cs" />
+    <Compile Include="AngieIntegerConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AngieStringConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chastity.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />
     <Compile Include="Fillers\DateTimeFillers.cs" />
+    <Compile Include="Jen\EnnumerableExtensions.cs" />
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
