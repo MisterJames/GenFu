@@ -45,6 +45,7 @@
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Person.cs" />
