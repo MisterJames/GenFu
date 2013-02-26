@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SampleConsole.Models;
+using System.Runtime.InteropServices;
 
 namespace SampleConsole
 {
@@ -19,6 +20,7 @@ namespace SampleConsole
             sb.AppendLine("  3) Please address me");
             sb.AppendLine("  4) I'd listen to that");
             sb.AppendLine("  5) A New Trend in Music");
+            sb.AppendLine("  6) A flight");
             sb.AppendLine();
             sb.AppendLine("  x to exit");
             sb.AppendLine();
@@ -60,6 +62,12 @@ namespace SampleConsole
                         Console.WriteLine();
                         Console.WriteLine();
                         ANewTrendInMusic();
+                        Console.WriteLine();
+                        break;
+                    case "d6":
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        AFlight();
                         Console.WriteLine();
                         break;
                     case "x":
@@ -107,9 +115,9 @@ namespace SampleConsole
                 .ListCount(3);
 
             var blogposts = Angie
-                .Configure<BlogPost>()   
+                .Configure<BlogPost>()
                 .Fill(d => d.CreateDate).AsPastDate()
-                .Fill(b => b.Comments, delegate
+                .Fill(b => b.Comments, () =>
                     {
                         return Angie
                             .Set<BlogComment>()
@@ -152,6 +160,34 @@ namespace SampleConsole
             {
                 Console.WriteLine(location);
             }
+        }
+        private static void AFlight()
+        {
+            var flights = Angie
+                            .Configure<Flight>()
+                            .Fill(x => x.PilotFirstName, () => { return Jen.FirstName(); })
+                            .Fill(x => x.PilotLastName, () => { return Jen.LastName(); })
+                            .Fill(x => x.CoPilotFirstName, () => { return Jen.FirstName(); })
+                            .Fill(x => x.CoPilotLastName, () => { return Jen.LastName(); })
+                            .Fill(x => x.Range).WithinRange(1000, 10000)
+                            .Fill(x => x.FlightNumber, () => { return GetFlightNumber(); })
+                            .Fill(x => x.PlaneType, () => { return GetRandomPlaneName(); })
+                            .MakeList<Flight>();
+            flights.ForEach(x => Console.WriteLine(x));
+        }
+
+        static Random _random = new Random();
+        private static string GetFlightNumber()
+        {
+            string[] airlines = { "AC", "WJ", "SW" };
+
+            int airlineIndex = _random.Next(0, airlines.Length - 1);
+
+            return airlines[airlineIndex] + _random.Next(100, 900);
+        }
+        private static string GetRandomPlaneName()
+        {
+            return String.Format("7{0}7", _random.Next(4, 8));
         }
     }
 
