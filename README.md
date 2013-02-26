@@ -66,7 +66,7 @@ If you want to control how the property is set, you can use your own function (a
 
     var post = Angie
         .Configure<BlogPost>()
-        .Fill(b => b.Title, delegate() { return blogTitle; })
+        .Fill(b => b.Title, () => { return blogTitle; })
         .Make<BlogPost>();
 ```
 
@@ -78,7 +78,7 @@ Or, you can use one of the built-in helper methods, to, for example, spin up 100
 
     var comments = Angie
        .Configure<BlogPost>()
-       .Fill(c => c.CreateDate, delegate() { return Jen.FillDate(DateRules.PastDate); })
+       .Fill(c => c.CreateDate, () => { return Jen.FillDate(DateRules.PastDate); })
        .MakeList<BlogComment>();
 ```
 

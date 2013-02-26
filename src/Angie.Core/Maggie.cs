@@ -77,7 +77,7 @@ namespace Angela.Core
                     foreach (IPropertyFiller propertyFiller in _specificPropertyFillersByObjectType[objectType  ])
                     {
                         if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
-                            propertyFiller.PropertyNames.Any(s =>  s.ToLowerInvariant() == propertyInfo.Name.ToLower()))
+                            propertyFiller.PropertyNames.Any(s =>  propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
                         {
                             result = propertyFiller;
                             break;
@@ -90,6 +90,7 @@ namespace Angela.Core
 
             if (result == null)
             {
+                
                 if (_genericPropertyFillersByPropertyType.ContainsKey(propertyInfo.PropertyType))
                 {
                     result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
