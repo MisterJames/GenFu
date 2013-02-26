@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 
 namespace Angela.Core
 {
@@ -31,6 +30,15 @@ namespace Angela.Core
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
                                                                    () => Jen.Date(DateRules.PastDate));
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        public static AngieConfigurator<T> AsFutureDate<T>(this AngieDateTimeConfigurator<T> configurator)
+            where T: new ()
+        {
+            CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),
+                                                                   () => Jen.Date(DateRules.FutureDates));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
