@@ -165,10 +165,6 @@ namespace SampleConsole
         {
             var flights = Angie
                             .Configure<Flight>()
-                            .Fill(x => x.PilotFirstName, () => { return Jen.FirstName(); })
-                            .Fill(x => x.PilotLastName, () => { return Jen.LastName(); })
-                            .Fill(x => x.CoPilotFirstName, () => { return Jen.FirstName(); })
-                            .Fill(x => x.CoPilotLastName, () => { return Jen.LastName(); })
                             .Fill(x => x.Range).WithinRange(1000, 10000)
                             .Fill(x => x.FlightNumber, () => { return GetFlightNumber(); })
                             .Fill(x => x.PlaneType, () => { return GetRandomPlaneName(); })
