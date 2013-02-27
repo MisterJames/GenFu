@@ -38,6 +38,41 @@ namespace Angela.Core
         }
     }
 
+    public class ShortFiller : IPropertyFiller
+    {
+
+        public ShortFiller()
+        {
+            Min = Angie.Defaults.MIN_SHORT;
+            Max = Angie.Defaults.MAX_SHORT;
+            PropertyNames = new[] { "*" };
+            ObjectTypeNames = new[] { "object" };
+        }
+
+        public ShortFiller(Type objectType, string propertyName, short min, short max)
+        {
+            Min = min;
+            Max = max;
+            PropertyNames = new[] { propertyName };
+            ObjectTypeNames = new[] { objectType.FullName };
+
+        }
+
+        public string[] PropertyNames { get; private set; }
+        public string[] ObjectTypeNames { get; private set; }
+
+        public Type PropertyType { get { return typeof(short); } }
+        public bool IsGenericFiller { get { return true; } }
+
+        public short Min { get; set; }
+        public short Max { get; set; }
+
+        public object GetValue()
+        {
+            return (short) Angie.Random.Next(Min, Max);
+        }
+    }
+
     public class DecimalFiller : IPropertyFiller
     {
         public DecimalFiller()

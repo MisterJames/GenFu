@@ -56,6 +56,9 @@
     <Compile Include="AngieIntegerConfigurator.cs">
       <DependentUpon>AngieConfigurator.cs</DependentUpon>
     </Compile>
+    <Compile Include="AngieShortConfigurator.cs">
+      <DependentUpon>AngieConfigurator.cs</DependentUpon>
+    </Compile>
     <Compile Include="AngieStringConfigurator.cs">
       <DependentUpon>AngieConfigurator.cs</DependentUpon>
     </Compile>

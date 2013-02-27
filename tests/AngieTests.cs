@@ -136,6 +136,74 @@ namespace Angela.Tests
 
         }
 
+
+        private class ClassWithShortProperty
+        {
+            public short ShortProperty { get; set; }
+        }
+
+        [Test]
+        public void ShortMaxNotExceededOnGeneratedValue()
+        {
+            short maxShort = 4;
+
+            Angie.Default()
+                .MaxShort(maxShort);
+
+            for (int i = 0; i < 500; i++)
+            {
+                var instance = Angie
+                    .FastMake<ClassWithShortProperty>();
+
+                if (!(instance.ShortProperty <= maxShort))
+                    Assert.Fail("Short max was exceeded: {0} ", instance.ShortProperty);
+            }
+
+        }
+
+        [Test]
+        public void ShortMinNotExceededOnGeneratedValue()
+        {
+            var minNumberOfKids = 5;
+
+            Angie.Default()
+                .MinInt(minNumberOfKids);
+
+            for (int i = 0; i < 500; i++)
+            {
+                var instance = Angie
+                    .FastMake<ClassWithShortProperty>();
+
+                if (!(instance.ShortProperty >= minNumberOfKids))
+                    Assert.Fail("Short min was exceeded: {0} ", instance.ShortProperty);
+            }
+
+        }
+
+        [Test]
+        public void ShortRangeWithinBoundsOnGeneratedValue()
+        {
+            // use a small window to try to force collisions
+            short minValue = 20;
+            short maxValue = 22;
+
+            Angie.Reset();
+
+            for (int i = 0; i < 500; i++)
+            {
+                var person = Angie
+                    .Configure<ClassWithShortProperty>()
+                    .Fill(p => p.ShortProperty)
+                    .WithinRange(minValue, maxValue)
+                    .Make();
+
+                bool success = (person.ShortProperty >= minValue && person.ShortProperty <= maxValue);
+
+                Assert.IsTrue(success, "Short was generated outside of range.{0}", person.ShortProperty);
+            }
+
+        }
+
         [Test]
         public void AgeIsAlwaysPositive()
         {

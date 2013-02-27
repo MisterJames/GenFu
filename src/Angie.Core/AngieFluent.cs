@@ -59,6 +59,9 @@ namespace Angela.Core
             
             _maggie.SetMinInt(Angie.Defaults.MIN_INT);
             _maggie.SetMaxInt(Angie.Defaults.MAX_INT);
+
+            _maggie.SetMinShort(Angie.Defaults.MIN_SHORT);
+            _maggie.SetMaxShort(Angie.Defaults.MAX_SHORT);
             
             _maggie.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
             _maggie.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);

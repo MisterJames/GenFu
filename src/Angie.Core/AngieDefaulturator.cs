@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Angela.Core
 {
@@ -28,6 +24,19 @@ namespace Angela.Core
         public AngieDefaulturator MinInt(int min)
         {
             _maggie.SetMinInt(min);
+            return this;
+        }
+
+        public AngieDefaulturator MaxShort(short max)
+        {
+            _maggie.SetMaxShort(max);
+            return this;
+
+        }
+
+        public AngieDefaulturator MinShort(short min)
+        {
+            _maggie.SetMinShort(min);
             return this;
         }
 

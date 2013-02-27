@@ -182,6 +182,18 @@ namespace Angela.Core
         }
 
         /// <summary>
+        /// Configure how the specified short property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
+        public AngieShortConfigurator<T> Fill(Expression<Func<T, short>> expression)
+        {
+            PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
+            return new AngieShortConfigurator<T>(_angie, _maggie, propertyInfo);
+        }
+
+        /// <summary>
         /// Configure how the specified decimal property should be filled
         /// </summary>
         /// <typeparam name="T">The target object type</typeparam>

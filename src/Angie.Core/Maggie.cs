@@ -134,6 +134,18 @@ namespace Angela.Core
             intFiller.Max = max;
         }
 
+        public void SetMinShort(short min)
+        {
+            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
+            shortFiller.Min = min;
+        }
+
+        public void SetMaxShort(short max)
+        {
+            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
+            shortFiller.Max = max;
+        }
+
         public void SetMinDecimal(decimal min)
         {
             DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];

@@ -108,6 +108,10 @@ namespace Angela.Core
         {
             public const int MIN_INT = 1;
             public const int MAX_INT = 100;
+
+            public static short MIN_SHORT = 1;
+            public static short MAX_SHORT = Int16.MaxValue;
+
             
             public const decimal MIN_DECIMAL = 0;
             public const decimal MAX_DECIMAL = 100;
@@ -117,6 +121,7 @@ namespace Angela.Core
             public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
             public static DateTime MAX_DATETIME = DateTime.Now.AddDays(30);
             
+
             public const string FILE_DOMAIN_NAMES = "DomainNames";
             public const string FILE_FIRST_NAMES = "FirstNames";
             public const string FILE_LAST_NAMES = "LastNames";
