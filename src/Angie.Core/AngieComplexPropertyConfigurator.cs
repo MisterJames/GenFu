@@ -1,4 +1,3 @@
-using System;
 using System.Reflection;
 using System.Collections.Generic;
 
@@ -16,12 +15,21 @@ namespace Angela.Core
 
         public AngieConfigurator<T> WithRandom(IList<T2> values)
         {
-            Random random = new Random(Environment.TickCount);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
 
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () =>
-                {
-                    return values[random.Next(0, values.Count)];
-                });
+        public AngieConfigurator<T> WithRandom(IEnumerable<T2> values)
+        {
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(T2[] values)
+        {
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
             _maggie.RegisterFiller(customFiller);
             return this;
         }

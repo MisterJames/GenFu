@@ -8,8 +8,8 @@ namespace Angela.Core
     public interface IPropertyFiller
     {
         string[] PropertyNames { get; }
+        string[] ObjectTypeNames { get; }
         bool IsGenericFiller { get; }
-        Type ObjectType { get; }
         Type PropertyType { get; }
         object GetValue();
     }

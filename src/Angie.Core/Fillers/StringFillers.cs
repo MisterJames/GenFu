@@ -7,7 +7,11 @@ namespace Angela.Core
     {
         public string[] PropertyNames { get { return new[] { "*" }; } }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return true; } }
 
@@ -24,7 +28,11 @@ namespace Angela.Core
             get { return new[] { "title"}; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -41,7 +49,11 @@ namespace Angela.Core
             get { return new[] { "firstname", "fname", "first_name" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -58,7 +70,11 @@ namespace Angela.Core
             get { return new[] { "lastname", "lname", "last_name" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -75,7 +91,11 @@ namespace Angela.Core
             get { return new[] { "email", "emailaddress", "email_address" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -92,7 +112,11 @@ namespace Angela.Core
             get { return new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -109,7 +133,11 @@ namespace Angela.Core
             get { return new[] { "address", "adress1", "adress_1", "billingaddress", "billing_address" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] {"object"}; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -126,7 +154,11 @@ namespace Angela.Core
             get { return new[] { "address2", "adress_2" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -143,7 +175,11 @@ namespace Angela.Core
             get { return new[] { "city", "cityname", "city_name" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -160,7 +196,11 @@ namespace Angela.Core
             get { return new[] { "state", "statename", "state_name" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -176,8 +216,12 @@ namespace Angela.Core
         {
             get { return new[] { "provice", "provincename", "province_name"}; }
         }
+        
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
 
-        public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -193,8 +237,12 @@ namespace Angela.Core
         {
             get { return new[] { "fax", "phone", "phonenumber", "phone_number", "homenumber", "worknumber" }; }
         }
+        
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
 
-        public Type ObjectType { get { return typeof(object); } }
         public Type PropertyType { get { return typeof(string); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -203,6 +251,92 @@ namespace Angela.Core
             return Jen.PhoneNumber();
         }
     }
+
+    public class MusicAlbumTitleFiller : IPropertyFiller
+    {
+        public string[] PropertyNames
+        {
+            get { return new[] { "title", "albumname", "name"}; }
+        }
+
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "album", "musicalbum", "music_album" }; }
+        }
+
+        public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
+
+        public object GetValue()
+        {
+            return Jen.Music.Album.Title();
+        }
+    }
+
+    public class MusicArtistNameFiller : IPropertyFiller
+    {
+        public string[] PropertyNames
+        {
+            get { return new[] { "name", "artistname", "artist_name" }; }
+        }
+
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "artist" }; }
+        }
+
+        public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
+
+        public object GetValue()
+        {
+            return Jen.Music.Artist.Name();
+        }
+    }
+
+    public class MusicGenreNameFiller : IPropertyFiller
+    {
+        public string[] PropertyNames
+        {
+            get { return new[] { "title", "name", "genre_title", "genre_name" }; }
+        }
+
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "genre", "musicgenre", "music_genre" }; }
+        }
+
+        public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
+
+        public object GetValue()
+        {
+            return Jen.Music.Genre.Name();
+        }
+    }
+
+    public class MusicGenreDescriptionFiller : IPropertyFiller
+    {
+        public string[] PropertyNames
+        {
+            get { return new[] { "description", "desc", "genre_description", "genre_desc" }; }
+        }
+
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "genre", "musicgenre", "music_genre" }; }
+        }
+
+        public Type PropertyType { get { return typeof(string); } }
+        public bool IsGenericFiller { get { return false; } }
+
+        public object GetValue()
+        {
+            return Jen.Music.Genre.Description();
+        }
+    }
+
+   
 
     public static class StringFillerExtensions
     {

@@ -21,6 +21,27 @@ namespace Angela.Core
             return this;
         }
 
+        public AngieConfigurator<T> WithRandom(decimal[] values)
+        {
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(List<decimal> values)
+        {
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(IEnumerable<decimal> values)
+        {
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
         public PropertyInfo PropertyInfo
         {
             get { return _propertyInfo; }

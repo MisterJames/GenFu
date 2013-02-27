@@ -10,7 +10,9 @@ namespace Angela.Core
         public DateTime Max { get; set; }
 
         public string[] PropertyNames { get { return new[] { "*" }; } }
-        public Type ObjectType { get { return typeof(object); } }
+
+        public string[] ObjectTypeNames { get { return new[] { "object" }; } }
+
         public Type PropertyType { get { return typeof(DateTime); } }
         public bool IsGenericFiller { get { return true; } }
 

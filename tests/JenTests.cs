@@ -3,14 +3,49 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Angela.Tests
 {
     [TestFixture]
     class JenTests
     {
+
+        [Test]
+        public void GetRandomValueFromArray()
+        {
+            string[] possibleValues = new[] {"A", "B", "C", "D", "E"};
+            for (int i = 0; i < 500; i++)
+            {
+                string randomValue = Jen.GetRandomValue(possibleValues);
+                Assert.IsNotNullOrEmpty(randomValue);
+                CollectionAssert.Contains(possibleValues, randomValue);
+            }
+        }
+
+        [Test]
+        public void GetRandomValueFromList()
+        {
+            List<string> possibleValues = new List<string> { "1", "2", "3", "4", "5" };
+            for (int i = 0; i < 500; i++)
+            {
+                string randomValue = Jen.GetRandomValue(possibleValues);
+                Assert.IsNotNullOrEmpty(randomValue);
+                CollectionAssert.Contains(possibleValues, randomValue);
+            }
+        }
+
+        [Test]
+        public void GetRandomValueFromEnumerable()
+        {
+            IEnumerable<string> possibleValues = (new []{ "1A", "2A", "3A", "4A", "5A" }).Select(s => s);
+            for (int i = 0; i < 500; i++)
+            {
+                string randomValue = Jen.GetRandomValue(possibleValues);
+                Assert.IsNotNullOrEmpty(randomValue);
+                CollectionAssert.Contains(possibleValues, randomValue);
+            }
+        }
+
         [Test]
         public void MakeDateRuleFutureIsCorrect()
         {

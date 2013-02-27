@@ -96,7 +96,7 @@
     <EmbeddedResource Include="Resources\MusicArtists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\MusicAlbums.txt" />
+    <EmbeddedResource Include="Resources\MusicAlbums.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

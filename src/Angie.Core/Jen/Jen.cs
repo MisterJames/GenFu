@@ -48,6 +48,24 @@ namespace Angela.Core
                        Susan.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(), 
                        Susan.Data(Properties.LastNames).GetRandomElement());
         }
+
+        public static T GetRandomValue<T>(T[] values)
+        {
+            int index = _random.Next(0, values.Length);
+            return values[index];
+        }
+
+        public static T GetRandomValue<T>(List<T> values)
+        {
+            int index = _random.Next(0, values.Count);
+            return values[index];
+        }
+
+        public static T GetRandomValue<T>(IEnumerable<T> values)
+        {
+            int index = _random.Next(0, values.Count());
+            return values.ElementAt(index);
+        }
         
         /// <summary>
         /// Only uses the specified domain for email generation
@@ -56,46 +74,39 @@ namespace Angela.Core
         /// <returns>A complete email address for the specified domain.</returns>
         public static string Email(string domain)
         {
-            int firstNameIndex = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
-            int lastNameIndex = _random.Next(0, Susan.Data(Properties.LastNames).Count());
-            return string.Format("{0}.{1}@{2}", Susan.Data(Properties.FirstNames)[firstNameIndex], Susan.Data(Properties.LastNames)[lastNameIndex], domain);
+            return string.Format("{0}.{1}@{2}", GetRandomValue(Susan.Data(Properties.FirstNames)), GetRandomValue(Susan.Data(Properties.LastNames)), domain);
         }
 
         public static string Title()
         {
-            int index = _random.Next(0, Susan.Data(Properties.Titles).Count());
-            return Susan.Data(Properties.Titles)[index];
+            return GetRandomValue(Susan.Data(Properties.Titles));
         }
 
         public static string LastName()
         {
-            int index = _random.Next(0, Susan.Data(Properties.LastNames).Count());
-            return Susan.Data(Properties.LastNames)[index];
+            return GetRandomValue(Susan.Data(Properties.LastNames));
         }
 
         public static string FirstName()
         {
-            int index = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
-            return Susan.Data(Properties.FirstNames)[index];
+            return GetRandomValue(Susan.Data(Properties.FirstNames));
         }
 
         public static string DomainName()
         {
-            int index = _random.Next(0, Susan.Data(Properties.Domains).Count());
-            return Susan.Data(Properties.Domains)[index];
+            return GetRandomValue(Susan.Data(Properties.Domains));
 
         }
 
         public static string AddressLine()
         {
-            int index = _random.Next(0, Susan.Data(Properties.StreetNames).Count());
             var suffixes = new List<string> { "NW", "N", "NE", "E", "SE", "S", "SW", "W" };
 
             var number = _random.Next(100, 9999);
             number = _random.Next(1, 5) == 5 ? _random.Next(100, 99999) : number;
 
-            var streetName = Susan.Data(Properties.StreetNames)[index];
-            var direction = _random.Next(1, 1) > 8 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
+            var streetName = GetRandomValue(Susan.Data(Properties.StreetNames));
+            var direction = _random.Next(1, 1) > 8 ? GetRandomValue(suffixes) : string.Empty;
 
             var result = string.Format("{0} {1} {2}", number, streetName, direction);
 
@@ -109,9 +120,9 @@ namespace Angela.Core
             List<string> units = new List<string> { "Apt ", "Unit ", "#", "Studio " };
             List<string> suffixes = new List<string> { "A", "B", "C", "D", "E", "F", "G" };
 
-            var unit = _random.Next(1, 4) > 2 ? units[_random.Next(units.Count)] : string.Empty;
+            var unit = _random.Next(1, 4) > 2 ? GetRandomValue(units) : string.Empty;
             var number = _random.Next(100, 999);
-            var suffix = _random.Next(1, 4) > 2 ? suffixes[_random.Next(suffixes.Count)] : string.Empty;
+            var suffix = _random.Next(1, 4) > 2 ? GetRandomValue(suffixes) : string.Empty;
 
             if (unit.Length + suffix.Length != 0)
             {
@@ -124,20 +135,17 @@ namespace Angela.Core
 
         public static string City()
         {
-            int index = _random.Next(0, Susan.Data(Properties.CityNames).Count());
-            return Susan.Data(Properties.CityNames)[index];
+            return GetRandomValue(Susan.Data(Properties.CityNames));
         }
 
         public static string UsaState()
         {
-            int index = _random.Next(0, Susan.Data(Properties.UsaStates).Count());
-            return Susan.Data(Properties.UsaStates)[index];
+            return GetRandomValue(Susan.Data(Properties.UsaStates));
         }
 
         public static string CanadianProvince()
         {
-            int index = _random.Next(0, Susan.Data(Properties.CanadianProvinces).Count());
-            return Susan.Data(Properties.CanadianProvinces)[index];
+            return GetRandomValue(Susan.Data(Properties.CanadianProvinces));
         }
 
         public static string PhoneNumber()

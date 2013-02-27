@@ -5,6 +5,7 @@ namespace Angela.Core
     public class CustomFiller<T> : IPropertyFiller
     {
         private string _propertyName;
+        private string _objectTypeName;
         private Type _objectType;
         private Type _propertyType;
         private Func<T> _filler;
@@ -13,6 +14,7 @@ namespace Angela.Core
         {
             _propertyName = propertyName;
             _objectType = objectType;
+            _objectTypeName = objectType.FullName;
             _propertyType = typeof(T);
             _filler = filler;
         }
@@ -21,13 +23,18 @@ namespace Angela.Core
         {
             get
             {
-                return new[]
-                    {
-                        _propertyName
-                    };
+                return new[] { _propertyName };
             }
         }
-        public Type ObjectType { get { return _objectType; } }
+
+        public string[] ObjectTypeNames
+        {
+            get
+            {
+                return new[] { _objectTypeName };
+            }
+        }
+
         public Type PropertyType { get { return _propertyType; } }
         public bool IsGenericFiller { get; set; }
 

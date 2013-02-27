@@ -82,15 +82,10 @@ namespace SampleConsole
         }
 
         private static void ANewTrendInMusic()
-        {
-            var artists = Angie.Configure<Artist>()
-                .Fill(a => a.Name).AsMusicArtistName()
-                .MakeList<Artist>(50);
+        {   
+            var artists = Angie.FastList<Artist>(50);
 
-            var genres = Angie.Configure<Genre>()
-                .Fill(g => g.Description).AsMusicGenreDescription()
-                .Fill(g => g.Name).AsMusicGenreName()
-                .MakeList<Genre>(20);
+            var genres = Angie.FastList<Genre>(20);
 
             var album = Angie
                 .Configure<Album>()
@@ -166,21 +161,13 @@ namespace SampleConsole
             var flights = Angie
                             .Configure<Flight>()
                             .Fill(x => x.Range).WithinRange(1000, 10000)
-                            .Fill(x => x.FlightNumber, () => { return GetFlightNumber(); })
-                            .Fill(x => x.PlaneType, () => { return GetRandomPlaneName(); })
+                            .Fill(x => x.FlightNumber).WithRandom(new []{ "AC", "WJ", "SW" })
+                            .Fill(x => x.PlaneType, GetRandomPlaneName)
                             .MakeList<Flight>();
             flights.ForEach(x => Console.WriteLine(x));
         }
 
         static Random _random = new Random();
-        private static string GetFlightNumber()
-        {
-            string[] airlines = { "AC", "WJ", "SW" };
-
-            int airlineIndex = _random.Next(0, airlines.Length - 1);
-
-            return airlines[airlineIndex] + _random.Next(100, 900);
-        }
         private static string GetRandomPlaneName()
         {
             return String.Format("7{0}7", _random.Next(4, 8));

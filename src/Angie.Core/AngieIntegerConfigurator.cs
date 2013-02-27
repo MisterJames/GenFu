@@ -1,6 +1,5 @@
-using System;
-using System.Reflection;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Angela.Core
 {
@@ -18,6 +17,27 @@ namespace Angela.Core
         {
             IntFiller filler = new IntFiller(typeof(T), _propertyInfo.Name, min, max);
             _maggie.RegisterFiller(filler);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(int[] values)
+        {
+            CustomFiller<int> customFiller = new CustomFiller<int>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(List<int> values)
+        {
+            CustomFiller<int> customFiller = new CustomFiller<int>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+        public AngieConfigurator<T> WithRandom(IEnumerable<int> values)
+        {
+            CustomFiller<int> customFiller = new CustomFiller<int>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            _maggie.RegisterFiller(customFiller);
             return this;
         }
 

@@ -11,7 +11,7 @@ namespace Angela.Core
             Min = Angie.Defaults.MIN_INT;
             Max = Angie.Defaults.MAX_INT;
             PropertyNames = new[] { "*" };
-            ObjectType = typeof(object);
+            ObjectTypeNames = new[] { "object" };
         }
 
         public IntFiller(Type objectType, string propertyName, int min, int max)
@@ -19,12 +19,13 @@ namespace Angela.Core
             Min = min;
             Max = max;
             PropertyNames = new[] { propertyName };
-            ObjectType = objectType;
+            ObjectTypeNames = new[] { objectType.FullName };
+
         }
 
         public string[] PropertyNames { get; private set; }
+        public string[] ObjectTypeNames { get; private set; }
 
-        public Type ObjectType { get; private set; }
         public Type PropertyType { get { return typeof(int); } }
         public bool IsGenericFiller { get { return true; } }
 
@@ -44,7 +45,7 @@ namespace Angela.Core
             Min = Angie.Defaults.MIN_DECIMAL;
             Max = Angie.Defaults.MAX_DECIMAL;
             PropertyNames = new[] { "*" };
-            ObjectType = typeof(object);
+            ObjectTypeNames = new[] {"object"};
         }
 
         public DecimalFiller(Type objectType, string propertyName, decimal min, decimal max)
@@ -52,12 +53,13 @@ namespace Angela.Core
             Min = min;
             Max = max;
             PropertyNames = new[] { propertyName };
-            ObjectType = objectType;
+            ObjectTypeNames = new []{ objectType.FullName};
         }
 
         public string[] PropertyNames { get; private set; }
 
-        public Type ObjectType { get; private set; }
+        public string[] ObjectTypeNames { get; private set; }
+
         public Type PropertyType { get { return typeof(decimal); } }
         public bool IsGenericFiller { get { return true; } }
 
@@ -87,7 +89,12 @@ namespace Angela.Core
         {
             get { return new[] { "Age" }; }
         }
-        public Type ObjectType { get { return typeof(object); } }
+
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(int); } }
         public bool IsGenericFiller { get { return false; } }
 
@@ -106,7 +113,11 @@ namespace Angela.Core
             get { return new[] { "price", "amount", "amt" }; }
         }
 
-        public Type ObjectType { get { return typeof(object); } }
+        public string[] ObjectTypeNames
+        {
+            get { return new[] { "object" }; }
+        }
+
         public Type PropertyType { get { return typeof(decimal); } }
         public bool IsGenericFiller { get { return false; } }
 

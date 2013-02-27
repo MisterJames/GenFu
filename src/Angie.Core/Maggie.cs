@@ -9,7 +9,7 @@ namespace Angela.Core
 {
     public class Maggie
     {
-        private IDictionary<Type, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
+        private IDictionary<string, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
 
 #pragma warning disable 0649 //property injected by MEF
@@ -32,16 +32,11 @@ namespace Angela.Core
                 container.ComposeParts(this);
             }
 
-            _specificPropertyFillersByObjectType = new Dictionary<Type, IList<IPropertyFiller>>();
+            _specificPropertyFillersByObjectType = new Dictionary<string, IList<IPropertyFiller>>();
 
-            foreach (IGrouping<Type, IPropertyFiller> propertyFillersByType in _propertyFillers.Where(p => !p.IsGenericFiller).GroupBy(p => p.ObjectType))
+            foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => !p.IsGenericFiller))
             {
-                IList<IPropertyFiller> typeFillers = new List<IPropertyFiller>();
-                foreach (IPropertyFiller propertyFiller in propertyFillersByType)
-                {
-                    typeFillers.Add(propertyFiller);
-                }
-                _specificPropertyFillersByObjectType.Add(propertyFillersByType.Key, typeFillers);
+                RegisterFiller(propertyFiller);
             }
 
             _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
@@ -49,20 +44,19 @@ namespace Angela.Core
             {
                 _genericPropertyFillersByPropertyType.Add(propertyFiller.PropertyType, propertyFiller);
             }
-            
+
         }
 
         public void RegisterFiller(IPropertyFiller filler)
         {
-            if (_specificPropertyFillersByObjectType.ContainsKey(filler.ObjectType))
+            foreach (string objectTypeName in filler.ObjectTypeNames.Select(s => s.ToLowerInvariant()))
             {
-                _specificPropertyFillersByObjectType[filler.ObjectType].Add(filler);
-            }
-            else
-            {
-                List<IPropertyFiller> fillers = new List<IPropertyFiller>();
-                fillers.Add(filler);
-                _specificPropertyFillersByObjectType.Add(filler.ObjectType, fillers);
+                if (!_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+                {
+                    _specificPropertyFillersByObjectType[objectTypeName] = new List<IPropertyFiller>();
+                }
+                IList<IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
+                typeFillers.Add(filler);
             }
         }
 
@@ -70,18 +64,24 @@ namespace Angela.Core
         {
             IPropertyFiller result = null;
             Type objectType = propertyInfo.DeclaringType;
-            while (objectType != null && result ==  null)
+            while (objectType != null && result == null)
             {
-                if (_specificPropertyFillersByObjectType.ContainsKey(objectType))
+                //First try to get a specific filler based on a full type name (including namespace)
+                string fullTypeName = objectType.FullName.ToLowerInvariant();
+                if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
-                    foreach (IPropertyFiller propertyFiller in _specificPropertyFillersByObjectType[objectType  ])
+                    IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
+                    result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
+                }
+
+                //Second try to get a more generic filler based on only the class name (no namespace)
+                if (result == null)
+                {
+                    string classTypeName = objectType.Name.ToLowerInvariant();
+                    if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
                     {
-                        if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
-                            propertyFiller.PropertyNames.Any(s =>  propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
-                        {
-                            result = propertyFiller;
-                            break;
-                        }
+                        IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                        result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
                     }
                 }
 
@@ -90,7 +90,7 @@ namespace Angela.Core
 
             if (result == null)
             {
-                
+                //Finally, grab a generic property filler for that property type
                 if (_genericPropertyFillersByPropertyType.ContainsKey(propertyInfo.PropertyType))
                 {
                     result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
@@ -99,11 +99,26 @@ namespace Angela.Core
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
                     result = new CustomFiller<object>("*", typeof(object), () => null) { IsGenericFiller = true };
-                    
+
                     _genericPropertyFillersByPropertyType.Add(propertyInfo.PropertyType, result);
                 }
             }
 
+            return result;
+        }
+
+        private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IList<IPropertyFiller> propertyFillers)
+        {
+            IPropertyFiller result = null;
+            foreach (IPropertyFiller propertyFiller in propertyFillers)
+            {
+                if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
+                    propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
+                {
+                    result = propertyFiller;
+                    break;
+                }
+            }
             return result;
         }
 
