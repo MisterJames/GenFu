@@ -13,6 +13,11 @@ namespace Angela.Core
             _propertyInfo = propertyInfo;
         }
 
+        /// <summary>
+        /// Fill the target property with a random value from the specified list
+        /// </summary>
+        /// <param name="values">A list of values to choose from</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(IList<T2> values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
@@ -20,6 +25,11 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Fill the target property with a random value from the specified enumerable
+        /// </summary>
+        /// <param name="values">An enumerable of values to choose from</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(IEnumerable<T2> values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
@@ -27,6 +37,11 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Fill the target property with a random value from the specified array
+        /// </summary>
+        /// <param name="values">A array of values to choose from</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(T2[] values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));

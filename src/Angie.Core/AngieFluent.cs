@@ -16,6 +16,12 @@ namespace Angela.Core
             return new AngieConfigurator(_angie, _maggie);
         }
 
+        /// <summary>
+        /// Reset and configure how the specified type is populated by Angie
+        /// NOTE: Overwrites all previous configuration
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> Configure<T>() where T : new()
         {
             Reset();
@@ -27,11 +33,21 @@ namespace Angela.Core
             return new AngieConfigurator(_angie, _maggie);
         }
 
+        /// <summary>
+        /// Configure how the specified type is populated by Angie.
+        /// NOTE: Maintains previous configuration for the specified type.
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> Set<T>() where T : new()
         {
             return new AngieConfigurator<T>(_angie, _maggie);
         }
 
+        /// <summary>
+        /// Set global defaults for Angie
+        /// </summary>
+        /// <returns>The Angie Defaulturator</returns>
         public static AngieDefaulturator Default()
         {
             return new AngieDefaulturator(_angie, _maggie);

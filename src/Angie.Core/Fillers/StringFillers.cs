@@ -340,6 +340,12 @@ namespace Angela.Core
 
     public static class StringFillerExtensions
     {
+        /// <summary>
+        /// Populate the specified property with a valid email address
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email());
@@ -347,6 +353,14 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a valid email address for a particular domain
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <param name="domain">The domain name for the email address</param>
+        /// <returns>A configurator for the specified object type</returns>
+   
         public static AngieConfigurator<T> AsEmailAddressForDomain<T>(this AngieStringConfigurator<T> configurator, string domain) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email(domain));
@@ -354,6 +368,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a valid Twitter handle
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T: new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Twitter());
@@ -361,6 +381,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with an article title (eg. Blog Post Title)
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());
@@ -368,6 +394,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a valid phone number
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.PhoneNumber());
@@ -375,6 +407,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a first name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.FirstName());
@@ -382,6 +420,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a last name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.LastName());
@@ -389,7 +433,12 @@ namespace Angela.Core
             return configurator;
         }
 
-
+        /// <summary>
+        /// Populate the specified property with a street address
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine());
@@ -397,6 +446,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with the second line of a street address
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine2());
@@ -404,6 +459,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a city name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.City());
@@ -411,6 +472,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a Canadian province name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.CanadianProvince());
@@ -418,6 +485,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with an American state name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.UsaState());
@@ -425,6 +498,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a music artist name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicArtistName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Artist.Name());
@@ -432,6 +511,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a music genre name
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Name());
@@ -439,6 +524,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a music genre description
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreDescription<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Description());

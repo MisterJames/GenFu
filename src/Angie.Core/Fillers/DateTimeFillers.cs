@@ -27,6 +27,12 @@ namespace Angela.Core
 
     public static class DateTimeFillerExtensions
     {
+        /// <summary>
+        /// Populate the specified property with a date in the past
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsPastDate<T>(this AngieDateTimeConfigurator<T> configurator)
             where T : new()
         {
@@ -36,6 +42,12 @@ namespace Angela.Core
             return configurator;
         }
 
+        /// <summary>
+        /// Populate the specified property with a date in the future
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsFutureDate<T>(this AngieDateTimeConfigurator<T> configurator)
             where T: new ()
         {

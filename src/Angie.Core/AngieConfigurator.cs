@@ -15,7 +15,14 @@ namespace Angela.Core
             _angie = angie;
             _maggie = maggie;
         }
-        
+
+        /// <summary>
+        /// Fill the specified property with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T">The target property type</typeparam>
+        /// <param name="propertyName">The name of the target property</param>
+        /// <param name="filler">A function that will return a property value</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator Fill<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
@@ -24,6 +31,14 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Fill the specified property with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T1">The target object type</typeparam>
+        /// <typeparam name="T2">The target property type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <param name="filler">A function that will return a property value</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
@@ -32,16 +47,32 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Create a new object
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <returns>An object filled with random data</returns>
         public static T FastMake<T>() where T : new()
         {
             return Angie.FastMake<T>();
         }
 
+        /// <summary>
+        /// Fill an existing object with random data
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="instance">The instance to fill</param>
+        /// <returns>The instance filled with random data</returns>
         public static T FastFill<T>(T instance)
         {
             return Angie.FastFill(instance);
         }
 
+        /// <summary>
+        /// Create a new object
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <returns>An object filled with random data</returns>
         public T Make<T>() where T : new()
         {
             return Angie.FastMake<T>();
@@ -122,6 +153,14 @@ namespace Angela.Core
             return propertyInfo;
         }
 
+        /// <summary>
+        /// Fill the specified property with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target property type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <param name="filler">A function that will return a property value</param>
+        /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
@@ -130,29 +169,61 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Configure how the specified integer property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
         public AngieIntegerConfigurator<T> Fill(Expression<Func<T, int>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieIntegerConfigurator<T>(_angie, _maggie, propertyInfo);
         }
+
+        /// <summary>
+        /// Configure how the specified decimal property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
         public AngieDecimalConfigurator<T> Fill(Expression<Func<T, decimal>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieDecimalConfigurator<T>(_angie, _maggie, propertyInfo);
         }
 
+        /// <summary>
+        /// Configure how the specified string property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
         public AngieStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieStringConfigurator<T>(_angie, _maggie, propertyInfo);
         }
 
+        /// <summary>
+        /// Configure how the specified DateTime property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
         public AngieDateTimeConfigurator<T> Fill(Expression<Func<T, DateTime>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieDateTimeConfigurator<T>(_angie, _maggie, propertyInfo);
         }
 
+        /// <summary>
+        /// Configure how the specified property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target property type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified property of the target object type</returns>
         public AngieComplexPropertyConfigurator<T, T2> Fill<T2>(Expression<Func<T, T2>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
