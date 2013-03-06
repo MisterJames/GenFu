@@ -27,7 +27,8 @@ namespace Angela.Core
         {
             if (_propertyFillers == null)
             {
-                AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+                AggregateCatalog catalog = new AggregateCatalog();
+                catalog.Catalogs.Add(new DirectoryCatalog("."));
                 CompositionContainer container = new CompositionContainer(catalog);
                 container.ComposeParts(this);
             }
