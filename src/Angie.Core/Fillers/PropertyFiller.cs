@@ -16,7 +16,7 @@ namespace Angela.Core
 
         }
 
-        internal protected PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
+        internal PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
         {
             ObjectTypeNames = objectTypeNames.Select(o => o.ToLowerInvariant()).ToArray();
             PropertyNames = propertyNames.Select(p => p.ToLowerInvariant()).ToArray();
