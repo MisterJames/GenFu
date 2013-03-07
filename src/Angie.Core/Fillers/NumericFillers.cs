@@ -3,105 +3,77 @@ using System.ComponentModel.Composition;
 
 namespace Angela.Core
 {
-    public class IntFiller : IPropertyFiller
+    public class IntFiller : PropertyFiller<int>
     {
 
-        public IntFiller()
+        public IntFiller() : base(new []{"object"}, new []{"*"}, true)
         {
             Min = Angie.Defaults.MIN_INT;
             Max = Angie.Defaults.MAX_INT;
-            PropertyNames = new[] { "*" };
-            ObjectTypeNames = new[] { "object" };
         }
 
-        public IntFiller(Type objectType, string propertyName, int min, int max)
+        public IntFiller(Type objectType, string propertyName, int min, int max) : base(new []{objectType.FullName}, new []{propertyName})
         {
             Min = min;
             Max = max;
-            PropertyNames = new[] { propertyName };
-            ObjectTypeNames = new[] { objectType.FullName };
-
         }
-
-        public string[] PropertyNames { get; private set; }
-        public string[] ObjectTypeNames { get; private set; }
-
-        public Type PropertyType { get { return typeof(int); } }
-        public bool IsGenericFiller { get { return true; } }
 
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public object GetValue()
+        public override object GetValue()
         {
             return Angie.Random.Next(Min, Max);
         }
     }
 
-    public class ShortFiller : IPropertyFiller
+    public class ShortFiller : PropertyFiller<short>
     {
 
-        public ShortFiller()
+        public ShortFiller() : base(new[] { "object" }, new[] { "*" }, true)
         {
             Min = Angie.Defaults.MIN_SHORT;
             Max = Angie.Defaults.MAX_SHORT;
-            PropertyNames = new[] { "*" };
-            ObjectTypeNames = new[] { "object" };
         }
 
         public ShortFiller(Type objectType, string propertyName, short min, short max)
+            : base(new[] { objectType.FullName }, new[] { propertyName })
         {
             Min = min;
             Max = max;
-            PropertyNames = new[] { propertyName };
-            ObjectTypeNames = new[] { objectType.FullName };
 
         }
-
-        public string[] PropertyNames { get; private set; }
-        public string[] ObjectTypeNames { get; private set; }
-
-        public Type PropertyType { get { return typeof(short); } }
-        public bool IsGenericFiller { get { return true; } }
 
         public short Min { get; set; }
         public short Max { get; set; }
 
-        public object GetValue()
+        public override object GetValue()
         {
             return (short) Angie.Random.Next(Min, Max);
         }
     }
 
-    public class DecimalFiller : IPropertyFiller
+    public class DecimalFiller : PropertyFiller<decimal>
     {
         public DecimalFiller()
+            : base(new[] { "object" }, new[] { "*" }, true)
         {
             Min = Angie.Defaults.MIN_DECIMAL;
             Max = Angie.Defaults.MAX_DECIMAL;
-            PropertyNames = new[] { "*" };
-            ObjectTypeNames = new[] {"object"};
         }
 
         public DecimalFiller(Type objectType, string propertyName, decimal min, decimal max)
+            : base(new[] { objectType.FullName }, new[] { propertyName })
         {
             Min = min;
             Max = max;
-            PropertyNames = new[] { propertyName };
-            ObjectTypeNames = new []{ objectType.FullName};
         }
 
-        public string[] PropertyNames { get; private set; }
-
-        public string[] ObjectTypeNames { get; private set; }
-
-        public Type PropertyType { get { return typeof(decimal); } }
-        public bool IsGenericFiller { get { return true; } }
 
         public decimal Min { get; set; }
         public decimal Max { get; set; }
 
-        public object GetValue()
+        public override object GetValue()
         {
             var rnd = Angie.Random.NextDouble() - 0.5f;
             var baseValue = Angie.Random.Next((int)Max - (int)Min) + rnd;
@@ -115,48 +87,32 @@ namespace Angela.Core
     }
 
 
-    public class AgeFiller : IPropertyFiller
+    public class AgeFiller : PropertyFiller<int>
     {
         private const int _minAge = 1;
         private const int _maxAge = 93;
 
-        public string[] PropertyNames
+        public AgeFiller()
+            : base(new[] { "object" }, new[] { "Age" })
         {
-            get { return new[] { "Age" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(int); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Math.Abs(Angie.Random.Next(_minAge, _maxAge));
         }
     }
 
-    public class PriceFiller : IPropertyFiller
+    public class PriceFiller : PropertyFiller<int>
     {
         private const int _maxPrice = 1000;
 
-        public string[] PropertyNames
+        public PriceFiller()
+            : base(new[] { "object" }, new[] { "price", "amount", "amt" })
         {
-            get { return new[] { "price", "amount", "amt" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(decimal); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
 
             decimal result = (decimal)(Angie.Random.NextDouble() * _maxPrice);

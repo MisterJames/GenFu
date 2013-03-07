@@ -1,336 +1,206 @@
-﻿using System;
-using System.ComponentModel.Composition;
-
-namespace Angela.Core
+﻿namespace Angela.Core
 {
-    public class StringFiller : IPropertyFiller
+    public class StringFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames { get { return new[] { "*" }; } }
-
-        public string[] ObjectTypeNames
+        public StringFiller() : base(new[] { "object" }, new[] { "*" }, true)
         {
-            get { return new[] { "object" }; }
         }
 
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return true; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Word();
         }
     }
 
-    public class ArticleTitleFiller : IPropertyFiller
+    public class ArticleTitleFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public ArticleTitleFiller() : base(new[] { "object" }, new[] { "title" })
         {
-            get { return new[] { "title"}; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override  object GetValue()
         {
             return Jen.Title();
         }
     }
 
-    public class FirstNameFiller : IPropertyFiller
+    public class FirstNameFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public FirstNameFiller()
+            : base(new[] { "object" }, new[] { "firstname", "fname", "first_name" })
         {
-            get { return new[] { "firstname", "fname", "first_name" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.FirstName();
         }
     }
 
-    public class LastNameFiller : IPropertyFiller
+    public class LastNameFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public LastNameFiller()
+            : base(new[] { "object" }, new[] { "lastname", "lname", "last_name" })
         {
-            get { return new[] { "lastname", "lname", "last_name" }; }
         }
-
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        
+        public override object GetValue()
         {
             return Jen.LastName();
         }
     }
 
-    public class EmailFiller : IPropertyFiller
+    public class EmailFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public EmailFiller()
+            : base(new[] { "object" }, new[] { "email", "emailaddress", "email_address" })
         {
-            get { return new[] { "email", "emailaddress", "email_address" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Email();
         }
     }
 
-    public class TwitterFiller : IPropertyFiller
+    public class TwitterFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public TwitterFiller()
+            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername"})
         {
-            get { return new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Twitter();
         }
     }
 
-    public class AddressFiller : IPropertyFiller
+    public class AddressFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public AddressFiller()
+            : base(new[] { "object" }, new[] { "address", "adress1", "adress_1", "billingaddress", "billing_address" })
         {
-            get { return new[] { "address", "adress1", "adress_1", "billingaddress", "billing_address" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] {"object"}; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.AddressLine();
         }
     }
 
-    public class AddressLine2Filler : IPropertyFiller
+    public class AddressLine2Filler : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public AddressLine2Filler()
+            : base(new[] { "object" }, new[] { "address2", "adress_2" })
         {
-            get { return new[] { "address2", "adress_2" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.AddressLine2();
         }
     }
 
-    public class CityFiller : IPropertyFiller
+    public class CityFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public CityFiller()
+            : base(new[] { "object" }, new[] { "city", "cityname", "city_name" })
         {
-            get { return new[] { "city", "cityname", "city_name" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.City();
         }
     }
 
-    public class StateFiller : IPropertyFiller
+    public class StateFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public StateFiller()
+            : base(new[] { "object" }, new[] { "state", "statename", "state_name" })
         {
-            get { return new[] { "state", "statename", "state_name" }; }
         }
-
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        
+        public override object GetValue()
         {
             return Jen.UsaState();
         }
     }
 
-    public class ProvinceFiller : IPropertyFiller
+    public class ProvinceFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public ProvinceFiller()
+            : base(new[] { "object" }, new[] { "provice", "provincename", "province_name" })
         {
-            get { return new[] { "provice", "provincename", "province_name"}; }
-        }
-        
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
         }
 
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.CanadianProvince();
         }
     }
 
-    public class PhoneNumberFiller : IPropertyFiller
+    public class PhoneNumberFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public PhoneNumberFiller()
+            : base(new[] { "object" }, new[] { "fax", "phone", "phonenumber", "phone_number", "homenumber", "worknumber" })
         {
-            get { return new[] { "fax", "phone", "phonenumber", "phone_number", "homenumber", "worknumber" }; }
-        }
-        
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "object" }; }
         }
 
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.PhoneNumber();
         }
     }
 
-    public class MusicAlbumTitleFiller : IPropertyFiller
+    public class MusicAlbumTitleFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public MusicAlbumTitleFiller()
+            : base(new[] { "album", "musicalbum", "music_album" }, new[] { "title", "albumname", "name" })
         {
-            get { return new[] { "title", "albumname", "name"}; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "album", "musicalbum", "music_album" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Music.Album.Title();
         }
     }
 
-    public class MusicArtistNameFiller : IPropertyFiller
+    public class MusicArtistNameFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public MusicArtistNameFiller()
+            : base(new[] { "artist" }, new[] { "name", "artistname", "artist_name" })
         {
-            get { return new[] { "name", "artistname", "artist_name" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "artist" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Music.Artist.Name();
         }
     }
 
-    public class MusicGenreNameFiller : IPropertyFiller
+    public class MusicGenreNameFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public MusicGenreNameFiller()
+            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
         {
-            get { return new[] { "title", "name", "genre_title", "genre_name" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "genre", "musicgenre", "music_genre" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Music.Genre.Name();
         }
     }
 
-    public class MusicGenreDescriptionFiller : IPropertyFiller
+    public class MusicGenreDescriptionFiller : PropertyFiller<string>
     {
-        public string[] PropertyNames
+        public MusicGenreDescriptionFiller()
+            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
         {
-            get { return new[] { "description", "desc", "genre_description", "genre_desc" }; }
         }
 
-        public string[] ObjectTypeNames
-        {
-            get { return new[] { "genre", "musicgenre", "music_genre" }; }
-        }
-
-        public Type PropertyType { get { return typeof(string); } }
-        public bool IsGenericFiller { get { return false; } }
-
-        public object GetValue()
+        public override object GetValue()
         {
             return Jen.Music.Genre.Description();
         }

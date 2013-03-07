@@ -51,6 +51,7 @@
     <Compile Include="Location.cs" />
     <Compile Include="ObjectGraphTests.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="PluginFillersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SusanTests.cs" />
   </ItemGroup>

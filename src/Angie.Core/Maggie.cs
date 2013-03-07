@@ -99,7 +99,7 @@ namespace Angela.Core
                 else
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-                    result = new CustomFiller<object>("*", typeof(object), () => null) { IsGenericFiller = true };
+                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
 
                     _genericPropertyFillersByPropertyType.Add(propertyInfo.PropertyType, result);
                 }
