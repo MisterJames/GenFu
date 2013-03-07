@@ -28,7 +28,8 @@ namespace Angela.Core
             if (_propertyFillers == null)
             {
                 AggregateCatalog catalog = new AggregateCatalog();
-                catalog.Catalogs.Add(new DirectoryCatalog("."));
+                catalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory));
+                catalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory, "*.exe"));
                 CompositionContainer container = new CompositionContainer(catalog);
                 container.ComposeParts(this);
             }
