@@ -80,7 +80,7 @@ namespace Angela.Core
         private static void SetPropertyValue<T>(T instance, PropertyInfo property)
         {
             IPropertyFiller filler = _maggie.GetFiller(property);
-            property.SetValue(instance, filler.GetValue());
+            property.SetValue(instance, filler.GetValue(), null);
         }
 
         public static DateTime MinDateTime
