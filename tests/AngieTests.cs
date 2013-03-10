@@ -164,10 +164,10 @@ namespace Angela.Tests
         [Test]
         public void ShortMinNotExceededOnGeneratedValue()
         {
-            var minNumberOfKids = 5;
+            short minNumberOfKids = 5;
 
             Angie.Default()
-                .MinInt(minNumberOfKids);
+                .MinShort(minNumberOfKids);
 
             for (int i = 0; i < 500; i++)
             {
