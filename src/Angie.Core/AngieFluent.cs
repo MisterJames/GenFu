@@ -68,8 +68,8 @@ namespace Angela.Core
 
             _listCount = Angie.Defaults.LIST_COUNT;
 
-            _maggie.SetMinDateTime(DateTime.MinValue);
-            _maggie.SetMaxDateTime(DateTime.MaxValue);
+            _maggie.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
+            _maggie.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
 
             Susan.PropertyFillers.Clear();
         }

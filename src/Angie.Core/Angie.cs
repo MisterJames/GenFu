@@ -118,8 +118,8 @@ namespace Angela.Core
 
             public const int LIST_COUNT = 25;
 
-            public static DateTime MIN_DATETIME = DateTime.Now.AddDays(-30);
-            public static DateTime MAX_DATETIME = DateTime.Now.AddDays(30);
+            public static DateTime MIN_DATETIME = DateTime.Now.AddYears(-30);
+            public static DateTime MAX_DATETIME = DateTime.Now.AddYears(30);
             
 
             public const string FILE_DOMAIN_NAMES = "DomainNames";
