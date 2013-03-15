@@ -49,6 +49,15 @@ namespace Angela.Core
 
         }
 
+        public void ResetFillers<T>()
+        {
+            string objectTypeName = typeof(T).FullName.ToLowerInvariant();
+            if (_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+            {
+                _specificPropertyFillersByObjectType.Remove(objectTypeName);
+            }
+        }
+
         public void RegisterFiller(IPropertyFiller filler)
         {
             foreach (string objectTypeName in filler.ObjectTypeNames.Select(s => s.ToLowerInvariant()))

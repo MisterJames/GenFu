@@ -24,7 +24,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> Configure<T>() where T : new()
         {
-            Reset();
+            Reset<T>();
             return new AngieConfigurator<T>(_angie, _maggie);
         }
 
@@ -72,6 +72,12 @@ namespace Angela.Core
             _maggie.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
 
             Susan.PropertyFillers.Clear();
+        }
+
+        public static void Reset<T>()
+        {
+            _maggie.ResetFillers<T>();
+
         }
 
         public void ListCount(int count)

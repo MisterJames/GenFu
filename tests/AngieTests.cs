@@ -410,5 +410,29 @@ namespace Angela.Tests
 
             Assert.IsNotNull(blogpost.Comments);
         }
+
+        [Test]
+        public void CustomPropertyFillsAreChainableUsingConfigure()
+        {
+            const string theTitle = "THE TITLE";
+
+            var blogposts = Angie
+                .Configure<BlogPost>()
+                .Fill(b => b.Title, () => theTitle)
+                .Fill(b => b.Comments, delegate()
+                {
+                    return Angie
+                        .Configure<BlogComment>()
+                        .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .MakeList<BlogComment>();
+                })
+            .MakeList<BlogPost>();
+
+            foreach (var blogPost in blogposts)
+            {
+                Assert.AreEqual(theTitle, blogPost.Title);    
+            }
+            
+        }
     }
 }
