@@ -1,11 +1,27 @@
 AngelaSmith
 ===========
 
+> **AngelaSmith** is a library you can use to generate realistic test data. It is composed of several *property fillers* that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers, give **AngelaSmith** hints on how to fill them, or easily extend the *property fillers* using extension methods or MEF.
+
 Angie is one of the brightest gals around.  Using her powers of insight and female comprehension, she can fill in all the details for you on anything you throw at her.  
 
 Use Angie's static methods to new up new objects for testing, design-time data or seeding a database.Watch how fast she is at learning new languages, dialects or themes, all the while making your test or sample data more realistic. 
 
 She even has a pretty good sense of humor!
+
+Installation
+===========
+AngelaSmith is on [NuGet](https://nuget.org/packages/AngelaSmith) so you can easily add it to your project from the Package Manager Console:
+
+```   
+install-package AngelaSmith 
+```
+
+We publish build releases through our CI server. If you wish to use these versions include the `pre` parameter:
+```
+install-package AngelaSmith -Pre
+```
+
 
 Example Usage
 ===========
@@ -85,10 +101,9 @@ Or, you can use one of the built-in helper methods, to, for example, spin up 100
 
 More To Come
 ===========
-With David Paquette joining this project I'm pleased to say we're moving quite quickly.
+**AngelaSmith** was originally created by James Chambers. David Paquette brought the awesome and helped create the fluent interface. Simon Timms has recently joined the project and built out our automated deployment/CI server.
 
-Look for some upcoming posts on the fluent interfaces - there is some great stuff there that you can infer from this overview - as well as our 1.1 release which will have support for automatic discovery of many more properties.
-
-We are also going to build in some "smarts", particularly around making properties aware of each other as they're being built (think of an email address lining up with a first name/last name or username).
-
-
+We are continuing to add more features, such as:
+ - Better support for object self-awareness (think of an email address lining up with a first name/last name or username)
+ - Additional property fillers
+ - Portable library support (Windows Phone/Windows RT)
