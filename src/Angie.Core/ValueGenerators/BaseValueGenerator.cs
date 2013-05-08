@@ -47,11 +47,7 @@ namespace Angela.Core
         
         
        
-        public static string DomainName()
-        {
-            return GetRandomValue(Susan.Data(Properties.Domains));
 
-        }
 
         public static string AddressLine()
         {

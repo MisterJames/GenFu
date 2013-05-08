@@ -74,6 +74,8 @@
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
     <Compile Include="ValueGenerators\BaseValueGenerator.cs" />
+    <Compile Include="ValueGenerators\Internet\Domains.cs" />
+    <Compile Include="ValueGenerators\Internet\NetworkAddress.cs" />
     <Compile Include="ValueGenerators\Music\Album.cs" />
     <Compile Include="ValueGenerators\Music\Artist.cs" />
     <Compile Include="ValueGenerators\Music\Genre.cs" />
