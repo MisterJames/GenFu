@@ -164,7 +164,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Music.Album.Title();
+            return ValueGenerators.Music.Album.Title();
         }
     }
 
@@ -177,7 +177,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Music.Artist.Name();
+            return ValueGenerators.Music.Artist.Name();
         }
     }
 
@@ -190,7 +190,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Music.Genre.Name();
+            return ValueGenerators.Music.Genre.Name();
         }
     }
 
@@ -203,7 +203,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Music.Genre.Description();
+            return ValueGenerators.Music.Genre.Description();
         }
     }
 
@@ -377,7 +377,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicArtistName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Music.Artist.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Artist.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -390,7 +390,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Music.Genre.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -403,7 +403,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreDescription<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Music.Genre.Description());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Description());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

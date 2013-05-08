@@ -2,25 +2,16 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace Angela.Core.ValueGenerators.Music
 {
-    public partial class BaseValueGenerator
+    public class Album : BaseValueGenerator
     {
-        public partial class Music
+        public string AlbumArtUrl { get; set; }
+
+        public static string Title()
         {
-            public class Album
-            {
-                public string AlbumArtUrl { get; set; }
-
-                public static string Title()
-                {
-                    int index = _random.Next(0, Susan.Data(Properties.MusicAlbums).Count());
-                    return Susan.Data(Properties.MusicAlbums)[index];
-                }
-
-
-
-            }
+            int index = _random.Next(0, Susan.Data(Properties.MusicAlbums).Count());
+            return Susan.Data(Properties.MusicAlbums)[index];
         }
     }
 }

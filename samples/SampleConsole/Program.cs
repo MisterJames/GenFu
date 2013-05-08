@@ -99,9 +99,9 @@ namespace SampleConsole
 
         private static void MyNewFavoriteMusicGenre()
         {
-            Console.WriteLine(BaseValueGenerator.Music.Genre.Name());
+            Console.WriteLine(Angela.Core.ValueGenerators.Music.Genre.Name());
             Console.WriteLine("------------------------------");
-            Console.WriteLine(BaseValueGenerator.Music.Genre.Description());
+            Console.WriteLine(Angela.Core.ValueGenerators.Music.Genre.Description());
         }
 
         private static void PostMeSomeBlogs()
