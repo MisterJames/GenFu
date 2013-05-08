@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Angela.Core.ValueGenerators.People;
 
 namespace Angela.Tests.EF
 {
@@ -23,9 +24,9 @@ namespace Angela.Tests.EF
         public void UserNameIsPopulated()
         {
             var users = new List<User>();
-            Angie.Configure<User>().Fill(x=>x.Name, ()=>Jen.FullName()).MakeList().ForEach(x => users.Add(x));
+            Angie.Configure<User>().Fill(x => x.Name, () => Names.FullName()).MakeList().ForEach(x => users.Add(x));
             foreach (var user in users)
-                Assert.IsTrue(user.Name.Split(' ').Count()>1);
+                Assert.IsTrue(user.Name.Split(' ').Count() > 1);
         }
 
 

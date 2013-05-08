@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Angela.Core
 {
-    public partial class Jen
+    public partial class BaseValueGenerator
     {
 
         private static Random _random = new Random(Environment.TickCount);
@@ -77,31 +77,7 @@ namespace Angela.Core
             return string.Format("{0}.{1}@{2}", GetRandomValue(Susan.Data(Properties.FirstNames)), GetRandomValue(Susan.Data(Properties.LastNames)), domain);
         }
 
-        public static string Title()
-        {
-            return GetRandomValue(Susan.Data(Properties.Titles));
-        }
-
-        public static string LastName()
-        {
-            return GetRandomValue(Susan.Data(Properties.LastNames));
-        }
-
-        public static string FirstName()
-        {
-            return GetRandomValue(Susan.Data(Properties.FirstNames));
-        }
-
-        public static string UserName()
-        {
-            return FirstName().First() + LastName();
-        }
-
-        public static string FullName()
-        {
-            return String.Format("{0} {1}", FirstName(), LastName());
-        }
-
+       
         public static string DomainName()
         {
             return GetRandomValue(Susan.Data(Properties.Domains));

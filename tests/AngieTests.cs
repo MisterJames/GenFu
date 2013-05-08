@@ -347,7 +347,7 @@ namespace Angela.Tests
 
             var comments = Angie
                 .Configure<BlogComment>()                
-                .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.FutureDates); })
+                .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -397,12 +397,12 @@ namespace Angela.Tests
 
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .Fill(b => b.CreateDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                .Fill(b => b.CreateDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
                 .Fill(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .Make<BlogPost>();
@@ -422,7 +422,7 @@ namespace Angela.Tests
                 {
                     return Angie
                         .Configure<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .MakeList<BlogPost>();

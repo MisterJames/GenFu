@@ -36,7 +36,7 @@ namespace Angela.Core
             where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
-                                                                   () => Jen.Date(DateRules.PastDate));
+                                                                   () => BaseValueGenerator.Date(DateRules.PastDate));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -51,7 +51,7 @@ namespace Angela.Core
             where T: new ()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),
-                                                                   () => Jen.Date(DateRules.FutureDates));
+                                                                   () => BaseValueGenerator.Date(DateRules.FutureDates));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

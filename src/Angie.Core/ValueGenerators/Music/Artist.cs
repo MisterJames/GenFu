@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Angela.Core
 {
-    public partial class Jen
+    public partial class BaseValueGenerator
     {
         public partial class Music
         {
