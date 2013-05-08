@@ -1,4 +1,5 @@
-﻿namespace Angela.Core
+﻿using Angela.Core.ValueGenerators.People;
+namespace Angela.Core
 {
     public class StringFiller : PropertyFiller<string>
     {
@@ -18,9 +19,9 @@
         {
         }
 
-        public override  object GetValue()
+        public override object GetValue()
         {
-            return ValueGenerators.People.Names.Title();
+            return Names.Title();
         }
     }
 
@@ -33,7 +34,7 @@
 
         public override object GetValue()
         {
-            return ValueGenerators.People.Names.FirstName();
+            return Names.FirstName();
         }
     }
 
@@ -43,10 +44,10 @@
             : base(new[] { "object" }, new[] { "lastname", "lname", "last_name" })
         {
         }
-        
+
         public override object GetValue()
         {
-            return ValueGenerators.People.Names.LastName();
+            return Names.LastName();
         }
     }
 
@@ -59,7 +60,7 @@
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Email();
+            return ContactInformation.Email();
         }
     }
 
@@ -72,7 +73,7 @@
 
         public override object GetValue()
         {
-            return BaseValueGenerator.Twitter();
+            return ContactInformation.Twitter();
         }
     }
 
@@ -218,7 +219,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Email());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -230,10 +231,10 @@
         /// <param name="configurator"></param>
         /// <param name="domain">The domain name for the email address</param>
         /// <returns>A configurator for the specified object type</returns>
-   
+
         public static AngieConfigurator<T> AsEmailAddressForDomain<T>(this AngieStringConfigurator<T> configurator, string domain) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Email(domain));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email(domain));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -246,7 +247,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T: new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.Twitter());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Twitter());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -259,7 +260,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.People.Names.Title());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.Title());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -285,7 +286,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.People.Names.FirstName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -298,7 +299,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.People.Names.LastName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.LastName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

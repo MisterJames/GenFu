@@ -3,11 +3,12 @@ using Angela.Core;
 using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Angela.Core.ValueGenerators.People;
 
 namespace Angela.Tests
 {
     [TestFixture]
-    class JenTests
+    class BaseValueGeneratorTests
     {
 
         [Test]
@@ -95,7 +96,7 @@ namespace Angela.Tests
         public void CanSetCustomDomainOnEmail()
         {
             var domain = "foofoofoobarbarbar.com";
-            var email = BaseValueGenerator.Email(domain);
+            var email = ContactInformation.Email(domain);
             Assert.True(email.Contains(domain));
         }
 

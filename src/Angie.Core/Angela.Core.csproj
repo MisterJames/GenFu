@@ -80,6 +80,7 @@
     <Compile Include="Maggie.cs" />
     <Compile Include="Susan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueGenerators\People\ContactInformation.cs" />
     <Compile Include="ValueGenerators\People\Names.cs" />
   </ItemGroup>
   <ItemGroup>

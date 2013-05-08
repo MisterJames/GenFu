@@ -52,7 +52,7 @@
     <Compile Include="EF\Tests.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="ExtensionMethodTests.cs" />
-    <Compile Include="JenTests.cs" />
+    <Compile Include="BaseValueGeneratorTests.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="ObjectGraphTests.cs" />
     <Compile Include="Person.cs" />
