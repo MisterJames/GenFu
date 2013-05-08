@@ -40,6 +40,12 @@ namespace Angela.Core
             return this;
         }
 
+        /// <summary>
+        /// Sets the integer range
+        /// </summary>
+        /// <param name="min">Minimum value</param>
+        /// <param name="max">Maximum value</param>
+        /// <returns></returns>
         public AngieDefaulturator IntRange(int min, int max)
         {
             MinInt(min);
@@ -53,7 +59,12 @@ namespace Angela.Core
             _angie.ListCount(count);
             return this;
         }
-
+        /// <summary>
+        /// Sets the date range
+        /// </summary>
+        /// <param name="minDateTime">Starting date</param>
+        /// <param name="maxDateTime">Ending date</param>
+        /// <returns></returns>
         public AngieDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
             _maggie.SetMinDateTime(minDateTime);

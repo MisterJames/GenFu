@@ -92,6 +92,16 @@ namespace Angela.Core
             return GetRandomValue(Susan.Data(Properties.FirstNames));
         }
 
+        public static string UserName()
+        {
+            return FirstName().First() + LastName();
+        }
+
+        public static string FullName()
+        {
+            return String.Format("{0} {1}", FirstName(), LastName());
+        }
+
         public static string DomainName()
         {
             return GetRandomValue(Susan.Data(Properties.Domains));

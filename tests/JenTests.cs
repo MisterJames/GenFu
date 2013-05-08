@@ -1,8 +1,8 @@
-﻿using Angela.Core;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Angela.Core;
 using System.Linq;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Angela.Tests
 {

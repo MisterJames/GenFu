@@ -133,7 +133,6 @@ namespace Angela.Tests
 
                 Assert.IsTrue(success, "Int was generated outside of range.{0}", person.Age);
             }            
-
         }
 
 
@@ -184,8 +183,8 @@ namespace Angela.Tests
         public void ShortRangeWithinBoundsOnGeneratedValue()
         {
             // use a small window to try to force collisions
-            short minValue = 20;
-            short maxValue = 22;
+            const short minValue = 20;
+            const short maxValue = 22;
 
             Angie.Reset();
 
