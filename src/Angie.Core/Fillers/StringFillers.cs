@@ -1,9 +1,11 @@
-﻿using Angela.Core.ValueGenerators.People;
+﻿using Angela.Core.ValueGenerators.Geospatial;
+using Angela.Core.ValueGenerators.People;
 namespace Angela.Core
 {
     public class StringFiller : PropertyFiller<string>
     {
-        public StringFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public StringFiller()
+            : base(new[] { "object" }, new[] { "*" }, true)
         {
         }
 
@@ -15,7 +17,8 @@ namespace Angela.Core
 
     public class ArticleTitleFiller : PropertyFiller<string>
     {
-        public ArticleTitleFiller() : base(new[] { "object" }, new[] { "title" })
+        public ArticleTitleFiller()
+            : base(new[] { "object" }, new[] { "title" })
         {
         }
 
@@ -67,7 +70,7 @@ namespace Angela.Core
     public class TwitterFiller : PropertyFiller<string>
     {
         public TwitterFiller()
-            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername"})
+            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" })
         {
         }
 
@@ -86,7 +89,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.AddressLine();
+            return Address.AddressLine();
         }
     }
 
@@ -99,7 +102,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.AddressLine2();
+            return Address.AddressLine2();
         }
     }
 
@@ -112,7 +115,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.City();
+            return Address.City();
         }
     }
 
@@ -122,10 +125,10 @@ namespace Angela.Core
             : base(new[] { "object" }, new[] { "state", "statename", "state_name" })
         {
         }
-        
+
         public override object GetValue()
         {
-            return BaseValueGenerator.UsaState();
+            return Address.UsaState();
         }
     }
 
@@ -138,7 +141,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.CanadianProvince();
+            return Address.CanadianProvince();
         }
     }
 
@@ -151,7 +154,7 @@ namespace Angela.Core
 
         public override object GetValue()
         {
-            return BaseValueGenerator.PhoneNumber();
+            return ContactInformation.PhoneNumber();
         }
     }
 
@@ -184,7 +187,7 @@ namespace Angela.Core
     public class MusicGenreNameFiller : PropertyFiller<string>
     {
         public MusicGenreNameFiller()
-            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
+            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
         {
         }
 
@@ -197,7 +200,7 @@ namespace Angela.Core
     public class MusicGenreDescriptionFiller : PropertyFiller<string>
     {
         public MusicGenreDescriptionFiller()
-            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
+            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
         {
         }
 
@@ -207,7 +210,7 @@ namespace Angela.Core
         }
     }
 
-   
+
 
     public static class StringFillerExtensions
     {
@@ -245,7 +248,7 @@ namespace Angela.Core
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
-        public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T: new()
+        public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Twitter());
             configurator.Maggie.RegisterFiller(filler);
@@ -273,7 +276,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.PhoneNumber());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.PhoneNumber());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -312,7 +315,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.AddressLine());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -325,7 +328,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.AddressLine2());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine2());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -338,7 +341,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.City());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.City());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -351,7 +354,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.CanadianProvince());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.CanadianProvince());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -364,7 +367,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => BaseValueGenerator.UsaState());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.UsaState());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

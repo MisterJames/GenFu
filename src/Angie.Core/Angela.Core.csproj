@@ -74,6 +74,7 @@
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
     <Compile Include="ValueGenerators\BaseValueGenerator.cs" />
+    <Compile Include="ValueGenerators\Geospatial\Address.cs" />
     <Compile Include="ValueGenerators\Internet\Domains.cs" />
     <Compile Include="ValueGenerators\Internet\NetworkAddress.cs" />
     <Compile Include="ValueGenerators\Music\Album.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueGenerators\People\ContactInformation.cs" />
     <Compile Include="ValueGenerators\People\Names.cs" />
+    <Compile Include="ValueGenerators\Temporal\CalendarDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DomainNames.txt" />

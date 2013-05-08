@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Angela.Core.ValueGenerators.Temporal;
 
 namespace Angela.Tests
 {
@@ -346,8 +347,8 @@ namespace Angela.Tests
                 .ListCount(1000);
 
             var comments = Angie
-                .Configure<BlogComment>()                
-                .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.FutureDates); })
+                .Configure<BlogComment>()
+                .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -397,12 +398,12 @@ namespace Angela.Tests
 
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .Fill(b => b.CreateDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
+                .Fill(b => b.CreateDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                 .Fill(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .Make<BlogPost>();
@@ -422,7 +423,7 @@ namespace Angela.Tests
                 {
                     return Angie
                         .Configure<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return BaseValueGenerator.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .MakeList<BlogPost>();

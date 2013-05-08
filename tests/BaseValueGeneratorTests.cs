@@ -4,6 +4,8 @@ using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Angela.Core.ValueGenerators.People;
+using Angela.Core.ValueGenerators.Geospatial;
+using Angela.Core.ValueGenerators.Temporal;
 
 namespace Angela.Tests
 {
@@ -51,7 +53,7 @@ namespace Angela.Tests
         public void MakeDateRuleFutureIsCorrect()
         {
             Angie.Reset();
-            var date = BaseValueGenerator.Date(DateRules.FutureDates);
+            var date = CalendarDate.Date(DateRules.FutureDates);
             Assert.Greater(date, DateTime.Now);
         }
 
@@ -59,7 +61,7 @@ namespace Angela.Tests
         public void MakeDateRulePastIsCorrect()
         {
             Angie.Reset();
-            var date = BaseValueGenerator.Date(DateRules.PastDate);
+            var date = CalendarDate.Date(DateRules.PastDate);
             Assert.Greater(DateTime.Now, date);
         }
 
@@ -73,7 +75,7 @@ namespace Angela.Tests
 
             for (int i = 0; i < 1000; i++)
             {
-                var date = BaseValueGenerator.Date(minDate, maxDate);
+                var date = CalendarDate.Date(minDate, maxDate);
                 Assert.GreaterOrEqual(date, minDate);
                 Assert.LessOrEqual(date, maxDate);
             }
@@ -83,7 +85,7 @@ namespace Angela.Tests
         [Test]
         public void AddressContainsNumbers()
         {
-            var addressLine = BaseValueGenerator.AddressLine();
+            var addressLine = Address.AddressLine();
 
             var streetNumber = 0;
             var addressPrefix = addressLine.Split(' ')[0];
@@ -105,7 +107,7 @@ namespace Angela.Tests
         {
             for (int i = 0; i < 1000; i++)
             {
-                var phoneNumber = BaseValueGenerator.PhoneNumber();
+                var phoneNumber = ContactInformation.PhoneNumber();
                 Assert.AreEqual(14, phoneNumber.Length);
             }
         }
