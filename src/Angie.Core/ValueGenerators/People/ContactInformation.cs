@@ -14,7 +14,7 @@ namespace Angela.Core.ValueGenerators.People
         /// <returns>A complete email address for the specified domain.</returns>
         public static string Email(string domain)
         {
-            return string.Format("{0}.{1}@{2}", GetRandomValue(Susan.Data(Properties.FirstNames)), GetRandomValue(Susan.Data(Properties.LastNames)), domain);
+            return string.Format("{0}.{1}@{2}", GetRandomValue(ResourceLoader.Data(Properties.FirstNames)), GetRandomValue(ResourceLoader.Data(Properties.LastNames)), domain);
         }
 
         /// <summary>
@@ -23,15 +23,15 @@ namespace Angela.Core.ValueGenerators.People
         /// <returns>A complete email address with a random account and domain.</returns>
         public static string Email()
         {
-            int firstNameIndex = _random.Next(0, Susan.Data(Properties.FirstNames).Count());
-            int lastNameIndex = _random.Next(0, Susan.Data(Properties.LastNames).Count());
-            int domainNameIndex = _random.Next(0, Susan.Data(Properties.Domains).Count());
+            int firstNameIndex = _random.Next(0, ResourceLoader.Data(Properties.FirstNames).Count());
+            int lastNameIndex = _random.Next(0, ResourceLoader.Data(Properties.LastNames).Count());
+            int domainNameIndex = _random.Next(0, ResourceLoader.Data(Properties.Domains).Count());
 
             // failing test on names with spaces
-            string firstname = Susan.Data(Properties.FirstNames)[firstNameIndex].Replace(" ", "");
-            string lastname = Susan.Data(Properties.LastNames)[lastNameIndex].Replace(" ", "");
+            string firstname = ResourceLoader.Data(Properties.FirstNames)[firstNameIndex].Replace(" ", "");
+            string lastname = ResourceLoader.Data(Properties.LastNames)[lastNameIndex].Replace(" ", "");
 
-            return string.Format("{0}.{1}@{2}", firstname, lastname, Susan.Data(Properties.Domains)[domainNameIndex]);
+            return string.Format("{0}.{1}@{2}", firstname, lastname, ResourceLoader.Data(Properties.Domains)[domainNameIndex]);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Angela.Core.ValueGenerators.People
         public static string Twitter()
         {
             return string.Format("@{0}{1}",
-                       Susan.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(),
-                       Susan.Data(Properties.LastNames).GetRandomElement());
+                       ResourceLoader.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(),
+                       ResourceLoader.Data(Properties.LastNames).GetRandomElement());
         }
 
         /// <summary>

@@ -8,8 +8,8 @@ namespace Angela.Core.ValueGenerators.Music
     {
         public static string Name()
         {
-            int index = _random.Next(0, Susan.Data(Properties.MusicArtists).Count());
-            return Susan.Data(Properties.MusicArtists)[index];
+            int index = _random.Next(0, ResourceLoader.Data(Properties.MusicArtists).Count());
+            return ResourceLoader.Data(Properties.MusicArtists)[index];
         }
     }
 }

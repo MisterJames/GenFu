@@ -9,17 +9,17 @@ namespace Angela.Core.ValueGenerators.People
     {
         public static string Title()
         {
-            return GetRandomValue(Susan.Data(Properties.Titles));
+            return GetRandomValue(ResourceLoader.Data(Properties.Titles));
         }
 
         public static string LastName()
         {
-            return GetRandomValue(Susan.Data(Properties.LastNames));
+            return GetRandomValue(ResourceLoader.Data(Properties.LastNames));
         }
 
         public static string FirstName()
         {
-            return GetRandomValue(Susan.Data(Properties.FirstNames));
+            return GetRandomValue(ResourceLoader.Data(Properties.FirstNames));
         }
 
         public static string UserName()

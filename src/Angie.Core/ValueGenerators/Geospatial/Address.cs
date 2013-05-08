@@ -14,7 +14,7 @@ namespace Angela.Core.ValueGenerators.Geospatial
             var number = _random.Next(100, 9999);
             number = _random.Next(1, 5) == 5 ? _random.Next(100, 99999) : number;
 
-            var streetName = GetRandomValue(Susan.Data(Properties.StreetNames));
+            var streetName = GetRandomValue(ResourceLoader.Data(Properties.StreetNames));
             var direction = _random.Next(1, 1) > 8 ? GetRandomValue(suffixes) : string.Empty;
 
             var result = string.Format("{0} {1} {2}", number, streetName, direction);
@@ -44,17 +44,17 @@ namespace Angela.Core.ValueGenerators.Geospatial
 
         public static string City()
         {
-            return GetRandomValue(Susan.Data(Properties.CityNames));
+            return GetRandomValue(ResourceLoader.Data(Properties.CityNames));
         }
 
         public static string UsaState()
         {
-            return GetRandomValue(Susan.Data(Properties.UsaStates));
+            return GetRandomValue(ResourceLoader.Data(Properties.UsaStates));
         }
 
         public static string CanadianProvince()
         {
-            return GetRandomValue(Susan.Data(Properties.CanadianProvinces));
+            return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinces));
         }
 
     }

@@ -14,8 +14,8 @@ namespace Angela.Core
         public static string Word()
         {
             // aww, shucks.  we did our best!
-            int index = _random.Next(0, Susan.Data(Properties.Words).Count());
-            return Susan.Data(Properties.Words)[index];
+            int index = _random.Next(0, ResourceLoader.Data(Properties.Words).Count());
+            return ResourceLoader.Data(Properties.Words)[index];
         }
 
        

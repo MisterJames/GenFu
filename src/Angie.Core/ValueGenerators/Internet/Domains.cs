@@ -8,7 +8,7 @@ namespace Angela.Core.ValueGenerators.Internet
     {
         public static string DomainName()
         {
-            return GetRandomValue(Susan.Data(Properties.Domains));
+            return GetRandomValue(ResourceLoader.Data(Properties.Domains));
 
         }
     }

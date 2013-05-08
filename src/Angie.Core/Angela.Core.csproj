@@ -74,6 +74,7 @@
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
     <Compile Include="ValueGenerators\BaseValueGenerator.cs" />
+    <Compile Include="ValueGenerators\Cooking\Ingredients.cs" />
     <Compile Include="ValueGenerators\Geospatial\Address.cs" />
     <Compile Include="ValueGenerators\Internet\Domains.cs" />
     <Compile Include="ValueGenerators\Internet\NetworkAddress.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="ValueGenerators\Music\Artist.cs" />
     <Compile Include="ValueGenerators\Music\Genre.cs" />
     <Compile Include="Maggie.cs" />
-    <Compile Include="Susan.cs" />
+    <Compile Include="ResourceLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueGenerators\People\ContactInformation.cs" />
     <Compile Include="ValueGenerators\People\Names.cs" />
@@ -109,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\MusicAlbums.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Ingredients.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

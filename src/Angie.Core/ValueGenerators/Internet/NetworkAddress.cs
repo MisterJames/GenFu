@@ -13,13 +13,13 @@ namespace Angela.Core.ValueGenerators.Internet
 
         public string MacAddress()
         {
-            //00-1C-42-E1-36-F7
+            //TODO: 00-1C-42-E1-36-F7
             throw new NotImplementedException();
         }
 
         public string IPv6Address()
         {
-            //fdb2:2c26:f4e4:0:c194:39ee:f3ab:3291
+            //TODO: fdb2:2c26:f4e4:0:c194:39ee:f3ab:3291
             throw new NotImplementedException();
         }
     }
