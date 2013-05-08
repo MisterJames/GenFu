@@ -36,5 +36,12 @@ namespace Angela.Tests.EF
             var user = Angie.Configure<User>().Make();
             Assert.IsNotNull(user.Id);
         }
+
+        [Test]
+        public void IngredientsIsPopulated()
+        {
+            var recipe = Angie.Configure<Recipe>().Make();
+            Assert.IsNotNull(recipe.Ingredients);
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Angela.Core.ValueGenerators.Internet
 {
-    public class Domains:BaseValueGenerator
+    public class Domains : BaseValueGenerator
     {
         public static string DomainName()
         {

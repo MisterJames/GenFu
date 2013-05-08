@@ -6,7 +6,7 @@ namespace Angela.Core.ValueGenerators.Geospatial
 {
     public class LatLong:BaseValueGenerator
     {
-        public string LatitudeAndLongitude()
+        public static string LatitudeAndLongitude()
         {
             return String.Format("{0},{1}", _random.Next(-180, 180), _random.Next(-180, 180));
         }
