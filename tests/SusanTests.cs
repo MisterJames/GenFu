@@ -3,6 +3,7 @@ using Angela.Core;
 using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Angela.Core.ValueGenerators.Geospatial;
 
 namespace Angela.Tests
 {
@@ -74,7 +75,7 @@ namespace Angela.Tests
         public void StreetNameResourceTest()
         {
             string addressFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_STREET_NAMES);
-            var addressLine = Jen.AddressLine();
+            var addressLine = Address.AddressLine();
 
             Assert.AreNotEqual(string.Empty, addressLine, addressFail);
         }
@@ -83,7 +84,7 @@ namespace Angela.Tests
         public void CityNameResourceTest()
         {
             string cityFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_CITY_NAMES);
-            var city = Jen.City();
+            var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, cityFail);
         }
@@ -92,7 +93,7 @@ namespace Angela.Tests
         public void CanadianProvinceResourceTest()
         {
             string provinceFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_CDN_PROVINCE_NAMES);
-            var city = Jen.City();
+            var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, provinceFail);
         }
@@ -101,7 +102,7 @@ namespace Angela.Tests
         public void UsaStatesResourceTest()
         {
             string statesFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
-            var city = Jen.City();
+            var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, statesFail);
         }

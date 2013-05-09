@@ -18,7 +18,8 @@ namespace Angela.Core
         UsaStates,
         MusicArtists,
         MusicGenre,
-        MusicAlbums
+        MusicAlbums,
+        Ingredients
     }
 
     [Flags]

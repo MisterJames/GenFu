@@ -46,8 +46,13 @@
   <ItemGroup>
     <Compile Include="AngieTests.cs" />
     <Compile Include="BlogPost.cs" />
+    <Compile Include="EF\Comment.cs" />
+    <Compile Include="EF\Group.cs" />
+    <Compile Include="EF\Recipe.cs" />
+    <Compile Include="EF\Tests.cs" />
+    <Compile Include="EF\User.cs" />
     <Compile Include="ExtensionMethodTests.cs" />
-    <Compile Include="JenTests.cs" />
+    <Compile Include="BaseValueGeneratorTests.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="ObjectGraphTests.cs" />
     <Compile Include="Person.cs" />

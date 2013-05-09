@@ -1,26 +1,30 @@
-﻿namespace Angela.Core
+﻿using Angela.Core.ValueGenerators.Geospatial;
+using Angela.Core.ValueGenerators.People;
+namespace Angela.Core
 {
     public class StringFiller : PropertyFiller<string>
     {
-        public StringFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public StringFiller()
+            : base(new[] { "object" }, new[] { "*" }, true)
         {
         }
 
         public override object GetValue()
         {
-            return Jen.Word();
+            return BaseValueGenerator.Word();
         }
     }
 
     public class ArticleTitleFiller : PropertyFiller<string>
     {
-        public ArticleTitleFiller() : base(new[] { "object" }, new[] { "title" })
+        public ArticleTitleFiller()
+            : base(new[] { "object" }, new[] { "title" })
         {
         }
 
-        public override  object GetValue()
+        public override object GetValue()
         {
-            return Jen.Title();
+            return Names.Title();
         }
     }
 
@@ -33,7 +37,7 @@
 
         public override object GetValue()
         {
-            return Jen.FirstName();
+            return Names.FirstName();
         }
     }
 
@@ -43,10 +47,10 @@
             : base(new[] { "object" }, new[] { "lastname", "lname", "last_name" })
         {
         }
-        
+
         public override object GetValue()
         {
-            return Jen.LastName();
+            return Names.LastName();
         }
     }
 
@@ -59,20 +63,20 @@
 
         public override object GetValue()
         {
-            return Jen.Email();
+            return ContactInformation.Email();
         }
     }
 
     public class TwitterFiller : PropertyFiller<string>
     {
         public TwitterFiller()
-            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername"})
+            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" })
         {
         }
 
         public override object GetValue()
         {
-            return Jen.Twitter();
+            return ContactInformation.Twitter();
         }
     }
 
@@ -85,7 +89,7 @@
 
         public override object GetValue()
         {
-            return Jen.AddressLine();
+            return Address.AddressLine();
         }
     }
 
@@ -98,7 +102,7 @@
 
         public override object GetValue()
         {
-            return Jen.AddressLine2();
+            return Address.AddressLine2();
         }
     }
 
@@ -111,7 +115,7 @@
 
         public override object GetValue()
         {
-            return Jen.City();
+            return Address.City();
         }
     }
 
@@ -121,10 +125,10 @@
             : base(new[] { "object" }, new[] { "state", "statename", "state_name" })
         {
         }
-        
+
         public override object GetValue()
         {
-            return Jen.UsaState();
+            return Address.UsaState();
         }
     }
 
@@ -137,7 +141,7 @@
 
         public override object GetValue()
         {
-            return Jen.CanadianProvince();
+            return Address.CanadianProvince();
         }
     }
 
@@ -150,7 +154,7 @@
 
         public override object GetValue()
         {
-            return Jen.PhoneNumber();
+            return ContactInformation.PhoneNumber();
         }
     }
 
@@ -163,7 +167,7 @@
 
         public override object GetValue()
         {
-            return Jen.Music.Album.Title();
+            return ValueGenerators.Music.Album.Title();
         }
     }
 
@@ -176,37 +180,37 @@
 
         public override object GetValue()
         {
-            return Jen.Music.Artist.Name();
+            return ValueGenerators.Music.Artist.Name();
         }
     }
 
     public class MusicGenreNameFiller : PropertyFiller<string>
     {
         public MusicGenreNameFiller()
-            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
+            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
         {
         }
 
         public override object GetValue()
         {
-            return Jen.Music.Genre.Name();
+            return ValueGenerators.Music.Genre.Name();
         }
     }
 
     public class MusicGenreDescriptionFiller : PropertyFiller<string>
     {
         public MusicGenreDescriptionFiller()
-            : base(new[] {"genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
+            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
         {
         }
 
         public override object GetValue()
         {
-            return Jen.Music.Genre.Description();
+            return ValueGenerators.Music.Genre.Description();
         }
     }
 
-   
+
 
     public static class StringFillerExtensions
     {
@@ -218,7 +222,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsEmailAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -230,10 +234,10 @@
         /// <param name="configurator"></param>
         /// <param name="domain">The domain name for the email address</param>
         /// <returns>A configurator for the specified object type</returns>
-   
+
         public static AngieConfigurator<T> AsEmailAddressForDomain<T>(this AngieStringConfigurator<T> configurator, string domain) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Email(domain));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email(domain));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -244,9 +248,9 @@
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
-        public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T: new()
+        public static AngieConfigurator<T> AsTwitterHandle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Twitter());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Twitter());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -259,7 +263,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsArticleTitle<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Title());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.Title());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -272,7 +276,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsPhoneNumber<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.PhoneNumber());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.PhoneNumber());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -285,7 +289,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsFirstName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.FirstName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -298,7 +302,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsLastName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.LastName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.LastName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -311,7 +315,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddress<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -324,7 +328,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsAddressLine2<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.AddressLine2());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine2());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -337,7 +341,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCity<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.City());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.City());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -350,7 +354,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsCanadianProvince<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.CanadianProvince());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.CanadianProvince());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -363,7 +367,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsUsaState<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.UsaState());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.UsaState());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -376,7 +380,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicArtistName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Artist.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Artist.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -389,7 +393,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreName<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -402,7 +406,7 @@
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> AsMusicGenreDescription<T>(this AngieStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Jen.Music.Genre.Description());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Description());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

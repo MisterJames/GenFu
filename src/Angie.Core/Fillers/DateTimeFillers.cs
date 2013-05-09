@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Angela.Core.ValueGenerators.Temporal;
+using System;
 
 namespace Angela.Core
 {
@@ -36,7 +37,7 @@ namespace Angela.Core
             where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
-                                                                   () => Jen.Date(DateRules.PastDate));
+                                                                   () => CalendarDate.Date(DateRules.PastDate));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -51,7 +52,7 @@ namespace Angela.Core
             where T: new ()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),
-                                                                   () => Jen.Date(DateRules.FutureDates));
+                                                                   () => CalendarDate.Date(DateRules.FutureDates));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

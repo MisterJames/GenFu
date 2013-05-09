@@ -26,8 +26,8 @@ namespace Angela.Core
         public AngieConfigurator Fill<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
-            if (!Susan.PropertyFillers.ContainsKey(propName))
-                Susan.PropertyFillers.Add(propName, filler);
+            if (!ResourceLoader.PropertyFillers.ContainsKey(propName))
+                ResourceLoader.PropertyFillers.Add(propName, filler);
             return this;
         }
 

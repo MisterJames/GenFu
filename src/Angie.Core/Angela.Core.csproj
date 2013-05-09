@@ -11,7 +11,7 @@
     <AssemblyName>Angela.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,20 +65,30 @@
     </Compile>
     <Compile Include="Chastity.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Fillers\CookingFiller.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />
     <Compile Include="Fillers\DateTimeFillers.cs" />
+    <Compile Include="Fillers\PersonNameFiller.cs" />
     <Compile Include="Fillers\PropertyFiller.cs" />
-    <Compile Include="Jen\EnnumerableExtensions.cs" />
+    <Compile Include="ValueGenerators\EnnumerableExtensions.cs" />
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
     <Compile Include="Fillers\StringFillers.cs" />
-    <Compile Include="Jen\Jen.cs" />
-    <Compile Include="Jen\Music\Album.cs" />
-    <Compile Include="Jen\Music\Artist.cs" />
-    <Compile Include="Jen\Music\Genre.cs" />
+    <Compile Include="ValueGenerators\BaseValueGenerator.cs" />
+    <Compile Include="ValueGenerators\Cooking\Ingredients.cs" />
+    <Compile Include="ValueGenerators\Geospatial\Address.cs" />
+    <Compile Include="ValueGenerators\Geospatial\LatLong.cs" />
+    <Compile Include="ValueGenerators\Internet\Domains.cs" />
+    <Compile Include="ValueGenerators\Internet\NetworkAddress.cs" />
+    <Compile Include="ValueGenerators\Music\Album.cs" />
+    <Compile Include="ValueGenerators\Music\Artist.cs" />
+    <Compile Include="ValueGenerators\Music\Genre.cs" />
     <Compile Include="Maggie.cs" />
-    <Compile Include="Susan.cs" />
+    <Compile Include="ResourceLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueGenerators\People\ContactInformation.cs" />
+    <Compile Include="ValueGenerators\People\Names.cs" />
+    <Compile Include="ValueGenerators\Temporal\CalendarDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DomainNames.txt" />
@@ -102,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\MusicAlbums.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Ingredients.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

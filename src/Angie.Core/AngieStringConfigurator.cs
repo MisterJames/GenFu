@@ -20,7 +20,7 @@ namespace Angela.Core
         /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(string[] values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _maggie.RegisterFiller(customFiller);
             return this;
         }
@@ -32,7 +32,7 @@ namespace Angela.Core
         /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(List<string> values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _maggie.RegisterFiller(customFiller);
             return this;
         }
@@ -44,7 +44,7 @@ namespace Angela.Core
         /// <returns>A configurator for the target object type</returns>
         public AngieConfigurator<T> WithRandom(IEnumerable<string> values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => Jen.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _maggie.RegisterFiller(customFiller);
             return this;
         }

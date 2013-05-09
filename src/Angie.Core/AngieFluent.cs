@@ -71,7 +71,7 @@ namespace Angela.Core
             _maggie.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
             _maggie.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
 
-            Susan.PropertyFillers.Clear();
+            ResourceLoader.PropertyFillers.Clear();
         }
 
         public static void Reset<T>()
