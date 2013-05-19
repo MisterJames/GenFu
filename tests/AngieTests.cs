@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Angela.Core.ValueGenerators.Temporal;
 
 namespace Angela.Tests
 {
@@ -133,7 +134,6 @@ namespace Angela.Tests
 
                 Assert.IsTrue(success, "Int was generated outside of range.{0}", person.Age);
             }            
-
         }
 
 
@@ -184,8 +184,8 @@ namespace Angela.Tests
         public void ShortRangeWithinBoundsOnGeneratedValue()
         {
             // use a small window to try to force collisions
-            short minValue = 20;
-            short maxValue = 22;
+            const short minValue = 20;
+            const short maxValue = 22;
 
             Angie.Reset();
 
@@ -347,8 +347,8 @@ namespace Angela.Tests
                 .ListCount(1000);
 
             var comments = Angie
-                .Configure<BlogComment>()                
-                .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.FutureDates); })
+                .Configure<BlogComment>()
+                .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.FutureDates); })
                 .MakeList<BlogComment>();
 
             foreach (var comment in comments)
@@ -398,12 +398,12 @@ namespace Angela.Tests
 
             var blogpost = Angie
                 .Configure<BlogPost>()
-                .Fill(b => b.CreateDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                .Fill(b => b.CreateDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                 .Fill(b => b.Comments, delegate()
                 {
                     return Angie
                         .Set<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .Make<BlogPost>();
@@ -423,7 +423,7 @@ namespace Angela.Tests
                 {
                     return Angie
                         .Configure<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate() { return Jen.Date(DateRules.PastDate); })
+                        .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
                         .MakeList<BlogComment>();
                 })
             .MakeList<BlogPost>();
