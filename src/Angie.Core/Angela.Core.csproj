@@ -66,10 +66,13 @@
     <Compile Include="Chastity.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Fillers\CookingFiller.cs" />
+    <Compile Include="Fillers\CompanyNameFiller.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />
     <Compile Include="Fillers\DateTimeFillers.cs" />
+    <Compile Include="Fillers\GuidFiller.cs" />
     <Compile Include="Fillers\PersonNameFiller.cs" />
     <Compile Include="Fillers\PropertyFiller.cs" />
+    <Compile Include="ValueGenerators\Corporate\Name.cs" />
     <Compile Include="ValueGenerators\EnnumerableExtensions.cs" />
     <Compile Include="Fillers\IPropertyFiller.cs" />
     <Compile Include="Fillers\NumericFillers.cs" />
@@ -115,6 +118,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Ingredients.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CompanyNames.txt" />
+    <EmbeddedResource Include="Resources\Industries.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

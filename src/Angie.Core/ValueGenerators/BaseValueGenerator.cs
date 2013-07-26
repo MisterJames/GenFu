@@ -17,7 +17,6 @@ namespace Angela.Core
             int index = _random.Next(0, ResourceLoader.Data(Properties.Words).Count());
             return ResourceLoader.Data(Properties.Words)[index];
         }
-
        
 
         public static T GetRandomValue<T>(T[] values)

@@ -133,7 +133,9 @@ namespace Angela.Core
             public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
-            public const string INGREDIENTS = "Ingredients";
+            public const string FILE_INGREDIENTS = "Ingredients";
+            public const string FILE_COMPANY_NAMES = "CompanyNames";
+            public const string FILE_INDUSTRIES = "Industries";
             
             public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
         }

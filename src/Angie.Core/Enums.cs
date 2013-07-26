@@ -19,7 +19,9 @@ namespace Angela.Core
         MusicArtists,
         MusicGenre,
         MusicAlbums,
-        Ingredients
+        Ingredients,
+        CompanyNames,
+        Industries
     }
 
     [Flags]
