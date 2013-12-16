@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace Angela.Core
         private static Angie _angie = new Angie();
         private static Maggie _maggie = new Maggie();
 
-        private static int _listCount = Defaults.LIST_COUNT;
+        private static int _listCount = Angie.Defaults.LIST_COUNT;
 
         static Angie()
         {
@@ -37,6 +38,14 @@ namespace Angela.Core
                         SetPropertyValue<T>(instance, property);
                     }
                 }
+                foreach (var method in typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
+                {
+                    if (method.GetParameters().Count() == 1)
+                    {
+                        CallSetterMethod<T>(instance, method);
+                    }
+                }
+
             }
             return instance;
         }
@@ -82,6 +91,15 @@ namespace Angela.Core
             IPropertyFiller filler = _maggie.GetFiller(property);
             property.SetValue(instance, filler.GetValue(), null);
         }
+        
+        private static void CallSetterMethod<T>(T instance, MethodInfo method)
+        {
+            IPropertyFiller filler = _maggie.GetMethodFiller(method);
+            if (filler != null)
+                method.Invoke(instance, new[] {filler.GetValue()});
+        }
+
+
 
         public static DateTime MinDateTime
         {

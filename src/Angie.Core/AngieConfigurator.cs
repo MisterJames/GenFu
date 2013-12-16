@@ -152,6 +152,17 @@ namespace Angela.Core
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             return propertyInfo;
         }
+        
+        private MethodInfo GetMethodInfoFromExpression(Expression<Action<T>> expression)
+        {
+
+            var methodCall = expression.Body as MethodCallExpression;
+            if (methodCall != null)
+            {
+                return methodCall.Method;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Fill the specified property with the result of the specified function
@@ -240,6 +251,42 @@ namespace Angela.Core
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             return new AngieComplexPropertyConfigurator<T, T2>(_angie, _maggie, propertyInfo);
+        }
+
+
+
+
+        /// <summary>
+        /// Fill the specified property with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target method parameter type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <param name="filler">A function that will return a method parameter set value</param>
+        /// <returns>A configurator for the target object type</returns>
+        public AngieConfigurator<T> MemberFill<T2>(Expression<Action<T>> expression, Func<T2> filler)
+        {
+            MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name, typeof(T), filler);
+            _maggie.RegisterFiller(customFiller);
+            return this;
+        }
+
+
+        /// <summary>
+        /// Configure how the specified property should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target method parameter type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified method of the target object type</returns>
+        public AngieComplexPropertyConfigurator<T, T2> MemberFill<T2>(Expression<Action<T>> expression)
+        {
+            MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
+            IPropertyFiller filler = _maggie.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
+            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue());
+            _maggie.RegisterFiller(customFiller);
+            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _maggie, methodInfo);
         }
     }
 }

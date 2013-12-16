@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Text.RegularExpressions;
 
 namespace Angela.Core
 {
@@ -117,6 +118,55 @@ namespace Angela.Core
 
             return result;
         }
+        public IPropertyFiller GetMethodFiller(MethodInfo methodInfo)
+        {
+            IPropertyFiller result = null;
+            Type objectType = methodInfo.DeclaringType;
+            while (objectType != null && result == null)
+            {
+                //First try to get a specific filler based on a full type name (including namespace)
+                string fullTypeName = objectType.FullName.ToLowerInvariant();
+                if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
+                {
+                    IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
+                    result = GetMatchingMethodFiller(methodInfo, propertyFillers);
+                }
+
+                //Second try to get a more generic filler based on only the class name (no namespace)
+                if (result == null)
+                {
+                    string classTypeName = objectType.Name.ToLowerInvariant();
+                    if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
+                    {
+                        IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                        result = GetMatchingMethodFiller(methodInfo, propertyFillers);
+                    }
+                }
+
+                objectType = objectType.BaseType;
+            }
+
+//            // TODO: Would like to exclude methods for fill unless we explicity specify to include
+//            if (result == null)
+//            {
+//                var paramType = methodInfo.GetParameters()[0].ParameterType;
+//
+//                //Finally, grab a generic property filler for that property type
+//                if (_genericPropertyFillersByPropertyType.ContainsKey(paramType))
+//                {
+//                    result = _genericPropertyFillersByPropertyType[paramType];
+//                }
+//                else
+//                {
+//                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
+//                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
+//
+//                    _genericPropertyFillersByPropertyType.Add(paramType, result);
+//                }
+//            }
+
+            return result;
+        }
 
         private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IList<IPropertyFiller> propertyFillers)
         {
@@ -125,6 +175,28 @@ namespace Angela.Core
             {
                 if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
                     propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
+                {
+                    result = propertyFiller;
+                    break;
+                }
+            }
+            return result;
+        }
+        private static IPropertyFiller GetMatchingMethodFiller(MethodInfo methodInfo, IList<IPropertyFiller> propertyFillers)
+        {
+            const string setPattern = @"^Set([A-Z].*|_.*)";
+            string cleanName = null;
+            if (Regex.IsMatch(methodInfo.Name, setPattern))
+            {
+                cleanName = Regex.Match(methodInfo.Name, setPattern).Groups[1].Value;
+            }
+
+            IPropertyFiller result = null;
+            foreach (IPropertyFiller propertyFiller in propertyFillers)
+            {
+                if (propertyFiller.PropertyType == methodInfo.GetParameters()[0].ParameterType &&
+                   ( propertyFiller.PropertyNames.Any(s => methodInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant()))
+                   || (cleanName != null && propertyFiller.PropertyNames.Any(s => cleanName.ToLowerInvariant().Contains(s.ToLowerInvariant())))))
                 {
                     result = propertyFiller;
                     break;
@@ -191,6 +263,11 @@ namespace Angela.Core
         {
             DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
             return dateTimeFiller.Max;
+        }
+
+        public IPropertyFiller GetGenericFillerForType(Type t)
+        {
+            return _genericPropertyFillersByPropertyType[t];
         }
 
     }
