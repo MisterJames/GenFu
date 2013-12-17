@@ -452,7 +452,7 @@ namespace Angela.Tests
 
 
         [Test]
-        public void MethodFillTypeCanBeSpecified()
+        public void MethodFillStrategyCanBeSpecified()
         {
             IList<string> names = new List<string> {"aaa", "bbb", "ccc"};
             var person =

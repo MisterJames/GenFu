@@ -10,7 +10,7 @@ namespace Angela.Core
 {
     public class Maggie
     {
-        private IDictionary<string, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
+        private IDictionary<string, IDictionary<string, IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
 
 #pragma warning disable 0649 //property injected by MEF
@@ -35,7 +35,7 @@ namespace Angela.Core
                 container.ComposeParts(this);
             }
 
-            _specificPropertyFillersByObjectType = new Dictionary<string, IList<IPropertyFiller>>();
+            _specificPropertyFillersByObjectType = new Dictionary<string, IDictionary<string, IPropertyFiller>>();
 
             foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => !p.IsGenericFiller))
             {
@@ -65,10 +65,14 @@ namespace Angela.Core
             {
                 if (!_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
                 {
-                    _specificPropertyFillersByObjectType[objectTypeName] = new List<IPropertyFiller>();
+                    _specificPropertyFillersByObjectType[objectTypeName] = new Dictionary<string, IPropertyFiller>();
                 }
-                IList<IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
-                typeFillers.Add(filler);
+                IDictionary<string, IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
+                foreach (var key in filler.PropertyNames)
+                {
+                    typeFillers[key] =  filler;
+                }
+
             }
         }
 
@@ -82,7 +86,7 @@ namespace Angela.Core
                 string fullTypeName = objectType.FullName.ToLowerInvariant();
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
-                    IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
+                    IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
                     result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
                 }
 
@@ -92,7 +96,7 @@ namespace Angela.Core
                     string classTypeName = objectType.Name.ToLowerInvariant();
                     if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
                     {
-                        IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
                         result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
                     }
                 }
@@ -128,7 +132,7 @@ namespace Angela.Core
                 string fullTypeName = objectType.FullName.ToLowerInvariant();
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
-                    IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
+                    IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
                     result = GetMatchingMethodFiller(methodInfo, propertyFillers);
                 }
 
@@ -138,7 +142,7 @@ namespace Angela.Core
                     string classTypeName = objectType.Name.ToLowerInvariant();
                     if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
                     {
-                        IList<IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
                         result = GetMatchingMethodFiller(methodInfo, propertyFillers);
                     }
                 }
@@ -168,10 +172,10 @@ namespace Angela.Core
             return result;
         }
 
-        private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IList<IPropertyFiller> propertyFillers)
+        private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IDictionary<string, IPropertyFiller> propertyFillers)
         {
             IPropertyFiller result = null;
-            foreach (IPropertyFiller propertyFiller in propertyFillers)
+            foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
             {
                 if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
                     propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
@@ -182,7 +186,7 @@ namespace Angela.Core
             }
             return result;
         }
-        private static IPropertyFiller GetMatchingMethodFiller(MethodInfo methodInfo, IList<IPropertyFiller> propertyFillers)
+        private static IPropertyFiller GetMatchingMethodFiller(MethodInfo methodInfo, IDictionary<string, IPropertyFiller> propertyFillers)
         {
             const string setPattern = @"^Set([A-Z].*|_.*)";
             string cleanName = null;
@@ -192,7 +196,7 @@ namespace Angela.Core
             }
 
             IPropertyFiller result = null;
-            foreach (IPropertyFiller propertyFiller in propertyFillers)
+            foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
             {
                 if (propertyFiller.PropertyType == methodInfo.GetParameters()[0].ParameterType &&
                    ( propertyFiller.PropertyNames.Any(s => methodInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant()))
