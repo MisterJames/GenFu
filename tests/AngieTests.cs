@@ -434,5 +434,12 @@ namespace Angela.Tests
             }
             
         }
+
+        [Test]
+        public void ShouldIgnoreUnsettableProperties()
+        {
+            var list = Angie.Configure<BlogCommenter>()
+                .MakeList<BlogCommenter>();
+        }
     }
 }
