@@ -35,6 +35,9 @@ Let's say you have a Person class like so:
         public string Title { get; set; }
         public int Age { get; set; }
         public int NumberOfKids { get; set; }
+		
+		private string _middleName;
+		public void SetMiddleName(string name){ _middleName = name; }
     }
 ```
 
@@ -97,7 +100,22 @@ Or, you can use one of the built-in helper methods, to, for example, spin up 100
        .Fill(c => c.CreateDate, () => { return Jen.FillDate(DateRules.PastDate); })
        .MakeList<BlogComment>();
 ```
+Method Fillers
+===========
 
+If your project uses one-parameter setter methods, you can use AngelaSmith too!
+
+```
+    var post = Angie
+        .Configure<Person>()
+        .MethodFill<string>(x => x.SetMiddleName(null))
+        .Make<Person>();
+```
+
+You can use any of the helper methods with setter methods, just like with properties.
+
+**Note**: **Unlike** properties, AngelaSmith will not automatically poke data into any methods found. That sounds a little too risky! So if you want AngelaSmith to use your setter methods, specify each method you'd like filled.
+```
 
 More To Come
 ===========
