@@ -8,7 +8,7 @@ namespace Angela.Core
     {
         private PropertyInfo _propertyInfo;
 
-        public AngieDateTimeConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
+        public AngieDateTimeConfigurator(Angie angie, FillerManager maggie, PropertyInfo propertyInfo)
             : base(angie, maggie)
         {
             _propertyInfo = propertyInfo;

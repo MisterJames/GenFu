@@ -63,7 +63,7 @@
     <Compile Include="AngieStringConfigurator.cs">
       <DependentUpon>AngieConfigurator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Chastity.cs" />
+    <Compile Include="DefaultValueChecker.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Fillers\CookingFiller.cs" />
     <Compile Include="Fillers\CustomFillers.cs" />

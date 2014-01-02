@@ -5,38 +5,38 @@ namespace Angela.Core
     public class AngieDefaulturator
     {
         protected Angie _angie;
-        protected Maggie _maggie;
+        protected FillerManager _fillerManager;
 
-        public AngieDefaulturator(Angie angie, Maggie maggie)
+        public AngieDefaulturator(Angie angie, FillerManager maggie)
         {
             _angie = angie;
-            _maggie = maggie;
+            _fillerManager = maggie;
         }
 
 
         public AngieDefaulturator MaxInt(int max)
         {
-            _maggie.SetMaxInt(max);
+            _fillerManager.SetMaxInt(max);
             return this;
 
         }
 
         public AngieDefaulturator MinInt(int min)
         {
-            _maggie.SetMinInt(min);
+            _fillerManager.SetMinInt(min);
             return this;
         }
 
         public AngieDefaulturator MaxShort(short max)
         {
-            _maggie.SetMaxShort(max);
+            _fillerManager.SetMaxShort(max);
             return this;
 
         }
 
         public AngieDefaulturator MinShort(short min)
         {
-            _maggie.SetMinShort(min);
+            _fillerManager.SetMinShort(min);
             return this;
         }
 
@@ -67,8 +67,8 @@ namespace Angela.Core
         /// <returns></returns>
         public AngieDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
-            _maggie.SetMinDateTime(minDateTime);
-            _maggie.SetMaxDateTime(maxDateTime);
+            _fillerManager.SetMinDateTime(minDateTime);
+            _fillerManager.SetMaxDateTime(maxDateTime);
             return this;
         }
 
@@ -77,9 +77,9 @@ namespace Angela.Core
             get { return _angie; }
         }
 
-        public Maggie Maggie
+        public FillerManager Maggie
         {
-            get { return _maggie; }
+            get { return _fillerManager; }
         }
     }
 }

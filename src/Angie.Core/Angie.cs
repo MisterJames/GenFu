@@ -7,13 +7,13 @@ namespace Angela.Core
     public partial class Angie
     {
         private static Angie _angie = new Angie();
-        private static Maggie _maggie = new Maggie();
+        private static FillerManager _fillerManager = new FillerManager();
 
         private static int _listCount = Defaults.LIST_COUNT;
 
         static Angie()
         {
-            _maggie = new Maggie();
+            _fillerManager = new FillerManager();
             Random = new Random();
         }
 
@@ -79,26 +79,26 @@ namespace Angela.Core
 
         private static void SetPropertyValue<T>(T instance, PropertyInfo property)
         {
-            IPropertyFiller filler = _maggie.GetFiller(property);
+            IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(), null);
         }
 
         public static DateTime MinDateTime
         {
-            get { return _maggie.GetMinDateTime(); }
+            get { return _fillerManager.GetMinDateTime(); }
 
             set
             {
-                _maggie.SetMinDateTime(value);
+                _fillerManager.SetMinDateTime(value);
             }
         }
 
         public static DateTime MaxDateTime
         {
-            get { return _maggie.GetMaxDateTime(); }
+            get { return _fillerManager.GetMaxDateTime(); }
             set
             {
-                _maggie.SetMaxDateTime(value);
+                _fillerManager.SetMaxDateTime(value);
             }
         }
 

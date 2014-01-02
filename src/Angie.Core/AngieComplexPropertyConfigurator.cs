@@ -7,7 +7,7 @@ namespace Angela.Core
     {
         private PropertyInfo _propertyInfo;
 
-        public AngieComplexPropertyConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
+        public AngieComplexPropertyConfigurator(Angie angie, FillerManager maggie, PropertyInfo propertyInfo)
             : base(angie, maggie)
         {
             _propertyInfo = propertyInfo;
@@ -21,7 +21,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(IList<T2> values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -33,7 +33,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(IEnumerable<T2> values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -45,7 +45,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(T2[] values)
         {
             CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 

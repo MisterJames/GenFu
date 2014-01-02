@@ -13,7 +13,7 @@ namespace Angela.Core
         public static AngieConfigurator Configure()
         {
             Reset();
-            return new AngieConfigurator(_angie, _maggie);
+            return new AngieConfigurator(_angie, _fillerManager);
         }
 
         /// <summary>
@@ -25,12 +25,12 @@ namespace Angela.Core
         public static AngieConfigurator<T> Configure<T>() where T : new()
         {
             Reset<T>();
-            return new AngieConfigurator<T>(_angie, _maggie);
+            return new AngieConfigurator<T>(_angie, _fillerManager);
         }
 
         public static AngieConfigurator Set()
         {
-            return new AngieConfigurator(_angie, _maggie);
+            return new AngieConfigurator(_angie, _fillerManager);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Angela.Core
         /// <returns>A configurator for the specified object type</returns>
         public static AngieConfigurator<T> Set<T>() where T : new()
         {
-            return new AngieConfigurator<T>(_angie, _maggie);
+            return new AngieConfigurator<T>(_angie, _fillerManager);
         }
 
         /// <summary>
@@ -50,33 +50,33 @@ namespace Angela.Core
         /// <returns>The Angie Defaulturator</returns>
         public static AngieDefaulturator Default()
         {
-            return new AngieDefaulturator(_angie, _maggie);
+            return new AngieDefaulturator(_angie, _fillerManager);
         }
 
         public static void Reset()
         {
-            _maggie.ResetFillers();
+            _fillerManager.ResetFillers();
             
-            _maggie.SetMinInt(Angie.Defaults.MIN_INT);
-            _maggie.SetMaxInt(Angie.Defaults.MAX_INT);
+            _fillerManager.SetMinInt(Angie.Defaults.MIN_INT);
+            _fillerManager.SetMaxInt(Angie.Defaults.MAX_INT);
 
-            _maggie.SetMinShort(Angie.Defaults.MIN_SHORT);
-            _maggie.SetMaxShort(Angie.Defaults.MAX_SHORT);
+            _fillerManager.SetMinShort(Angie.Defaults.MIN_SHORT);
+            _fillerManager.SetMaxShort(Angie.Defaults.MAX_SHORT);
             
-            _maggie.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
-            _maggie.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);
+            _fillerManager.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
+            _fillerManager.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);
 
             _listCount = Angie.Defaults.LIST_COUNT;
 
-            _maggie.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
-            _maggie.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
+            _fillerManager.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
+            _fillerManager.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
 
             ResourceLoader.PropertyFillers.Clear();
         }
 
         public static void Reset<T>()
         {
-            _maggie.ResetFillers<T>();
+            _fillerManager.ResetFillers<T>();
 
         }
 

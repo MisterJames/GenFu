@@ -7,7 +7,7 @@ using System.ComponentModel.Composition.Hosting;
 
 namespace Angela.Core
 {
-    public class Maggie
+    public class FillerManager
     {
         private IDictionary<string, IList<IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
@@ -18,7 +18,7 @@ namespace Angela.Core
 #pragma warning restore 0649
 
 
-        public Maggie()
+        public FillerManager()
         {
             ResetFillers();
         }
