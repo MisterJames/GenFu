@@ -104,19 +104,6 @@ Method Fillers
 ===========
 
 If your project uses one-parameter setter methods, you can use AngelaSmith too!
-<<<<<<< HEAD
-
-```
-    var post = Angie
-        .Configure<Person>()
-        .MethodFill<string>(x => x.SetMiddleName(null))
-        .Make<Person>();
-```
-
-You can use any of the helper methods with setter methods, just like with properties.
-
-**Note**: **Unlike** properties, AngelaSmith will not automatically poke data into any methods found. That sounds a little too risky! So if you want AngelaSmith to use your setter methods, specify each method you'd like filled.
-=======
 
 ```
     var post = Angie
