@@ -5,9 +5,9 @@ namespace Angela.Core
 {
     public class AngieStringConfigurator<T> : AngieConfigurator<T> where T : new()
     {
-        private PropertyInfo _propertyInfo;
+        private MemberInfo _propertyInfo;
 
-        public AngieStringConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
+        public AngieStringConfigurator(Angie angie, Maggie maggie, MemberInfo propertyInfo)
             : base(angie, maggie)
         {
             _propertyInfo = propertyInfo;
@@ -49,7 +49,7 @@ namespace Angela.Core
             return this;
         }
 
-        public PropertyInfo PropertyInfo
+        public MemberInfo PropertyInfo
         {
             get { return _propertyInfo; }
         }
