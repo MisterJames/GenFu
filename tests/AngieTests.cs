@@ -436,6 +436,13 @@ namespace Angela.Tests
         }
 
         [Test]
+        public void ShouldIgnoreUnsettableProperties()
+        {
+            var list = Angie.Configure<BlogCommenter>()
+                .MakeList<BlogCommenter>();
+        }
+
+        [Test]
         public void MethodIsLeftAloneWhenMatchesNothing()
         {
             // currently fills
@@ -472,7 +479,5 @@ namespace Angela.Tests
             Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
             Assert.AreEqual(expected, person.GetMiddleName());
         }
-
-        //TODO: fill without value to force fill... matchnothing should maybe do nothing. verify "WITH" things
     }
 }
