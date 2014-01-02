@@ -56,20 +56,21 @@ namespace Angela.Core
         public static void Reset()
         {
             _fillerManager.ResetFillers();
-            
-            _fillerManager.SetMinInt(Angie.Defaults.MIN_INT);
-            _fillerManager.SetMaxInt(Angie.Defaults.MAX_INT);
+            var defaults = new GenericFillerDefaults(_fillerManager);
 
-            _fillerManager.SetMinShort(Angie.Defaults.MIN_SHORT);
-            _fillerManager.SetMaxShort(Angie.Defaults.MAX_SHORT);
-            
-            _fillerManager.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
-            _fillerManager.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);
+            defaults.SetMinInt(Angie.Defaults.MIN_INT);
+            defaults.SetMaxInt(Angie.Defaults.MAX_INT);
+
+            defaults.SetMinShort(Angie.Defaults.MIN_SHORT);
+            defaults.SetMaxShort(Angie.Defaults.MAX_SHORT);
+
+            defaults.SetMinDecimal(Angie.Defaults.MIN_DECIMAL);
+            defaults.SetMaxDecimal(Angie.Defaults.MAX_DECIMAL);
 
             _listCount = Angie.Defaults.LIST_COUNT;
 
-            _fillerManager.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
-            _fillerManager.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
+            defaults.SetMinDateTime(Angie.Defaults.MIN_DATETIME);
+            defaults.SetMaxDateTime(Angie.Defaults.MAX_DATETIME);
 
             ResourceLoader.PropertyFillers.Clear();
         }

@@ -85,20 +85,20 @@ namespace Angela.Core
 
         public static DateTime MinDateTime
         {
-            get { return _fillerManager.GetMinDateTime(); }
+            get {  return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
 
             set
             {
-                _fillerManager.SetMinDateTime(value);
+                new GenericFillerDefaults(_fillerManager).SetMinDateTime(value);
             }
         }
 
         public static DateTime MaxDateTime
         {
-            get { return _fillerManager.GetMaxDateTime(); }
+            get { return new GenericFillerDefaults(_fillerManager).GetMaxDateTime(); }
             set
             {
-                _fillerManager.SetMaxDateTime(value);
+                new GenericFillerDefaults(_fillerManager).SetMaxDateTime(value);
             }
         }
 

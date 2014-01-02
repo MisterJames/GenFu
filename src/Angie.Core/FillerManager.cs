@@ -118,6 +118,12 @@ namespace Angela.Core
             return result;
         }
 
+        public Result GetGenericFiller<Input, Result>()
+        {
+            var type = typeof(Input);
+            return (Result)_genericPropertyFillersByPropertyType[type];
+        }
+
         private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IList<IPropertyFiller> propertyFillers)
         {
             IPropertyFiller result = null;
@@ -132,66 +138,5 @@ namespace Angela.Core
             }
             return result;
         }
-
-        public void SetMinInt(int min)
-        {
-            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
-            intFiller.Min = min;
-        }
-
-        public void SetMaxInt(int max)
-        {
-            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
-            intFiller.Max = max;
-        }
-
-        public void SetMinShort(short min)
-        {
-            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
-            shortFiller.Min = min;
-        }
-
-        public void SetMaxShort(short max)
-        {
-            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
-            shortFiller.Max = max;
-        }
-
-        public void SetMinDecimal(decimal min)
-        {
-            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
-            decFiller.Min = min;
-        }
-
-        public void SetMaxDecimal(decimal max)
-        {
-            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
-            decFiller.Max = max;
-        }
-
-        public void SetMinDateTime(DateTime minValue)
-        {
-            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
-            dateTimeFiller.Min = minValue;
-        }
-
-        public void SetMaxDateTime(DateTime maxValue)
-        {
-            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
-            dateTimeFiller.Max = maxValue;
-        }
-
-        public DateTime GetMinDateTime()
-        {
-            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
-            return dateTimeFiller.Min;
-        }
-
-        public DateTime GetMaxDateTime()
-        {
-            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
-            return dateTimeFiller.Max;
-        }
-
     }
 }

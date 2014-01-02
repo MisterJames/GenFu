@@ -16,27 +16,31 @@ namespace Angela.Core
 
         public AngieDefaulturator MaxInt(int max)
         {
-            _fillerManager.SetMaxInt(max);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMaxInt(max);
             return this;
 
         }
 
         public AngieDefaulturator MinInt(int min)
         {
-            _fillerManager.SetMinInt(min);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinInt(min);
             return this;
         }
 
         public AngieDefaulturator MaxShort(short max)
         {
-            _fillerManager.SetMaxShort(max);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMaxShort(max);
             return this;
 
         }
 
         public AngieDefaulturator MinShort(short min)
         {
-            _fillerManager.SetMinShort(min);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinShort(min);
             return this;
         }
 
@@ -67,8 +71,9 @@ namespace Angela.Core
         /// <returns></returns>
         public AngieDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
-            _fillerManager.SetMinDateTime(minDateTime);
-            _fillerManager.SetMaxDateTime(maxDateTime);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinDateTime(minDateTime);
+            defaults.SetMaxDateTime(maxDateTime);
             return this;
         }
 
