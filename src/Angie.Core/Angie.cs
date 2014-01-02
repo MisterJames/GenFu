@@ -32,7 +32,7 @@ namespace Angela.Core
             {
                 foreach (var property in typeof(T).GetProperties())
                 {
-                    if (!Chastity.HasValue<T>(instance, property) && property.CanWrite)
+                    if (!DefaultValueChecker.HasValue<T>(instance, property) && property.CanWrite)
                     {
                         SetPropertyValue<T>(instance, property);
                     }

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Angela.Core
 {
-    public class Chastity
+    public class DefaultValueChecker
     {
         internal static bool HasValue<T>(T instance, PropertyInfo property)
         {
