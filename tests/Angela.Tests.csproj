@@ -60,7 +60,9 @@
     <Compile Include="PluginFillersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SusanTests.cs" />
-    <Compile Include="When_getting_a_generic_filler.cs" />
+    <Compile Include="When_getting_a_generic_filler.cs">
+      <DependentUpon>FillerManager.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
