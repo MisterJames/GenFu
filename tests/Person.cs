@@ -6,6 +6,8 @@ namespace Angela.Tests
 {
     internal class Person
     {
+        private string _middleName
+            ;
         // firstname FirstName fname first_name
         public string FirstName { get; set; }
 
@@ -33,6 +35,16 @@ namespace Angela.Tests
 
         // decimal
         public decimal HeightInMetres { get; set; }
+
+        public void SetMiddleName(string middleName)
+        {
+            _middleName = middleName;
+        }
+
+        public string GetMiddleName()
+        {
+            return _middleName;
+        }
 
     }
 }

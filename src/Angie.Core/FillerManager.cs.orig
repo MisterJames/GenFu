@@ -136,7 +136,6 @@ namespace Angela.Core
                     result = GetMatchingMethodFiller(methodInfo, propertyFillers);
                 }
 
-        
                 //Second try to get a more generic filler based on only the class name (no namespace)
                 if (result == null)
                 {
@@ -173,7 +172,17 @@ namespace Angela.Core
             return result;
         }
 
+<<<<<<< HEAD:src/Angie.Core/FillerManager.cs
+        public Result GetGenericFiller<Input, Result>()
+        {
+            var type = typeof(Input);
+            return (Result)_genericPropertyFillersByPropertyType[type];
+        }
+
+        private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IList<IPropertyFiller> propertyFillers)
+=======
         private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IDictionary<string, IPropertyFiller> propertyFillers)
+>>>>>>> 05c3e45e1ad429e6ab6eb390b60c9fb0fecb33b6:src/Angie.Core/Maggie.cs
         {
             IPropertyFiller result = null;
             foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
@@ -187,8 +196,8 @@ namespace Angela.Core
             }
             return result;
         }
-
-
+<<<<<<< HEAD:src/Angie.Core/FillerManager.cs
+=======
         private static IPropertyFiller GetMatchingMethodFiller(MethodInfo methodInfo, IDictionary<string, IPropertyFiller> propertyFillers)
         {
             const string setPattern = @"^Set([A-Z].*|_.*)";
@@ -212,15 +221,71 @@ namespace Angela.Core
             return result;
         }
 
-        public Result GetGenericFiller<Input, Result>()
+        public void SetMinInt(int min)
         {
-            var type = typeof(Input);
-            return (Result)_genericPropertyFillersByPropertyType[type];
+            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
+            intFiller.Min = min;
         }
+
+        public void SetMaxInt(int max)
+        {
+            IntFiller intFiller = (IntFiller)_genericPropertyFillersByPropertyType[typeof(int)];
+            intFiller.Max = max;
+        }
+
+        public void SetMinShort(short min)
+        {
+            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
+            shortFiller.Min = min;
+        }
+
+        public void SetMaxShort(short max)
+        {
+            ShortFiller shortFiller = (ShortFiller)_genericPropertyFillersByPropertyType[typeof(short)];
+            shortFiller.Max = max;
+        }
+
+        public void SetMinDecimal(decimal min)
+        {
+            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
+            decFiller.Min = min;
+        }
+
+        public void SetMaxDecimal(decimal max)
+        {
+            DecimalFiller decFiller = (DecimalFiller)_genericPropertyFillersByPropertyType[typeof(decimal)];
+            decFiller.Max = max;
+        }
+
+        public void SetMinDateTime(DateTime minValue)
+        {
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            dateTimeFiller.Min = minValue;
+        }
+
+        public void SetMaxDateTime(DateTime maxValue)
+        {
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            dateTimeFiller.Max = maxValue;
+        }
+
+        public DateTime GetMinDateTime()
+        {
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            return dateTimeFiller.Min;
+        }
+
+        public DateTime GetMaxDateTime()
+        {
+            DateTimeFiller dateTimeFiller = (DateTimeFiller)_genericPropertyFillersByPropertyType[typeof(DateTime)];
+            return dateTimeFiller.Max;
+        }
+
         public IPropertyFiller GetGenericFillerForType(Type t)
         {
             return _genericPropertyFillersByPropertyType[t];
         }
 
+>>>>>>> 05c3e45e1ad429e6ab6eb390b60c9fb0fecb33b6:src/Angie.Core/Maggie.cs
     }
 }

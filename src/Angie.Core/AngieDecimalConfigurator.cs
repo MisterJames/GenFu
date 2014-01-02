@@ -6,10 +6,10 @@ namespace Angela.Core
 {
     public class AngieDecimalConfigurator<T> : AngieConfigurator<T> where T : new()
     {
-        private PropertyInfo _propertyInfo;
+        private MemberInfo _propertyInfo;
 
-        public AngieDecimalConfigurator(Angie angie, FillerManager maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
+        public AngieDecimalConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
+            : base(angie, fillerManager)
         {
             _propertyInfo = propertyInfo;
         }
@@ -63,7 +63,7 @@ namespace Angela.Core
             return this;
         }
 
-        public PropertyInfo PropertyInfo
+        public MemberInfo PropertyInfo
         {
             get { return _propertyInfo; }
         }
