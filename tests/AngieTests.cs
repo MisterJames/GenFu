@@ -446,7 +446,7 @@ namespace Angela.Tests
         [Test]
         public void MethodIsFilledWhenSpecified()
         {
-            var person = Angie.Configure<Person>().MemberFill<string>(x => x.SetMiddleName(null)).Make<Person>();
+            var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null)).Make<Person>();
             Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
         }
 
@@ -457,7 +457,7 @@ namespace Angela.Tests
             IList<string> names = new List<string> {"aaa", "bbb", "ccc"};
             var person =
                 Angie.Configure<Person>()
-                    .MemberFill<string>(x => x.SetMiddleName(null))
+                    .MethodFill<string>(x => x.SetMiddleName(null))
                     .WithRandom(names)
                     .Make<Person>();
             Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
@@ -468,7 +468,7 @@ namespace Angela.Tests
         public void MethodCanBeSet()
         {
             var expected = "q";
-            var person = Angie.Configure<Person>().MemberFill<string>(x => x.SetMiddleName(null), () => expected).Make<Person>();
+            var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null), () => expected).Make<Person>();
             Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
             Assert.AreEqual(expected, person.GetMiddleName());
         }
