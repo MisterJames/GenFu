@@ -5,38 +5,42 @@ namespace Angela.Core
     public class AngieDefaulturator
     {
         protected Angie _angie;
-        protected Maggie _maggie;
+        protected FillerManager _fillerManager;
 
-        public AngieDefaulturator(Angie angie, Maggie maggie)
+        public AngieDefaulturator(Angie angie, FillerManager maggie)
         {
             _angie = angie;
-            _maggie = maggie;
+            _fillerManager = maggie;
         }
 
 
         public AngieDefaulturator MaxInt(int max)
         {
-            _maggie.SetMaxInt(max);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMaxInt(max);
             return this;
 
         }
 
         public AngieDefaulturator MinInt(int min)
         {
-            _maggie.SetMinInt(min);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinInt(min);
             return this;
         }
 
         public AngieDefaulturator MaxShort(short max)
         {
-            _maggie.SetMaxShort(max);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMaxShort(max);
             return this;
 
         }
 
         public AngieDefaulturator MinShort(short min)
         {
-            _maggie.SetMinShort(min);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinShort(min);
             return this;
         }
 
@@ -67,8 +71,9 @@ namespace Angela.Core
         /// <returns></returns>
         public AngieDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
-            _maggie.SetMinDateTime(minDateTime);
-            _maggie.SetMaxDateTime(maxDateTime);
+            var defaults = new GenericFillerDefaults(_fillerManager);
+            defaults.SetMinDateTime(minDateTime);
+            defaults.SetMaxDateTime(maxDateTime);
             return this;
         }
 
@@ -77,9 +82,9 @@ namespace Angela.Core
             get { return _angie; }
         }
 
-        public Maggie Maggie
+        public FillerManager Maggie
         {
-            get { return _maggie; }
+            get { return _fillerManager; }
         }
     }
 }

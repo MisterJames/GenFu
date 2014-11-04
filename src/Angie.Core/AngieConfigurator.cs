@@ -8,12 +8,12 @@ namespace Angela.Core
     public class AngieConfigurator
     {
         protected Angie _angie;
-        protected Maggie _maggie;
+        protected FillerManager _fillerManager;
 
-        public AngieConfigurator(Angie angie, Maggie maggie)
+        public AngieConfigurator(Angie angie, FillerManager maggie)
         {
             _angie = angie;
-            _maggie = maggie;
+            _fillerManager = maggie;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Angela.Core
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T1), filler);
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -103,15 +103,15 @@ namespace Angela.Core
             get { return _angie; }
         }
 
-        public Maggie Maggie
+        public FillerManager Maggie
         {
-            get { return _maggie; }
+            get { return _fillerManager; }
         }
     }
 
     public class AngieConfigurator<T> : AngieConfigurator where T : new()
     {
-        public AngieConfigurator(Angie angie, Maggie maggie)
+        public AngieConfigurator(Angie angie, FillerManager maggie)
             : base(angie, maggie)
         {
         }
@@ -152,6 +152,17 @@ namespace Angela.Core
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             return propertyInfo;
         }
+        
+        private MethodInfo GetMethodInfoFromExpression(Expression<Action<T>> expression)
+        {
+
+            var methodCall = expression.Body as MethodCallExpression;
+            if (methodCall != null)
+            {
+                return methodCall.Method;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Fill the specified property with the result of the specified function
@@ -165,7 +176,7 @@ namespace Angela.Core
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T), filler);
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -178,7 +189,7 @@ namespace Angela.Core
         public AngieIntegerConfigurator<T> Fill(Expression<Func<T, int>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieIntegerConfigurator<T>(_angie, _maggie, propertyInfo);
+            return new AngieIntegerConfigurator<T>(_angie, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -190,7 +201,7 @@ namespace Angela.Core
         public AngieShortConfigurator<T> Fill(Expression<Func<T, short>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieShortConfigurator<T>(_angie, _maggie, propertyInfo);
+            return new AngieShortConfigurator<T>(_angie, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -202,7 +213,7 @@ namespace Angela.Core
         public AngieDecimalConfigurator<T> Fill(Expression<Func<T, decimal>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieDecimalConfigurator<T>(_angie, _maggie, propertyInfo);
+            return new AngieDecimalConfigurator<T>(_angie, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -214,7 +225,7 @@ namespace Angela.Core
         public AngieStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieStringConfigurator<T>(_angie, _maggie, propertyInfo);
+            return new AngieStringConfigurator<T>(_angie, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -226,7 +237,7 @@ namespace Angela.Core
         public AngieDateTimeConfigurator<T> Fill(Expression<Func<T, DateTime>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieDateTimeConfigurator<T>(_angie, _maggie, propertyInfo);
+            return new AngieDateTimeConfigurator<T>(_angie, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -239,7 +250,43 @@ namespace Angela.Core
         public AngieComplexPropertyConfigurator<T, T2> Fill<T2>(Expression<Func<T, T2>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _maggie, propertyInfo);
+            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _fillerManager, propertyInfo);
+        }
+
+
+
+
+        /// <summary>
+        /// Fill the specified method with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target method parameter type</typeparam>
+        /// <param name="expression">The target method</param>
+        /// <param name="filler">A function that will return a method parameter set value</param>
+        /// <returns>A configurator for the target object type</returns>
+        public AngieConfigurator<T> MethodFill<T2>(Expression<Action<T>> expression, Func<T2> filler)
+        {
+            MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name, typeof(T), filler);
+            _fillerManager.RegisterFiller(customFiller);
+            return this;
+        }
+
+
+        /// <summary>
+        /// Configure how the specified method should be filled
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target method parameter type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <returns>A configurator for the specified method of the target object type</returns>
+        public AngieComplexPropertyConfigurator<T, T2> MethodFill<T2>(Expression<Action<T>> expression)
+        {
+            MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
+            IPropertyFiller filler = _fillerManager.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
+            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue());
+            _fillerManager.RegisterFiller(customFiller);
+            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _fillerManager, methodInfo);
         }
     }
 }

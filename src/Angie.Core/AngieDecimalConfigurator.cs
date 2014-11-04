@@ -6,10 +6,10 @@ namespace Angela.Core
 {
     public class AngieDecimalConfigurator<T> : AngieConfigurator<T> where T : new()
     {
-        private PropertyInfo _propertyInfo;
+        private MemberInfo _propertyInfo;
 
-        public AngieDecimalConfigurator(Angie angie, Maggie maggie, PropertyInfo propertyInfo)
-            : base(angie, maggie)
+        public AngieDecimalConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
+            : base(angie, fillerManager)
         {
             _propertyInfo = propertyInfo;
         }
@@ -23,7 +23,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithinRange(int min, int max)
         {
             DecimalFiller filler = new DecimalFiller(typeof(T), _propertyInfo.Name, min, max);
-            _maggie.RegisterFiller(filler);
+            _fillerManager.RegisterFiller(filler);
             return this;
         }
 
@@ -35,7 +35,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(decimal[] values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -47,7 +47,7 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(List<decimal> values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
@@ -59,11 +59,11 @@ namespace Angela.Core
         public AngieConfigurator<T> WithRandom(IEnumerable<decimal> values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
-            _maggie.RegisterFiller(customFiller);
+            _fillerManager.RegisterFiller(customFiller);
             return this;
         }
 
-        public PropertyInfo PropertyInfo
+        public MemberInfo PropertyInfo
         {
             get { return _propertyInfo; }
         }

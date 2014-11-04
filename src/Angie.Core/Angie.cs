@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
@@ -7,13 +8,13 @@ namespace Angela.Core
     public partial class Angie
     {
         private static Angie _angie = new Angie();
-        private static Maggie _maggie = new Maggie();
+        private static FillerManager _fillerManager = new FillerManager();
 
-        private static int _listCount = Defaults.LIST_COUNT;
+        private static int _listCount = Angie.Defaults.LIST_COUNT;
 
         static Angie()
         {
-            _maggie = new Maggie();
+            _fillerManager = new FillerManager();
             Random = new Random();
         }
 
@@ -32,11 +33,19 @@ namespace Angela.Core
             {
                 foreach (var property in typeof(T).GetProperties())
                 {
-                    if (!Chastity.HasValue<T>(instance, property))
+                    if (!DefaultValueChecker.HasValue<T>(instance, property) && property.CanWrite)
                     {
                         SetPropertyValue<T>(instance, property);
                     }
                 }
+                foreach (var method in typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
+                {
+                    if (method.GetParameters().Count() == 1)
+                    {
+                        CallSetterMethod<T>(instance, method);
+                    }
+                }
+
             }
             return instance;
         }
@@ -79,26 +88,35 @@ namespace Angela.Core
 
         private static void SetPropertyValue<T>(T instance, PropertyInfo property)
         {
-            IPropertyFiller filler = _maggie.GetFiller(property);
+            IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(), null);
         }
+        
+        private static void CallSetterMethod<T>(T instance, MethodInfo method)
+        {
+            IPropertyFiller filler = _fillerManager.GetMethodFiller(method);
+            if (filler != null)
+                method.Invoke(instance, new[] {filler.GetValue()});
+        }
+
+
 
         public static DateTime MinDateTime
         {
-            get { return _maggie.GetMinDateTime(); }
+            get {  return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
 
             set
             {
-                _maggie.SetMinDateTime(value);
+                new GenericFillerDefaults(_fillerManager).SetMinDateTime(value);
             }
         }
 
         public static DateTime MaxDateTime
         {
-            get { return _maggie.GetMaxDateTime(); }
+            get { return new GenericFillerDefaults(_fillerManager).GetMaxDateTime(); }
             set
             {
-                _maggie.SetMaxDateTime(value);
+                new GenericFillerDefaults(_fillerManager).SetMaxDateTime(value);
             }
         }
 

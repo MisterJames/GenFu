@@ -7,8 +7,12 @@ namespace Angela.Core
     {
         private MemberInfo _propertyInfo;
 
-        public AngieStringConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
-            : base(angie, fillerManager)
+<<<<<<< HEAD
+        public AngieStringConfigurator(Angie angie, FillerManager maggie, PropertyInfo propertyInfo)
+=======
+        public AngieStringConfigurator(Angie angie, Maggie maggie, MemberInfo propertyInfo)
+>>>>>>> 05c3e45e1ad429e6ab6eb390b60c9fb0fecb33b6
+            : base(angie, maggie)
         {
             _propertyInfo = propertyInfo;
         }

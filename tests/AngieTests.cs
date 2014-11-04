@@ -434,5 +434,50 @@ namespace Angela.Tests
             }
             
         }
+
+        [Test]
+        public void ShouldIgnoreUnsettableProperties()
+        {
+            var list = Angie.Configure<BlogCommenter>()
+                .MakeList<BlogCommenter>();
+        }
+
+        [Test]
+        public void MethodIsLeftAloneWhenMatchesNothing()
+        {
+            // currently fills
+            var person = Angie.FastMake<Person>();
+            Assert.IsTrue(string.IsNullOrEmpty(person.GetMiddleName()));
+        }
+
+        [Test]
+        public void MethodIsFilledWhenSpecified()
+        {
+            var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null)).Make<Person>();
+            Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
+        }
+
+
+        [Test]
+        public void MethodFillStrategyCanBeSpecified()
+        {
+            IList<string> names = new List<string> {"aaa", "bbb", "ccc"};
+            var person =
+                Angie.Configure<Person>()
+                    .MethodFill<string>(x => x.SetMiddleName(null))
+                    .WithRandom(names)
+                    .Make<Person>();
+            Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
+            CollectionAssert.Contains(names, person.GetMiddleName());
+        }
+
+        [Test]
+        public void MethodCanBeSet()
+        {
+            var expected = "q";
+            var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null), () => expected).Make<Person>();
+            Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
+            Assert.AreEqual(expected, person.GetMiddleName());
+        }
     }
 }

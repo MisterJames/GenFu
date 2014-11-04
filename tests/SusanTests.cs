@@ -8,7 +8,7 @@ using Angela.Core.ValueGenerators.Geospatial;
 namespace Angela.Tests
 {
     [TestFixture]
-    class SusanTests
+    class BasicFillTests
     {
         [SetUp]
         public void ResetAngie()
