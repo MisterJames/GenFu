@@ -1,4 +1,4 @@
-﻿using Angela.Core;
+﻿using GenFu;
 using NUnit.Framework;
 
 namespace Angela.Tests
@@ -9,7 +9,7 @@ namespace Angela.Tests
         [SetUp]
         public void ResetAngie()
         {
-            Angie.Reset();
+            A.Reset();
         }
 
         [Test]
@@ -17,7 +17,7 @@ namespace Angela.Tests
         {
             var domain = "foofoofoobarbarbar.com";
 
-            Angie.Configure<Person>()
+            A.Configure<Person>()
                 .Fill(p => p.EmailAddress)
                 .AsEmailAddressForDomain(domain);
 

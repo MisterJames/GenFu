@@ -1,10 +1,10 @@
 ﻿using System;
-using Angela.Core;
+using GenFu;
 using System.Linq;
 using System.Collections.Generic;
-using Angela.Core.ValueGenerators.People;
-using Angela.Core.ValueGenerators.Geospatial;
-using Angela.Core.ValueGenerators.Temporal;
+using GenFu.ValueGenerators.People;
+using GenFu.ValueGenerators.Geospatial;
+using GenFu.ValueGenerators.Temporal;
 using Xunit;
 
 namespace Angela.Tests
@@ -54,7 +54,7 @@ namespace Angela.Tests
         [Fact]
         public void MakeDateRuleFutureIsCorrect()
         {
-            Angie.Reset();
+            A.Reset();
             var date = CalendarDate.Date(DateRules.FutureDates);
             Assert.True(date > DateTime.Now);
         }
@@ -62,7 +62,7 @@ namespace Angela.Tests
         [Fact]
         public void MakeDateRulePastIsCorrect()
         {
-            Angie.Reset();
+            A.Reset();
             var date = CalendarDate.Date(DateRules.PastDate);
             Assert.True(DateTime.Now > date);
         }
@@ -70,7 +70,7 @@ namespace Angela.Tests
         [Fact]
         public void MakeDateWithinSpecifiedRange()
         {
-            Angie.Reset();
+            A.Reset();
 
             var minDate = DateTime.Now;
             var maxDate = DateTime.Now.AddDays(1);

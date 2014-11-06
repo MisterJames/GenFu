@@ -1,7 +1,7 @@
 ﻿
 using System;
 using System.Text;
-using Angela.Core;
+using GenFu;
 using SampleConsole.Models;
 
 namespace SampleConsole

@@ -1,9 +1,9 @@
 ﻿using System;
-using Angela.Core;
+using GenFu;
 using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Angela.Core.ValueGenerators.Geospatial;
+using GenFu.ValueGenerators.Geospatial;
 
 namespace Angela.Tests
 {
@@ -13,14 +13,14 @@ namespace Angela.Tests
         [SetUp]
         public void ResetAngie()
         {
-            Angie.Reset();
+            A.Reset();
         }
 
         [Test]
         public void FirstNamesResourcesLoad()
         {
-            var person = Angie.New<Person>();
-            string nameFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_FIRST_NAMES);
+            var person = A.New<Person>();
+            string nameFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_FIRST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.FirstName, nameFail);
         }
@@ -28,8 +28,8 @@ namespace Angela.Tests
         [Test]
         public void LastNamesResourcesLoad()
         {
-            var person = Angie.New<Person>();
-            string nameFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_LAST_NAMES);
+            var person = A.New<Person>();
+            string nameFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_LAST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.LastName, nameFail);
         }
@@ -37,8 +37,8 @@ namespace Angela.Tests
         [Test]
         public void TitleResourcesLoad()
         {
-            var post = Angie.New<BlogPost>();
-            string titleFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_TITLES);
+            var post = A.New<BlogPost>();
+            string titleFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_TITLES);
 
             Assert.AreNotEqual(string.Empty, post.Title, titleFail);
         }
@@ -46,8 +46,8 @@ namespace Angela.Tests
         [Test]
         public void WordsResourcesLoad()
         {
-            var person = Angie.New<Person>();
-            string wordFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_WORDS);
+            var person = A.New<Person>();
+            string wordFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_WORDS);
 
             Assert.AreNotEqual(string.Empty, person.Title, wordFail);
         }
@@ -55,8 +55,8 @@ namespace Angela.Tests
         [Test]
         public void DomainResourceTest()
         {
-            var person = Angie.New<Person>();
-            string twitterFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_FIRST_NAMES);
+            var person = A.New<Person>();
+            string twitterFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_FIRST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.Twitter, twitterFail);
         }
@@ -64,8 +64,8 @@ namespace Angela.Tests
         [Test]
         public void TwitterResourceTest()
         {
-            var person = Angie.New<Person>();
-            string emailFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_DOMAIN_NAMES);
+            var person = A.New<Person>();
+            string emailFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_DOMAIN_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.EmailAddress, emailFail);
         }
@@ -74,7 +74,7 @@ namespace Angela.Tests
         [Test]
         public void StreetNameResourceTest()
         {
-            string addressFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_STREET_NAMES);
+            string addressFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_STREET_NAMES);
             var addressLine = Address.AddressLine();
 
             Assert.AreNotEqual(string.Empty, addressLine, addressFail);
@@ -83,7 +83,7 @@ namespace Angela.Tests
         [Test]
         public void CityNameResourceTest()
         {
-            string cityFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_CITY_NAMES);
+            string cityFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_CITY_NAMES);
             var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, cityFail);
@@ -92,7 +92,7 @@ namespace Angela.Tests
         [Test]
         public void CanadianProvinceResourceTest()
         {
-            string provinceFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_CDN_PROVINCE_NAMES);
+            string provinceFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_CDN_PROVINCE_NAMES);
             var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, provinceFail);
@@ -101,7 +101,7 @@ namespace Angela.Tests
         [Test]
         public void UsaStatesResourceTest()
         {
-            string statesFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_USA_STATE_NAMES);
+            string statesFail = string.Format(A.Defaults.STRING_LOADFAIL, A.Defaults.FILE_USA_STATE_NAMES);
             var city = Address.City();
 
             Assert.AreNotEqual(string.Empty, city, statesFail);

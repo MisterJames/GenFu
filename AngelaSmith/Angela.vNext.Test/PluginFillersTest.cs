@@ -1,4 +1,4 @@
-﻿using Angela.Core;
+﻿using GenFu;
 using NUnit.Framework;
 
 namespace Angela.Tests
@@ -29,7 +29,7 @@ namespace Angela.Tests
         [Test]
         public void TestThatAdditionalFiltersAreFoundAndUsed()
         {
-            TestClass testClass = Angie.New<TestClass>();
+            TestClass testClass = A.New<TestClass>();
             Assert.AreEqual(PluginPropertyFiller.Value, testClass.TestProperty);
 
         }
