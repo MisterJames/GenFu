@@ -2,7 +2,7 @@
     "version": "1.0.0-*",
     "dependencies": {
         "Xunit.KRunner": "1.0.0-*",
-        "Angela.vNext": "",
+        "GenFu": "",
         "NUnit": "2.6.3"
     },
     "commands": {

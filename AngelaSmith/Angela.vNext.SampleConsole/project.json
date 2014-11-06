@@ -1,7 +1,7 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
-        "Angela.vNext": ""
+        "GenFu": ""
     },
     "commands": {
         "run": "run"
