@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using Angela.vNext.Reflection;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class A : Angie
     {

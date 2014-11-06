@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Angela.Core
+namespace GenFu
 {
     //TODO: Consider merging this partial class.  Not much here anymore
     public partial class Angie

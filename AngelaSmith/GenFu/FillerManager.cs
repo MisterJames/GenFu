@@ -3,9 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Angela.Core.Fillers;
+using GenFu.Fillers;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class FillerManager
     {

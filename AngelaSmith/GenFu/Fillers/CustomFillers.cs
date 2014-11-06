@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class CustomFiller<T> : PropertyFiller<T>
     {

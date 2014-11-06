@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Angela.Core
+namespace GenFu
 {
     public abstract class PropertyFiller<T> : IPropertyFiller
     {

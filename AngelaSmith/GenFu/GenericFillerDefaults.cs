@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class GenericFillerDefaults
     {

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class AngieConfigurator
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core.ValueGenerators.Internet
+namespace GenFu.ValueGenerators.Internet
 {
     public class NetworkAddress:BaseValueGenerator
     {
