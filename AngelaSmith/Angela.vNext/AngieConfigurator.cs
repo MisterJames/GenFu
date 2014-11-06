@@ -65,7 +65,7 @@ namespace Angela.Core
         /// <returns>The instance filled with random data</returns>
         public static T Few<T>(T instance)
         {
-            return Angie.Few(instance);
+            return Angie.New(instance);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Angela.Core
 
         public static T Few(T instance)
         {
-            return Angie.Few(instance);
+            return Angie.New(instance);
         }
 
         public T Make()

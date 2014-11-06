@@ -28,12 +28,12 @@ namespace Angela.Core
         {
             var instance = new T();
 
-            Few(instance);
+            New(instance);
 
             return instance;
         }
 
-        public static T Few<T>(T instance)
+        public static T New<T>(T instance)
         {
             if (instance != null)
             {
@@ -56,14 +56,6 @@ namespace Angela.Core
             return instance;
         }
 
-        public T Make<T>() where T : new()
-        {
-            var instance = new T();
-
-            Few<T>(instance);
-
-            return instance;
-        }
 
         public static List<T> ListOf<T>() where T : new()
         {

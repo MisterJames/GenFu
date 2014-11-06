@@ -18,7 +18,7 @@ namespace Angela.vNext.SampleConsole
             Console.WriteLine(person.FirstName);
             Console.ReadLine();
 
-            //var people = A.Few<Person>
+            //var people = A.Few<Person>();
         }
     }
 }
