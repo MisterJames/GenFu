@@ -1,12 +1,13 @@
 ﻿{
     "version": "1.0.0-*",
     "dependencies": {
+       
     },
 
     "frameworks": {
         "aspnet50": {
             "dependencies": {
-                "Microsoft.Composition": "1.0.27"
+                "Microsoft.Composition": "1.0.27"                
             }
         },
         "aspnetcore50": {
@@ -14,12 +15,15 @@
                 "System.Collections": "4.0.0.0",
                 "System.Collections.Concurrent": "4.0.0.0",
                 "System.ComponentModel": "4.0.0.0",
-                "System.Linq": "",
-                "System.Reflection": "",
-                "System.Runtime": "",
+                "System.Linq": "4.0.0-beta-*",
+                "System.Reflection": "4.0.0-beta-*",
+                "System.Runtime": "4.0.20-beta-*",
                 "System.Runtime.InteropServices": "4.0.10.0",
+                "System.Runtime.Extensions": "4.0.10-beta-*",
                 "System.Threading": "4.0.0.0",
-                "System.Threading.Tasks": "4.0.0.0"
+                "System.Threading.Tasks": "4.0.0.0",
+                "System.Security.Cryptography.RandomNumberGenerator": "4.0.0-beta-22220" 
+
             }
         }
 
