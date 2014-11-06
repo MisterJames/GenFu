@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Composition;
-using System.Composition.Hosting;
 using System.Text.RegularExpressions;
 using Angela.Core.Fillers;
 
@@ -128,7 +126,7 @@ namespace Angela.Core
                     }
                 }
 
-                objectType = objectType.BaseType;
+                objectType = objectType.GetTypeInfo().BaseType;
             }
 
             if (result == null)
@@ -175,7 +173,7 @@ namespace Angela.Core
                     }
                 }
 
-                objectType = objectType.BaseType;
+                objectType = objectType.GetTypeInfo().BaseType;
             }
 
 //            // TODO: Would like to exclude methods for fill unless we explicity specify to include

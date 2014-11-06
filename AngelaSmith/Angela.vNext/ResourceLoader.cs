@@ -45,21 +45,20 @@ namespace Angela.Core
 
         private static List<string> LoadStrings(string resourceName)
         {
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-            path = Path.GetDirectoryName(path);
-            path = path.Replace(@"file:\", "");
-
+            //TODO: Test that this path name is correct.
+            string path = Path.GetDirectoryName(typeof(ResourceLoader).GetTypeInfo().Assembly.GetName().Name);
+          
             var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             string filename = string.Format(@"{0}\Resources\{1}.{2}.txt", path, resourceName, culture);
 
             // attempt load from absolute path
             if (File.Exists(filename))
-                return File.ReadAllLines(filename).ToList();
+                return File.ReadLines(filename).ToList();
 
             // attempt load from relative path
             filename = string.Format(@"Resources\{0}.{1}.txt", resourceName, culture);
             if (File.Exists(filename))
-                return File.ReadAllLines(filename).ToList();
+                return File.ReadLines(filename).ToList();
 
             // attempt load from embedded resource
             var namespaceName = typeof(Angie).Namespace;
@@ -67,7 +66,7 @@ namespace Angela.Core
             List<string> lines = new List<string>();
             try
             {
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(filename)))
+                using (StreamReader reader = new StreamReader(typeof(ResourceLoader).GetTypeInfo().Assembly.GetManifestResourceStream(filename)))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
