@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Angela.Core.Fillers
 {
-    class CompanyNameFiller : PropertyFiller<string>
+    class CompanyNameFiller : PropertyFiller<string>, IPropertyFiller
     {
         public CompanyNameFiller(): base (new[] { "company" }, new[] { "name" }, false)
         {}

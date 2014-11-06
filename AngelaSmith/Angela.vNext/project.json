@@ -8,7 +8,6 @@
         "aspnet50": {
             "dependencies": {
                 "Microsoft.Composition": "1.0.27"
-                                
             }
         },
         "aspnetcore50": {
@@ -28,10 +27,9 @@
                 "System.Threading.Tasks": "4.0.10-beta-*",
                 "System.IO.FileSystem": "4.0.0-beta-*",
                 "System.IO.FileSystem.Primitives": "4.0.0-beta-*",
-                "System.Globalization": "4.0.10-beta-*"
-
+                "System.Globalization": "4.0.10-beta-*",
+                "System.Text.RegularExpressions": "4.0.10-beta-22220"
             }
         }
-
     }
 }
