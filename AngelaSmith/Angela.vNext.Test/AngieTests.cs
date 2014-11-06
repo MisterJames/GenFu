@@ -357,101 +357,102 @@ namespace Angela.Tests
             Assert.False(string.IsNullOrEmpty(location.Province));
         }
 
-        //[Test]
-        //public void UsaStateIsFilled()
-        //{
-        //    var location = Angie.New<AmericanLocation>();
-        //    Assert.IsFalse(string.IsNullOrEmpty(location.State));
-        //}
+        [Fact]
+        public void UsaStateIsFilled()
+        {
+            var location = Angie.New<AmericanLocation>();
+            Assert.False(string.IsNullOrEmpty(location.State));
+        }
 
-        //[Test]
-        //public void CustomPropertyFillsAreChainableUsingSet()
-        //{
-        //    Angie.Default()
-        //        .ListCount(5);
+        [Fact]
+        public void CustomPropertyFillsAreChainableUsingSet()
+        {
+            Angie.Default()
+                .ListCount(5);
 
-        //    var blogpost = Angie
-        //        .Configure<BlogPost>()
-        //        .Fill(b => b.CreateDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
-        //        .Fill(b => b.Comments, delegate()
-        //        {
-        //            return Angie
-        //                .Set<BlogComment>()
-        //                .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
-        //                .MakeList<BlogComment>();
-        //        })
-        //    .Make<BlogPost>();
+            Angie
+                .Configure<BlogPost>()
+                .Fill(b => b.CreateDate, delegate () { return CalendarDate.Date(DateRules.PastDate); })
+                .Fill(b => b.Comments, delegate ()
+                {
+                    Angie
+                        .Set<BlogComment>()
+                        .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
+                    return A.ListOf<BlogComment>();
+                });
+            var blogpost = A.New<BlogPost>();
 
-        //    Assert.IsNotNull(blogpost.Comments);
-        //}
+            Assert.NotNull(blogpost.Comments);
+            Assert.True(blogpost.Comments.Count > 0);
+        }
 
-        //[Test]
-        //public void CustomPropertyFillsAreChainableUsingConfigure()
-        //{
-        //    const string theTitle = "THE TITLE";
+        [Fact]
+        public void CustomPropertyFillsAreChainableUsingConfigure()
+        {
+            const string theTitle = "THE TITLE";
 
-        //    var blogposts = Angie
-        //        .Configure<BlogPost>()
-        //        .Fill(b => b.Title, () => theTitle)
-        //        .Fill(b => b.Comments, delegate()
-        //        {
-        //            return Angie
-        //                .Configure<BlogComment>()
-        //                .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.PastDate); })
-        //                .MakeList<BlogComment>();
-        //        })
-        //    .MakeList<BlogPost>();
+             Angie
+                .Configure<BlogPost>()
+                .Fill(b => b.Title, () => theTitle)
+                .Fill(b => b.Comments, delegate ()
+                {
+                    Angie
+                       .Configure<BlogComment>()
+                       .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
+                    return A.ListOf<BlogComment>();
+                });
+            var blogposts =A.ListOf<BlogPost>();
 
-        //    foreach (var blogPost in blogposts)
-        //    {
-        //        Assert.AreEqual(theTitle, blogPost.Title);    
-        //    }
+            foreach (var blogPost in blogposts)
+            {
+                Assert.Equal(theTitle, blogPost.Title);
+            }
 
-        //}
+        }
 
-        //[Test]
-        //public void ShouldIgnoreUnsettableProperties()
-        //{
-        //    var list = Angie.Configure<BlogCommenter>()
-        //        .MakeList<BlogCommenter>();
-        //}
+        [Fact]
+        public void ShouldIgnoreUnsettableProperties()
+        {
+            var list = A.ListOf<BlogCommenter>();
+        }
 
-        //[Test]
-        //public void MethodIsLeftAloneWhenMatchesNothing()
-        //{
-        //    // currently fills
-        //    var person = Angie.New<Person>();
-        //    Assert.IsTrue(string.IsNullOrEmpty(person.GetMiddleName()));
-        //}
+        [Fact]
+        public void MethodIsLeftAloneWhenMatchesNothing()
+        {
+            // currently fills
+            var person = A.New<Person>();
+            Assert.True(string.IsNullOrEmpty(person.GetMiddleName()));
+        }
 
-        //[Test]
-        //public void MethodIsFilledWhenSpecified()
-        //{
-        //    var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null)).Make<Person>();
-        //    Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
-        //}
+        [Fact]
+        public void MethodIsFilledWhenSpecified()
+        {
+            Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null));
+            var person = A.New<Person>();
+            Assert.True(!string.IsNullOrEmpty(person.GetMiddleName()));
+        }
 
 
-        //[Test]
-        //public void MethodFillStrategyCanBeSpecified()
-        //{
-        //    IList<string> names = new List<string> {"aaa", "bbb", "ccc"};
-        //    var person =
-        //        Angie.Configure<Person>()
-        //            .MethodFill<string>(x => x.SetMiddleName(null))
-        //            .WithRandom(names)
-        //            .Make<Person>();
-        //    Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
-        //    CollectionAssert.Contains(names, person.GetMiddleName());
-        //}
+        [Fact]
+        public void MethodFillStrategyCanBeSpecified()
+        {
+            IList<string> names = new List<string> { "aaa", "bbb", "ccc" };
+            Angie.Configure<Person>()
+                .MethodFill<string>(x => x.SetMiddleName(null))
+                .WithRandom(names);
+            var person = A.New<Person>();
+            Assert.True(!string.IsNullOrEmpty(person.GetMiddleName()));
+            Assert.True(names.Contains(person.GetMiddleName()));
+        }
 
-        //[Test]
-        //public void MethodCanBeSet()
-        //{
-        //    var expected = "q";
-        //    var person = Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null), () => expected).Make<Person>();
-        //    Assert.IsTrue(!string.IsNullOrEmpty(person.GetMiddleName()));
-        //    Assert.AreEqual(expected, person.GetMiddleName());
-        //}
+        [Fact]
+        public void MethodCanBeSet()
+        {
+            var expected = "q";
+            Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null), () => expected);
+            var person = A.New<Person>();
+            Assert.True(!string.IsNullOrEmpty(person.GetMiddleName()));
+            Assert.Equal(expected, person.GetMiddleName());
+        }
     }
 }

@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsole", "..\samples
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu", "GenFu\GenFu.kproj", "{52DD533C-A847-428C-A580-8E4B0E2F504A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Angela.vNext.Test", "Angela.vNext.Test\Angela.vNext.Test.kproj", "{3B8E8D6A-2046-43B7-887C-2B1E5BFD5CE9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu.Test", "Angela.vNext.Test\GenFu.Test.kproj", "{3B8E8D6A-2046-43B7-887C-2B1E5BFD5CE9}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Angela.vNext.SampleConsole", "Angela.vNext.SampleConsole\Angela.vNext.SampleConsole.kproj", "{8CE9AEBB-C2AF-41AB-9388-AA242FB11250}"
 EndProject
