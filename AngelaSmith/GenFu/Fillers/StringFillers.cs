@@ -1,6 +1,6 @@
-﻿using Angela.Core.ValueGenerators.Geospatial;
-using Angela.Core.ValueGenerators.People;
-namespace Angela.Core
+﻿using GenFu.ValueGenerators.Geospatial;
+using GenFu.ValueGenerators.People;
+namespace GenFu
 {
     public class StringFiller : PropertyFiller<string>
     {

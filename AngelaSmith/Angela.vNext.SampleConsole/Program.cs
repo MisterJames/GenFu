@@ -1,4 +1,4 @@
-﻿using Angela.Core;
+﻿using GenFu;
 using System;
 
 namespace Angela.vNext.SampleConsole

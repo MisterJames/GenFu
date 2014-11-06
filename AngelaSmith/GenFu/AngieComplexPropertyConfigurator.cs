@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class AngieComplexPropertyConfigurator<T, T2> : AngieConfigurator<T> where T : new()
     {

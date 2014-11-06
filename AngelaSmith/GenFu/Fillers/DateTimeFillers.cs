@@ -1,7 +1,7 @@
-﻿using Angela.Core.ValueGenerators.Temporal;
+﻿using GenFu.ValueGenerators.Temporal;
 using System;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class DateTimeFiller : PropertyFiller<DateTime>
     {

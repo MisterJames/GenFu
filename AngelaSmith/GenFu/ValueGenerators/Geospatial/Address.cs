@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Angela.Core.ValueGenerators.Geospatial
+namespace GenFu.ValueGenerators.Geospatial
 {
     public class Address : BaseValueGenerator
     {

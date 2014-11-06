@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace GenFu
 {
     public partial class BaseValueGenerator
     {
