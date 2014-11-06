@@ -15,11 +15,10 @@ namespace Angela.vNext.SampleConsole
     {
         public void Main(string[] args)
         {
-            var person = A.New<Person>();
+            var person =  A.New<Person>();
             Console.WriteLine(person.FirstName);
 
-            Angie.Configure<Person>()
-
+            A.Configure<Person>()
                 //.Fill(p => p.FirstName).WithRandom(new string[] { "James", "David" })
                 .Fill(p => p.Age).WithinRange(19, 25);
 

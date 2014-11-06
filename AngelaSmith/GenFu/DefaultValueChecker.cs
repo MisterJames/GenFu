@@ -5,7 +5,7 @@ namespace Angela.Core
 {
     public class DefaultValueChecker
     {
-        internal static bool HasValue<T>(T instance, PropertyInfo property)
+        internal static bool HasValue(object instance, PropertyInfo property)
         {
             var value = property.GetValue(instance,null);
             bool valueSet = false;           
