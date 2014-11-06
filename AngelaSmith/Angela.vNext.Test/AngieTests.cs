@@ -45,6 +45,7 @@ namespace Angela.Tests
         [Fact]
         public void BasicTypesInExistingClassArePopulated()
         {
+            Angie.Reset();
             var person = A.New(new Person());
 
             // for test brievity
@@ -429,7 +430,7 @@ namespace Angela.Tests
         {
             Angie.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null));
             var person = A.New<Person>();
-            Assert.True(!string.IsNullOrEmpty(person.GetMiddleName()));
+            Assert.False(string.IsNullOrEmpty(person.GetMiddleName()));
         }
 
 

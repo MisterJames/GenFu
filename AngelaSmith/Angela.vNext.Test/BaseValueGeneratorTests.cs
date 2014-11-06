@@ -1,71 +1,73 @@
 ﻿using System;
 using Angela.Core;
 using System.Linq;
-using NUnit.Framework;
 using System.Collections.Generic;
 using Angela.Core.ValueGenerators.People;
 using Angela.Core.ValueGenerators.Geospatial;
 using Angela.Core.ValueGenerators.Temporal;
+using Xunit;
 
 namespace Angela.Tests
 {
-    [TestFixture]
-    class BaseValueGeneratorTests
+    public class BaseValueGeneratorTests
     {
 
-        [Test]
+        [Fact]
         public void GetRandomValueFromArray()
         {
             string[] possibleValues = new[] {"A", "B", "C", "D", "E"};
             for (int i = 0; i < 500; i++)
             {
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
-                Assert.IsNotNullOrEmpty(randomValue);
-                CollectionAssert.Contains(possibleValues, randomValue);
+                Assert.NotNull(randomValue);
+                Assert.NotEmpty(randomValue);
+                Assert.True(possibleValues.Contains(randomValue));
             }
         }
 
-        [Test]
+        [Fact]
         public void GetRandomValueFromList()
         {
             List<string> possibleValues = new List<string> { "1", "2", "3", "4", "5" };
             for (int i = 0; i < 500; i++)
             {
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
-                Assert.IsNotNullOrEmpty(randomValue);
-                CollectionAssert.Contains(possibleValues, randomValue);
+                Assert.NotNull(randomValue);
+                Assert.NotEmpty(randomValue);
+                Assert.True(possibleValues.Contains(randomValue));
             }
         }
 
-        [Test]
+        [Fact]
         public void GetRandomValueFromEnumerable()
         {
             IEnumerable<string> possibleValues = (new []{ "1A", "2A", "3A", "4A", "5A" }).Select(s => s);
             for (int i = 0; i < 500; i++)
             {
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
-                Assert.IsNotNullOrEmpty(randomValue);
-                CollectionAssert.Contains(possibleValues, randomValue);
+                Assert.NotNull(randomValue);
+                Assert.NotEmpty(randomValue);
+                Assert.True(possibleValues.Contains(randomValue));
             }
         }
 
-        [Test]
+        [Fact]
         public void MakeDateRuleFutureIsCorrect()
         {
             Angie.Reset();
             var date = CalendarDate.Date(DateRules.FutureDates);
-            Assert.Greater(date, DateTime.Now);
+            Assert.True(date > DateTime.Now);
         }
 
-        [Test]
+        [Fact]
         public void MakeDateRulePastIsCorrect()
         {
             Angie.Reset();
             var date = CalendarDate.Date(DateRules.PastDate);
-            Assert.Greater(DateTime.Now, date);
+            Assert.True(DateTime.Now > date);
         }
 
-        [Test]
+        [Fact]
         public void MakeDateWithinSpecifiedRange()
         {
             Angie.Reset();
@@ -76,13 +78,13 @@ namespace Angela.Tests
             for (int i = 0; i < 1000; i++)
             {
                 var date = CalendarDate.Date(minDate, maxDate);
-                Assert.GreaterOrEqual(date, minDate);
-                Assert.LessOrEqual(date, maxDate);
+                Assert.True(date >= minDate);
+                Assert.True(date <= maxDate);
             }
 
         }
 
-        [Test]
+        [Fact]
         public void AddressContainsNumbers()
         {
             var addressLine = Address.AddressLine();
@@ -90,11 +92,11 @@ namespace Angela.Tests
             var streetNumber = 0;
             var addressPrefix = addressLine.Split(' ')[0];
 
-            Assert.IsTrue(int.TryParse(addressPrefix, out streetNumber));
+            Assert.True(int.TryParse(addressPrefix, out streetNumber));
 
         }
 
-        [Test]
+        [Fact]
         public void CanSetCustomDomainOnEmail()
         {
             var domain = "foofoofoobarbarbar.com";
@@ -102,13 +104,13 @@ namespace Angela.Tests
             Assert.True(email.Contains(domain));
         }
 
-        [Test]
+        [Fact]
         public void PhoneNumberIsExpectedLength()
         {
             for (int i = 0; i < 1000; i++)
             {
                 var phoneNumber = ContactInformation.PhoneNumber();
-                Assert.AreEqual(14, phoneNumber.Length);
+                Assert.Equal(14, phoneNumber.Length);
             }
         }
 

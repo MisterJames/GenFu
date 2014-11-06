@@ -51,7 +51,7 @@ namespace Angela.Tests
         [Test]
         public void BasicTypesInExistingClassArePopulated()
         {
-            var person = Angie.FastFill(new Person());
+            var person = A.New(new Person());
 
             // for test brievity
             Assert.IsTrue(!string.IsNullOrEmpty(person.FirstName), "String property was not populated. Aborting additional asserts in test.");

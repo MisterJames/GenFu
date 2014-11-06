@@ -36,7 +36,7 @@ namespace Angela.Core
 
         public static T New<T>(T instance)
         {
-            return (T) New(instance);
+            return (T) New((object) instance);
       
         }
 

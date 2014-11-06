@@ -1,9 +1,8 @@
-﻿using Angela.Core;
+﻿
 using System;
-using System.Collections.Generic;
 using System.Text;
+using Angela.Core;
 using SampleConsole.Models;
-using System.Runtime.InteropServices;
 
 namespace SampleConsole
 {
