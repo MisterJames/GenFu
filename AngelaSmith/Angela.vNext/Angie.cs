@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using Angela.vNext.Reflection;
 
 namespace Angela.Core
 {
@@ -31,7 +32,7 @@ namespace Angela.Core
         {
             if (instance != null)
             {
-                foreach (var property in typeof(T).GetProperties())
+                foreach (var property in typeof(T).GetTypeInfo().GetAllProperties())
                 {
                     if (!DefaultValueChecker.HasValue<T>(instance, property) && property.CanWrite)
                     {
