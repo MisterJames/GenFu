@@ -46,7 +46,7 @@ namespace Angela.Core
         private static List<string> LoadStrings(string resourceName)
         {
             //TODO: Test that this path name is correct.
-            string path = Path.GetDirectoryName(typeof(ResourceLoader).GetTypeInfo().Assembly.GetName().Name);
+            string path = typeof(ResourceLoader).GetTypeInfo().Assembly.GetName().Name;
           
             var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             string filename = string.Format(@"{0}\Resources\{1}.{2}.txt", path, resourceName, culture);
@@ -61,8 +61,13 @@ namespace Angela.Core
                 return File.ReadLines(filename).ToList();
 
             // attempt load from embedded resource
-            var namespaceName = typeof(Angie).Namespace;
+            //var namespaceName = typeof(Angie).Namespace;
+            var namespaceName = "Angie.vNext";
+
+            //todo: correct this format when resource strings/names are fixed by .net team
             filename = string.Format("{0}.Resources.{1}.txt", namespaceName, resourceName);
+            filename = string.Format("Resources/{1}.txt", namespaceName, resourceName);
+
             List<string> lines = new List<string>();
             try
             {

@@ -20,7 +20,7 @@
                 "System.Reflection.TypeExtensions": "4.0.0-beta-*",
                 "System.Reflection.Extensions": "4.0.0-beta-*",
                 "System.Reflection.Primitives": "4.0.0-beta-*",
-                
+
 
                 "System.Runtime": "4.0.20-beta-*",
                 "System.Runtime.InteropServices": "4.0.10.0",
@@ -34,4 +34,6 @@
             }
         }
     }
+    ,
+    "resources": [ "Resources/*.*"] 
 }
