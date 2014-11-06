@@ -195,184 +195,167 @@ namespace Angela.Tests
 
         }
 
-        //[Test]
-        //public void AgeIsAlwaysPositive()
-        //{
-        //    var person = Angie.New<Person>();
-        //    Assert.IsTrue(person.Age >= 0);
-        //}
 
-        //[Test]
-        //public void ListOfDefaultGenerates25Entries()
-        //{
-        //    var people = Angie.ListOf<Person>();
+        [Fact]
+        public void ListOfDefaultGenerates25Entries()
+        {
+            var people = A.ListOf<Person>();
 
-        //    Assert.AreEqual(Angie.Defaults.LIST_COUNT, people.Count(),
-        //        string.Format("Expected {0} but collection contained {1}", 
-        //        Angie.Defaults.LIST_COUNT, people.Count())
-        //        );
-        //}
+            Assert.Equal(Angie.Defaults.LIST_COUNT, people.Count());
+        }
 
-        //[Test]
-        //public void ListOfGeneratesCorrectNumberOfEntries()
-        //{
-        //    var personCount = 17;
-        //    var people = Angie.ListOf<Person>(personCount);
-        //    Assert.AreEqual(people.Count(), personCount);
-        //}
+        [Fact]
+        public void ListOfGeneratesCorrectNumberOfEntries()
+        {
+            var personCount = 17;
+            var people = Angie.ListOf<Person>(personCount);
+            Assert.Equal(people.Count(), personCount);
+        }
 
-        //[Test]
-        //public void MakeListDefaultsTo25Entries()
-        //{
-        //    var people = Angie
-        //        .Configure()                // get an instantiated object for the non-static call
-        //        .MakeList<Person>();
-        //    Assert.IsTrue(people.Count() == Angie.Defaults.LIST_COUNT);
-        //}
+        [Fact]
+        public void MakeListDefaultsTo25Entries()
+        {
+            Angie.Reset();
+            var people = A.ListOf<Person>();
 
-        //[Test]
-        //public void MakeListGeneratesCorrectNumberOfEntriesWithDefaults()
-        //{
-        //    Angie.Reset();
-        //    var personCount = 13;
+            Assert.Equal(Angie.Defaults.LIST_COUNT, people.Count());
+        }
 
-        //    Angie.Default()
-        //        .ListCount(personCount);
+        [Fact]
+        public void MakeListGeneratesCorrectNumberOfEntriesWithDefaults()
+        {
+            Angie.Reset();
+            var personCount = 13;
 
-        //    var people = Angie
-        //        .ListOf<Person>();
+            Angie.Default()
+                .ListCount(personCount);
 
-        //    Assert.AreEqual(people.Count(), personCount);
-        //}
+            var people = Angie
+                .ListOf<Person>();
 
-        //[Test]
-        //public void MakeListGeneratesCorrectNumberOfEntriesWithStaticOverload()
-        //{
-        //    Angie.Reset();
-        //    var personCount = 13;
+            Assert.Equal(people.Count(), personCount);
+        }
 
-        //    var people = Angie
-        //        .ListOf<Person>(personCount);
+        [Fact]
+        public void MakeListGeneratesCorrectNumberOfEntriesWithStaticOverload()
+        {
+            Angie.Reset();
+            var personCount = 13;
 
-        //    Assert.AreEqual(people.Count(), personCount);
-        //}
+            var people = A
+                .ListOf<Person>(personCount);
 
-        //[Test]
-        //public void MakeListGeneratesCorrectNumberOfEntriesWithInstanceOverload()
-        //{
-        //    Angie.Reset();
-        //    var personCount = 13;
+            Assert.Equal(people.Count(), personCount);
+        }
 
-        //    var people = Angie
-        //        .Configure<Person>()
-        //        .MakeList<Person>(personCount);
+        [Fact]
+        public void MakeListGeneratesCorrectNumberOfEntriesWithInstanceOverload()
+        {
+            Angie.Reset();
+            var personCount = 13;
+            Angie.Configure<Person>();
+            var people = A.ListOf<Person>(personCount);
 
-        //    Assert.AreEqual(people.Count(), personCount);
-        //}
+            Assert.Equal(people.Count(), personCount);
+        }
 
-        //[Test]
-        //public void DateTimesAreInitialized()
-        //{
-        //    var post = Angie.New<BlogPost>();
-        //    Assert.IsTrue(post.CreateDate != default(DateTime));
-        //}
+        [Fact]
+        public void DateTimesAreInitialized()
+        {
+            var post = A.New<BlogPost>();
+            Assert.True(post.CreateDate != default(DateTime));
+        }
 
-        //[Test]
-        //public void DateTimesStayWithinConfiguredDates()
-        //{
-        //    var success = true;
+        [Fact]
+        public void DateTimesStayWithinConfiguredDates()
+        {
+            var success = true;
 
-        //    // use a small window to try to force collisions
-        //    var minDate = DateTime.Now.AddMilliseconds(-5);
-        //    var maxDate = DateTime.Now.AddMilliseconds(5);
+            // use a small window to try to force collisions
+            var minDate = DateTime.Now.AddMilliseconds(-5);
+            var maxDate = DateTime.Now.AddMilliseconds(5);
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        Angie.Default()
-        //            .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10));
+            for (int i = 0; i < 500; i++)
+            {
+                Angie.Default()
+                    .DateRange(DateTime.Now.AddMilliseconds(-10), DateTime.Now.AddMilliseconds(10));
 
-        //        var person = Angie
-        //            .Configure()
-        //            .Make<Person>();
+                var person = A.New<Person>();
 
-        //        if (!(person.BirthDate >= minDate && person.BirthDate <= maxDate))
-        //            success = false;
-        //        else
-        //            Assert.IsTrue(success, "Date was generated outside of range.{0}", person.BirthDate);
-        //    }
+                if (!(person.BirthDate >= minDate && person.BirthDate <= maxDate))
+                    success = false;
+                else
+                    Assert.True(success);
+            }
+        }
 
+        [Fact]
+        public void IntPropertyFilledBySpecificMethod()
+        {
+            var age = 11;
 
-        //}
+            Angie.Configure<Person>()
+                .Fill(p => p.Age, delegate () { return age; });
+            var person = A.New<Person>();
 
-        //[Test]
-        //public void IntPropertyFilledBySpecificMethod()
-        //{
-        //    var age = 11;
+            Assert.Equal(person.Age, age);
 
-        //    var person = Angie.Configure<Person>()
-        //        .Fill(p => p.Age, delegate() { return age; })
-        //        .Make<Person>();
+        }
 
-        //    Assert.IsTrue(person.Age == age);
+        [Fact]
+        public void StringPropertyFilledBySpecificMethod()
+        {
+            var blogTitle = "Angie";
 
-        //}
+            Angie.Configure<BlogPost>()
+                .Fill(b => b.Title, () => blogTitle);
+            var post = A.New<BlogPost>();
 
-        //[Test]
-        //public void StringPropertyFilledBySpecificMethod()
-        //{
-        //    var blogTitle = "Angie";
+            Assert.Equal(blogTitle, post.Title);
+        }
 
-        //    var post = Angie.Configure<BlogPost>()
-        //        .Fill(b => b.Title, () => blogTitle)
-        //        .Make<BlogPost>();
+        [Fact]
+        public void DateTimeFilledWithExpectedDateGivenRules()
+        {
+            var future = DateTime.Now.AddSeconds(1);
 
-        //    Assert.AreEqual(blogTitle, post.Title);
-        //}
+            Angie.Default()
+                .ListCount(1000);
 
-        //[Test]
-        //public void DateTimeFilledWithExpectedDateGivenRules()
-        //{
-        //    var future = DateTime.Now.AddSeconds(1);
+            Angie
+                .Configure<BlogComment>()
+                .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.FutureDates); });
+            var comments = A.ListOf<BlogComment>();
 
-        //    Angie.Default()
-        //        .ListCount(1000);
+            foreach (var comment in comments)
+            {
+                Assert.True(comment.CommentDate > future);
+            }
+        }
 
-        //    var comments = Angie
-        //        .Configure<BlogComment>()
-        //        .Fill(b => b.CommentDate, delegate() { return CalendarDate.Date(DateRules.FutureDates); })
-        //        .MakeList<BlogComment>();
+        [Fact]
+        public void ComplexPropertyFillsExecuted()
+        {
+            Angie.Default()
+                .ListCount(5);
 
-        //    foreach (var comment in comments)
-        //    {
-        //        Assert.Greater(comment.CommentDate, future);
-        //    }
-        //}
+            var postcomments = A.ListOf<BlogComment>();
 
-        //[Test]
-        //public void ComplexPropertyFillsExecuted()
-        //{
-        //    Angie.Default()
-        //        .ListCount(5);
+            Angie
+                .Configure<BlogPost>()
+                .Fill(b => b.Comments, delegate { return postcomments; });
+            var blogpost = A.New<BlogPost>();
 
-        //    var postcomments = Angie
-        //    .Configure()
-        //    .MakeList<BlogComment>();
+            Assert.NotNull(blogpost.Comments);
 
-        //    var blogpost = Angie
-        //        .Configure<BlogPost>()
-        //        .Fill(b => b.Comments, delegate { return postcomments; })
-        //        .Make<BlogPost>();
+        }
 
-        //    Assert.IsNotNull(blogpost.Comments);
-
-        //}
-
-        //[Test]
-        //public void CanadianProvinceIsFilled()
-        //{
-        //    var location = Angie.New<CanadianLocation>();
-        //    Assert.IsFalse(string.IsNullOrEmpty(location.Province));
-        //}
+        [Fact]
+        public void CanadianProvinceIsFilled()
+        {
+            var location = Angie.New<CanadianLocation>();
+            Assert.False(string.IsNullOrEmpty(location.Province));
+        }
 
         //[Test]
         //public void UsaStateIsFilled()
