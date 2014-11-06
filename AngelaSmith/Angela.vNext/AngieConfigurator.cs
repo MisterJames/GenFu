@@ -46,58 +46,7 @@ namespace Angela.Core
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
-
-        /// <summary>
-        /// Create a new object
-        /// </summary>
-        /// <typeparam name="T">The target object type</typeparam>
-        /// <returns>An object filled with random data</returns>
-        public static T New<T>() where T : new()
-        {
-            return Angie.New<T>();
-        }
-
-        /// <summary>
-        /// Fill an existing object with random data
-        /// </summary>
-        /// <typeparam name="T">The target object type</typeparam>
-        /// <param name="instance">The instance to fill</param>
-        /// <returns>The instance filled with random data</returns>
-        public static T Few<T>(T instance)
-        {
-            return Angie.New(instance);
-        }
-
-        /// <summary>
-        /// Create a new object
-        /// </summary>
-        /// <typeparam name="T">The target object type</typeparam>
-        /// <returns>An object filled with random data</returns>
-        public T Make<T>() where T : new()
-        {
-            return Angie.New<T>();
-        }
-
-        public static List<T> FastList<T>() where T : new()
-        {
-            return Angie.ListOf<T>();
-        }
-
-        public static List<T> FastList<T>(int count) where T : new()
-        {
-            return Angie.FastList<T>(count);
-        }
-
-        public List<T> MakeList<T>() where T : new()
-        {
-            return FastList<T>();
-        }
-
-        public List<T> MakeList<T>(int count) where T : new()
-        {
-            return FastList<T>(count);
-        }
-
+             
         public Angie Angie
         {
             get { return _angie; }
@@ -116,37 +65,7 @@ namespace Angela.Core
         {
         }
 
-        public static T New()
-        {
-            return Angie.New<T>();
-        }
-
-        public static T Few(T instance)
-        {
-            return Angie.New(instance);
-        }
-
-        public T Make()
-        {
-            return Angie.New<T>();
-        }
-
-        public static List<T> FastList()
-        {
-            return Angie.ListOf<T>();
-        }
-
-        public static List<T> FastList(int count)
-        {
-            return Angie.FastList<T>(count);
-        }
-
-        public List<T> MakeList()
-        {
-            return FastList<T>();
-        }
-
-
+ 
         private PropertyInfo GetPropertyInfoFromExpression<T2>(Expression<Func<T, T2>> expression)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
