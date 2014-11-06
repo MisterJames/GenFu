@@ -8,7 +8,6 @@ namespace Angela.Core
 {
     public class A : Angie
     {
-
     }
 
     public partial class Angie
@@ -26,29 +25,38 @@ namespace Angela.Core
 
         public static T New<T>() where T : new()
         {
-            var instance = new T();
+            return (T) New(typeof(T));
+        }
 
-            New(instance);
-
-            return instance;
+        public static object New(Type type)
+        {
+            object instance = Activator.CreateInstance(type);
+            return New(instance);
         }
 
         public static T New<T>(T instance)
         {
+            return (T) New(instance);
+      
+        }
+
+        public static object New(object instance)
+        {
             if (instance != null)
             {
-                foreach (var property in typeof(T).GetTypeInfo().GetAllProperties())
+                var type = instance.GetType();
+                foreach (var property in type.GetTypeInfo().GetAllProperties())
                 {
-                    if (!DefaultValueChecker.HasValue<T>(instance, property) && property.CanWrite)
+                    if (!DefaultValueChecker.HasValue(instance, property) && property.CanWrite)
                     {
-                        SetPropertyValue<T>(instance, property);
+                        SetPropertyValue(instance, property);
                     }
                 }
-                foreach (var method in typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
+                foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
                 {
                     if (method.GetParameters().Count() == 1)
                     {
-                        CallSetterMethod<T>(instance, method);
+                        CallSetterMethod(instance, method);
                     }
                 }
 
@@ -59,33 +67,43 @@ namespace Angela.Core
 
         public static List<T> ListOf<T>() where T : new()
         {
-            return BuildList<T>(_listCount);
+            return ListOf(typeof(T)).Cast<T>().ToList();
+        }
+
+        public static List<object> ListOf(Type type)
+        {
+            return BuildList(type, _listCount);
         }
         
         public static List<T> ListOf<T>(int personCount) where T : new()
         {
-            return BuildList<T>(personCount);
+            return ListOf(typeof(T), personCount).Cast<T>().ToList();
         }
 
-        private static List<T> BuildList<T>(int itemCount) where T : new()
+        public static List<object> ListOf(Type type, int personCount)
         {
-            var result = new List<T>();
+            return BuildList(type, personCount);
+        }
+
+        private static List<object> BuildList(Type type, int itemCount)
+        {
+            var result = new List<object>();
 
             for (int i = 0; i < itemCount; i++)
             {
-                result.Add(Angie.New<T>());
+                result.Add(Angie.New(type));
             }
 
             return result;
         }
 
-        private static void SetPropertyValue<T>(T instance, PropertyInfo property)
+        private static void SetPropertyValue(object instance, PropertyInfo property)
         {
             IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(), null);
         }
         
-        private static void CallSetterMethod<T>(T instance, MethodInfo method)
+        private static void CallSetterMethod(object instance, MethodInfo method)
         {
             IPropertyFiller filler = _fillerManager.GetMethodFiller(method);
             if (filler != null)
