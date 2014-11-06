@@ -6,6 +6,11 @@ using Angela.vNext.Reflection;
 
 namespace Angela.Core
 {
+    public class A : Angie
+    {
+
+    }
+
     public partial class Angie
     {
         private static Angie _angie = new Angie();
