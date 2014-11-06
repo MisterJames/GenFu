@@ -43,6 +43,8 @@ local.properties
 *.ide
 
 # Build results
+bower_components/
+node_modules/
 [Dd]ebug/
 [Rr]elease/
 *_i.c
