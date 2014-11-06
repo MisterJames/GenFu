@@ -80,7 +80,7 @@ namespace Angela.Core
 
         public static List<T> FastList<T>() where T : new()
         {
-            return Angie.FastList<T>();
+            return Angie.ListOf<T>();
         }
 
         public static List<T> FastList<T>(int count) where T : new()
@@ -133,7 +133,7 @@ namespace Angela.Core
 
         public static List<T> FastList()
         {
-            return Angie.FastList<T>();
+            return Angie.ListOf<T>();
         }
 
         public static List<T> FastList(int count)

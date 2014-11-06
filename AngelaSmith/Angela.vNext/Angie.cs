@@ -65,19 +65,14 @@ namespace Angela.Core
             return instance;
         }
 
-        public static List<T> FastList<T>() where T : new()
+        public static List<T> ListOf<T>() where T : new()
         {
             return BuildList<T>(_listCount);
         }
         
-        public static List<T> FastList<T>(int personCount) where T : new()
+        public static List<T> ListOf<T>(int personCount) where T : new()
         {
             return BuildList<T>(personCount);
-        }
-
-        public List<T> MakeList<T>() where T : new()
-        {
-            return FastList<T>();
         }
 
         private static List<T> BuildList<T>(int itemCount) where T : new()
