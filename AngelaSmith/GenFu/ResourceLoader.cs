@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class ResourceLoader
     {

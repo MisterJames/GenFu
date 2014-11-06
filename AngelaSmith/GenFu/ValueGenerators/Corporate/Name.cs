@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Angela.Core.ValueGenerators.Corporate
+namespace GenFu.ValueGenerators.Corporate
 {
     class Company: BaseValueGenerator
     {

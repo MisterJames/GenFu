@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core.ValueGenerators.Music
+namespace GenFu.ValueGenerators.Music
 {
     public class Artist:BaseValueGenerator
     {

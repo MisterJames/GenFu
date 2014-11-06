@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core.ValueGenerators.Cooking
+namespace GenFu.ValueGenerators.Cooking
 {
     public class Ingredients:BaseValueGenerator
     {

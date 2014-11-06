@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core.ValueGenerators.Geospatial
+namespace GenFu.ValueGenerators.Geospatial
 {
     public class LatLong:BaseValueGenerator
     {

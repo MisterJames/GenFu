@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Angela.Core.ValueGenerators.People
+namespace GenFu.ValueGenerators.People
 {
     public class ContactInformation:BaseValueGenerator
     {

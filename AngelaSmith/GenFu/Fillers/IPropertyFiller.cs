@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Angela.Core
+namespace GenFu
 {
     public interface IPropertyFiller
     {

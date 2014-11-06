@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Core.Fillers
+namespace GenFu.Fillers
 {
     class GuidFiller:PropertyFiller<Guid>
     {

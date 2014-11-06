@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Angela.Core
+namespace GenFu
 {
     public class DefaultValueChecker
     {

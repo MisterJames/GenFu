@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Angela.Core.ValueGenerators.Temporal
+namespace GenFu.ValueGenerators.Temporal
 {
     public class CalendarDate : BaseValueGenerator
     {
