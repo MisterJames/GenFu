@@ -16,11 +16,13 @@ namespace Angela.Tests
         [Test]
         public void FillPropertyWithRandomValuesFromList()
         {
-            IList<Person> peeps = Angie.FastList<Person>(10);
+            IList<Person> peeps = Angie.ListOf<Person>(10);
 
             Angie.Default().ListCount(25);
 
-            IList<Dog> dogs = Angie.Configure<Dog>().Fill(d => d.Owner).WithRandom(peeps).MakeList();
+            Angie.Configure<Dog>().Fill(d => d.Owner).WithRandom(peeps);
+
+            var dogs = A.ListOf<Dog>();
             foreach (Dog dog in dogs)
             {
                 Assert.IsNotNull(dog.Owner);

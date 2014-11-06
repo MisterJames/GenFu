@@ -8,214 +8,204 @@ using Xunit;
 
 namespace Angela.Tests
 {
-    //[TestFixture]
     public class AngieTests
     {
-       // [SetUp]
-        public void ResetAngie()
-        {
-            Angie.Reset();
-        }
-
         [Fact]
         public void StringInNewClassIsPopulated()
         {
 
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             Assert.True(!string.IsNullOrEmpty(person.FirstName));
         }
 
         [Fact]
         public void EmailAddressInNewClassIsValid()
         {
-            Person person = Angie.FastMake<Person>();
+            Person person = Angie.New<Person>();
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(person.EmailAddress);
             Assert.True(match.Success, "Invalid Email Address: {0}");
 
         }
 
-        //[Test]
-        //public void PhoneNumberInNewClassIsPopulated()
-        //{
-        //    var person = Angie.FastMake<Person>();
-        //    Assert.IsTrue(!string.IsNullOrEmpty(person.PhoneNumber));
-        //}
+        [Fact]
+        public void PhoneNumberInNewClassIsPopulated()
+        {
+            var person = A.New<Person>();
+            Assert.True(!string.IsNullOrEmpty(person.PhoneNumber));
+        }
 
-        //[Test]
-        //public void IntInNewClassIsPopulated()
-        //{
-        //    var person = Angie.FastMake<Person>();
-        //    Assert.IsTrue(person.NumberOfKids != default(int));
-        //}
+        [Fact]
+        public void IntInNewClassIsPopulated()
+        {
+            var person = A.New<Person>();
+            Assert.True(person.NumberOfKids != default(int));
+        }
 
-        //[Test]
-        //public void BasicTypesInExistingClassArePopulated()
-        //{
-        //    var person = Angie.FastFill(new Person());
+        [Fact]
+        public void BasicTypesInExistingClassArePopulated()
+        {
+            var person = A.New(new Person());
 
-        //    // for test brievity
-        //    Assert.IsTrue(!string.IsNullOrEmpty(person.FirstName), "String property was not populated. Aborting additional asserts in test.");
-        //    Assert.IsTrue(person.Age != default(int), "Int property was not populated. Aborting additional asserts in test.");
-        //    Assert.IsTrue(person.BirthDate != default(DateTime), "DateTime was left as default value. Aborting additional asserts in test.");
-        //}
+            // for test brievity
+            Assert.True(!string.IsNullOrEmpty(person.FirstName));
+            Assert.True(person.Age != default(int));
+            Assert.True(person.BirthDate != default(DateTime));
+        }
 
-        //[Test]
-        //public void PopulatedBasicTypesInExistingClassRemainsUnchanged()
-        //{
-        //    var firstName = "Angie";
-        //    var age = 29;
-        //    var date = DateTime.Now.AddYears(-29);
-        //    var person = Angie.FastFill(new Person { FirstName = firstName, Age = age, BirthDate = date });
+        [Fact]
+        public void PopulatedBasicTypesInExistingClassRemainsUnchanged()
+        {
+            var firstName = "Angie";
+            var age = 29;
+            var date = DateTime.Now.AddYears(-29);
+            var person = A.New(new Person { FirstName = firstName, Age = age, BirthDate = date });
 
-        //    // for test brievity
-        //    Assert.AreEqual(person.FirstName, firstName, "String property was altered. Aborting additional asserts in test.");
-        //    Assert.AreEqual(person.Age, age, "Int property was altered. Aborting additional asserts in test.");
-        //    Assert.AreEqual(person.BirthDate, date, "Date was altered. Aborting additional asserts in test.");
-        //}
+            // for test brievity
+            Assert.Equal(person.FirstName, firstName);
+            Assert.Equal(person.Age, age);
+            Assert.Equal(person.BirthDate, date);
+        }
 
-        //[Test]
-        //public void IntMaxNotExceededOnGeneratedValue()
-        //{
-        //    var maxNumberOfKids = 5;
+        [Fact]
+        public void IntMaxNotExceededOnGeneratedValue()
+        {
+            var maxNumberOfKids = 5;
 
-        //    Angie.Default()
-        //        .MaxInt(maxNumberOfKids);
+            Angie.Default()
+                .MaxInt(maxNumberOfKids);
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var person = Angie
-        //            .FastMake<Person>();
+            for (int i = 0; i < 10; i++)
+            {
+                var person = Angie
+                    .New<Person>();
 
-        //        if (!(person.NumberOfKids <= maxNumberOfKids))
-        //            Assert.Fail("Int max was exceeded: {0} ", person.NumberOfKids);
-        //    }
+                Assert.True(person.NumberOfKids <= maxNumberOfKids);
 
-        //}
+            }
 
-        //[Test]
-        //public void IntMinNotExceededOnGeneratedValue()
-        //{
-        //    var minNumberOfKids = 5;
+        }
 
-        //    Angie.Default()
-        //        .MinInt(minNumberOfKids);
+        [Fact]
+        public void IntMinNotExceededOnGeneratedValue()
+        {
+            var minNumberOfKids = 5;
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var person = Angie
-        //            .FastMake<Person>();
+            Angie.Default()
+                .MinInt(minNumberOfKids);
 
-        //        if (!(person.NumberOfKids >= minNumberOfKids))
-        //            Assert.Fail("Int min was exceeded: {0} ", person.NumberOfKids);
-        //    }                      
+            for (int i = 0; i < 10; i++)
+            {
+                var person = Angie
+                    .New<Person>();
 
-        //}
+                Assert.True(person.NumberOfKids >= minNumberOfKids);
+            }
 
-        //[Test]
-        //public void IntRangeWithinBoundsOnGeneratedValue()
-        //{
-        //    var success = true;
+        }
 
-        //    // use a small window to try to force collisions
-        //    var minAge = 20;
-        //    var maxAge = 22;
+        [Fact]
+        public void IntRangeWithinBoundsOnGeneratedValue()
+        {
+            var success = true;
 
-        //    Angie.Reset();
+            // use a small window to try to force collisions
+            var minAge = 20;
+            var maxAge = 22;
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var person = Angie                    
-        //            .Configure<Person>()
-        //            .Fill(p=> p.Age)
-        //            .WithinRange(minAge, maxAge)
-        //            .Make<Person>();
+            Angie.Reset();
 
-        //        success = (person.Age >= minAge && person.Age <= maxAge);
+            for (int i = 0; i < 500; i++)
+            {
+                Angie
+                    .Configure<Person>()
+                    .Fill(p => p.Age)
+                    .WithinRange(minAge, maxAge);
+                var person = A.New<Person>();
 
-        //        Assert.IsTrue(success, "Int was generated outside of range.{0}", person.Age);
-        //    }            
-        //}
+                success = (person.Age >= minAge && person.Age <= maxAge);
+
+                Assert.True(success);
+            }
+        }
 
 
-        //private class ClassWithShortProperty
-        //{
-        //    public short ShortProperty { get; set; }
-        //}
+        private class ClassWithShortProperty
+        {
+            public short ShortProperty { get; set; }
+        }
 
-        //[Test]
-        //public void ShortMaxNotExceededOnGeneratedValue()
-        //{
-        //    short maxShort = 4;
+        [Fact]
+        public void ShortMaxNotExceededOnGeneratedValue()
+        {
+            short maxShort = 4;
 
-        //    Angie.Default()
-        //        .MaxShort(maxShort);
+            Angie.Default()
+                .MaxShort(maxShort);
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var instance = Angie
-        //            .FastMake<ClassWithShortProperty>();
+            for (int i = 0; i < 500; i++)
+            {
+                var instance = Angie
+                    .New<ClassWithShortProperty>();
 
-        //        if (!(instance.ShortProperty <= maxShort))
-        //            Assert.Fail("Short max was exceeded: {0} ", instance.ShortProperty);
-        //    }
+                Assert.True(instance.ShortProperty <= maxShort);
+            }
 
-        //}
+        }
 
-        //[Test]
-        //public void ShortMinNotExceededOnGeneratedValue()
-        //{
-        //    short minNumberOfKids = 5;
+        [Fact]
+        public void ShortMinNotExceededOnGeneratedValue()
+        {
+            short minNumberOfKids = 5;
 
-        //    Angie.Default()
-        //        .MinShort(minNumberOfKids);
+            Angie.Default()
+                .MinShort(minNumberOfKids);
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var instance = Angie
-        //            .FastMake<ClassWithShortProperty>();
+            for (int i = 0; i < 500; i++)
+            {
+                var instance = Angie
+                    .New<ClassWithShortProperty>();
 
-        //        if (!(instance.ShortProperty >= minNumberOfKids))
-        //            Assert.Fail("Short min was exceeded: {0} ", instance.ShortProperty);
-        //    }
+                Assert.True(instance.ShortProperty >= minNumberOfKids);
+            }
 
-        //}
+        }
 
-        //[Test]
-        //public void ShortRangeWithinBoundsOnGeneratedValue()
-        //{
-        //    // use a small window to try to force collisions
-        //    const short minValue = 20;
-        //    const short maxValue = 22;
+        [Fact]
+        public void ShortRangeWithinBoundsOnGeneratedValue()
+        {
+            // use a small window to try to force collisions
+            const short minValue = 20;
+            const short maxValue = 22;
 
-        //    Angie.Reset();
+            Angie.Reset();
 
-        //    for (int i = 0; i < 500; i++)
-        //    {
-        //        var person = Angie
-        //            .Configure<ClassWithShortProperty>()
-        //            .Fill(p => p.ShortProperty)
-        //            .WithinRange(minValue, maxValue)
-        //            .Make();
+            for (int i = 0; i < 500; i++)
+            {
+                Angie
+                       .Configure<Person>()
+                       .Fill(p => p.NumberOfToes)
+                       .WithinRange(minValue, maxValue);
 
-        //        bool success = (person.ShortProperty >= minValue && person.ShortProperty <= maxValue);
+                var person = A.New<Person>();
 
-        //        Assert.IsTrue(success, "Short was generated outside of range.{0}", person.ShortProperty);
-        //    }
+                Assert.True(person.NumberOfToes >= minValue && person.NumberOfToes <= maxValue);
 
-        //}
+            }
+
+        }
 
         //[Test]
         //public void AgeIsAlwaysPositive()
         //{
-        //    var person = Angie.FastMake<Person>();
+        //    var person = Angie.New<Person>();
         //    Assert.IsTrue(person.Age >= 0);
         //}
 
         //[Test]
-        //public void FastListDefaultGenerates25Entries()
+        //public void ListOfDefaultGenerates25Entries()
         //{
-        //    var people = Angie.FastList<Person>();
+        //    var people = Angie.ListOf<Person>();
 
         //    Assert.AreEqual(Angie.Defaults.LIST_COUNT, people.Count(),
         //        string.Format("Expected {0} but collection contained {1}", 
@@ -224,10 +214,10 @@ namespace Angela.Tests
         //}
 
         //[Test]
-        //public void FastListGeneratesCorrectNumberOfEntries()
+        //public void ListOfGeneratesCorrectNumberOfEntries()
         //{
         //    var personCount = 17;
-        //    var people = Angie.FastList<Person>(personCount);
+        //    var people = Angie.ListOf<Person>(personCount);
         //    Assert.AreEqual(people.Count(), personCount);
         //}
 
@@ -250,7 +240,7 @@ namespace Angela.Tests
         //        .ListCount(personCount);
 
         //    var people = Angie
-        //        .FastList<Person>();
+        //        .ListOf<Person>();
 
         //    Assert.AreEqual(people.Count(), personCount);
         //}
@@ -262,7 +252,7 @@ namespace Angela.Tests
         //    var personCount = 13;
 
         //    var people = Angie
-        //        .FastList<Person>(personCount);
+        //        .ListOf<Person>(personCount);
 
         //    Assert.AreEqual(people.Count(), personCount);
         //}
@@ -283,7 +273,7 @@ namespace Angela.Tests
         //[Test]
         //public void DateTimesAreInitialized()
         //{
-        //    var post = Angie.FastMake<BlogPost>();
+        //    var post = Angie.New<BlogPost>();
         //    Assert.IsTrue(post.CreateDate != default(DateTime));
         //}
 
@@ -380,14 +370,14 @@ namespace Angela.Tests
         //[Test]
         //public void CanadianProvinceIsFilled()
         //{
-        //    var location = Angie.FastMake<CanadianLocation>();
+        //    var location = Angie.New<CanadianLocation>();
         //    Assert.IsFalse(string.IsNullOrEmpty(location.Province));
         //}
 
         //[Test]
         //public void UsaStateIsFilled()
         //{
-        //    var location = Angie.FastMake<AmericanLocation>();
+        //    var location = Angie.New<AmericanLocation>();
         //    Assert.IsFalse(string.IsNullOrEmpty(location.State));
         //}
 
@@ -447,7 +437,7 @@ namespace Angela.Tests
         //public void MethodIsLeftAloneWhenMatchesNothing()
         //{
         //    // currently fills
-        //    var person = Angie.FastMake<Person>();
+        //    var person = Angie.New<Person>();
         //    Assert.IsTrue(string.IsNullOrEmpty(person.GetMiddleName()));
         //}
 

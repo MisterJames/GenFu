@@ -19,7 +19,7 @@ namespace Angela.Tests
         [Test]
         public void FirstNamesResourcesLoad()
         {
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             string nameFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_FIRST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.FirstName, nameFail);
@@ -28,7 +28,7 @@ namespace Angela.Tests
         [Test]
         public void LastNamesResourcesLoad()
         {
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             string nameFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_LAST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.LastName, nameFail);
@@ -37,7 +37,7 @@ namespace Angela.Tests
         [Test]
         public void TitleResourcesLoad()
         {
-            var post = Angie.FastMake<BlogPost>();
+            var post = Angie.New<BlogPost>();
             string titleFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_TITLES);
 
             Assert.AreNotEqual(string.Empty, post.Title, titleFail);
@@ -46,7 +46,7 @@ namespace Angela.Tests
         [Test]
         public void WordsResourcesLoad()
         {
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             string wordFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_WORDS);
 
             Assert.AreNotEqual(string.Empty, person.Title, wordFail);
@@ -55,7 +55,7 @@ namespace Angela.Tests
         [Test]
         public void DomainResourceTest()
         {
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             string twitterFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_FIRST_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.Twitter, twitterFail);
@@ -64,7 +64,7 @@ namespace Angela.Tests
         [Test]
         public void TwitterResourceTest()
         {
-            var person = Angie.FastMake<Person>();
+            var person = Angie.New<Person>();
             string emailFail = string.Format(Angie.Defaults.STRING_LOADFAIL, Angie.Defaults.FILE_DOMAIN_NAMES);
 
             Assert.AreNotEqual(string.Empty, person.EmailAddress, emailFail);

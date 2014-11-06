@@ -29,7 +29,7 @@ namespace Angela.Tests
         [Test]
         public void TestThatAdditionalFiltersAreFoundAndUsed()
         {
-            TestClass testClass = Angie.FastMake<TestClass>();
+            TestClass testClass = Angie.New<TestClass>();
             Assert.AreEqual(PluginPropertyFiller.Value, testClass.TestProperty);
 
         }

@@ -17,10 +17,11 @@ namespace Angela.Tests
         {
             var domain = "foofoofoobarbarbar.com";
 
-            var person = Angie.Configure<Person>()
-                .Fill(p=> p.EmailAddress)
-                .AsEmailAddressForDomain(domain)
-                .Make<Person>();
+            Angie.Configure<Person>()
+                .Fill(p => p.EmailAddress)
+                .AsEmailAddressForDomain(domain);
+
+            var person = A.New<Person>();
 
             Assert.True(person.EmailAddress.Contains(domain));
         }

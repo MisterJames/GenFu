@@ -36,6 +36,8 @@ namespace Angela.Tests
         // decimal
         public decimal HeightInMetres { get; set; }
 
+        public short NumberOfToes { get; set; }
+
         public void SetMiddleName(string middleName)
         {
             _middleName = middleName;
