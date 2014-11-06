@@ -67,21 +67,31 @@ namespace Angela.Core
 
         public static List<T> ListOf<T>() where T : new()
         {
-            return BuildList<T>(_listCount);
+            return ListOf(typeof(T)).Cast<T>().ToList();
+        }
+
+        public static List<object> ListOf(Type type)
+        {
+            return BuildList(type, _listCount);
         }
         
         public static List<T> ListOf<T>(int personCount) where T : new()
         {
-            return BuildList<T>(personCount);
+            return ListOf(typeof(T), personCount).Cast<T>().ToList();
         }
 
-        private static List<T> BuildList<T>(int itemCount) where T : new()
+        public static List<object> ListOf(Type type, int personCount)
         {
-            var result = new List<T>();
+            return BuildList(type, personCount);
+        }
+
+        private static List<object> BuildList(Type type, int itemCount)
+        {
+            var result = new List<object>();
 
             for (int i = 0; i < itemCount; i++)
             {
-                result.Add(Angie.New<T>());
+                result.Add(Angie.New(type));
             }
 
             return result;
