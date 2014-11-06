@@ -9,7 +9,7 @@ using Xunit;
 namespace Angela.Tests
 {
     //[TestFixture]
-    class AngieTests
+    public class AngieTests
     {
        // [SetUp]
         public void ResetAngie()
@@ -20,19 +20,20 @@ namespace Angela.Tests
         [Fact]
         public void StringInNewClassIsPopulated()
         {
+
             var person = Angie.FastMake<Person>();
             Assert.True(!string.IsNullOrEmpty(person.FirstName));
         }
 
-        //[Test]
-        //public void EmailAddressInNewClassIsValid()
-        //{
-        //    Person person = Angie.FastMake<Person>();
-        //    Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-        //    Match match = regex.Match(person.EmailAddress);
-        //    Assert.IsTrue(match.Success, "Invalid Email Address: {0}", person.EmailAddress);
+        [Fact]
+        public void EmailAddressInNewClassIsValid()
+        {
+            Person person = Angie.FastMake<Person>();
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(person.EmailAddress);
+            Assert.True(match.Success, "Invalid Email Address: {0}");
 
-        //}
+        }
 
         //[Test]
         //public void PhoneNumberInNewClassIsPopulated()
