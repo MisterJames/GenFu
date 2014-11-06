@@ -167,3 +167,5 @@ pip-log.txt
 .DS_Store
 
 *.ide
+
+wwwroot/lib/*
