@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Composition.Hosting;
 using System.Text.RegularExpressions;
+using Angela.Core.Fillers;
 
 namespace Angela.Core
 {
@@ -12,12 +13,7 @@ namespace Angela.Core
     {
         private IDictionary<string, IDictionary<string, IPropertyFiller>> _specificPropertyFillersByObjectType;
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
-
-#pragma warning disable 0649 //property injected by MEF
-        [System.Composition.ImportMany(typeof(IPropertyFiller))]
-        private IEnumerable<IPropertyFiller> _propertyFillers;
-#pragma warning restore 0649
-
+        private IList<IPropertyFiller> _propertyFillers;
 
         public FillerManager()
         {
@@ -28,12 +24,42 @@ namespace Angela.Core
         {
             if (_propertyFillers == null)
             {
-                
-                AggregateCatalog catalog = new AggregateCatalog();
-                catalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory));
-                catalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory, "*.exe"));
-                CompositionContainer container = new CompositionContainer(catalog);
-                container.ComposeParts(this);
+                _propertyFillers = new List<IPropertyFiller>();
+
+                _propertyFillers.Add(new IntFiller());
+                _propertyFillers.Add(new DecimalFiller());
+                _propertyFillers.Add(new ShortFiller());
+                _propertyFillers.Add(new AgeFiller());
+                _propertyFillers.Add(new PriceFiller());
+
+                _propertyFillers.Add(new CompanyNameFiller());
+
+                _propertyFillers.Add(new CookingFiller.IngredientFiller());
+
+                _propertyFillers.Add(new DateTimeFiller());
+                _propertyFillers.Add(new GuidFiller());
+                _propertyFillers.Add(new ArticleTitleFiller());
+
+                _propertyFillers.Add(new FirstNameFiller());
+                _propertyFillers.Add(new LastNameFiller());
+                _propertyFillers.Add(new EmailFiller());
+
+                _propertyFillers.Add(new TwitterFiller());
+
+                _propertyFillers.Add(new AddressFiller());
+                _propertyFillers.Add(new AddressLine2Filler());
+                _propertyFillers.Add(new CityFiller());
+                _propertyFillers.Add(new StateFiller());
+                _propertyFillers.Add(new ProvinceFiller());
+                _propertyFillers.Add(new PhoneNumberFiller());
+
+                _propertyFillers.Add(new MusicAlbumTitleFiller());
+                _propertyFillers.Add(new MusicArtistNameFiller());
+                _propertyFillers.Add(new MusicGenreDescriptionFiller());
+                _propertyFillers.Add(new MusicGenreNameFiller());
+
+                _propertyFillers.Add(new StringFiller());
+
             }
 
             _specificPropertyFillersByObjectType = new Dictionary<string, IDictionary<string, IPropertyFiller>>();
