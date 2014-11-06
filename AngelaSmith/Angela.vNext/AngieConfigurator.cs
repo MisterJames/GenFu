@@ -52,9 +52,9 @@ namespace Angela.Core
         /// </summary>
         /// <typeparam name="T">The target object type</typeparam>
         /// <returns>An object filled with random data</returns>
-        public static T FastMake<T>() where T : new()
+        public static T New<T>() where T : new()
         {
-            return Angie.FastMake<T>();
+            return Angie.New<T>();
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace Angela.Core
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="instance">The instance to fill</param>
         /// <returns>The instance filled with random data</returns>
-        public static T FastFill<T>(T instance)
+        public static T Few<T>(T instance)
         {
-            return Angie.FastFill(instance);
+            return Angie.Few(instance);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Angela.Core
         /// <returns>An object filled with random data</returns>
         public T Make<T>() where T : new()
         {
-            return Angie.FastMake<T>();
+            return Angie.New<T>();
         }
 
         public static List<T> FastList<T>() where T : new()
@@ -116,19 +116,19 @@ namespace Angela.Core
         {
         }
 
-        public static T FastMake()
+        public static T New()
         {
-            return Angie.FastMake<T>();
+            return Angie.New<T>();
         }
 
-        public static T FastFill(T instance)
+        public static T Few(T instance)
         {
-            return Angie.FastFill(instance);
+            return Angie.Few(instance);
         }
 
         public T Make()
         {
-            return Angie.FastMake<T>();
+            return Angie.New<T>();
         }
 
         public static List<T> FastList()

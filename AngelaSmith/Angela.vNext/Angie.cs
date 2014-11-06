@@ -24,16 +24,16 @@ namespace Angela.Core
             Random = new Random();
         }
 
-        public static T FastMake<T>() where T : new()
+        public static T New<T>() where T : new()
         {
             var instance = new T();
 
-            FastFill(instance);
+            Few(instance);
 
             return instance;
         }
 
-        public static T FastFill<T>(T instance)
+        public static T Few<T>(T instance)
         {
             if (instance != null)
             {
@@ -60,7 +60,7 @@ namespace Angela.Core
         {
             var instance = new T();
 
-            FastFill<T>(instance);
+            Few<T>(instance);
 
             return instance;
         }
@@ -86,7 +86,7 @@ namespace Angela.Core
 
             for (int i = 0; i < itemCount; i++)
             {
-                result.Add(Angie.FastMake<T>());
+                result.Add(Angie.New<T>());
             }
 
             return result;

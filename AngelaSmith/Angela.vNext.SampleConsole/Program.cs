@@ -14,9 +14,11 @@ namespace Angela.vNext.SampleConsole
     {
         public void Main(string[] args)
         {
-            var person = Angie.FastMake<Person>();
+            var person = A.New<Person>();
             Console.WriteLine(person.FirstName);
             Console.ReadLine();
+
+            //var people = A.Few<Person>
         }
     }
 }
