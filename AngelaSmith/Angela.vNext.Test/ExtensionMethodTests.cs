@@ -1,18 +1,16 @@
 ﻿using GenFu;
-using NUnit.Framework;
+using Xunit;
 
 namespace Angela.Tests
 {
-    [TestFixture]
-    class ExtensionMethodTests
+    public class ExtensionMethodTests
     {
-        [SetUp]
-        public void ResetAngie()
+        public ExtensionMethodTests()
         {
             A.Reset();
         }
 
-        [Test]
+        [Fact]
         public void AsEmailAddressForDomain()
         {
             var domain = "foofoofoobarbarbar.com";

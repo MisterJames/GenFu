@@ -1,40 +1,39 @@
 ﻿using System;
 using GenFu;
 using System.Linq;
-using NUnit.Framework;
+using Xunit;
 using System.Collections.Generic;
 
-namespace Angela.Tests
-{
-    [TestFixture]
-    class When_getting_a_generic_filler
+namespace Angela.Tests { 
+
+    public class When_getting_a_generic_filler
     {
-        [Test]
+        [Fact]
         public void An_int_filler_is_returned()
         {
             var manager = new GenFu.FillerManager();
-            Assert.IsNotNull(manager.GetGenericFiller<int, IntFiller>());
+            Assert.NotNull(manager.GetGenericFiller<int, IntFiller>());
         }
 
-        [Test]
+        [Fact]
         public void A_short_filler_is_returned()
         {
             var manager = new GenFu.FillerManager();
-            Assert.IsNotNull(manager.GetGenericFiller<short, ShortFiller>());
+            Assert.NotNull(manager.GetGenericFiller<short, ShortFiller>());
         }
 
-        [Test]
+        [Fact]
         public void An_datetime_filler_is_returned()
         {
             var manager = new GenFu.FillerManager();
-            Assert.IsNotNull(manager.GetGenericFiller<DateTime, DateTimeFiller>());
+            Assert.NotNull(manager.GetGenericFiller<DateTime, DateTimeFiller>());
         }
 
-        [Test]
+        [Fact]
         public void A_decimal_filler_is_returned()
         {
             var manager = new GenFu.FillerManager();
-            Assert.IsNotNull(manager.GetGenericFiller<decimal, DecimalFiller>());
+            Assert.NotNull(manager.GetGenericFiller<decimal, DecimalFiller>());
         }
     }
 }

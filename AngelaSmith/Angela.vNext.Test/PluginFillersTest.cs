@@ -1,5 +1,5 @@
 ﻿using GenFu;
-using NUnit.Framework;
+using Xunit;
 
 namespace Angela.Tests
 {
@@ -22,15 +22,13 @@ namespace Angela.Tests
         public string TestProperty { get; set; }
     }
 
-
-    [TestFixture]
     public class PluginFillersTest
     {
-        [Test]
+        [Fact]
         public void TestThatAdditionalFiltersAreFoundAndUsed()
         {
             TestClass testClass = A.New<TestClass>();
-            Assert.AreEqual(PluginPropertyFiller.Value, testClass.TestProperty);
+            Assert.Equal(PluginPropertyFiller.Value, testClass.TestProperty);
 
         }
     }

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using GenFu;
-using NUnit.Framework;
+using Xunit;
 
 namespace Angela.Tests
 {
-    [TestFixture]
     public class ObjectGraphTests
     {
         private class Dog
@@ -13,7 +12,7 @@ namespace Angela.Tests
             public Person Owner { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void FillPropertyWithRandomValuesFromList()
         {
             IList<Person> peeps = A.ListOf<Person>(10);
@@ -25,8 +24,8 @@ namespace Angela.Tests
             var dogs = A.ListOf<Dog>();
             foreach (Dog dog in dogs)
             {
-                Assert.IsNotNull(dog.Owner);
-                CollectionAssert.Contains(peeps, dog.Owner);
+                Assert.NotNull(dog.Owner);
+                Assert.True(peeps.Contains(dog.Owner));
             }
         }
     }
