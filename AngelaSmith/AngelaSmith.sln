@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22231.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angela.Core", "..\src\Angie.Core\Angela.Core.csproj", "{CC9D3FAF-977A-48F7-94D8-A84A52CDDFF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angela.Tests", "..\tests\Angela.Tests.csproj", "{F0443616-5A53-42B3-90A4-037B6DF60C67}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F6708A91-5FA0-476D-ADC6-1EAA5D816840}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -14,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsole", "..\samples
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu", "GenFu\GenFu.kproj", "{52DD533C-A847-428C-A580-8E4B0E2F504A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu.Test", "Angela.vNext.Test\GenFu.Test.kproj", "{3B8E8D6A-2046-43B7-887C-2B1E5BFD5CE9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Angela.vNext.Test", "Angela.vNext.Test\Angela.vNext.Test.kproj", "{3B8E8D6A-2046-43B7-887C-2B1E5BFD5CE9}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Angela.vNext.SampleConsole", "Angela.vNext.SampleConsole\Angela.vNext.SampleConsole.kproj", "{8CE9AEBB-C2AF-41AB-9388-AA242FB11250}"
 EndProject
@@ -26,6 +30,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9D3FAF-977A-48F7-94D8-A84A52CDDFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9D3FAF-977A-48F7-94D8-A84A52CDDFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9D3FAF-977A-48F7-94D8-A84A52CDDFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9D3FAF-977A-48F7-94D8-A84A52CDDFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0443616-5A53-42B3-90A4-037B6DF60C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0443616-5A53-42B3-90A4-037B6DF60C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0443616-5A53-42B3-90A4-037B6DF60C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0443616-5A53-42B3-90A4-037B6DF60C67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB6CB592-D881-4A6C-AA2A-BAC00783C12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB6CB592-D881-4A6C-AA2A-BAC00783C12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB6CB592-D881-4A6C-AA2A-BAC00783C12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
