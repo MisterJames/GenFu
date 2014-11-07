@@ -3,10 +3,14 @@
 }
 
 <div class="jumbotron">
-    <h1>GenFu Your Objects</h1>
+    <h2>GenFu Your Objects</h2>
+    <div class="pull-right col-lg-3">
+        <img src="~/content/ninja.png" height="200" width="200" />
+    </div>
     <p class="lead">
         GenFu is a library you can use to generate realistic test data. 
     </p>
+
     <p>
         GenFu is composed of several
         property fillers that can populate commonly
@@ -19,21 +23,30 @@
 
 
 <div class="row">
-    <h2>Try GenFu Out</h2>
-    <p><i>Working on this part...stay tuned.</i></p>
-    <form class="form-horizontal">
-        <div class="col-lg-10 col-md-10 col-sm-10" >
-            <textarea id="source-codez" class="form-control" rows="15">
-                public class Person
-                {
-                public string FirstName { get; set; }
-                public string LastName { get; set; }
-                public int Age { get; set; }
-                public string EmailAddress { get; set; }
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2>Try GenFu Out</h2>
+        <p><i>Working on this part...stay tuned.</i></p>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <textarea id="source-codez" class="form-control" rows="12">
 
-                }
-            </textarea>
-        </div>
-        <a class="btn btn-success btn-lg" ><span class="glyphicon glyphicon-play"></span> Generate test data</a>
-    </form>
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string EmailAddress { get; set; }
+    }
+
+                    </textarea>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <a class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play"></span> Generate test data</a>
+                </div>
+            </div>
+
+            
+        </form>
+    </div>
 </div>
