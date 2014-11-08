@@ -35,10 +35,7 @@ namespace GenFu.Web.Models
 
                 // this path isn't doing anything yet...
                 var type = BuildType();
-                //var result = A.New(type);
-
-                // remove this and use result from above when ready
-                var result = A.New<Person>();
+                var result = A.New(type);
 
                 // make sure there's nothing fishy about the generated type
                 if (ValidateResult(result))
@@ -59,8 +56,6 @@ namespace GenFu.Web.Models
 
             // build references up
             var references = new List<MetadataReference>();
-            //references.Add("System.dll"));  // [01]
-            //references.Add(new MetadataFileReference(typeof(object).Assembly.Location)));
             references.Add(MetadataReference.CreateFromAssembly(typeof(object).GetTypeInfo().Assembly));
 
             // set up compilation
@@ -78,10 +73,17 @@ namespace GenFu.Web.Models
                 // we get here, with diagnostic errors (check compileResult.Diagnostics)
                 assembly = Assembly.Load(stream.GetBuffer());
             }
-            
+
             // iterate over the types in the assembly
-            // count classes?
-            // just pull the first one?
+            var types = assembly.GetExportedTypes();
+            if(types.Length == 1)
+            {
+                return types[0];
+            }
+            if types.Length > 1)
+            {
+                // do something interesting, perhaps with the BadSourceCode class?
+            }
 
             return null;
         }
