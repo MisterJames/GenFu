@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GenFu.Web.Models
 {
     public class SourceCode
     {
         public string Source { get; set; }
-        
+
         public bool IsLegit()
         {
             // todo: figure out a way to parse for mis-behaving code...
@@ -38,4 +39,34 @@ namespace GenFu.Web.Models
             return null;
 
         }
+
+        public static Dictionary<string, string> GetPropertyValues(object target)
+        {
+            var propertyMap = new Dictionary<string, string>();
+
+            try
+            {
+                var properties = target.GetType().GetProperties();
+                foreach (var prop in properties)
+                {
+                    try
+                    {
+                        var key = prop.Name;
+                        var value = prop.GetValue(target).ToString();
+                        propertyMap.Add(key, value);
+                    }
+                    catch
+                    {
+                        // following best practices and swallowing all exceptions :oP
+                    }
+                }
+            }
+            catch
+            {
+                // ...and release! i'm no fisherman
+            }
+
+            return propertyMap;
+        }
+    }
 }

@@ -16,9 +16,14 @@ namespace GenFu.Web.Controllers
         [HttpPost]
         public IActionResult Index(SourceCode sourceCode)
         {
+            var result = sourceCode.Process();
 
-            return View("");
+            if (!sourceCode.IsLegit())
+                result = null;
+
+            return View("Result", SourceCode.GetPropertyValues(result));
         }
+
         public IActionResult About()
         {
             ViewBag.Message = "Your application description page.";

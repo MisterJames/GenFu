@@ -28,8 +28,7 @@
         "ef":  "EntityFramework.Commands"
     },
     "frameworks": {
-        "aspnet50": { },
-        "aspnetcore50": { }
+        "aspnet50": { }
     },
     "exclude": [
         "wwwroot",
