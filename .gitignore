@@ -45,7 +45,6 @@ local.properties
 # Build results
 bower_components/
 node_modules/
-wwwroot/
 [Dd]ebug/
 [Rr]elease/
 *_i.c

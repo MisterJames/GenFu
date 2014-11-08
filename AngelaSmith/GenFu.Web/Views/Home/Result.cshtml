@@ -1,0 +1,19 @@
+﻿@model Dictionary<string, string>
+@{ 
+    ViewBag.Title = "Totally just GenFu'd that thing";
+}
+
+<fieldset>
+    <legend>Generated Properties</legend>
+    <dl>
+        @foreach (var property in Model)
+        {
+            <dt>
+                @property.Key
+            </dt>
+                <dd>
+                    @property.Value
+                </dd>
+        }
+    </dl>
+</fieldset>

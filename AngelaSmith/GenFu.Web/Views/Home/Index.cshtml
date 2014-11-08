@@ -3,37 +3,49 @@
 }
 
 <div class="jumbotron">
-    <h1>GenFu Your Objects</h1>
+    <div class="pull-right col-lg-3">
+        <img src="~/content/ninja.png" height="200" width="200" />
+    </div>
+    <h2>GenFu Your Objects</h2>
+
     <p class="lead">
-        GenFu is a library you can use to generate realistic test data. 
-    </p>
-    <p>
-        GenFu is composed of several
-        property fillers that can populate commonly
-        named properties using reflection and an internal database of
-        values or randomly created data. You can override any of the fillers or
-        give GenFu hints on how to fill your properties.
+        GenFu is a test and prototype data generation library targeting ASP.NET vNext. 
+        It understands different topics - such as "contact details" or "blog posts" 
+        and uses that understanding to to populate commonly named properties 
+        using reflection and an internal database of values or randomly created data. 
     </p>
 </div>
 
 
 
 <div class="row">
-    <h2>Try GenFu Out</h2>
-    <p><i>Working on this part...stay tuned.</i></p>
-    <form>
-        <div class="col-lg-10 col-md-10 col-sm-10" >
-            <textarea id="source-codez" class="form-control" rows="15">
-                public class Person
-                {
-                public string FirstName { get; set; }
-                public string LastName { get; set; }
-                public int Age { get; set; }
-                public string EmailAddress { get; set; }
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2>Try GenFu Out</h2>
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <textarea id="Source" name="Source" class="form-control" rows="12">
 
-                }
-            </textarea>
-        </div>
-        <a class="btn btn-success btn-lg" ><span class="glyphicon glyphicon-play"></span> Generate test data</a>
-    </form>
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string EmailAddress { get; set; }
+    }
+
+                    </textarea>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <button class="btn btn-success btn-lg" type="submit"><span class="glyphicon glyphicon-play"></span> Generate test data</button>
+                </div>
+            </div>
+
+            
+        </form>
+    </div>
+</div>
+
+<div class="row">
+
 </div>

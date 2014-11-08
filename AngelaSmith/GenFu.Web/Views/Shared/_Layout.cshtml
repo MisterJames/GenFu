@@ -1,43 +1,142 @@
-﻿<!DOCTYPE html>
+﻿@using GenFu.Web.Helpers.ViewHelpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - GenFu</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <!-- Resources -->
+    <link href="~/fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                     @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })              
+                <a class="navbar-brand" href="@Url.Action("Index")"><img src="~/img/logo.png" alt="GenFu"> </a>
+                <span class="navbar-brand">Awesome Test Data</span>
             </div>
-            <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    @await Html.PartialAsync("_LoginPartial")
-                </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li @*class="@Html.IsActive("Home","Index")"*@>
+                        <a href="@Url.Action("Index")">Home</a>
+                    </li>
+                    <li @*class="@Html.IsActive("Home","About")"*@>
+                        <a href="@Url.Action("About")">About</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </div> <!-- / .navigation -->
+
+    <!-- Wrapper -->
+    <div class="wrapper">
+
+        <!-- Topic Header -->
+        @*<div class="topic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3></h3>
+                    </div>
+                    <div class="col-sm-8">
+                        <ol class="breadcrumb pull-right hidden-xs">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="container">
+            @RenderBody()
+        </div> <!-- / .container -->
+
+    </div> <!-- / .wrapper -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Contact Us -->
+                <div class="col-sm-4">
+                    <h4><i class="fa fa-github-alt text-red"></i> We're On GitHub</h4>
+                    <p>If there is something that you'd like to see in GenFu just let us know.</p>
+                    <p>
+                        Or join us! That's the beauty of open source. <a href="https://www.github.com/MisterJames/GenFu">GenFu on GitHub</a>
+                    </p>
+                </div>
+                <!-- Recent Comments -->
+                <div class="col-sm-4">
+                    <h4><i class="fa fa-comments text-red"></i> People are Talking</h4>
+                    <div class="tweet">
+                        <i class="fa fa-comment fa-2x"></i>
+                        <p>
+                            Wait, wut? You guys have a class named "A". Nice!<br />
+                            - David Fowler
+                        </p>
+                    </div>
+                    <div class="tweet">
+                        <i class="fa fa-comment fa-2x"></i>
+                        <p>
+                            F.U.? ...classy!<br />
+                            - Damian Edwards
+                        </p>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+                <div class="col-sm-4">
+                    <h4><i class="fa fa-twitter text-red"></i> Follow us on Twitter</h4>
+                    <p>
+                        We do that whole tweeting thing. Pretty sure it's going to catch on.
+                        <br>
+                        <a href="https://twitter.com/CanadianJames" class="twitter-follow-button" data-show-count="false">Follow @@CanadianJames</a><br />
+                        <a href="https://twitter.com/stimms" class="twitter-follow-button" data-show-count="false">Follow @@stimms</a><br />
+                        <a href="https://twitter.com/Dave_Paquette" class="twitter-follow-button" data-show-count="false">Follow @@Dave_Paquette</a><br />
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br />
+
+                    </p>                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="copyright">
+                    &copy; @DateTime.Now.Year - GenFu by CanadianJames, Dave_Paquette and stimms. Ninja designed by <a href="http://www.thenounproject.com/ridzal.zainal">Ridzal Zainal</a> from the <a href="http://www.thenounproject.com">Noun Project</a>
+                </div>
+            </div>
+        </div>  <!-- / .row -->
+    </div> <!-- / .container -->
+
+
     <script src="~/lib/jquery/jquery.js"></script> 
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/js/scrolltopcontrol.js"></script>
+    <script src="~/js/custom.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
