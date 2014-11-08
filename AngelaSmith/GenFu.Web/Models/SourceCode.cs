@@ -1,5 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Mvc.Razor;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Emit;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace GenFu.Web.Models
 {
@@ -26,7 +32,12 @@ namespace GenFu.Web.Models
 
             if (IsLegit())
             {
-                // here we'd actually compile the code
+
+                // this path isn't doing anything yet...
+                var type = BuildType();
+                //var result = A.New(type);
+
+                // remove this and use result from above when ready
                 var result = A.New<Person>();
 
                 // make sure there's nothing fishy about the generated type
@@ -38,6 +49,34 @@ namespace GenFu.Web.Models
 
             return null;
 
+        }
+
+        private Type BuildType()
+        {
+
+            var assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
+            var assemblyName = Guid.NewGuid().ToString();
+            var syntaxTrees = new[] { SyntaxTreeGenerator.Generate(this.Source, assemblyPath) };
+
+            // set up compilation
+            var compilation = CSharpCompilation.Create(assemblyName)
+                .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
+                .AddSyntaxTrees(syntaxTrees);
+
+            // build the assembly
+            Assembly assembly;
+            using (var stream = new MemoryStream())
+            {
+                // this is broked...
+                EmitResult compileResult = compilation.Emit(stream);
+                assembly = Assembly.Load(stream.GetBuffer());
+            }
+            
+            // iterate over the types in the assembly
+            // count classes?
+            // just pull the first one?
+
+            return null;
         }
 
         public static Dictionary<string, string> GetPropertyValues(object target)
