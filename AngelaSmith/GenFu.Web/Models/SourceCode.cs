@@ -53,19 +53,19 @@ namespace GenFu.Web.Models
 
         private Type BuildType()
         {
-
             var assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
             var assemblyName = Guid.NewGuid().ToString();
-            var syntaxTrees =CSharpSyntaxTree.ParseText(this.Source);
-            var references = new List<MetadataReference>();
+            var syntaxTrees = CSharpSyntaxTree.ParseText(this.Source);
 
-            // likely need a reference to system? not sure if i'm doing this right...
-            references.Add(new MetadataFileReference(Path.Combine(assemblyPath, "System.dll")));
+            // build references up
+            var references = new List<MetadataReference>();
+            //references.Add("System.dll"));  // [01]
+            //references.Add(new MetadataFileReference(typeof(object).Assembly.Location)));
+            references.Add(MetadataReference.CreateFromAssembly(typeof(object).GetTypeInfo().Assembly));
 
             // set up compilation
             var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
-                // could this work? inaccessible :o(
                 .AddReferences(references)
                 .AddSyntaxTrees(syntaxTrees);
 
