@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
+using GenFu.Web.Models;
 
 namespace GenFu.Web.Controllers
 {
@@ -12,6 +13,12 @@ namespace GenFu.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(SourceCode sourceCode)
+        {
+
+            return View("");
+        }
         public IActionResult About()
         {
             ViewBag.Message = "Your application description page.";

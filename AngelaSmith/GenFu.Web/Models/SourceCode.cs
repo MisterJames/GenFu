@@ -12,5 +12,30 @@ namespace GenFu.Web.Models
 
             return true;
         }
-    }
+
+        private bool ValidateResult(object generatedClass)
+        {
+            // todo: figure out if the resultant object is a good citizen...
+
+            return true;
+        }
+
+        public object Process()
+        {
+
+            if (IsLegit())
+            {
+                // here we'd actually compile the code
+                var result = A.New<Person>();
+
+                // make sure there's nothing fishy about the generated type
+                if (ValidateResult(result))
+                {
+                    return result;
+                }
+            }
+
+            return null;
+
+        }
 }
