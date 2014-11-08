@@ -56,11 +56,16 @@ namespace GenFu.Web.Models
 
             var assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
             var assemblyName = Guid.NewGuid().ToString();
-            var syntaxTrees = new[] { SyntaxTreeGenerator.Generate(this.Source, assemblyPath) };
+            var syntaxTrees =CSharpSyntaxTree.ParseText(this.Source);
+            var references = new List<MetadataReference>();
+
+            // likely need a reference to system? not sure if i'm doing this right...
+            // ...
 
             // set up compilation
             var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
+                .AddReferences(references)
                 .AddSyntaxTrees(syntaxTrees);
 
             // build the assembly
@@ -69,6 +74,7 @@ namespace GenFu.Web.Models
             {
                 // this is broked...
                 EmitResult compileResult = compilation.Emit(stream);
+                // we get here, with diagnostic errors (check compileResult.Diagnostics)
                 assembly = Assembly.Load(stream.GetBuffer());
             }
             
