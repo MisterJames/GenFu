@@ -10,18 +10,37 @@ namespace GenFu.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            GenerateDataModel model = new GenerateDataModel();
+            model.Source = @"public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string EmailAddress { get; set; }
+    }";
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Index(SourceCode sourceCode)
         {
-            var result = sourceCode.Process();
+            GenerateDataModel model = new GenerateDataModel();
+            model.Source = sourceCode.Source;
 
-            if (!sourceCode.IsLegit())
-                result = null;
+            var compileResult = sourceCode.Compile();
 
-            return View("Result", SourceCode.GetPropertyValues(result));
+            if (!compileResult.IsValid)
+            {
+                model.HasCompileErrors = true;
+                model.CompileErrors = compileResult.Errors;
+            }
+            else
+            {
+                model.RandomObjects = sourceCode.GenerateData(10);
+                model.PropertyNames = model.RandomObjects.First().Keys;
+            }
+            
+            return View(model);
         }
 
         public IActionResult About()

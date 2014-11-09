@@ -65,6 +65,7 @@ node_modules/
 *.vspscc
 .builds
 *.dotCover
+wwwroot/
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
