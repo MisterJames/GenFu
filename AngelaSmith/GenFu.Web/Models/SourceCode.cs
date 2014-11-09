@@ -36,10 +36,10 @@ namespace GenFu.Web.Models
 
             if (IsLegit())
             {
-
                 // this path isn't doing anything yet...
                 var randomObjects = A.ListOf(_compiledType, count);
                                 
+
                 // make sure there's nothing fishy about the generated type
                 if (randomObjects.All(o => ValidateResult(o)))
                 {                    
