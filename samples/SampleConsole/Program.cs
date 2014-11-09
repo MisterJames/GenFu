@@ -131,7 +131,7 @@ namespace SampleConsole
             Angie.Default()
                 .ListCount(3);
 
-            var people = Angie
+            var people = GenFu
                 .Configure()
                 .MakeList<Person>();
 

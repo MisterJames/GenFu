@@ -7,7 +7,7 @@ using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.Temporal;
 using Xunit;
 
-namespace Angela.Tests
+namespace GenFu.Tests
 {
     public class BaseValueGeneratorTests
     {

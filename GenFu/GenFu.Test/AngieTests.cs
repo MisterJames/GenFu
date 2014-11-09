@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 using GenFu.ValueGenerators.Temporal;
 using Xunit;
 
-namespace Angela.Tests
+namespace GenFu.Tests
 {
-    public class AngieTests
+    public class GenFuTests
     {
         [Fact]
         public void StringInNewClassIsPopulated()

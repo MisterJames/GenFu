@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Angela.Tests
+namespace GenFu.Tests
 {
     internal class BlogPost
     {

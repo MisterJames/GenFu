@@ -4,7 +4,7 @@ using System.Linq;
 using Xunit;
 using System.Collections.Generic;
 
-namespace Angela.Tests { 
+namespace GenFu.Tests { 
 
     public class When_getting_a_generic_filler
     {

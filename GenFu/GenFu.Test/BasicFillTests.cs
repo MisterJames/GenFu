@@ -5,7 +5,7 @@ using Xunit;
 using System.Collections.Generic;
 using GenFu.ValueGenerators.Geospatial;
 
-namespace Angela.Tests
+namespace GenFu.Tests
 {
     public class BasicFillTests
     {

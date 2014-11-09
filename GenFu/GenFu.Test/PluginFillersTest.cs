@@ -1,7 +1,7 @@
 ﻿using GenFu;
 using Xunit;
 
-namespace Angela.Tests
+namespace GenFu.Tests
 {
     public class PluginPropertyFiller : PropertyFiller<string>
     {
