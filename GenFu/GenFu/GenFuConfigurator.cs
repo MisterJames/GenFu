@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace GenFu
 {
-    public class AngieConfigurator
+    public class GenFuConfigurator
     {
-        protected Angie _angie;
+        protected GenFu _genfu;
         protected FillerManager _fillerManager;
 
-        public AngieConfigurator(Angie angie, FillerManager maggie)
+        public GenFuConfigurator(GenFu genfu, FillerManager filterManager)
         {
-            _angie = angie;
-            _fillerManager = maggie;
+            _genfu = genfu;
+            _fillerManager = filterManager;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace GenFu
         /// <param name="propertyName">The name of the target property</param>
         /// <param name="filler">A function that will return a property value</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator Fill<T>(string propertyName, Func<T> filler)
+        public GenFuConfigurator Fill<T>(string propertyName, Func<T> filler)
         {
             var propName = propertyName.ToLower();
             if (!ResourceLoader.PropertyFillers.ContainsKey(propName))
@@ -39,7 +39,7 @@ namespace GenFu
         /// <param name="expression">The target property</param>
         /// <param name="filler">A function that will return a property value</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
+        public GenFuConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T1), filler);
@@ -47,9 +47,9 @@ namespace GenFu
             return this;
         }
              
-        public Angie Angie
+        public GenFu GenFu
         {
-            get { return _angie; }
+            get { return _genfu; }
         }
 
         public FillerManager Maggie
@@ -58,10 +58,10 @@ namespace GenFu
         }
     }
 
-    public class AngieConfigurator<T> : AngieConfigurator where T : new()
+    public class GenFuConfigurator<T> : GenFuConfigurator where T : new()
     {
-        public AngieConfigurator(Angie angie, FillerManager maggie)
-            : base(angie, maggie)
+        public GenFuConfigurator(GenFu genfu, FillerManager fillerManager)
+            : base(genfu, fillerManager)
         {
         }
 
@@ -91,7 +91,7 @@ namespace GenFu
         /// <param name="expression">The target property</param>
         /// <param name="filler">A function that will return a property value</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
+        public GenFuConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
             CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T), filler);
@@ -105,10 +105,10 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieIntegerConfigurator<T> Fill(Expression<Func<T, int>> expression)
+        public GenFuIntegerConfigurator<T> Fill(Expression<Func<T, int>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieIntegerConfigurator<T>(_angie, _fillerManager, propertyInfo);
+            return new GenFuIntegerConfigurator<T>(_genfu, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -117,10 +117,10 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieShortConfigurator<T> Fill(Expression<Func<T, short>> expression)
+        public GenFuShortConfigurator<T> Fill(Expression<Func<T, short>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieShortConfigurator<T>(_angie, _fillerManager, propertyInfo);
+            return new GenFuShortConfigurator<T>(_genfu, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieDecimalConfigurator<T> Fill(Expression<Func<T, decimal>> expression)
+        public GenFuDecimalConfigurator<T> Fill(Expression<Func<T, decimal>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieDecimalConfigurator<T>(_angie, _fillerManager, propertyInfo);
+            return new GenFuDecimalConfigurator<T>(_genfu, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -141,10 +141,10 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
+        public GenFuStringConfigurator<T> Fill(Expression<Func<T, string>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieStringConfigurator<T>(_angie, _fillerManager, propertyInfo);
+            return new GenFuStringConfigurator<T>(_genfu, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -153,10 +153,10 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieDateTimeConfigurator<T> Fill(Expression<Func<T, DateTime>> expression)
+        public GenFuDateTimeConfigurator<T> Fill(Expression<Func<T, DateTime>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieDateTimeConfigurator<T>(_angie, _fillerManager, propertyInfo);
+            return new GenFuDateTimeConfigurator<T>(_genfu, _fillerManager, propertyInfo);
         }
 
         /// <summary>
@@ -166,10 +166,10 @@ namespace GenFu
         /// <typeparam name="T2">The target property type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified property of the target object type</returns>
-        public AngieComplexPropertyConfigurator<T, T2> Fill<T2>(Expression<Func<T, T2>> expression)
+        public GenFuComplexPropertyConfigurator<T, T2> Fill<T2>(Expression<Func<T, T2>> expression)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _fillerManager, propertyInfo);
+            return new GenFuComplexPropertyConfigurator<T, T2>(_genfu, _fillerManager, propertyInfo);
         }
 
 
@@ -183,7 +183,7 @@ namespace GenFu
         /// <param name="expression">The target method</param>
         /// <param name="filler">A function that will return a method parameter set value</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> MethodFill<T2>(Expression<Action<T>> expression, Func<T2> filler)
+        public GenFuConfigurator<T> MethodFill<T2>(Expression<Action<T>> expression, Func<T2> filler)
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
             CustomFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name, typeof(T), filler);
@@ -199,13 +199,13 @@ namespace GenFu
         /// <typeparam name="T2">The target method parameter type</typeparam>
         /// <param name="expression">The target property</param>
         /// <returns>A configurator for the specified method of the target object type</returns>
-        public AngieComplexPropertyConfigurator<T, T2> MethodFill<T2>(Expression<Action<T>> expression)
+        public GenFuComplexPropertyConfigurator<T, T2> MethodFill<T2>(Expression<Action<T>> expression)
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
             IPropertyFiller filler = _fillerManager.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
             PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue());
             _fillerManager.RegisterFiller(customFiller);
-            return new AngieComplexPropertyConfigurator<T, T2>(_angie, _fillerManager, methodInfo);
+            return new GenFuComplexPropertyConfigurator<T, T2>(_genfu, _fillerManager, methodInfo);
         }
     }
 }

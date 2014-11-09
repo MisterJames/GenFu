@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace GenFu
 {
-    public class AngieStringConfigurator<T> : AngieConfigurator<T> where T : new()
+    public class GenFuStringConfigurator<T> : GenFuConfigurator<T> where T : new()
     {
         private MemberInfo _propertyInfo;
 
-        public AngieStringConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
-            : base(angie, fillerManager)
+        public GenFuStringConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+            : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;
         }
@@ -18,7 +18,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A array of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(string[] values)
+        public GenFuConfigurator<T> WithRandom(string[] values)
         {
             CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
@@ -30,7 +30,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A list of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(List<string> values)
+        public GenFuConfigurator<T> WithRandom(List<string> values)
         {
             CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
@@ -42,7 +42,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A enumerable of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(IEnumerable<string> values)
+        public GenFuConfigurator<T> WithRandom(IEnumerable<string> values)
         {
             CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);

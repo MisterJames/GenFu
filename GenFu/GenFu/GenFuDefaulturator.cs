@@ -2,19 +2,19 @@
 
 namespace GenFu
 {
-    public class AngieDefaulturator
+    public class GenFuDefaulturator
     {
-        protected Angie _angie;
+        protected GenFu _genfu;
         protected FillerManager _fillerManager;
 
-        public AngieDefaulturator(Angie angie, FillerManager maggie)
+        public GenFuDefaulturator(GenFu genfu, FillerManager maggie)
         {
-            _angie = angie;
+            _genfu = genfu;
             _fillerManager = maggie;
         }
 
 
-        public AngieDefaulturator MaxInt(int max)
+        public GenFuDefaulturator MaxInt(int max)
         {
             var defaults = new GenericFillerDefaults(_fillerManager);
             defaults.SetMaxInt(max);
@@ -22,14 +22,14 @@ namespace GenFu
 
         }
 
-        public AngieDefaulturator MinInt(int min)
+        public GenFuDefaulturator MinInt(int min)
         {
             var defaults = new GenericFillerDefaults(_fillerManager);
             defaults.SetMinInt(min);
             return this;
         }
 
-        public AngieDefaulturator MaxShort(short max)
+        public GenFuDefaulturator MaxShort(short max)
         {
             var defaults = new GenericFillerDefaults(_fillerManager);
             defaults.SetMaxShort(max);
@@ -37,7 +37,7 @@ namespace GenFu
 
         }
 
-        public AngieDefaulturator MinShort(short min)
+        public GenFuDefaulturator MinShort(short min)
         {
             var defaults = new GenericFillerDefaults(_fillerManager);
             defaults.SetMinShort(min);
@@ -50,7 +50,7 @@ namespace GenFu
         /// <param name="min">Minimum value</param>
         /// <param name="max">Maximum value</param>
         /// <returns></returns>
-        public AngieDefaulturator IntRange(int min, int max)
+        public GenFuDefaulturator IntRange(int min, int max)
         {
             MinInt(min);
             MaxInt(max);
@@ -58,9 +58,9 @@ namespace GenFu
             return this;
         }
 
-        public AngieDefaulturator ListCount(int count)
+        public GenFuDefaulturator ListCount(int count)
         {
-            _angie.ListCount(count);
+            _genfu.ListCount(count);
             return this;
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace GenFu
         /// <param name="minDateTime">Starting date</param>
         /// <param name="maxDateTime">Ending date</param>
         /// <returns></returns>
-        public AngieDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
+        public GenFuDefaulturator DateRange(DateTime minDateTime, DateTime maxDateTime)
         {
             var defaults = new GenericFillerDefaults(_fillerManager);
             defaults.SetMinDateTime(minDateTime);
@@ -77,12 +77,12 @@ namespace GenFu
             return this;
         }
 
-        public Angie Angie
+        public GenFu GenFu
         {
-            get { return _angie; }
+            get { return _genfu; }
         }
 
-        public FillerManager Maggie
+        public FillerManager FillerManager
         {
             get { return _fillerManager; }
         }

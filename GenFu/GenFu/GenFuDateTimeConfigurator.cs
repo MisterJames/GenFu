@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace GenFu
 {
-    public class AngieDateTimeConfigurator<T> : AngieConfigurator<T> where T : new()
+    public class GenFuDateTimeConfigurator<T> : GenFuConfigurator<T> where T : new()
     {
         private MemberInfo _propertyInfo;
 
-        public AngieDateTimeConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
-            : base(angie, fillerManager)
+        public GenFuDateTimeConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+            : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;
         }

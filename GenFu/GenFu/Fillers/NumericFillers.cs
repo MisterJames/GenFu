@@ -7,8 +7,8 @@ namespace GenFu
 
         public IntFiller() : base(new []{"object"}, new []{"*"}, true)
         {
-            Min = Angie.Defaults.MIN_INT;
-            Max = Angie.Defaults.MAX_INT;
+            Min = GenFu.Defaults.MIN_INT;
+            Max = GenFu.Defaults.MAX_INT;
         }
 
         public IntFiller(Type objectType, string propertyName, int min, int max) : base(new []{objectType.FullName}, new []{propertyName})
@@ -22,7 +22,7 @@ namespace GenFu
 
         public override object GetValue()
         {
-            return Angie.Random.Next(Min, Max);
+            return GenFu.Random.Next(Min, Max);
         }
     }
 
@@ -31,8 +31,8 @@ namespace GenFu
 
         public ShortFiller() : base(new[] { "object" }, new[] { "*" }, true)
         {
-            Min = Angie.Defaults.MIN_SHORT;
-            Max = Angie.Defaults.MAX_SHORT;
+            Min = GenFu.Defaults.MIN_SHORT;
+            Max = GenFu.Defaults.MAX_SHORT;
         }
 
         public ShortFiller(Type objectType, string propertyName, short min, short max)
@@ -48,7 +48,7 @@ namespace GenFu
 
         public override object GetValue()
         {
-            return (short) Angie.Random.Next(Min, Max);
+            return (short) GenFu.Random.Next(Min, Max);
         }
     }
 
@@ -57,8 +57,8 @@ namespace GenFu
         public DecimalFiller()
             : base(new[] { "object" }, new[] { "*" }, true)
         {
-            Min = Angie.Defaults.MIN_DECIMAL;
-            Max = Angie.Defaults.MAX_DECIMAL;
+            Min = GenFu.Defaults.MIN_DECIMAL;
+            Max = GenFu.Defaults.MAX_DECIMAL;
         }
 
         public DecimalFiller(Type objectType, string propertyName, decimal min, decimal max)
@@ -74,8 +74,8 @@ namespace GenFu
 
         public override object GetValue()
         {
-            var rnd = Angie.Random.NextDouble() - 0.5f;
-            var baseValue = Angie.Random.Next((int)Max - (int)Min) + rnd;
+            var rnd = GenFu.Random.NextDouble() - 0.5f;
+            var baseValue = GenFu.Random.Next((int)Max - (int)Min) + rnd;
             decimal result = ((decimal)baseValue + Min) * 1.035m;
 
             if (result < Min) result += 0.5m;
@@ -98,7 +98,7 @@ namespace GenFu
 
         public override object GetValue()
         {
-            return Math.Abs(Angie.Random.Next(_minAge, _maxAge));
+            return Math.Abs(GenFu.Random.Next(_minAge, _maxAge));
         }
     }
 
@@ -114,7 +114,7 @@ namespace GenFu
         public override object GetValue()
         {
 
-            decimal result = (decimal)(Angie.Random.NextDouble() * _maxPrice);
+            decimal result = (decimal)(GenFu.Random.NextDouble() * _maxPrice);
 
             return Math.Round(result,2);
         }

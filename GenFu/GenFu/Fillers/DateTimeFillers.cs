@@ -33,7 +33,7 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
-        public static AngieConfigurator<T> AsPastDate<T>(this AngieDateTimeConfigurator<T> configurator)
+        public static GenFuConfigurator<T> AsPastDate<T>(this GenFuDateTimeConfigurator<T> configurator)
             where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
@@ -48,7 +48,7 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
-        public static AngieConfigurator<T> AsFutureDate<T>(this AngieDateTimeConfigurator<T> configurator)
+        public static GenFuConfigurator<T> AsFutureDate<T>(this GenFuDateTimeConfigurator<T> configurator)
             where T: new ()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),

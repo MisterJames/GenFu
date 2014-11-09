@@ -15,20 +15,20 @@ namespace GenFu
         {
             _data = new Dictionary<Properties, List<string>>();
 
-            _data.Add(Properties.FirstNames, LoadStrings(Angie.Defaults.FILE_FIRST_NAMES));
-            _data.Add(Properties.LastNames, LoadStrings(Angie.Defaults.FILE_LAST_NAMES));
-            _data.Add(Properties.Words, LoadStrings(Angie.Defaults.FILE_WORDS));
-            _data.Add(Properties.Titles, LoadStrings(Angie.Defaults.FILE_TITLES));
-            _data.Add(Properties.Domains, LoadStrings(Angie.Defaults.FILE_DOMAIN_NAMES));
-            _data.Add(Properties.StreetNames, LoadStrings(Angie.Defaults.FILE_STREET_NAMES));
-            _data.Add(Properties.CityNames, LoadStrings(Angie.Defaults.FILE_CITY_NAMES));
-            _data.Add(Properties.CanadianProvinces, LoadStrings(Angie.Defaults.FILE_CDN_PROVINCE_NAMES));
-            _data.Add(Properties.UsaStates, LoadStrings(Angie.Defaults.FILE_USA_STATE_NAMES));
-            _data.Add(Properties.MusicArtists, LoadStrings(Angie.Defaults.FILE_MUSIC_ARTIST));
-            _data.Add(Properties.MusicAlbums, LoadStrings(Angie.Defaults.FILE_MUSIC_ALBUM));
-            _data.Add(Properties.Ingredients, LoadStrings(Angie.Defaults.FILE_INGREDIENTS));
-            _data.Add(Properties.CompanyNames, LoadStrings(Angie.Defaults.FILE_COMPANY_NAMES));
-            _data.Add(Properties.Industries, LoadStrings(Angie.Defaults.FILE_INDUSTRIES));
+            _data.Add(Properties.FirstNames, LoadStrings(GenFu.Defaults.FILE_FIRST_NAMES));
+            _data.Add(Properties.LastNames, LoadStrings(GenFu.Defaults.FILE_LAST_NAMES));
+            _data.Add(Properties.Words, LoadStrings(GenFu.Defaults.FILE_WORDS));
+            _data.Add(Properties.Titles, LoadStrings(GenFu.Defaults.FILE_TITLES));
+            _data.Add(Properties.Domains, LoadStrings(GenFu.Defaults.FILE_DOMAIN_NAMES));
+            _data.Add(Properties.StreetNames, LoadStrings(GenFu.Defaults.FILE_STREET_NAMES));
+            _data.Add(Properties.CityNames, LoadStrings(GenFu.Defaults.FILE_CITY_NAMES));
+            _data.Add(Properties.CanadianProvinces, LoadStrings(GenFu.Defaults.FILE_CDN_PROVINCE_NAMES));
+            _data.Add(Properties.UsaStates, LoadStrings(GenFu.Defaults.FILE_USA_STATE_NAMES));
+            _data.Add(Properties.MusicArtists, LoadStrings(GenFu.Defaults.FILE_MUSIC_ARTIST));
+            _data.Add(Properties.MusicAlbums, LoadStrings(GenFu.Defaults.FILE_MUSIC_ALBUM));
+            _data.Add(Properties.Ingredients, LoadStrings(GenFu.Defaults.FILE_INGREDIENTS));
+            _data.Add(Properties.CompanyNames, LoadStrings(GenFu.Defaults.FILE_COMPANY_NAMES));
+            _data.Add(Properties.Industries, LoadStrings(GenFu.Defaults.FILE_INDUSTRIES));
         }
 
         public static List<string> Data (Properties propertyType) 
@@ -62,7 +62,7 @@ namespace GenFu
 
             // attempt load from embedded resource
             //var namespaceName = typeof(Angie).Namespace;
-            var namespaceName = "Angie.vNext";
+            var namespaceName = "GenFu";
 
             //todo: correct this format when resource strings/names are fixed by .net team
             filename = string.Format("{0}.Resources.{1}.txt", namespaceName, resourceName);

@@ -6,18 +6,18 @@ using Angela.vNext.Reflection;
 
 namespace GenFu
 {
-    public class A : Angie
+    public class A : GenFu
     {
     }
 
-    public partial class Angie
+    public partial class GenFu
     {
-        private static Angie _angie = new Angie();
+        private static GenFu _genfu = new GenFu();
         private static FillerManager _fillerManager = new FillerManager();
 
-        private static int _listCount = Angie.Defaults.LIST_COUNT;
+        private static int _listCount = GenFu.Defaults.LIST_COUNT;
 
-        static Angie()
+        static GenFu()
         {
             _fillerManager = new FillerManager();
             Random = new Random();
@@ -91,7 +91,7 @@ namespace GenFu
 
             for (int i = 0; i < itemCount; i++)
             {
-                result.Add(Angie.New(type));
+                result.Add(GenFu.New(type));
             }
 
             return result;

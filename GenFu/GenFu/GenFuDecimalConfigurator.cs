@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace GenFu
 {
-    public class AngieDecimalConfigurator<T> : AngieConfigurator<T> where T : new()
+    public class GenFuDecimalConfigurator<T> : GenFuConfigurator<T> where T : new()
     {
         private MemberInfo _propertyInfo;
 
-        public AngieDecimalConfigurator(Angie angie, FillerManager fillerManager, MemberInfo propertyInfo)
-            : base(angie, fillerManager)
+        public GenFuDecimalConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+            : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;
         }
@@ -20,7 +20,7 @@ namespace GenFu
         /// <param name="min">The minimum value (inclusive)</param>
         /// <param name="max">The maximum value (inclusive)</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithinRange(int min, int max)
+        public GenFuConfigurator<T> WithinRange(int min, int max)
         {
             DecimalFiller filler = new DecimalFiller(typeof(T), _propertyInfo.Name, min, max);
             _fillerManager.RegisterFiller(filler);
@@ -32,7 +32,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A array of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(decimal[] values)
+        public GenFuConfigurator<T> WithRandom(decimal[] values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
@@ -44,7 +44,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A list of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(List<decimal> values)
+        public GenFuConfigurator<T> WithRandom(List<decimal> values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
@@ -56,7 +56,7 @@ namespace GenFu
         /// </summary>
         /// <param name="values">A enumerable of values to choose from</param>
         /// <returns>A configurator for the target object type</returns>
-        public AngieConfigurator<T> WithRandom(IEnumerable<decimal> values)
+        public GenFuConfigurator<T> WithRandom(IEnumerable<decimal> values)
         {
             CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
