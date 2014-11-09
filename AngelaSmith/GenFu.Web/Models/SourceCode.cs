@@ -80,7 +80,7 @@ namespace GenFu.Web.Models
             {
                 return types[0];
             }
-            if types.Length > 1)
+            if (types.Length > 1)
             {
                 // do something interesting, perhaps with the BadSourceCode class?
             }
