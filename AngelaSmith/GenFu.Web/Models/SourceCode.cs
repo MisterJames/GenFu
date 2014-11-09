@@ -32,8 +32,6 @@ namespace GenFu.Web.Models
 
             if (IsLegit())
             {
-
-                // this path isn't doing anything yet...
                 var type = BuildType();
                 var result = A.New(type);
 
@@ -68,15 +66,13 @@ namespace GenFu.Web.Models
             Assembly assembly;
             using (var stream = new MemoryStream())
             {
-                // this is broked...
-                EmitResult compileResult = compilation.Emit(stream);
-                // we get here, with diagnostic errors (check compileResult.Diagnostics)
+                var compileResult = compilation.Emit(stream);
                 assembly = Assembly.Load(stream.GetBuffer());
             }
 
             // iterate over the types in the assembly
             var types = assembly.GetExportedTypes();
-            if(types.Length == 1)
+            if (types.Length == 1)
             {
                 return types[0];
             }
