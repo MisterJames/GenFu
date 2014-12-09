@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Linq;
+using System.Text;
+using System.Globalization;
 
 namespace GenFu.Web.Models
 {
@@ -57,11 +59,14 @@ namespace GenFu.Web.Models
 
             var assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
             var assemblyName = Guid.NewGuid().ToString();
+            this.Source = CleanSource(this.Source);
+
             var syntaxTrees = CSharpSyntaxTree.ParseText(this.Source);
 
             // build references up
             var references = new List<MetadataReference>();
             references.Add(MetadataReference.CreateFromAssembly(typeof(object).GetTypeInfo().Assembly));
+
 
             // set up compilation
             var compilation = CSharpCompilation.Create(assemblyName)
@@ -109,6 +114,27 @@ namespace GenFu.Web.Models
             return result;
         }
 
+        private string CleanSource(string source)
+        {
+            var newSource = new StringBuilder();
+
+            // add some useful usings
+            var usings = new List<string>
+            {
+                // for now, just the one?
+                "using System;"
+            };
+            foreach (var useingthing in usings)
+            {
+                if ((CultureInfo.CurrentCulture.CompareInfo.IndexOf(source, useingthing, CompareOptions.IgnoreCase) < 0))
+                    newSource.AppendLine(useingthing);
+            }
+
+            // add original source
+            newSource.Append(source);
+
+            return newSource.ToString();
+        }
 
         private static RandomValues GetPropertyValues(object target)
         {
