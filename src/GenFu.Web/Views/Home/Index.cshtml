@@ -10,7 +10,7 @@
     <h2>GenFu Your Objects</h2>
 
     <p class="lead">
-        GenFu is a test and prototype data generation library targeting ASP.NET vNext.
+        GenFu is a test and prototype data generation library targeting ASP.NET 5.
         It understands different topics - such as "contact details" or "blog posts"
         and uses that understanding to to populate commonly named properties
         using reflection and an internal database of values or randomly created data.
@@ -82,7 +82,7 @@
 <div class="row" >
     <h2>Installation</h2>
     <p>
-        The easiest way to add GenFu to your Asp.Net vNext project is through the Package Manager Console.
+        The easiest way to add GenFu to your Asp.Net 5 project is through the Package Manager Console.
         Just type the following command:
     </p>
     <pre>
@@ -94,8 +94,17 @@
         <pre>
     "dependencies": {
         // other dependencies would be here ...
-        "GenFu": "1.0.1"
+        "GenFu": "1.0.3"
     }
 </pre>
     </p>
 </div>
+@section scripts{
+<script type="text/javascript">
+
+          var editor = CodeMirror.fromTextArea(document.getElementById("Source"), {
+              lineNumbers: true,
+              mode: "text/x-csharp"
+          });
+</script>
+}

@@ -14,6 +14,7 @@
     <link href="~/css/animate.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href="~/css/codemirror.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,12 +38,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li @*class="@Html.IsActive("Home","Index")"*@>
-                        <a href="@Url.Action("Index")">Home</a>
-                    </li>
-                    <li @*class="@Html.IsActive("Home","About")"*@>
-                        <a href="@Url.Action("About")">About</a>
-                    </li>
+                    
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -117,6 +113,8 @@
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/scrolltopcontrol.js"></script>
     <script src="~/js/custom.js"></script>
+    <script src="~/js/codemirror.js"></script>
+    <script src="~/js/clike.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
