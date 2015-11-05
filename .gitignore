@@ -16,6 +16,7 @@ local.properties
 .settings/
 .loadpath
 
+
 # External tool builders
 .externalToolBuilders/
 
@@ -66,6 +67,7 @@ node_modules/
 .builds
 *.dotCover
 wwwroot/
+.vs
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
