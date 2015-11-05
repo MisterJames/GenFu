@@ -25,6 +25,19 @@ namespace GenFu
         }
     }
 
+    public class BirthDateFiller : PropertyFiller<DateTime>
+    {
+        public BirthDateFiller()
+            : base(new[] { "object" }, new[] { "birthdate", "birth_date"})
+        {
+        }
+
+        public override object GetValue()
+        {
+            return CalendarDate.Date(DateTime.Today.AddYears(-110), DateTime.Today);
+        }
+    }
+
     public static class DateTimeFillerExtensions
     {
         /// <summary>

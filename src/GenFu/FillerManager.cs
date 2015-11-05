@@ -35,6 +35,7 @@ namespace GenFu
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
                 _propertyFillers.Add(new DateTimeFiller());
+                _propertyFillers.Add(new BirthDateFiller());
                 _propertyFillers.Add(new GuidFiller());
                 _propertyFillers.Add(new ArticleTitleFiller());
 

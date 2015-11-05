@@ -23,13 +23,15 @@ namespace GenFu.Web.Controllers
         public IActionResult Index()
         {
             GenerateDataModel model = new GenerateDataModel();
-            model.Source = @"public class Person
-                {
-                    public string FirstName { get; set; }
-                    public string LastName { get; set; }
-                    public int Age { get; set; }
-                    public string EmailAddress { get; set; }
-                }";
+            model.Source =
+@"public class Person
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Age { get; set; }
+    public string EmailAddress { get; set; }
+    //Add your own properties here
+}";
             return View(model);
         }
 
