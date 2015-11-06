@@ -132,6 +132,22 @@ namespace GenFu
         }
 
         /// <summary>
+        /// Fill the specified property with the result of the specified function
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <typeparam name="T2">The target property type</typeparam>
+        /// <param name="expression">The target property</param>
+        /// <param name="filler">A function that will return a property value</param>
+        /// <returns>A configurator for the target object type</returns>
+        public GenFuConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T, T2> filler)
+        {
+            PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
+            CustomFiller<T, T2> customFiller = new CustomFiller<T, T2>(propertyInfo.Name, typeof(T), filler);
+            _fillerManager.RegisterFiller(customFiller);
+            return this;
+        }
+
+        /// <summary>
         /// Configure how the specified integer property should be filled
         /// </summary>
         /// <typeparam name="T">The target object type</typeparam>
@@ -235,7 +251,7 @@ namespace GenFu
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
             IPropertyFiller filler = _fillerManager.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
-            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue());
+            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue(null));
             _fillerManager.RegisterFiller(customFiller);
             return new GenFuComplexPropertyConfigurator<T, T2>(_genfu, _fillerManager, methodInfo);
         }

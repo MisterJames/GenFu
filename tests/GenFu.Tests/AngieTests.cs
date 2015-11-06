@@ -342,9 +342,8 @@ namespace GenFu.Tests
 
             var postcomments = A.ListOf<BlogComment>();
 
-            A
-                .Configure<BlogPost>()
-                .Fill(b => b.Comments, delegate { return postcomments; });
+            A.Configure<BlogPost>()
+                .Fill(b => b.Comments, () => postcomments);
             var blogpost = A.New<BlogPost>();
 
             Assert.NotNull(blogpost.Comments);

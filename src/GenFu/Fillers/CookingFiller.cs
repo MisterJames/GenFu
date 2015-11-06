@@ -14,7 +14,7 @@ namespace GenFu.Fillers
             {
             }
 
-            public override object GetValue()
+            public override object GetValue(object instance)
             {
                 return ValueGenerators.Cooking.Ingredients.Ingredient();
             }

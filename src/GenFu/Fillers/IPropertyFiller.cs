@@ -8,6 +8,6 @@ namespace GenFu
         string[] ObjectTypeNames { get; }
         bool IsGenericFiller { get; }
         Type PropertyType { get; }
-        object GetValue();
+        object GetValue(object instance);
     }
 }
