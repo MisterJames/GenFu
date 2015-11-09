@@ -16,7 +16,7 @@ namespace GenFu
         }
 
       
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             int totalDays = (Max - Min).Days;
             int randomDays = _random.Next(totalDays);
@@ -32,7 +32,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return CalendarDate.Date(DateTime.Today.AddYears(-110), DateTime.Today);
         }

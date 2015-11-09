@@ -34,6 +34,6 @@ namespace GenFu
         /// Returns a value that will be used to a particular property
         /// </summary>
         /// <returns>Some random-ish value</returns>
-        public abstract object GetValue();
+        public abstract object GetValue(object instance);
     }
 }

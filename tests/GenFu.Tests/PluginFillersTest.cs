@@ -11,7 +11,7 @@ namespace GenFu.Tests
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Value;
         }
