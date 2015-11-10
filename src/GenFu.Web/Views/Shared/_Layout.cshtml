@@ -108,8 +108,10 @@
         </div>  <!-- / .row -->
     </div> <!-- / .container -->
 
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script> 
+    <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+            asp-fallback-src="~/js/jquery-2.1.4.min.js"
+            asp-fallback-test="window.jQuery">
+    </script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/scrolltopcontrol.js"></script>
     <script src="~/js/custom.js"></script>
