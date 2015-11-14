@@ -101,14 +101,14 @@ namespace GenFu
         private static void SetPropertyValue(object instance, PropertyInfo property)
         {
             IPropertyFiller filler = _fillerManager.GetFiller(property);
-            property.SetValue(instance, filler.GetValue(), null);
+            property.SetValue(instance, filler.GetValue(instance), null);
         }
         
         private static void CallSetterMethod(object instance, MethodInfo method)
         {
             IPropertyFiller filler = _fillerManager.GetMethodFiller(method);
             if (filler != null)
-                method.Invoke(instance, new[] {filler.GetValue()});
+                method.Invoke(instance, new[] {filler.GetValue(instance)});
         }
 
 

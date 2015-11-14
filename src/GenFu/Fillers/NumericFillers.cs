@@ -20,7 +20,7 @@ namespace GenFu
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return GenFu.Random.Next(Min, Max);
         }
@@ -46,7 +46,7 @@ namespace GenFu
         public short Min { get; set; }
         public short Max { get; set; }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return (short) GenFu.Random.Next(Min, Max);
         }
@@ -72,7 +72,7 @@ namespace GenFu
         public decimal Min { get; set; }
         public decimal Max { get; set; }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             var rnd = GenFu.Random.NextDouble() - 0.5f;
             var baseValue = GenFu.Random.Next((int)Max - (int)Min) + rnd;
@@ -96,7 +96,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Math.Abs(GenFu.Random.Next(_minAge, _maxAge));
         }
@@ -111,7 +111,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
 
             decimal result = (decimal)(GenFu.Random.NextDouble() * _maxPrice);

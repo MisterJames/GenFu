@@ -10,7 +10,7 @@ namespace GenFu.Fillers
         public CompanyNameFiller(): base (new[] { "company" }, new[] { "name" }, false)
         {}
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ValueGenerators.Corporate.Company.Name();
         }

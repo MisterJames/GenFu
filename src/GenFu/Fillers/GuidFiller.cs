@@ -10,7 +10,7 @@ namespace GenFu.Fillers
             : base(new[] { "object" }, new[] { "*" }, true)
         { }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Guid.NewGuid();
         }

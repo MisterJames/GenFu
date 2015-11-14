@@ -9,7 +9,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return BaseValueGenerator.Word();
         }
@@ -22,7 +22,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Names.Title();
         }
@@ -35,7 +35,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Names.FirstName();
         }
@@ -48,7 +48,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Names.LastName();
         }
@@ -61,7 +61,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ContactInformation.Email();
         }
@@ -74,7 +74,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ContactInformation.Twitter();
         }
@@ -87,7 +87,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Address.AddressLine();
         }
@@ -100,7 +100,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Address.AddressLine2();
         }
@@ -113,7 +113,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Address.City();
         }
@@ -126,7 +126,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Address.UsaState();
         }
@@ -139,7 +139,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return Address.CanadianProvince();
         }
@@ -152,7 +152,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ContactInformation.PhoneNumber();
         }
@@ -165,7 +165,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ValueGenerators.Music.Album.Title();
         }
@@ -178,7 +178,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ValueGenerators.Music.Artist.Name();
         }
@@ -191,7 +191,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ValueGenerators.Music.Genre.Name();
         }
@@ -204,7 +204,7 @@ namespace GenFu
         {
         }
 
-        public override object GetValue()
+        public override object GetValue(object instance)
         {
             return ValueGenerators.Music.Genre.Description();
         }
