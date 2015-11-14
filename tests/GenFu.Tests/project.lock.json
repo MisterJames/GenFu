@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     "DNX,Version=v4.5.1": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -684,7 +684,7 @@
       }
     },
     "DNXCore,Version=v5.0": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -2137,7 +2137,7 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x86": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2818,7 +2818,7 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x64": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -3499,7 +3499,7 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x86": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -5438,7 +5438,7 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x64": {
-      "GenFu/1.0.3": {
+      "GenFu/1.0.4": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -7378,7 +7378,7 @@
     }
   },
   "libraries": {
-    "GenFu/1.0.3": {
+    "GenFu/1.0.4": {
       "type": "project",
       "path": "../../src/GenFu/project.json"
     },
