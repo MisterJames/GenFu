@@ -160,7 +160,7 @@ namespace GenFu
             public const string FILE_STREET_NAMES = "StreetNames";
             public const string FILE_CITY_NAMES = "CityNames";
             public const string FILE_USA_STATE_NAMES = "USAStateNames";
-            public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
+            public const string FILE_CND_PROVINCE_NAMES = "CanadianProvinceNames";
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
             public const string FILE_INGREDIENTS = "Ingredients";

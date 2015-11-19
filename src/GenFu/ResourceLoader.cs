@@ -22,7 +22,7 @@ namespace GenFu
             _data.Add(Properties.Domains, LoadStrings(GenFu.Defaults.FILE_DOMAIN_NAMES));
             _data.Add(Properties.StreetNames, LoadStrings(GenFu.Defaults.FILE_STREET_NAMES));
             _data.Add(Properties.CityNames, LoadStrings(GenFu.Defaults.FILE_CITY_NAMES));
-            _data.Add(Properties.CanadianProvinces, LoadStrings(GenFu.Defaults.FILE_CDN_PROVINCE_NAMES));
+            _data.Add(Properties.CanadianProvinces, LoadStrings(GenFu.Defaults.FILE_CND_PROVINCE_NAMES));
             _data.Add(Properties.UsaStates, LoadStrings(GenFu.Defaults.FILE_USA_STATE_NAMES));
             _data.Add(Properties.MusicArtists, LoadStrings(GenFu.Defaults.FILE_MUSIC_ARTIST));
             _data.Add(Properties.MusicAlbums, LoadStrings(GenFu.Defaults.FILE_MUSIC_ALBUM));
