@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GenFu
 {
-    static class EnnumerableExtensions
+    static class EnumerableExtensions
     {
         private static Random _random = new Random();
         public static int GetRandomIndex(this IEnumerable<string> list)
