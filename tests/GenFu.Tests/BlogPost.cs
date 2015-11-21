@@ -21,7 +21,12 @@ namespace GenFu.Tests
         public string Username { get; set; }
         public DateTime CommentDate { get; set; }
     }
-    
+
+    internal class SpecificBlogComment : BlogComment
+    {
+        public string Colour { get; set; }
+    }
+
     internal class BlogCommenter
     {
         public int BlogCommenterId { get; set; }

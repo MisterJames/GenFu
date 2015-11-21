@@ -28,5 +28,16 @@ namespace GenFu.Tests
                 Assert.True(peeps.Contains(dog.Owner));
             }
         }
+        
+        [Fact]
+        public void Inherited_fields_are_filed()
+        {
+            var comment = "Your blog is grrreat";
+            A.Configure<SpecificBlogComment>().Fill(x => x.Comment, () => comment);
+            var item = A.New<SpecificBlogComment>() ;
+            
+            Assert.NotNull(item.Comment);
+            Assert.Equal("Your blog is grrreat", item.Comment);
+        }
     }
 }

@@ -110,6 +110,7 @@ namespace GenFu
             {
                 //First try to get a specific filler based on a full type name (including namespace)
                 string fullTypeName = objectType.FullName.ToLowerInvariant();
+                
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
                     IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
