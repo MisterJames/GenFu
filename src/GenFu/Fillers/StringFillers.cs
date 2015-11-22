@@ -135,7 +135,7 @@ namespace GenFu
     public class ProvinceFiller : PropertyFiller<string>
     {
         public ProvinceFiller()
-            : base(new[] { "object" }, new[] { "provice", "provincename", "province_name" })
+            : base(new[] { "object" }, new[] { "province", "provincename", "province_name" })
         {
         }
 
