@@ -6,6 +6,7 @@ using GenFu.Web.Models;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Dnx.Compilation;
 using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace GenFu.Web.Controllers
 {

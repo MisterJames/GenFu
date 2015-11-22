@@ -25,7 +25,7 @@ namespace GenFu
 
 
         public string[] PropertyNames { get; private set; }
-        public string[] ObjectTypeNames { get; private set; }
+        public string[] ObjectTypeNames { get; protected set; }
         public bool IsGenericFiller { get; private set; }
 
         public Type PropertyType { get { return typeof(T); } }
