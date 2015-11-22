@@ -1,5 +1,8 @@
 ﻿using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.People;
+using System;
+using System.Text;
+
 namespace GenFu
 {
     public class StringFiller : PropertyFiller<string>
@@ -209,7 +212,6 @@ namespace GenFu
             return ValueGenerators.Music.Genre.Description();
         }
     }
-
 
 
     public static class StringFillerExtensions
