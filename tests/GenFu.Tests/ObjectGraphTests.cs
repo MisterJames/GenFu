@@ -33,9 +33,22 @@ namespace GenFu.Tests
         public void Inherited_fields_are_filed()
         {
             var comment = "Your blog is grrreat";
-            A.Configure<SpecificBlogComment>().Fill(x => x.Comment, () => comment);
-            var item = A.New<SpecificBlogComment>() ;
+            A.Configure<ColourfulBlogComment>().Fill(x => x.Comment, () => comment);
+            var item = A.New<ColourfulBlogComment>() ;
             
+            Assert.NotNull(item.Comment);
+            Assert.Equal("Your blog is grrreat", item.Comment);
+        }
+
+        [Fact]
+        public void Inherited_fields_do_not_clash_with_other_subclasses()
+        {
+            var comment = "Your blog is grrreat";
+            A.Configure<ColourfulBlogComment>().Fill(x => x.Comment, () => comment);
+            A.Configure<DirtyBlogComment>().Fill(x => x.Comment, () => comment + "tt");
+
+            var item = A.New<ColourfulBlogComment>();
+
             Assert.NotNull(item.Comment);
             Assert.Equal("Your blog is grrreat", item.Comment);
         }

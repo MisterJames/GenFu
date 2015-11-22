@@ -22,9 +22,14 @@ namespace GenFu.Tests
         public DateTime CommentDate { get; set; }
     }
 
-    internal class SpecificBlogComment : BlogComment
+    internal class ColourfulBlogComment : BlogComment
     {
         public string Colour { get; set; }
+    }
+
+    internal class DirtyBlogComment : BlogComment
+    {
+        public int DirtFactor { get; set; }
     }
 
     internal class BlogCommenter
