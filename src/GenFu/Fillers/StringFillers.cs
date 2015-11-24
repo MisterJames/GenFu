@@ -145,6 +145,32 @@ namespace GenFu
         }
     }
 
+    public class ZipCodeFiller : PropertyFiller<string>
+    {
+        public ZipCodeFiller()
+            : base(new[] { "object" }, new[] { "zip", "zipcode", "zip_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.ZipCode();
+        }
+    }
+
+    public class PostalCodeFiller : PropertyFiller<string>
+    {
+        public PostalCodeFiller()
+            : base(new[] { "object" }, new[] { "postalcode", "postal_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.PostalCode();
+        }
+    }
+
     public class PhoneNumberFiller : PropertyFiller<string>
     {
         public PhoneNumberFiller()

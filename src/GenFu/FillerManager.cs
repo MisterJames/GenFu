@@ -50,6 +50,8 @@ namespace GenFu
                 _propertyFillers.Add(new CityFiller());
                 _propertyFillers.Add(new StateFiller());
                 _propertyFillers.Add(new ProvinceFiller());
+                _propertyFillers.Add(new ZipCodeFiller());
+                _propertyFillers.Add(new PostalCodeFiller());
                 _propertyFillers.Add(new PhoneNumberFiller());
 
                 _propertyFillers.Add(new MusicAlbumTitleFiller());
