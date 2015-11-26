@@ -1,0 +1,36 @@
+﻿Abacavir
+Aciclovir
+Acyclovir
+Adefovir
+Amantadine
+Amprenavir
+Ampligen
+Arbidol
+Atazanavir
+Edoxudine
+Efavirenz
+Emtricitabine
+Enfuvirtide
+Entecavir
+Ibacitabine
+Imunovir
+Idoxuridine
+Imiquimod
+Indinavir
+Inosine
+Integrase inhibitor
+Interferon type III
+Interferon type II
+Interferon type I
+Interferon
+Telaprevir
+Tenofovir
+Tenofovir disoproxil
+Tipranavir
+Trifluridine
+Trizivir
+Tromantadine
+Truvada
+Zalcitabine
+Zanamivir (Relenza)
+Zidovudine

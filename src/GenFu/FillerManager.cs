@@ -59,6 +59,12 @@ namespace GenFu
                 _propertyFillers.Add(new MusicGenreDescriptionFiller());
                 _propertyFillers.Add(new MusicGenreNameFiller());
 
+                _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller());
+                _propertyFillers.Add(new USASocialSecurityNumberFiller());
+
+                _propertyFillers.Add(new DrugFiller());
+                _propertyFillers.Add(new MedicalProcedureFiller());
+
                 _propertyFillers.Add(new StringFiller());
 
             }

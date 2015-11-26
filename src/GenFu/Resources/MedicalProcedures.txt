@@ -1,0 +1,76 @@
+﻿Cardiac stress test
+Electrocardiography
+Electroencephalography
+Electrocorticography
+Electromyography
+Electroneuronography
+Electronystagmography
+Electrooculography
+Electroretinography
+Endoluminal capsule monitoring
+Endoscopy
+Colonoscopy
+Colposcopy
+Cystoscopy
+Gastroscopy
+Laparoscopy
+Laryngoscopy
+Ophthalmoscopy
+Otoscopy
+Sigmoidoscopy
+Esophageal motility study
+Evoked potential
+Magnetoencephalography
+Medical imaging
+Angiography
+Aortography
+Cerebral angiography
+Coronary angiography
+Lymphangiography
+Pulmonary angiography
+Ventriculography
+Chest photofluorography
+Computed tomography
+Echocardiography
+Electrical impedance tomography
+Fluoroscopy
+Magnetic resonance imaging
+Diffuse optical imaging
+Diffusion-weighted imaging
+Diffusion tensor imaging
+Functional magnetic resonance imaging
+Positron emission tomography
+Radiography
+Scintillography
+SPECT
+Ultrasonography
+Gynecologic ultrasonography
+Obstetric ultrasonography
+Contrast-enhanced ultrasound
+Intravascular ultrasound
+Thermography
+Virtual colonoscopy
+Neuroimaging
+Posturography
+Biopsy
+Stereotactic surgery
+Radiosurgery
+Endoscopic surgery
+Lithotomy
+Image-guided surgery
+Facial rejuvenation
+Neovaginoplasty
+Vaginoplasty
+Ablation
+Amputation
+Cardiopulmonary resuscitation (CPR)
+Cryosurgery
+General surgery
+Hand surgery
+Laminectomy
+Hemilaminectomy
+Laparoscopic surgery
+Lithotriptor
+Lobotomy
+Knee cartilage replacement therapy
+Xenotransplantation

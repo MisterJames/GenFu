@@ -21,7 +21,9 @@ namespace GenFu
         MusicAlbums,
         Ingredients,
         CompanyNames,
-        Industries
+        Industries,
+        Drugs,
+        MedicalProcedures
     }
 
     [Flags]
