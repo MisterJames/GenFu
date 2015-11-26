@@ -14,7 +14,7 @@ namespace GenFu.Tests
         }
 
         [Fact]
-        public void string_property_should_always_be_set_to_custom_filled_value()
+        public void string_property_should_be_set_to_custom_filled_value()
         {
             A.Configure<BlogPost>().Fill(b => b.Body, b => $"Body for {b.Title}");
 
