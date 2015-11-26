@@ -83,7 +83,7 @@ namespace GenFu
     public class AddressFiller : PropertyFiller<string>
     {
         public AddressFiller()
-            : base(new[] { "object" }, new[] { "address", "adress1", "adress_1", "billingaddress", "billing_address" })
+            : base(new[] { "object" }, new[] { "address", "address1", "address_1", "billingaddress", "billing_address" })
         {
         }
 
@@ -96,7 +96,7 @@ namespace GenFu
     public class AddressLine2Filler : PropertyFiller<string>
     {
         public AddressLine2Filler()
-            : base(new[] { "object" }, new[] { "address2", "adress_2" })
+            : base(new[] { "object" }, new[] { "address2", "address_2" })
         {
         }
 
@@ -142,6 +142,32 @@ namespace GenFu
         public override object GetValue(object instance)
         {
             return Address.CanadianProvince();
+        }
+    }
+
+    public class ZipCodeFiller : PropertyFiller<string>
+    {
+        public ZipCodeFiller()
+            : base(new[] { "object" }, new[] { "zip", "zipcode", "zip_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.ZipCode();
+        }
+    }
+
+    public class PostalCodeFiller : PropertyFiller<string>
+    {
+        public PostalCodeFiller()
+            : base(new[] { "object" }, new[] { "postalcode", "postal_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.PostalCode();
         }
     }
 
