@@ -42,6 +42,7 @@ namespace GenFu
                 _propertyFillers.Add(new FirstNameFiller());
                 _propertyFillers.Add(new LastNameFiller());
                 _propertyFillers.Add(new EmailFiller());
+                _propertyFillers.Add(new PersonTitleFiller());
 
                 _propertyFillers.Add(new TwitterFiller());
 

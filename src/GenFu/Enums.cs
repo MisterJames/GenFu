@@ -9,6 +9,7 @@ namespace GenFu
     {
         FirstNames,
         LastNames,
+        PersonTitles,
         Words,
         Titles,
         Domains,

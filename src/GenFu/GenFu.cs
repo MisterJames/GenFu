@@ -155,6 +155,7 @@ namespace GenFu
             public const string FILE_DOMAIN_NAMES = "DomainNames";
             public const string FILE_FIRST_NAMES = "FirstNames";
             public const string FILE_LAST_NAMES = "LastNames";
+            public const string FILE_PERSON_TITLES = "PersonTitles";
             public const string FILE_TITLES = "Titles";
             public const string FILE_WORDS = "Words";
             public const string FILE_STREET_NAMES = "StreetNames";
