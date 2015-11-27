@@ -93,5 +93,13 @@ namespace GenFu.Tests
 
             Assert.NotEqual(string.Empty, city);
         }
+
+        [Fact]
+        public void UseSuppliedResourceDataTest()
+        {
+            GenFu.Configure().Data(Properties.FirstNames, @"testdata\singlename.txt");
+            var people = A.ListOf<Person>(25);
+            Assert.Equal(25, people.Where(p=>p.FirstName == "Angela").Count());
+        }
     }
 }

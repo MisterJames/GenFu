@@ -91,5 +91,13 @@ namespace GenFu
 
         }
 
+        public static void ReplacePropertyData(Properties propertyType, string filename)
+        {
+            if (File.Exists(filename))
+            {
+                var values = File.ReadLines(filename).ToList();
+                _data[propertyType] = values;
+            }                
+        }
     }
 }
