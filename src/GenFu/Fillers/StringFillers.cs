@@ -44,6 +44,19 @@ namespace GenFu
         }
     }
 
+    public class PersonTitleFiller : PropertyFiller<string>
+    {
+        public PersonTitleFiller()
+            : base(new[] { "person", "employee", "user" }, new[] { "title" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Names.PersonTitle();
+        }
+    }
+
     public class LastNameFiller : PropertyFiller<string>
     {
         public LastNameFiller()
@@ -318,6 +331,19 @@ namespace GenFu
         public static GenFuConfigurator<T> AsFirstName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        /// <summary>
+        /// Populate the specified property with a person title (Mrs, Miss,...)
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
+        public static GenFuConfigurator<T> AsPersonTitle<T>(this GenFuStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.PersonTitle());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
