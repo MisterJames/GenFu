@@ -8,7 +8,7 @@ using Xunit;
 
 namespace GenFu.Tests
 {
-    public class GenFuTests
+    public class When_generating
     {
         [Fact]
         public void StringInNewClassIsPopulated()
@@ -420,17 +420,10 @@ namespace GenFu.Tests
         public void MethodIsLeftAloneWhenMatchesNothing()
         {
             // currently fills
+            A.Reset();
             var person = A.New<Person>();
             Assert.True(string.IsNullOrEmpty(person.GetMiddleName()));
         }
-
-        //[Fact]
-        //public void MethodIsFilledWhenSpecified()
-        //{
-        //    A.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null));
-        //    var person = A.New<Person>();
-        //    Assert.False(string.IsNullOrEmpty(person.GetMiddleName()));
-        //}
 
 
         [Fact]
