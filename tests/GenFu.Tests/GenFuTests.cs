@@ -268,6 +268,13 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void DateTimesHaveDateInitialized()
+        {
+            var post = A.New<BlogPost>();
+            Assert.True(post.CreateDate.Year  > 1);
+        }
+
+        [Fact]
         public void DateTimesStayWithinConfiguredDates()
         {
             var success = true;
