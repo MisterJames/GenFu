@@ -26,7 +26,7 @@ namespace GenFu.Tests
 
 
         // emailaddress EmailAddress email_address
-        public string EmailAddress { get; set; }
+        public String EmailAddress { get; set; }
 
         public string Twitter { get; set; }
 
@@ -48,5 +48,8 @@ namespace GenFu.Tests
             return _middleName;
         }
 
+        public DateTime? DateOfDeath { get; set; }
+
+        public int? NumberOfCats { get; set; }
     }
 }

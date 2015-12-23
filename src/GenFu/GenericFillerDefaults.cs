@@ -52,12 +52,30 @@ namespace GenFu
         {
             DateTimeFiller dateTimeFiller = _fillerManager.GetGenericFiller<DateTime, DateTimeFiller>();
             dateTimeFiller.Min = minValue;
+
+            DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
+            dateTimeNullableFiller.Min = minValue;
         }
 
         public void SetMaxDateTime(DateTime maxValue)
         {
             DateTimeFiller dateTimeFiller = _fillerManager.GetGenericFiller<DateTime, DateTimeFiller>();
             dateTimeFiller.Max = maxValue;
+
+            DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
+            dateTimeNullableFiller.Max = maxValue;
+        }
+
+        public void SetMinSeed(int minValue)
+        {
+            DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
+            dateTimeNullableFiller.SeedMin = minValue;
+        }
+
+        public void SetMaxSeed(int maxValue)
+        {
+            DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
+            dateTimeNullableFiller.SeedMax = maxValue;
         }
 
         public DateTime GetMinDateTime()
