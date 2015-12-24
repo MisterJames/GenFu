@@ -451,6 +451,9 @@ namespace GenFu.Tests
         [Fact]
         public void NullableDateWillGetRandomNullSeed()
         {
+            // Allow average 20% of collection to be Null 
+            GenFu.Defaults.MAX_SEED = 10;
+            GenFu.Defaults.MIN_SEED = 2;
 
             var dates = new List<DateTime?>();
             for(int x = 0; x<100; x++)
@@ -484,6 +487,19 @@ namespace GenFu.Tests
             var person = A.New(new Person() { FirstName = null } );
 
             Assert.NotNull(person.FirstName);
+        }
+
+        [Fact]
+        public void NullableDateWillStayNull()
+        {
+            // Update Seed so the value is always NULL
+            GenFu.Defaults.MAX_SEED = 0;
+            GenFu.Defaults.MIN_SEED = 10;
+
+            A.Reset();
+            var person = A.New(new Person() { DateOfDeath = null });
+
+            Assert.Null(person.DateOfDeath);
         }
     }
 }
