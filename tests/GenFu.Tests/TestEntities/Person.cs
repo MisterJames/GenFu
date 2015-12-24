@@ -26,7 +26,7 @@ namespace GenFu.Tests
 
 
         // emailaddress EmailAddress email_address
-        public String EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
         public string Twitter { get; set; }
 
