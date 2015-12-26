@@ -66,16 +66,10 @@ namespace GenFu
             dateTimeNullableFiller.Max = maxValue;
         }
 
-        public void SetMinSeed(int minValue)
+        public void SetSeedPercentage(double value)
         {
             DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
-            dateTimeNullableFiller.SeedMin = minValue;
-        }
-
-        public void SetMaxSeed(int maxValue)
-        {
-            DateTimeNullableFiller dateTimeNullableFiller = _fillerManager.GetGenericFiller<DateTime?, DateTimeNullableFiller>();
-            dateTimeNullableFiller.SeedMax = maxValue;
+            dateTimeNullableFiller.SeedPercentage = value;
         }
 
         public DateTime GetMinDateTime()

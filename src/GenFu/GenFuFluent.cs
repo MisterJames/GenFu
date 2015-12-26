@@ -72,8 +72,7 @@ namespace GenFu
             defaults.SetMinDateTime(GenFu.Defaults.MIN_DATETIME);
             defaults.SetMaxDateTime(GenFu.Defaults.MAX_DATETIME);
 
-            defaults.SetMinSeed(GenFu.Defaults.MIN_SEED);
-            defaults.SetMaxSeed(GenFu.Defaults.MAX_SEED);
+            defaults.SetSeedPercentage(GenFu.Defaults.SEED_PERCENTAGE);
 
             ResourceLoader.PropertyFillers.Clear();
         }

@@ -34,8 +34,11 @@ namespace GenFu
 
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
-                _propertyFillers.Add(new DateTimeFiller());
-                _propertyFillers.Add(new DateTimeNullableFiller());
+                {
+                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
+                    _propertyFillers.Add(new DateTimeFiller());
+                    _propertyFillers.Add(DateTimeNullableFiller);
+                }
 
                 _propertyFillers.Add(new BirthDateFiller());
                 _propertyFillers.Add(new GuidFiller());
