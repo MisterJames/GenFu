@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace GenFu.Fillers
 {
@@ -9,7 +10,7 @@ namespace GenFu.Fillers
 
         public override object GetValue(object instance)
         {
-            if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(Nullable<>))
+            if (typeof(T).GetTypeInfo().IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 if (this.SeedPercentage < rand.NextDouble())
                 {
