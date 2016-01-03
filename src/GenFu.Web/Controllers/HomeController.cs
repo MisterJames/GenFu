@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using GenFu.Web.Models;
+using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Dnx.Compilation;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json;
 
 namespace GenFu.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
+
         private readonly IAssemblyLoadContextAccessor _accessor;
         private readonly ILibraryExporter _exporter;
 
@@ -52,14 +57,33 @@ namespace GenFu.Web.Controllers
             {
                 model.HasCompileErrors = true;
                 model.CompileErrors = compileResult.Errors;
+
+                HttpContext.Session.Remove(RandomObjectsSessionKey);
             }
             else
             {
                 model.RandomObjects = sourceCode.GenerateData(10);
                 model.PropertyNames = model.RandomObjects.First().Keys;
+                
+                HttpContext.Session.SetString(RandomObjectsSessionKey, JsonConvert.SerializeObject(model.RandomObjects));
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Download()
+        {
+            var randomObjectsJson = HttpContext.Session.GetString(RandomObjectsSessionKey);
+
+            if (randomObjectsJson == null)
+            {
+                return HttpBadRequest();
+            }
+
+            var randomObjectsJsonAsBytes = new UTF8Encoding().GetBytes(randomObjectsJson);
+
+            return File(randomObjectsJsonAsBytes, "application/json", "random-data.json");
         }
     }
 }
