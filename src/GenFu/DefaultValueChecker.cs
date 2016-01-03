@@ -8,7 +8,14 @@ namespace GenFu
         internal static bool HasValue(object instance, PropertyInfo property)
         {
             var value = property.GetValue(instance,null);
-            bool valueSet = false;           
+            bool valueSet = false;
+
+            // Support Nullable items
+            if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return value != null;
+            }
+
             switch (property.PropertyType.Name.ToLower())
             {
                 case "int32":

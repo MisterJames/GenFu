@@ -151,6 +151,7 @@ namespace GenFu
             public static DateTime MIN_DATETIME = DateTime.Now.AddYears(-30);
             public static DateTime MAX_DATETIME = DateTime.Now.AddYears(30);
             
+            public static double SEED_PERCENTAGE = 0.2;
 
             public const string FILE_DOMAIN_NAMES = "DomainNames";
             public const string FILE_FIRST_NAMES = "FirstNames";

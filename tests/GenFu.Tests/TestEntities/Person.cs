@@ -48,5 +48,8 @@ namespace GenFu.Tests
             return _middleName;
         }
 
+        public DateTime? DateOfDeath { get; set; }
+
+        public int? NumberOfCats { get; set; }
     }
 }
