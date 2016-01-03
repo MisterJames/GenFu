@@ -33,6 +33,10 @@ namespace GenFu
                 _propertyFillers.Add(new CompanyNameFiller());
 
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
+                _propertyFillers.Add(new CookingFiller.StarterFiller());
+                _propertyFillers.Add(new CookingFiller.MainCourseFiller());
+                _propertyFillers.Add(new CookingFiller.DessertFiller());
+                _propertyFillers.Add(new CookingFiller.MealFiller());
 
                 {
                     DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();

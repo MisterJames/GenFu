@@ -25,16 +25,34 @@ namespace GenFu
             return values[index];
         }
 
+        public static T GetRandomValue<T>(params T[][] values)
+        {
+            int index = _random.Next(0, values.Length);
+            return GetRandomValue(values[index]);
+        }
+
         public static T GetRandomValue<T>(List<T> values)
         {
             int index = _random.Next(0, values.Count);
             return values[index];
         }
 
+        public static T GetRandomValue<T>(params List<T>[] values)
+        {
+            int index = _random.Next(0, values.Length);
+            return GetRandomValue(values[index]);
+        }
+
         public static T GetRandomValue<T>(IEnumerable<T> values)
         {
             int index = _random.Next(0, values.Count());
             return values.ElementAt(index);
+        }
+
+        public static T GetRandomValue<T>(params IEnumerable<T>[] values)
+        {
+            int index = _random.Next(0, values.Count());
+            return GetRandomValue(values.ElementAt(index));
         }
     }
 }

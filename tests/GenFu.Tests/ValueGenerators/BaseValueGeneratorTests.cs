@@ -26,6 +26,19 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void GetRandomValueFromArrays()
+        {
+            string[][] possibleValues = new[] { new [] { "A", "B", "C", "D", "E" }, new[] { "F", "G", "H", "I", "J" } };
+            for (int i = 0; i < 500; i++)
+            {
+                string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
+                Assert.NotNull(randomValue);
+                Assert.NotEmpty(randomValue);
+                Assert.True(possibleValues.Any(p => p.Contains(randomValue)));
+            }
+        }
+
+        [Fact]
         public void GetRandomValueFromList()
         {
             List<string> possibleValues = new List<string> { "1", "2", "3", "4", "5" };
@@ -35,6 +48,19 @@ namespace GenFu.Tests
                 Assert.NotNull(randomValue);
                 Assert.NotEmpty(randomValue);
                 Assert.True(possibleValues.Contains(randomValue));
+            }
+        }
+
+        [Fact]
+        public void GetRandomValueFromLists()
+        {
+            List<String>[] possibleValues = new[] { new List<string> { "1", "2", "3", "4", "5" }, new List < string > { "6", "7", "8", "9", "10" } };
+            for (int i = 0; i < 500; i++)
+            {
+                string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
+                Assert.NotNull(randomValue);
+                Assert.NotEmpty(randomValue);
+                Assert.True(possibleValues.Any(p => p.Contains(randomValue)));
             }
         }
 

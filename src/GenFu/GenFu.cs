@@ -166,6 +166,9 @@ namespace GenFu
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
             public const string FILE_INGREDIENTS = "Ingredients";
+            public const string FILE_COOKING_STARTERS = "CookingStarters";
+            public const string FILE_COOKING_MAIN_COURSES = "CookingMainCourses";
+            public const string FILE_COOKING_DESSERTS = "CookingDesserts";
             public const string FILE_COMPANY_NAMES = "CompanyNames";
             public const string FILE_INDUSTRIES = "Industries";
             

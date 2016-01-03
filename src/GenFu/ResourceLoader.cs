@@ -28,6 +28,9 @@ namespace GenFu
             _data.Add(Properties.MusicArtists, LoadStrings(GenFu.Defaults.FILE_MUSIC_ARTIST));
             _data.Add(Properties.MusicAlbums, LoadStrings(GenFu.Defaults.FILE_MUSIC_ALBUM));
             _data.Add(Properties.Ingredients, LoadStrings(GenFu.Defaults.FILE_INGREDIENTS));
+            _data.Add(Properties.CookingStarters, LoadStrings(GenFu.Defaults.FILE_COOKING_STARTERS));
+            _data.Add(Properties.CookingMainCourses, LoadStrings(GenFu.Defaults.FILE_COOKING_MAIN_COURSES));
+            _data.Add(Properties.CookingDesserts, LoadStrings(GenFu.Defaults.FILE_COOKING_DESSERTS));
             _data.Add(Properties.CompanyNames, LoadStrings(GenFu.Defaults.FILE_COMPANY_NAMES));
             _data.Add(Properties.Industries, LoadStrings(GenFu.Defaults.FILE_INDUSTRIES));
         }
