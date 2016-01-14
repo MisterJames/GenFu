@@ -689,22 +689,6 @@
           "lib/dnxcore50/Microsoft.AspNet.Server.Kestrel.dll": {}
         }
       },
-      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516"
-        },
-        "compile": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
-        }
-      },
       "Microsoft.AspNet.StaticFiles/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -2947,22 +2931,6 @@
         },
         "native": {
           "runtimes/win7-x86/native/libuv.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516"
-        },
-        "compile": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
         }
       },
       "Microsoft.AspNet.StaticFiles/1.0.0-rc1-final": {
@@ -5540,22 +5508,6 @@
           "runtimes/win7-x64/native/libuv.dll": {}
         }
       },
-      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516"
-        },
-        "compile": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet5.4/Microsoft.AspNet.Session.dll": {}
-        }
-      },
       "Microsoft.AspNet.StaticFiles/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -8003,20 +7955,6 @@
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll",
         "thirdpartynotices.txt"
-      ]
-    },
-    "Microsoft.AspNet.Session/1.0.0-rc1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "nMImkPMx/z4YL/bCBaTywQZD28sg6IvWMRckzY4hMZuhhRWr4z3HHYgORCaKbJQH3nJkfL6rb+TpmWobN9gKpw==",
-      "files": [
-        "lib/dotnet5.4/Microsoft.AspNet.Session.dll",
-        "lib/dotnet5.4/Microsoft.AspNet.Session.xml",
-        "lib/net451/Microsoft.AspNet.Session.dll",
-        "lib/net451/Microsoft.AspNet.Session.xml",
-        "Microsoft.AspNet.Session.1.0.0-rc1-final.nupkg",
-        "Microsoft.AspNet.Session.1.0.0-rc1-final.nupkg.sha512",
-        "Microsoft.AspNet.Session.nuspec"
       ]
     },
     "Microsoft.AspNet.StaticFiles/1.0.0-rc1-final": {
@@ -11750,7 +11688,6 @@
       "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-rc1-final",
       "Microsoft.AspNet.Server.Kestrel >= 1.0.0-rc1-final",
       "Microsoft.AspNet.StaticFiles >= 1.0.0-rc1-final",
-      "Microsoft.AspNet.Session >= 1.0.0-rc1-final",
       "Microsoft.Dnx.Compilation.CSharp.Common >= 1.0.0-rc1-final",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-rc1-final",
       "System.Reflection >= 4.1.0-beta-23516"
