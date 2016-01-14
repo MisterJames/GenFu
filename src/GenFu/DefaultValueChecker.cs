@@ -11,7 +11,7 @@ namespace GenFu
             bool valueSet = false;
 
             // Support Nullable items
-            if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            if (property.PropertyType.GetTypeInfo().IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 return value != null;
             }
