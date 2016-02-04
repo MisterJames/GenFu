@@ -566,6 +566,15 @@
           "lib/net45/_._": {}
         }
       },
+      "System.Reflection.Extensions/4.0.1-beta-23516": {
+        "type": "package",
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
       "System.Runtime/4.0.0": {
         "type": "package",
         "compile": {
@@ -2698,6 +2707,15 @@
           "lib/net45/_._": {}
         }
       },
+      "System.Reflection.Extensions/4.0.1-beta-23516": {
+        "type": "package",
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
       "System.Runtime/4.0.0": {
         "type": "package",
         "compile": {
@@ -3382,6 +3400,15 @@
         }
       },
       "System.Linq/4.0.1-beta-23516": {
+        "type": "package",
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
+      "System.Reflection.Extensions/4.0.1-beta-23516": {
         "type": "package",
         "compile": {
           "ref/net45/_._": {}
@@ -11221,6 +11248,7 @@
     "": [
       "GenFu ",
       "Microsoft.AspNet.TestHost >= 1.0.0-rc1-final",
+      "System.Reflection.Extensions >= 4.0.1-beta-23516",
       "xunit >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-rc1-build204"
     ],
