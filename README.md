@@ -3,6 +3,8 @@ GenFu
 
 http://genfu.io/ 
 
+[![Build status](https://ci.appveyor.com/api/projects/status/4lahunpwdpl70wk9?svg=true)](https://ci.appveyor.com/project/stimms/genfu)
+
 > **GenFu** is a library you can use to generate realistic test data. It is composed of several *property fillers* that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers, give **GenFu** hints on how to fill them.
 
 GenFu is all about _smartly_ building up objects to use for test and prototype data. It will walk your object graph and fill in the properties on your type with realistic looking data.  
