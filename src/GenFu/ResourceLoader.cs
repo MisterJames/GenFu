@@ -33,6 +33,7 @@ namespace GenFu
             _data.Add(Properties.CompanyNames, LoadStrings(GenFu.Defaults.FILE_COMPANY_NAMES));
             _data.Add(Properties.Industries, LoadStrings(GenFu.Defaults.FILE_INDUSTRIES));
             _data.Add(Properties.Injuries, LoadStrings(GenFu.Defaults.FILE_INJURIES));
+            _data.Add(Properties.Genders, LoadStrings(GenFu.Defaults.FILE_GENDERS));
         }
 
         public static List<string> Data (Properties propertyType) 

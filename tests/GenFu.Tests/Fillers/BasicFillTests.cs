@@ -4,6 +4,8 @@ using System.Linq;
 using Xunit;
 using System.Collections.Generic;
 using GenFu.ValueGenerators.Geospatial;
+using GenFu.ValueGenerators.Medical;
+using GenFu.ValueGenerators.People;
 
 namespace GenFu.Tests
 {
@@ -113,9 +115,17 @@ namespace GenFu.Tests
         [Fact]
         public void InjuryResourceTest()
         {
-            var injury = ValueGenerators.Medical.Injuries.Injury();
+            var injury =  Injuries.Injury();
 
             Assert.NotEqual(string.Empty, injury);
+        }
+
+        [Fact]
+        public void GenderResourceTest()
+        {
+            var gender =  Qualities.Gender();
+
+            Assert.NotEqual(string.Empty, gender);
         }
 
         [Fact]

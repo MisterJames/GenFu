@@ -27,7 +27,8 @@ namespace GenFu
         Industries,
         Drugs,
         MedicalProcedures,
-        Injuries
+        Injuries,
+        Genders
     }
 
     [Flags]
