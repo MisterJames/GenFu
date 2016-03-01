@@ -34,6 +34,7 @@ namespace GenFu
             _data.Add(Properties.Industries, LoadStrings(GenFu.Defaults.FILE_INDUSTRIES));
             _data.Add(Properties.Injuries, LoadStrings(GenFu.Defaults.FILE_INJURIES));
             _data.Add(Properties.Genders, LoadStrings(GenFu.Defaults.FILE_GENDERS));
+            _data.Add(Properties.Drugs, LoadStrings(GenFu.Defaults.FILE_DRUGS));
         }
 
         public static List<string> Data (Properties propertyType) 
