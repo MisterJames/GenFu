@@ -111,6 +111,14 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void InjuryResourceTest()
+        {
+            var injury = ValueGenerators.Medical.Injuries.Injury();
+
+            Assert.NotEqual(string.Empty, injury);
+        }
+
+        [Fact]
         public void UseSuppliedResourceDataTest()
         {
             GenFu.Configure().Data(Properties.FirstNames, @"testdata\singlename.txt");
