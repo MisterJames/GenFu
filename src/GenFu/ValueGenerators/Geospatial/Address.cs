@@ -54,9 +54,18 @@ namespace GenFu.ValueGenerators.Geospatial
             return GetRandomValue(ResourceLoader.Data(Properties.UsaStates));
         }
 
+        public static string UsaStateAbreviation()
+        {
+            return GetRandomValue(ResourceLoader.Data(Properties.UsaStateAbreviations));
+        }
+        
         public static string CanadianProvince()
         {
             return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinces));
+        }
+        public static string CanadianProvinceAbreviation()
+        {
+            return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinceAbreviations));
         }
 
         public static string ZipCode()
