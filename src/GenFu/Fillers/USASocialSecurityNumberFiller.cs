@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenFu.Fillers
 {
-    class USASocialSecurityNumberFiller : PropertyFiller<String>
+    public class USASocialSecurityNumberFiller : PropertyFiller<String>
     {
 
         public USASocialSecurityNumberFiller()
@@ -30,9 +30,10 @@ namespace GenFu.Fillers
 
         }
 
+        static Random random = new Random();
         protected internal string RandomDigit()
         {
-            return (new Random().Next() % 10).ToString();
+            return (random.Next() % 10).ToString();
         }
     }
 }
