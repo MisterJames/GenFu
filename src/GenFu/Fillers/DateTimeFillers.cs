@@ -7,12 +7,13 @@ namespace GenFu
     {
         private Random _random = new Random();
 
-        public DateTime Min { get; set; }
-        public DateTime Max { get; set; }
+        public DateTime Min { get; set; } = new DateTime(1900, 01, 01);
+        public DateTime Max { get; set; } = new DateTime(2020, 12, 31);
 
         public DateTimeFiller()
             : base(new[] { "object" }, new[] { "*" }, true)
         {
+            
         }
 
       

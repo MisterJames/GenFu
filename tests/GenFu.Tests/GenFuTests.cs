@@ -8,7 +8,7 @@ using Xunit;
 
 namespace GenFu.Tests
 {
-    public class GenFuTests
+    public class When_generating
     {
         [Fact]
         public void StringInNewClassIsPopulated()
@@ -268,6 +268,13 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void DateTimesHaveDateInitialized()
+        {
+            var post = A.New<BlogPost>();
+            Assert.True(post.CreateDate.Year  > 1);
+        }
+
+        [Fact]
         public void DateTimesStayWithinConfiguredDates()
         {
             var success = true;
@@ -420,17 +427,10 @@ namespace GenFu.Tests
         public void MethodIsLeftAloneWhenMatchesNothing()
         {
             // currently fills
+            A.Reset();
             var person = A.New<Person>();
             Assert.True(string.IsNullOrEmpty(person.GetMiddleName()));
         }
-
-        //[Fact]
-        //public void MethodIsFilledWhenSpecified()
-        //{
-        //    A.Configure<Person>().MethodFill<string>(x => x.SetMiddleName(null));
-        //    var person = A.New<Person>();
-        //    Assert.False(string.IsNullOrEmpty(person.GetMiddleName()));
-        //}
 
 
         [Fact]
@@ -453,6 +453,58 @@ namespace GenFu.Tests
             var person = A.New<Person>();
             Assert.True(!string.IsNullOrEmpty(person.GetMiddleName()));
             Assert.Equal(expected, person.GetMiddleName());
+        }
+
+        [Fact]
+        public void NullableDateWillGetRandomNullSeed()
+        {
+            // Allow average 20% of collection to be Null 
+            GenFu.Defaults.SEED_PERCENTAGE = 0.2;
+
+            var dates = new List<DateTime?>();
+            for(int x = 0; x<100; x++)
+            {
+                A.Reset();
+                var person = A.New(new Person());
+                dates.Add(person.DateOfDeath);
+            }
+
+            int nullItems = dates.Where(x => x == null).Count();
+            int notNullItems = dates.Where(x => x != null).Count();
+
+            // Should contain mix of Nulls and set values
+            Assert.True(nullItems > 0);
+            Assert.True(notNullItems > 0);
+        }
+
+        [Fact(Skip ="Not yet supported but should be")]
+        public void IntIsPopulatedIfNullable()
+        {
+            A.Reset();
+            var person = A.New(new Person());
+
+            Assert.NotEqual(null, person.NumberOfCats);
+        }
+
+        [Fact]
+        public void StringIsPopulatedIfNullable()
+        {
+            A.Reset();
+            var person = A.New(new Person() { FirstName = null } );
+
+            Assert.NotNull(person.FirstName);
+        }
+
+        [Fact]
+        public void NullableDateWillStayNull()
+        {
+            // Update Seed so the value is always NULL
+            GenFu.Defaults.SEED_PERCENTAGE = 0;
+
+            A.Reset();
+            var person = A.New(new Person() { DateOfDeath = null });
+
+            Assert.Null(person.DateOfDeath);
         }
     }
 }

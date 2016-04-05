@@ -22,10 +22,10 @@ namespace GenFu.Tests
         public string TestProperty { get; set; }
     }
 
-    public class PluginFillersTest
+    public class When_filling_using_plugin
     {
         [Fact(Skip = "not implemented yet")]
-        public void TestThatAdditionalFiltersAreFoundAndUsed()
+        public void Additional_Filters_are_Found_and_Used()
         {
             TestClass testClass = A.New<TestClass>();
             Assert.Equal(PluginPropertyFiller.Value, testClass.TestProperty);

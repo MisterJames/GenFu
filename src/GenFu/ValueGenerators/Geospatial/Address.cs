@@ -7,6 +7,8 @@ namespace GenFu.ValueGenerators.Geospatial
 {
     public class Address : BaseValueGenerator
     {
+        public static readonly Random random = new Random();
+
         public static string AddressLine()
         {
             var suffixes = new List<string> { "NW", "N", "NE", "E", "SE", "S", "SW", "W" };
@@ -57,5 +59,27 @@ namespace GenFu.ValueGenerators.Geospatial
             return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinces));
         }
 
+        public static string ZipCode()
+        {
+            return random.Next(0, 99999).ToString().PadLeft(5, '0');
+        }
+
+        public static string PostalCode()
+        {
+            const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            var postalCode = string.Empty;
+            postalCode += letters[random.Next(0, letters.Length)];
+            postalCode += random.Next(0, 9);
+            postalCode += letters[random.Next(0, letters.Length)];
+
+            postalCode += " ";
+
+            postalCode += random.Next(0, 9);
+            postalCode += letters[random.Next(0, letters.Length)];
+            postalCode += random.Next(0, 9);
+
+            return postalCode;
+        }
     }
 }

@@ -22,6 +22,11 @@ namespace GenFu.ValueGenerators.People
             return GetRandomValue(ResourceLoader.Data(Properties.FirstNames));
         }
 
+        public static string PersonTitle()
+        {
+            return GetRandomValue(ResourceLoader.Data(Properties.PersonTitles));
+        }
+
         public static string UserName()
         {
             return FirstName().First() + LastName();

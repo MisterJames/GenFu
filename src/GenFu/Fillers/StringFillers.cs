@@ -1,5 +1,8 @@
 ﻿using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.People;
+using System;
+using System.Text;
+
 namespace GenFu
 {
     public class StringFiller : PropertyFiller<string>
@@ -38,6 +41,19 @@ namespace GenFu
         public override object GetValue(object instance)
         {
             return Names.FirstName();
+        }
+    }
+
+    public class PersonTitleFiller : PropertyFiller<string>
+    {
+        public PersonTitleFiller()
+            : base(new[] { "person", "employee", "user" }, new[] { "title" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Names.PersonTitle();
         }
     }
 
@@ -83,7 +99,7 @@ namespace GenFu
     public class AddressFiller : PropertyFiller<string>
     {
         public AddressFiller()
-            : base(new[] { "object" }, new[] { "address", "adress1", "adress_1", "billingaddress", "billing_address" })
+            : base(new[] { "object" }, new[] { "address", "address1", "address_1", "billingaddress", "billing_address" })
         {
         }
 
@@ -96,7 +112,7 @@ namespace GenFu
     public class AddressLine2Filler : PropertyFiller<string>
     {
         public AddressLine2Filler()
-            : base(new[] { "object" }, new[] { "address2", "adress_2" })
+            : base(new[] { "object" }, new[] { "address2", "address_2" })
         {
         }
 
@@ -135,13 +151,39 @@ namespace GenFu
     public class ProvinceFiller : PropertyFiller<string>
     {
         public ProvinceFiller()
-            : base(new[] { "object" }, new[] { "provice", "provincename", "province_name" })
+            : base(new[] { "object" }, new[] { "province", "provincename", "province_name" })
         {
         }
 
         public override object GetValue(object instance)
         {
             return Address.CanadianProvince();
+        }
+    }
+
+    public class ZipCodeFiller : PropertyFiller<string>
+    {
+        public ZipCodeFiller()
+            : base(new[] { "object" }, new[] { "zip", "zipcode", "zip_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.ZipCode();
+        }
+    }
+
+    public class PostalCodeFiller : PropertyFiller<string>
+    {
+        public PostalCodeFiller()
+            : base(new[] { "object" }, new[] { "postalcode", "postal_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.PostalCode();
         }
     }
 
@@ -209,7 +251,6 @@ namespace GenFu
             return ValueGenerators.Music.Genre.Description();
         }
     }
-
 
 
     public static class StringFillerExtensions
@@ -290,6 +331,19 @@ namespace GenFu
         public static GenFuConfigurator<T> AsFirstName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        /// <summary>
+        /// Populate the specified property with a person title (Mrs, Miss,...)
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
+        public static GenFuConfigurator<T> AsPersonTitle<T>(this GenFuStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.PersonTitle());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

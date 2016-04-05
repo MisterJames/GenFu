@@ -62,7 +62,19 @@ namespace GenFu
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
-             
+
+        /// <summary>
+        /// Replaces the well-known property with a user-supplied list of values loaded from the specified file
+        /// </summary>
+        /// <param name="propertyType">The property for which you wish to supply values</typeparam>
+        /// <param name="filename">A value-per-line file with values for the property</typeparam>
+        /// <returns>A configurator for the target object type</returns>
+        public GenFuConfigurator Data(Properties propertyType, string filename)
+        {
+            ResourceLoader.ReplacePropertyData(propertyType, filename);
+            return this;
+        }
+
         public GenFu GenFu
         {
             get { return _genfu; }

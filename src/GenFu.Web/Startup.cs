@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
 
 namespace GenFu.Web
 {
@@ -15,6 +12,11 @@ namespace GenFu.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCaching();
+            services.AddSession(s =>
+            {
+                s.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -29,6 +31,7 @@ namespace GenFu.Web
             // Add the platform handler to the request pipeline.
             app.UseIISPlatformHandler();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

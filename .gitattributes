@@ -20,3 +20,8 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# Linguist exclusions
+src/GenFu.Web/wwwroot/js/* linguist-vendored
+src/GenFu.Web/wwwroot/fonts/* linguist-vendored
+src/GenFu.Web/wwwroot/css/* linguist-vendored

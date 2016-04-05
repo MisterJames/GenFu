@@ -12,6 +12,7 @@ using System.Globalization;
 using Microsoft.Dnx.Compilation;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Dnx.Compilation.CSharp;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace GenFu.Web.Models
 {

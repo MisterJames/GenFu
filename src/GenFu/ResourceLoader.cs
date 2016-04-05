@@ -17,6 +17,7 @@ namespace GenFu
 
             _data.Add(Properties.FirstNames, LoadStrings(GenFu.Defaults.FILE_FIRST_NAMES));
             _data.Add(Properties.LastNames, LoadStrings(GenFu.Defaults.FILE_LAST_NAMES));
+            _data.Add(Properties.PersonTitles, LoadStrings(GenFu.Defaults.FILE_PERSON_TITLES));
             _data.Add(Properties.Words, LoadStrings(GenFu.Defaults.FILE_WORDS));
             _data.Add(Properties.Titles, LoadStrings(GenFu.Defaults.FILE_TITLES));
             _data.Add(Properties.Domains, LoadStrings(GenFu.Defaults.FILE_DOMAIN_NAMES));
@@ -90,5 +91,13 @@ namespace GenFu
 
         }
 
+        public static void ReplacePropertyData(Properties propertyType, string filename)
+        {
+            if (File.Exists(filename))
+            {
+                var values = File.ReadLines(filename).ToList();
+                _data[propertyType] = values;
+            }                
+        }
     }
 }

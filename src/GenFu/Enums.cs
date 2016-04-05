@@ -9,6 +9,7 @@ namespace GenFu
     {
         FirstNames,
         LastNames,
+        PersonTitles,
         Words,
         Titles,
         Domains,
@@ -21,7 +22,9 @@ namespace GenFu
         MusicAlbums,
         Ingredients,
         CompanyNames,
-        Industries
+        Industries,
+        Drugs,
+        MedicalProcedures
     }
 
     [Flags]

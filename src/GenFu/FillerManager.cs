@@ -34,7 +34,12 @@ namespace GenFu
 
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
-                _propertyFillers.Add(new DateTimeFiller());
+                {
+                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
+                    _propertyFillers.Add(new DateTimeFiller());
+                    _propertyFillers.Add(DateTimeNullableFiller);
+                }
+
                 _propertyFillers.Add(new BirthDateFiller());
                 _propertyFillers.Add(new GuidFiller());
                 _propertyFillers.Add(new ArticleTitleFiller());
@@ -42,6 +47,7 @@ namespace GenFu
                 _propertyFillers.Add(new FirstNameFiller());
                 _propertyFillers.Add(new LastNameFiller());
                 _propertyFillers.Add(new EmailFiller());
+                _propertyFillers.Add(new PersonTitleFiller());
 
                 _propertyFillers.Add(new TwitterFiller());
 
@@ -50,12 +56,20 @@ namespace GenFu
                 _propertyFillers.Add(new CityFiller());
                 _propertyFillers.Add(new StateFiller());
                 _propertyFillers.Add(new ProvinceFiller());
+                _propertyFillers.Add(new ZipCodeFiller());
+                _propertyFillers.Add(new PostalCodeFiller());
                 _propertyFillers.Add(new PhoneNumberFiller());
 
                 _propertyFillers.Add(new MusicAlbumTitleFiller());
                 _propertyFillers.Add(new MusicArtistNameFiller());
                 _propertyFillers.Add(new MusicGenreDescriptionFiller());
                 _propertyFillers.Add(new MusicGenreNameFiller());
+
+                _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller());
+                _propertyFillers.Add(new USASocialSecurityNumberFiller());
+
+                _propertyFillers.Add(new DrugFiller());
+                _propertyFillers.Add(new MedicalProcedureFiller());
 
                 _propertyFillers.Add(new StringFiller());
 
@@ -110,6 +124,7 @@ namespace GenFu
             {
                 //First try to get a specific filler based on a full type name (including namespace)
                 string fullTypeName = objectType.FullName.ToLowerInvariant();
+                
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
                     IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
