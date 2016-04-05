@@ -88,7 +88,7 @@ namespace GenFu.Tests
         }
 
         [Fact]
-        public void Filled_string_should_return_ture()
+        public void Filled_string_should_return_true()
         {
             var post = new BlogPost { Title = "Bob" };
             Assert.True(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == "Title")));
@@ -102,7 +102,7 @@ namespace GenFu.Tests
         }
 
         [Fact]
-        public void Filled_datetime_should_return_ture()
+        public void Filled_datetime_should_return_true()
         {
             var post = new BlogPost { CreateDate = DateTime.Now };
             Assert.True(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == "CreateDate")));
