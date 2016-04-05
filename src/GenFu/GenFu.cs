@@ -172,6 +172,7 @@ namespace GenFu
             public const string FILE_INDUSTRIES = "Industries";
             public const string FILE_INJURIES = "Injuries";
             public const string FILE_GENDERS = "Genders";
+            public const string FILE_DRUGS = "Drugs";
 
             public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
         }

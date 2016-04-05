@@ -129,6 +129,14 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void DrugResourceTest()
+        {
+            var drug = Drugs.Drug();
+
+            Assert.NotEqual(string.Empty, drug);
+        }
+
+        [Fact]
         public void UseSuppliedResourceDataTest()
         {
             GenFu.Configure().Data(Properties.FirstNames, @"testdata\singlename.txt");
