@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies>
+  <assembly name="GenFu.Tests.dll" environment="64-bit .NET (unknown version) [collection-per-class, parallel (1 threads)]" test-framework="xUnit.net 2.1.0.3179" run-date="2016-02-26" run-time="10:41:13" total="72" passed="69" failed="0" skipped="3" time="3.543" errors="0">
+    <errors />
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for GenFu.Tests.ExtensionMethodTests" time="0.005">
+      <test name="GenFu.Tests.ExtensionMethodTests.AsEmailAddressForDomain" type="GenFu.Tests.ExtensionMethodTests" method="AsEmailAddressForDomain" time="0.0048831" result="Pass" />
+    </collection>
+    <collection total="1" passed="0" failed="0" skipped="1" name="Test collection for GenFu.Tests.When_filling_using_plugin" time="0.000">
+      <test name="GenFu.Tests.When_filling_using_plugin.Additional_Filters_are_Found_and_Used" type="GenFu.Tests.When_filling_using_plugin" method="Additional_Filters_are_Found_and_Used" time="0" result="Skip">
+        <reason><![CDATA[not implemented yet]]></reason>
+      </test>
+    </collection>
+    <collection total="4" passed="4" failed="0" skipped="0" name="Test collection for GenFu.Tests.When_getting_a_generic_filler" time="0.002">
+      <test name="GenFu.Tests.When_getting_a_generic_filler.A_decimal_filler_is_returned" type="GenFu.Tests.When_getting_a_generic_filler" method="A_decimal_filler_is_returned" time="0.0006577" result="Pass" />
+      <test name="GenFu.Tests.When_getting_a_generic_filler.An_int_filler_is_returned" type="GenFu.Tests.When_getting_a_generic_filler" method="An_int_filler_is_returned" time="0.0003537" result="Pass" />
+      <test name="GenFu.Tests.When_getting_a_generic_filler.A_short_filler_is_returned" type="GenFu.Tests.When_getting_a_generic_filler" method="A_short_filler_is_returned" time="0.0003489" result="Pass" />
+      <test name="GenFu.Tests.When_getting_a_generic_filler.An_datetime_filler_is_returned" type="GenFu.Tests.When_getting_a_generic_filler" method="An_datetime_filler_is_returned" time="0.0003591" result="Pass" />
+    </collection>
+    <collection total="3" passed="2" failed="0" skipped="1" name="Test collection for GenFu.Tests.When_filling_object_graph" time="0.019">
+      <test name="GenFu.Tests.When_filling_object_graph.FillPropertyWithRandomValuesFromList" type="GenFu.Tests.When_filling_object_graph" method="FillPropertyWithRandomValuesFromList" time="0.0160734" result="Pass" />
+      <test name="GenFu.Tests.When_filling_object_graph.Inherited_fields_are_filed" type="GenFu.Tests.When_filling_object_graph" method="Inherited_fields_are_filed" time="0.0031251" result="Pass" />
+      <test name="GenFu.Tests.When_filling_object_graph.Inherited_fields_do_not_clash_with_other_subclasses" type="GenFu.Tests.When_filling_object_graph" method="Inherited_fields_do_not_clash_with_other_subclasses" time="0" result="Skip">
+        <reason><![CDATA[Not yet supported but should be]]></reason>
+      </test>
+    </collection>
+    <collection total="3" passed="3" failed="0" skipped="0" name="Test collection for GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests" time="0.073">
+      <test name="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests.Matches_a_field" type="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests" method="Matches_a_field" time="0.0636526" result="Pass" />
+      <test name="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests.Filler_fills" type="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests" method="Filler_fills" time="0.0013782" result="Pass" />
+      <test name="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests.Filler_give_valid_numbers" type="GenFu.Tests.Fillers.CanadianSocialInsuranceNumberFillerTests" method="Filler_give_valid_numbers" time="0.0075452" result="Pass" />
+    </collection>
+    <collection total="11" passed="11" failed="0" skipped="0" name="Test collection for GenFu.Tests.BasicFillTests" time="0.033">
+      <test name="GenFu.Tests.BasicFillTests.CanadianProvinceResourceTest" type="GenFu.Tests.BasicFillTests" method="CanadianProvinceResourceTest" time="0.00404" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.StreetNameResourceTest" type="GenFu.Tests.BasicFillTests" method="StreetNameResourceTest" time="0.0003938" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.DomainResourceTest" type="GenFu.Tests.BasicFillTests" method="DomainResourceTest" time="0.0011615" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.TwitterResourceTest" type="GenFu.Tests.BasicFillTests" method="TwitterResourceTest" time="0.0012524" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.UsaStatesResourceTest" type="GenFu.Tests.BasicFillTests" method="UsaStatesResourceTest" time="0.0003685" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.FirstNamesResourcesLoad" type="GenFu.Tests.BasicFillTests" method="FirstNamesResourcesLoad" time="0.0011355" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.LastNamesResourcesLoad" type="GenFu.Tests.BasicFillTests" method="LastNamesResourcesLoad" time="0.0011008" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.UseSuppliedResourceDataTest" type="GenFu.Tests.BasicFillTests" method="UseSuppliedResourceDataTest" time="0.0217985" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.WordsResourcesLoad" type="GenFu.Tests.BasicFillTests" method="WordsResourcesLoad" time="0.0012058" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.TitleResourcesLoad" type="GenFu.Tests.BasicFillTests" method="TitleResourcesLoad" time="0.0005357" result="Pass" />
+      <test name="GenFu.Tests.BasicFillTests.CityNameResourceTest" type="GenFu.Tests.BasicFillTests" method="CityNameResourceTest" time="0.0002767" result="Pass" />
+    </collection>
+    <collection total="9" passed="9" failed="0" skipped="0" name="Test collection for GenFu.Tests.BaseValueGeneratorTests" time="0.008">
+      <test name="GenFu.Tests.BaseValueGeneratorTests.GetRandomValueFromArray" type="GenFu.Tests.BaseValueGeneratorTests" method="GetRandomValueFromArray" time="0.0011304" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.GetRandomValueFromEnumerable" type="GenFu.Tests.BaseValueGeneratorTests" method="GetRandomValueFromEnumerable" time="0.0015155" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.PhoneNumberIsExpectedLength" type="GenFu.Tests.BaseValueGeneratorTests" method="PhoneNumberIsExpectedLength" time="0.0023544" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.MakeDateWithinSpecifiedRange" type="GenFu.Tests.BaseValueGeneratorTests" method="MakeDateWithinSpecifiedRange" time="0.0007778" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.GetRandomValueFromList" type="GenFu.Tests.BaseValueGeneratorTests" method="GetRandomValueFromList" time="0.0006217" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.MakeDateRuleFutureIsCorrect" type="GenFu.Tests.BaseValueGeneratorTests" method="MakeDateRuleFutureIsCorrect" time="0.0003398" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.CanSetCustomDomainOnEmail" type="GenFu.Tests.BaseValueGeneratorTests" method="CanSetCustomDomainOnEmail" time="0.0002381" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.MakeDateRulePastIsCorrect" type="GenFu.Tests.BaseValueGeneratorTests" method="MakeDateRulePastIsCorrect" time="0.0002972" result="Pass" />
+      <test name="GenFu.Tests.BaseValueGeneratorTests.AddressContainsNumbers" type="GenFu.Tests.BaseValueGeneratorTests" method="AddressContainsNumbers" time="0.000369" result="Pass" />
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for GenFu.Tests.When_configuring_property_with_custom_filler" time="0.202">
+      <test name="GenFu.Tests.When_configuring_property_with_custom_filler.string_property_should_be_set_to_custom_filled_value" type="GenFu.Tests.When_configuring_property_with_custom_filler" method="string_property_should_be_set_to_custom_filled_value" time="0.2019213" result="Pass" />
+    </collection>
+    <collection total="2" passed="2" failed="0" skipped="0" name="Test collection for GenFu.Tests.When_configuring_property_with_specific_value" time="0.476">
+      <test name="GenFu.Tests.When_configuring_property_with_specific_value.integer_property_should_always_be_set_to_specific_value" type="GenFu.Tests.When_configuring_property_with_specific_value" method="integer_property_should_always_be_set_to_specific_value" time="0.2965169" result="Pass" />
+      <test name="GenFu.Tests.When_configuring_property_with_specific_value.string_property_should_always_be_set_to_specific_value" type="GenFu.Tests.When_configuring_property_with_specific_value" method="string_property_should_always_be_set_to_specific_value" time="0.1792239" result="Pass" />
+    </collection>
+    <collection total="37" passed="36" failed="0" skipped="1" name="Test collection for GenFu.Tests.When_generating" time="2.475">
+      <test name="GenFu.Tests.When_generating.CustomPropertyFillsAreChainableUsingConfigure" type="GenFu.Tests.When_generating" method="CustomPropertyFillsAreChainableUsingConfigure" time="0.3107222" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MethodCanBeSet" type="GenFu.Tests.When_generating" method="MethodCanBeSet" time="0.0205844" result="Pass" />
+      <test name="GenFu.Tests.When_generating.UsaStateIsFilled" type="GenFu.Tests.When_generating" method="UsaStateIsFilled" time="0.0068331" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MethodIsLeftAloneWhenMatchesNothing" type="GenFu.Tests.When_generating" method="MethodIsLeftAloneWhenMatchesNothing" time="0.0058668" result="Pass" />
+      <test name="GenFu.Tests.When_generating.EmailAddressInNewClassIsValid" type="GenFu.Tests.When_generating" method="EmailAddressInNewClassIsValid" time="0.0019659" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ShortRangeWithinBoundsOnGeneratedValue" type="GenFu.Tests.When_generating" method="ShortRangeWithinBoundsOnGeneratedValue" time="0.4757768" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ComplexPropertyFillsExecuted" type="GenFu.Tests.When_generating" method="ComplexPropertyFillsExecuted" time="0.0065708" result="Pass" />
+      <test name="GenFu.Tests.When_generating.PopulatedBasicTypesInExistingClassRemainsUnchanged" type="GenFu.Tests.When_generating" method="PopulatedBasicTypesInExistingClassRemainsUnchanged" time="0.0054116" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ListOfGeneratesCorrectNumberOfEntries" type="GenFu.Tests.When_generating" method="ListOfGeneratesCorrectNumberOfEntries" time="0.0194433" result="Pass" />
+      <test name="GenFu.Tests.When_generating.DateTimesAreInitialized" type="GenFu.Tests.When_generating" method="DateTimesAreInitialized" time="0.0007853" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ShortMinNotExceededOnGeneratedValue" type="GenFu.Tests.When_generating" method="ShortMinNotExceededOnGeneratedValue" time="0.0258857" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ShouldIgnoreUnsettableProperties" type="GenFu.Tests.When_generating" method="ShouldIgnoreUnsettableProperties" time="0.0029826" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MakeListGeneratesCorrectNumberOfEntriesWithInstanceOverload" type="GenFu.Tests.When_generating" method="MakeListGeneratesCorrectNumberOfEntriesWithInstanceOverload" time="0.0127592" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MethodFillStrategyCanBeSpecified" type="GenFu.Tests.When_generating" method="MethodFillStrategyCanBeSpecified" time="0.0071752" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntIsPopulatedIfNullable" type="GenFu.Tests.When_generating" method="IntIsPopulatedIfNullable" time="0" result="Skip">
+        <reason><![CDATA[Not yet supported but should be]]></reason>
+      </test>
+      <test name="GenFu.Tests.When_generating.MakeListDefaultsTo25Entries" type="GenFu.Tests.When_generating" method="MakeListDefaultsTo25Entries" time="0.0241083" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ListOfDefaultGenerates25Entries" type="GenFu.Tests.When_generating" method="ListOfDefaultGenerates25Entries" time="0.0238085" result="Pass" />
+      <test name="GenFu.Tests.When_generating.StringIsPopulatedIfNullable" type="GenFu.Tests.When_generating" method="StringIsPopulatedIfNullable" time="0.0012529" result="Pass" />
+      <test name="GenFu.Tests.When_generating.NullableDateWillStayNull" type="GenFu.Tests.When_generating" method="NullableDateWillStayNull" time="0.0018434" result="Pass" />
+      <test name="GenFu.Tests.When_generating.BasicTypesInExistingClassArePopulated" type="GenFu.Tests.When_generating" method="BasicTypesInExistingClassArePopulated" time="0.0014953" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MakeListGeneratesCorrectNumberOfEntriesWithDefaults" type="GenFu.Tests.When_generating" method="MakeListGeneratesCorrectNumberOfEntriesWithDefaults" time="0.0128096" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntInNewClassIsPopulated" type="GenFu.Tests.When_generating" method="IntInNewClassIsPopulated" time="0.0012997" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntMaxNotExceededOnGeneratedValue" type="GenFu.Tests.When_generating" method="IntMaxNotExceededOnGeneratedValue" time="0.008858" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntMinNotExceededOnGeneratedValue" type="GenFu.Tests.When_generating" method="IntMinNotExceededOnGeneratedValue" time="0.0090071" result="Pass" />
+      <test name="GenFu.Tests.When_generating.DateTimesStayWithinConfiguredDates" type="GenFu.Tests.When_generating" method="DateTimesStayWithinConfiguredDates" time="0.4668387" result="Pass" />
+      <test name="GenFu.Tests.When_generating.CustomPropertyFillsAreChainableUsingSet" type="GenFu.Tests.When_generating" method="CustomPropertyFillsAreChainableUsingSet" time="0.0047542" result="Pass" />
+      <test name="GenFu.Tests.When_generating.StringInNewClassIsPopulated" type="GenFu.Tests.When_generating" method="StringInNewClassIsPopulated" time="0.0007026" result="Pass" />
+      <test name="GenFu.Tests.When_generating.PhoneNumberInNewClassIsPopulated" type="GenFu.Tests.When_generating" method="PhoneNumberInNewClassIsPopulated" time="0.0007555" result="Pass" />
+      <test name="GenFu.Tests.When_generating.MakeListGeneratesCorrectNumberOfEntriesWithStaticOverload" type="GenFu.Tests.When_generating" method="MakeListGeneratesCorrectNumberOfEntriesWithStaticOverload" time="0.0089793" result="Pass" />
+      <test name="GenFu.Tests.When_generating.StringPropertyFilledBySpecificMethod" type="GenFu.Tests.When_generating" method="StringPropertyFilledBySpecificMethod" time="0.0016399" result="Pass" />
+      <test name="GenFu.Tests.When_generating.ShortMaxNotExceededOnGeneratedValue" type="GenFu.Tests.When_generating" method="ShortMaxNotExceededOnGeneratedValue" time="0.0228462" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntRangeWithinBoundsOnGeneratedValue" type="GenFu.Tests.When_generating" method="IntRangeWithinBoundsOnGeneratedValue" time="0.4593408" result="Pass" />
+      <test name="GenFu.Tests.When_generating.CanadianProvinceIsFilled" type="GenFu.Tests.When_generating" method="CanadianProvinceIsFilled" time="0.0038073" result="Pass" />
+      <test name="GenFu.Tests.When_generating.DateTimeFilledWithExpectedDateGivenRules" type="GenFu.Tests.When_generating" method="DateTimeFilledWithExpectedDateGivenRules" time="0.4204518" result="Pass" />
+      <test name="GenFu.Tests.When_generating.DateTimesHaveDateInitialized" type="GenFu.Tests.When_generating" method="DateTimesHaveDateInitialized" time="0.0007065" result="Pass" />
+      <test name="GenFu.Tests.When_generating.NullableDateWillGetRandomNullSeed" type="GenFu.Tests.When_generating" method="NullableDateWillGetRandomNullSeed" time="0.0920384" result="Pass" />
+      <test name="GenFu.Tests.When_generating.IntPropertyFilledBySpecificMethod" type="GenFu.Tests.When_generating" method="IntPropertyFilledBySpecificMethod" time="0.0050606" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>
