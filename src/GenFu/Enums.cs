@@ -16,7 +16,9 @@ namespace GenFu
         StreetNames,
         CityNames,
         CanadianProvinces,
+        CanadianProvinceAbreviations,
         UsaStates,
+        UsaStateAbreviations,
         MusicArtists,
         MusicGenre,
         MusicAlbums,
@@ -24,7 +26,9 @@ namespace GenFu
         CompanyNames,
         Industries,
         Drugs,
-        MedicalProcedures
+        MedicalProcedures,
+        Injuries,
+        Genders
     }
 
     [Flags]

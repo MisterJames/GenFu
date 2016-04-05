@@ -148,6 +148,20 @@ namespace GenFu
         }
     }
 
+    public class StateAbreviationFiller : PropertyFiller<string>
+    {
+        public StateAbreviationFiller()
+            : base(new[] { "object" }, new[] { "stateAbreviation" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.UsaStateAbreviation();
+        }
+    }
+
+
     public class ProvinceFiller : PropertyFiller<string>
     {
         public ProvinceFiller()

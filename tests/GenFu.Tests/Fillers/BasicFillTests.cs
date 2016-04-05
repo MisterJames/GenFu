@@ -4,6 +4,8 @@ using System.Linq;
 using Xunit;
 using System.Collections.Generic;
 using GenFu.ValueGenerators.Geospatial;
+using GenFu.ValueGenerators.Medical;
+using GenFu.ValueGenerators.People;
 
 namespace GenFu.Tests
 {
@@ -81,7 +83,7 @@ namespace GenFu.Tests
         [Fact]
         public void CanadianProvinceResourceTest()
         {
-            var city = Address.City();
+            var city = Address.CanadianProvince();
 
             Assert.NotEqual(string.Empty, city);
         }
@@ -89,9 +91,41 @@ namespace GenFu.Tests
         [Fact]
         public void UsaStatesResourceTest()
         {
-            var city = Address.City();
+            var state = Address.UsaState();
 
-            Assert.NotEqual(string.Empty, city);
+            Assert.NotEqual(string.Empty, state);
+        }
+
+        [Fact]
+        public void CanadianProvinceAbreviationsResourceTest()
+        {
+            var canadianProvinceAbreviation = Address.CanadianProvinceAbreviation();
+
+            Assert.NotEqual(string.Empty, canadianProvinceAbreviation);
+        }
+
+        [Fact]
+        public void UsaStateAbreviationsResourceTest()
+        {
+            var stateAbreviation = Address.UsaStateAbreviation();
+
+            Assert.NotEqual(string.Empty, stateAbreviation);
+        }
+
+        [Fact]
+        public void InjuryResourceTest()
+        {
+            var injury =  Injuries.Injury();
+
+            Assert.NotEqual(string.Empty, injury);
+        }
+
+        [Fact]
+        public void GenderResourceTest()
+        {
+            var gender =  Qualities.Gender();
+
+            Assert.NotEqual(string.Empty, gender);
         }
 
         [Fact]

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace GenFu.ValueGenerators.People
 {
+
     public class Names : BaseValueGenerator
     {
         public static string Title()

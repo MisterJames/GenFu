@@ -43,6 +43,10 @@ namespace GenFu.Fillers
                 if (Char.IsDigit(character))
                     runningTotal += Int32.Parse(character.ToString());
             }
+
+            if (runningTotal % 10 == 0)
+                return "0";
+
             return (10 - (runningTotal % 10)).ToString();
         }
     }
