@@ -46,6 +46,10 @@ namespace GenFu
             if (instance != null)
             {
                 var type = instance.GetType();
+                if (type.FullName == "System.Guid")
+                {
+                    instance = Guid.NewGuid();
+                }
                 foreach (var property in type.GetTypeInfo().GetAllProperties())
                 {
                     if (!DefaultValueChecker.HasValue(instance, property) && property.CanWrite)
@@ -60,7 +64,6 @@ namespace GenFu
                         CallSetterMethod(instance, method);
                     }
                 }
-
             }
             return instance;
         }
