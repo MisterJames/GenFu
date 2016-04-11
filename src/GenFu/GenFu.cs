@@ -81,9 +81,9 @@ namespace GenFu
             return ListOf(typeof(T), itemCount).Cast<T>().ToList();
         }
 
-        public static List<object> ListOf(Type type, int personCount)
+        public static List<object> ListOf(Type type, int itemCount)
         {
-            return BuildList(type, personCount);
+            return BuildList(type, itemCount);
         }
 
         private static List<object> BuildList(Type type, int itemCount)
