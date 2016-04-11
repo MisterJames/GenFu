@@ -76,9 +76,9 @@ namespace GenFu
             return BuildList(type, _listCount);
         }
         
-        public static List<T> ListOf<T>(int personCount) where T : new()
+        public static List<T> ListOf<T>(int itemCount) where T : new()
         {
-            return ListOf(typeof(T), personCount).Cast<T>().ToList();
+            return ListOf(typeof(T), itemCount).Cast<T>().ToList();
         }
 
         public static List<object> ListOf(Type type, int personCount)
