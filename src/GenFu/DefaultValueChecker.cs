@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace GenFu
@@ -25,6 +24,8 @@ namespace GenFu
             else if (property.PropertyType == typeof(decimal) && (decimal)value == default(decimal))
                 return false;
             else if (property.PropertyType == typeof(float) && (float)value == default(float))
+                return false;
+            else if (property.PropertyType == typeof(Guid) && (Guid)value == default(Guid))
                 return false;
             else if (property.PropertyType == typeof(long) && (long)value == default(long))
                 return false;
