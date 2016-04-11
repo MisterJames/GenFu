@@ -78,7 +78,12 @@ namespace GenFu
         {
             return BuildList(type, _listCount);
         }
-        
+        /// <summary>
+        /// Creates a new list of <typeparamref name="T"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="itemCount">Number of items to add</param>
+        /// <returns></returns>
         public static List<T> ListOf<T>(int itemCount) where T : new()
         {
             return ListOf(typeof(T), itemCount).Cast<T>().ToList();
