@@ -28,7 +28,8 @@ namespace GenFu
         Drugs,
         MedicalProcedures,
         Injuries,
-        Genders
+        Genders,
+        Lorem
     }
 
     [Flags]

@@ -478,6 +478,27 @@ namespace GenFu
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
+
+        /// <summary>
+        /// Populate the specified property with a loerm ipsum
+        /// </summary>
+        /// <typeparam name="T">The target object type</typeparam>
+        /// <param name="configurator"></param>
+        /// <returns>A configurator for the specified object type</returns>
+        public static GenFuConfigurator<T> AsLoremIpsum<T>(this GenFuStringConfigurator<T> configurator) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.LoremIpsum());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
+        public static GenFuConfigurator<T> AsLoremIpsum<T>(this GenFuStringConfigurator<T> configurator, int wordCount) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.LoremIpsum(wordCount));
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
     }
 
 }
