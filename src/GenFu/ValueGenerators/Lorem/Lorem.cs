@@ -21,10 +21,10 @@ namespace GenFu.ValueGenerators.Lorem
                .ToString()
                .TrimEnd(' ');
 
-        public static string GenerateSentences(int numberOfParagraphs) =>
-            numberOfParagraphs == 0 ? string.Empty :
+        public static string GenerateSentences(int numberOfSentences) =>
+            numberOfSentences == 0 ? string.Empty :
             new StringBuilder()
-                .BuildFor(numberOfParagraphs, GenerateSentence)
+                .BuildFor(numberOfSentences, GenerateSentence)
                 .ToString()
                 .TrimEnd(' ');
 

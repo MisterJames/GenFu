@@ -240,9 +240,9 @@ namespace GenFu
         /// <typeparam name="T">The target object type</typeparam>
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
-        public static GenFuConfigurator<T> AsLoremIpsumSentences<T>(this GenFuStringConfigurator<T> configurator, int numberOfParagraphs = 1) where T : new()
+        public static GenFuConfigurator<T> AsLoremIpsumSentences<T>(this GenFuStringConfigurator<T> configurator, int numberOfSentences = 1) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateSentences(numberOfParagraphs));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateSentences(numberOfSentences));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
