@@ -1,24 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Text;
+using GenFu.Utilities;
 
 namespace GenFu.ValueGenerators.Lorem
 {
     public class Lorem : BaseValueGenerator
     {
-        public static string LoremIpsum()
+        private static string GenerateWord()
         {
             return GetRandomValue(ResourceLoader.Data(Properties.Lorem));
         }
-        public static string LoremIpsum(int wordCount)
+
+        public static string GenerateWords(int numberOfWords, int commaPosition = 0) =>
+            numberOfWords == 0 ? string.Empty :
+            new StringBuilder()
+               .BuildFor(numberOfWords, (words, i) =>
+                  words
+                    .Append(GenerateWord())
+                    .AppendWhen(",", () => commaPosition > 0 && commaPosition == i)
+                    .Append(" "))
+               .ToString()
+               .TrimEnd(' ');
+
+        public static string GenerateSentences(int numberOfParagraphs) =>
+            numberOfParagraphs == 0 ? string.Empty :
+            new StringBuilder()
+                .BuildFor(numberOfParagraphs, GenerateSentence)
+                .ToString()
+                .TrimEnd(' ');
+
+        private static StringBuilder GenerateSentence(StringBuilder sentenceBuilder)
         {
-            var words = new List<string>();
-            for (int i = 0; i < wordCount; i++)
-            {
-                words.Add(GetRandomValue(ResourceLoader.Data(Properties.Lorem)));
-            }
-            return string.Join(" ", words);
+            int sentenceLength = StaticRandom.Instance.Next(6, 14);
+            int commaPosition = sentenceLength < 10 ? 0 : sentenceLength / 2;
+            string s = GenerateWords(sentenceLength, commaPosition);
+            return sentenceBuilder.Append(s.UppercaseFirst()).Append(". ");
         }
     }
 }
+

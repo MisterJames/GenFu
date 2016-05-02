@@ -1,5 +1,6 @@
 ﻿using GenFu;
 using Xunit;
+using System.Linq;
 
 namespace GenFu.Tests
 {
@@ -25,16 +26,30 @@ namespace GenFu.Tests
         }
 
         [Fact]
-        public void AsLoremIpsum_WithMany()
+        public void AsLoremIpsumWords()
         {
             int wordCount = 1000;
             A.Configure<BlogPost>()
                 .Fill(p => p.Body)
-                .AsLoremIpsum(wordCount);
+                .AsLoremIpsumWords(wordCount);
 
             var post = A.New<BlogPost>();
 
             Assert.True(post.Body.Split(' ').Length == wordCount);
+
+        }
+
+        [Fact]
+        public void AsLoremIpsumSentences()
+        {
+            int sentenceCount = 10;
+            A.Configure<BlogPost>()
+                .Fill(p => p.Body)
+                .AsLoremIpsumSentences(sentenceCount);
+
+            var post = A.New<BlogPost>();
+
+            Assert.True(post.Body.Where(c => c == '.').Count() == sentenceCount);
 
         }
 
