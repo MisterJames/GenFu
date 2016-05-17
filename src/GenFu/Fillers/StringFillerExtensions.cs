@@ -1,7 +1,9 @@
+using GenFu.Fillers;
 using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.People;
 using System;
 using System.Text;
+using GenFu.Utilities;
 
 namespace GenFu
 {
@@ -246,6 +248,31 @@ namespace GenFu
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
+        #endregion
+
+        #region Placeholder Image
+
+        public static GenFuConfigurator<T> AsPlaceholderImage<T>(this GenFuStringConfigurator<T> configurator,
+            int width, int height,
+            string text = null,
+            string backgroundColor = null,
+            string textColor = null,
+            object htmlAttributes = null,
+            ImgFormat format = ImgFormat.GIF) where T : new()
+        {
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), 
+                () => new StringBuilder()
+                .Append("http://placehold.it/")
+                .Append($"{width}x{height}")
+                .AppendWhen($".{format}", format != ImgFormat.GIF)
+                .AppendWhen($"/{backgroundColor}", !string.IsNullOrWhiteSpace(backgroundColor))
+                .AppendWhen($"/{textColor}", !string.IsNullOrWhiteSpace(textColor))
+                .AppendWhen($"?text={text}", !string.IsNullOrWhiteSpace(text))
+                .ToString());
+            configurator.Maggie.RegisterFiller(filler);
+            return configurator;
+        }
+
         #endregion
 
     }

@@ -16,7 +16,7 @@ namespace GenFu.ValueGenerators.Lorem
                .BuildFor(numberOfWords, (words, i) =>
                   words
                     .Append(GenerateWord())
-                    .AppendWhen(",", () => commaPosition > 0 && commaPosition == i)
+                    .AppendWhen(",", commaPosition > 0 && commaPosition == i)
                     .Append(" "))
                .ToString()
                .TrimEnd(' ');
