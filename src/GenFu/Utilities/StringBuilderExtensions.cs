@@ -14,7 +14,7 @@ namespace GenFu.Utilities
         /// <param name="value">String to append.</param>
         /// <param name="predicate">Predicate</param>
         /// <returns></returns>
-        public static StringBuilder AppendWhen(this StringBuilder sb, string value, Func<bool> predicate) => predicate() ? sb.Append(value) : sb;
+        public static StringBuilder AppendWhen(this StringBuilder sb, string value, bool predicate) => predicate ? sb.Append(value) : sb;
 
         /// <summary>
         /// Repeats a string builder operation for n times.
