@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GenFu.Web.Models;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Dnx.Compilation;
 using Microsoft.Dnx.Runtime;
+//using Microsoft.DotNet.Tools.Compiler;
 using Microsoft.Extensions.PlatformAbstractions;
+//using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 using Newtonsoft.Json;
 
 namespace GenFu.Web.Controllers
@@ -16,7 +18,7 @@ namespace GenFu.Web.Controllers
     public class HomeController : Controller
     {
         private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
-
+		//IAssemblyLoadContextAccessor accessor
         private readonly IAssemblyLoadContextAccessor _accessor;
         private readonly ILibraryExporter _exporter;
 
@@ -78,7 +80,7 @@ namespace GenFu.Web.Controllers
 
             if (randomObjectsJson == null)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
 
             var randomObjectsJsonAsBytes = new UTF8Encoding().GetBytes(randomObjectsJson);

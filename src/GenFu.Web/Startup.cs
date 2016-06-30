@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace GenFu.Web
@@ -12,7 +13,7 @@ namespace GenFu.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddCaching();
+            services.AddMemoryCache();
             services.AddSession(s =>
             {
                 s.IdleTimeout = TimeSpan.FromMinutes(1);
@@ -29,7 +30,7 @@ namespace GenFu.Web
             }
 
             // Add the platform handler to the request pipeline.
-            app.UseIISPlatformHandler();
+           // app.UseIISPlatformHandler();
             app.UseStaticFiles();
             app.UseSession();
 
@@ -42,4 +43,28 @@ namespace GenFu.Web
 
         }
     }
+
+	public class Program
+	{
+		public static IWebHostBuilder getBuilder(string[] args)
+		{
+			var host = new WebHostBuilder()
+				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseIISIntegration()
+				.UseKestrel()
+				.UseStartup<Startup>();
+			//.Build();
+
+			return host;
+		}
+
+		public static void Main(string[] args)
+		{
+			var host = getBuilder(args);
+
+			host.Build().Run();
+
+			//todo make do keep alive and logging here
+		}
+	}
 }

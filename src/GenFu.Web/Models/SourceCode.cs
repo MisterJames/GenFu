@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc.Razor;
+﻿using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
@@ -18,9 +18,9 @@ namespace GenFu.Web.Models
 {
     public class SourceCode
     {
-        // todo: make not hacky
-        public IAssemblyLoadContextAccessor Accessor { get; set; }
-        public ILibraryExporter LibraryExporter { get; set; }
+		// todo: make not hacky
+		public IAssemblyLoadContextAccessor Accessor { get; set; }
+		public ILibraryExporter LibraryExporter { get; set; }
         private Type _compiledType;
         private bool _isCompiled;
 
@@ -72,8 +72,8 @@ namespace GenFu.Web.Models
 
             // build references up
             var references = new List<MetadataReference>();
-            //typeof(object).GetTypeInfo().Assembly.GetName().Name
-            var export = LibraryExporter.GetAllExports("GenFu.Web");
+			//typeof(object).GetTypeInfo().Assembly.GetName().Name
+			var export = LibraryExporter.GetAllExports("GenFu.Web");
             foreach (var reference in export.MetadataReferences.Where(r=> r.Name == "System.Runtime"))
             {
                 references.Add(reference.ConvertMetadataReference(MetadataReferenceExtensions.CreateAssemblyMetadata));                

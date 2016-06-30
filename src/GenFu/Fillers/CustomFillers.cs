@@ -28,7 +28,7 @@ namespace GenFu
             var objectTypeNames = new List<string> { objectType.FullName };
 
             var baseType = objectType.GetTypeInfo().BaseType;
-            while (baseType.GetProperties().Any(x => x.Name == propertyName) && baseType != typeof(Object))
+            while (baseType.GetTypeInfo().GetProperties().Any(x => x.Name == propertyName) && baseType != typeof(Object))
             {
                 objectTypeNames.Add(baseType.FullName);
                 baseType = baseType.GetTypeInfo().BaseType;
