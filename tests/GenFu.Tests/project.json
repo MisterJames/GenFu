@@ -9,7 +9,7 @@
 
 	"dependencies": {
 		"xunit": "2.1.0",
-		"dotnet-test-xunit": "2.2.0-preview2-build1029",
+		"dotnet-test-xunit": "1.0.0-rc2-build10025",
 		"GenFu": "1.1.2",
 		"NETStandard.Library": "1.6.0",
 		"Microsoft.AspNetCore.TestHost": "1.0.0"
@@ -18,15 +18,20 @@
 	"testRunner": "xunit",
 
 	"frameworks": {
+		"net451": {},
 		"netcoreapp1.0": {
+			"dependencies": {
+				"Microsoft.NETCore.App": {
+					"type": "platform",
+					"version": "1.0.0-rc2-3002702"
+				}
+			},
 			"imports": [
-				"dotnet5.6",
 				"dnxcore50",
-				"portable-net451+win8"
+				"portable-net45+win8"
 			]
-		},
-		"net451": {}
+		}
 	}
-
+		
 }
 

@@ -3,7 +3,12 @@
 	"version": "1.0.0-*",
 
 	"dependencies": {
+		"Microsoft.NETCore.App": {
+			"version": "1.0.0",
+			"type": "platform"
+		},
 		"GenFu": "1.1.2",
+		"System.Runtime.Loader": "4.0.0",
 		"Microsoft.AspNetCore.Diagnostics": "1.0.0",
 		"Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
 		"Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -15,8 +20,19 @@
 		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
 		"System.Reflection": "4.1.0",
 		"Microsoft.VisualStudio.Web.CodeGeneration.Utils": "1.0.0-preview2-final",
-		"Microsoft.Dnx.Compilation.CSharp.Common": "1.0.0-rc1-final",
-		"Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+		"Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+		"Microsoft.AspNetCore.Razor.Tools": {
+			"version": "1.0.0-preview2-final",
+			"type": "build"
+		},
+		"Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+			"version": "1.0.0-preview2-final",
+			"type": "build"
+		},
+		"Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
+			"version": "1.0.0-preview2-final",
+			"type": "build"
+		}
 	},
 
 	"tools": {
@@ -48,7 +64,7 @@
 			"include": [
 				"wwwroot",
 				"Views",
-				"appsettings.json",
+				"Properties/launchSettings.json",
 				"web.config"
 			],
 			"exclude": [
