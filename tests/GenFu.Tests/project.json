@@ -7,31 +7,34 @@
 		"stimms"
 	],
 
-	"dependencies": {
-		"xunit": "2.1.0",
-		"dotnet-test-xunit": "1.0.0-rc2-build10025",
-		"GenFu": "1.1.2",
-		"NETStandard.Library": "1.6.0",
-		"Microsoft.AspNetCore.TestHost": "1.0.0"
+	"buildOptions": {
+		"copyToOutput": {
+			"include": [ "xunit.runner.json" ]
+		}
 	},
 
 	"testRunner": "xunit",
 
+	"dependencies": {
+		"xunit": "2.2.0-beta2-build3300",
+		"dotnet-test-xunit": "2.2.0-preview2-build1029",
+		"GenFu": "1.1.2",
+		"Microsoft.AspNetCore.TestHost": "1.0.0"
+	},
+
 	"frameworks": {
-		"net451": {},
 		"netcoreapp1.0": {
 			"dependencies": {
 				"Microsoft.NETCore.App": {
 					"type": "platform",
-					"version": "1.0.0-rc2-3002702"
+					"version": "1.0.0"
 				}
-			},
-			"imports": [
-				"dnxcore50",
-				"portable-net45+win8"
-			]
+			}
+		},
+		"net451": {
+			"dependencies": {
+				"Microsoft.NETCore.Platforms": "1.0.1"
+			}
 		}
 	}
-		
 }
-
