@@ -20,16 +20,12 @@ namespace GenFu.Web.Controllers
     public class HomeController : Controller
     {
         private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
-		//IAssemblyLoadContextAccessor accessor
-		//private readonly IAssemblyLoadContextAccessor _accessor;
-		//private readonly ILibraryExporter _exporter;
-		private readonly AssemblyLoadContext _accessor;
-        private readonly ILibraryExporter _exporter;
 
-        public HomeController(AssemblyLoadContext accessor, ILibraryExporter exporter) //IAssemblyLoadContextAccessor accessor, ILibraryExporter exporter)
+		private readonly AssemblyLoadContext _accessor;
+
+        public HomeController(AssemblyLoadContext accessor)
 		{
             _accessor = accessor;
-            _exporter = exporter;
         }
 
         public IActionResult Index()
@@ -55,7 +51,6 @@ namespace GenFu.Web.Controllers
 
             // todo: make not hacky
             sourceCode.Accessor = _accessor;
-            sourceCode.LibraryExporter = _exporter;
 
             var compileResult = sourceCode.Compile();
 

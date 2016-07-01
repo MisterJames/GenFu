@@ -9,52 +9,45 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-//using Microsoft.Dnx.Compilation;
-//using Microsoft.Dnx.Runtime;
-//using Microsoft.Dnx.Compilation.CSharp;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.DotNet.ProjectModel.Compilation;
 using System.Runtime.Loader;
-using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
-//using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
+using GenFu.Web.Helpers;
 
 namespace GenFu.Web.Models
 {
-	public static class SourceCodeHelpers
-	{
-		public static readonly Type[] SupportedTypes = new Type[]
-		{
-			typeof(Object),
-			typeof(short),
-			typeof(float),
-			typeof(Int32),
-			typeof(Int16),
-			typeof(double),
-			typeof(decimal),
-			typeof(Guid),
-			typeof(long),
-			typeof(ulong),
-			typeof(uint),
-			typeof(ushort),
-			typeof(bool),
-			typeof(string),
-			typeof(DateTime)
-		};
-
-		public static MetadataReference GetMeta(this Type type)
-		{
-			return MetadataReference.CreateFromFile(type.GetTypeInfo().Assembly.Location);
-		}
-	}
-
     public class SourceCode
     {
+		public SourceCode()
+		{
+			//Check to see if we need to compute Metadata References
+			// build references up
+			if (references == null || references.Count == 0)
+			{
+				foreach (var type in SourceCodeHelpers.SupportedTypes)
+				{
+					references.Add(type.GetMeta());
+				}
+
+				//compare to see if we got duplicate data
+				var noDuplicatesList = references.GroupBy(x => x.Display).Select(x => x.First()).ToList();
+
+				references.Clear();
+
+				references.AddRange(noDuplicatesList);
+			}
+
+
+		}
+
 		// todo: make not hacky
 		public AssemblyLoadContext Accessor { get; set; }
 
-		public ILibraryExporter LibraryExporter { get; set; }
+		//cache meta data, these bits are costly to load and can cause frequent GC
+		//also since we have a hard coded list there's no need to recompute this per request
+		private static readonly List<MetadataReference> references = new List<MetadataReference>();
 
-        private Type _compiledType;
+		private Type _compiledType;
         private bool _isCompiled;
 
 
@@ -93,7 +86,7 @@ namespace GenFu.Web.Models
 
         }
 
-        public CompileResult Compile()
+		public CompileResult Compile()
         {
             var result = new CompileResult();
 
@@ -104,49 +97,6 @@ namespace GenFu.Web.Models
 
             var syntaxTrees = CSharpSyntaxTree.ParseText(this.Source);
 
-			// build references up
-			var references = new List<MetadataReference>();
-
-			foreach (var type in SourceCodeHelpers.SupportedTypes)
-			{
-				references.Add(type.GetMeta());
-			}
-
-			//typeof(object).GetTypeInfo().Assembly.GetName().Name
-			//var exports = LibraryExporter.GetExport("GenFu.Web");
-
-			/*
-			foreach (var export in exports)
-			{
-				//foreach (var reference in export.Library.Path) //.Where(r => r.Display == "System.Runtime")
-				//{
-				var path = export.Library.Path;
-
-				MetadataReference reference = null;
-
-				if (path != null)
-				{
-					reference = MetadataReference.CreateFromFile(path);
-				}
-
-				if (reference != null)
-				{
-					references.Add(reference);
-				}
-
-
-				//}
-
-			}
-			
-
-			/*
-            foreach (var reference in export.GetMetadataReferences().Where(r=> r.Display == "System.Runtime"))
-            {
-                references.Add(reference.ConvertMetadataReference(MetadataReferenceExtensions.CreateAssemblyMetadata));                
-            }
-			*/
-			//MetadataReference.CreateFromFile(typeof(A).GetTypeInfo().Assembly.Location)
 			// set up compilation
 			var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
@@ -160,11 +110,12 @@ namespace GenFu.Web.Models
             {
                 // this is broked...
                 EmitResult compileResult = compilation.Emit(stream);
+
                 // we get here, with diagnostic errors (check compileResult.Diagnostics)
                 if (compileResult.Success)
                 {
                     stream.Position = 0;
-					//assembly = Accessor..Default.LoadStream(stream, null);
+					
 					assembly = Accessor.LoadFromStream(stream, null);
 				}
                 else
