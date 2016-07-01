@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using GenFu.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Dnx.Compilation;
-using Microsoft.Dnx.Runtime;
+
 //using Microsoft.DotNet.Tools.Compiler;
 using Microsoft.Extensions.PlatformAbstractions;
 //using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 using Newtonsoft.Json;
+using System.Runtime.Loader;
+using Microsoft.DotNet.ProjectModel.Compilation;
+using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 
 namespace GenFu.Web.Controllers
 {
@@ -19,11 +21,13 @@ namespace GenFu.Web.Controllers
     {
         private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
 		//IAssemblyLoadContextAccessor accessor
-        private readonly IAssemblyLoadContextAccessor _accessor;
+		//private readonly IAssemblyLoadContextAccessor _accessor;
+		//private readonly ILibraryExporter _exporter;
+		private readonly AssemblyLoadContext _accessor;
         private readonly ILibraryExporter _exporter;
 
-        public HomeController(IAssemblyLoadContextAccessor accessor, ILibraryExporter exporter)
-        {
+        public HomeController(AssemblyLoadContext accessor, ILibraryExporter exporter) //IAssemblyLoadContextAccessor accessor, ILibraryExporter exporter)
+		{
             _accessor = accessor;
             _exporter = exporter;
         }

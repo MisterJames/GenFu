@@ -2,6 +2,11 @@
 	"webroot": "wwwroot",
 	"version": "1.0.0-*",
 
+	"buildOptions": {
+		"emitEntryPoint": true,
+		"preserveCompilationContext": true
+	},
+
 	"dependencies": {
 		"Microsoft.NETCore.App": {
 			"version": "1.0.0",
@@ -61,17 +66,17 @@
 
 
 	"publishOptions": {
-			"include": [
-				"wwwroot",
-				"Views",
-				"Properties/launchSettings.json",
-				"web.config"
-			],
-			"exclude": [
-				"node_modules",
-				"**.user",
-				"**.vspscc"
-			]
+		"include": [
+			"wwwroot",
+			"Views",
+			"Properties/launchSettings.json",
+			"web.config"
+		],
+		"exclude": [
+			"node_modules",
+			"**.user",
+			"**.vspscc"
+		]
 	}
 
 }
