@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GenFu.Web.Models;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Dnx.Compilation;
-using Microsoft.Dnx.Runtime;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+//using Microsoft.DotNet.Tools.Compiler;
 using Microsoft.Extensions.PlatformAbstractions;
+//using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 using Newtonsoft.Json;
+using System.Runtime.Loader;
+using Microsoft.DotNet.ProjectModel.Compilation;
+using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 
 namespace GenFu.Web.Controllers
 {
@@ -17,13 +21,11 @@ namespace GenFu.Web.Controllers
     {
         private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
 
-        private readonly IAssemblyLoadContextAccessor _accessor;
-        private readonly ILibraryExporter _exporter;
+		private readonly AssemblyLoadContext _accessor;
 
-        public HomeController(IAssemblyLoadContextAccessor accessor, ILibraryExporter exporter)
-        {
+        public HomeController(AssemblyLoadContext accessor)
+		{
             _accessor = accessor;
-            _exporter = exporter;
         }
 
         public IActionResult Index()
@@ -49,7 +51,6 @@ namespace GenFu.Web.Controllers
 
             // todo: make not hacky
             sourceCode.Accessor = _accessor;
-            sourceCode.LibraryExporter = _exporter;
 
             var compileResult = sourceCode.Compile();
 
@@ -78,7 +79,7 @@ namespace GenFu.Web.Controllers
 
             if (randomObjectsJson == null)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
 
             var randomObjectsJsonAsBytes = new UTF8Encoding().GetBytes(randomObjectsJson);
