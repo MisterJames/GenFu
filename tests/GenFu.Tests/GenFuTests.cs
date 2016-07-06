@@ -432,7 +432,6 @@ namespace GenFu.Tests
             Assert.True(string.IsNullOrEmpty(person.GetMiddleName()));
         }
 
-
         [Fact]
         public void MethodFillStrategyCanBeSpecified()
         {
@@ -506,5 +505,62 @@ namespace GenFu.Tests
 
             Assert.Null(person.DateOfDeath);
         }
+
+        [Fact]
+        public void CountryForLocationShouldBeFromResourceText()
+        {
+            var location = A.New<Location>();
+            Assert.True(ResourceLoader.Data(Properties.Countries).Contains(location.Country));
+        }
+
+        [Fact]
+        public void TitleShouldBeFromTitleResource()
+        {
+            var person = A.New<Person>();
+            Assert.True(ResourceLoader.Data(Properties.PersonTitles).Contains(person.Title));
+        }
+
+        [Fact]
+        public void JobTitleShouldBeFromJobTitleResource()
+        {
+            var person = A.New<Person>();
+            Assert.True(ResourceLoader.Data(Properties.JobTitles).Contains(person.JobTitle));
+        }
+
+        [Fact]
+        public void UndergraduateUniversityShouldBeFromUniversityResource()
+        {
+            var person = A.New<Person>();
+            Assert.True(ResourceLoader.Data(Properties.Universities).Contains(person.UndergraduateUniversity));
+        }
+
+        [Fact]
+        public void UndergraduateUniversityShouldBeFromResource()
+        {
+            var person = A.New<Person>();
+            Assert.True(ResourceLoader.Data(Properties.Universities).Contains(person.UndergraduateUniversity));
+        }
+
+        [Fact]
+        public void CountryNameForCountryShouldBeFromResourceText()
+        {
+            var country = A.New<Country>();
+            Assert.True(ResourceLoader.Data(Properties.Countries).Contains(country.CountryName));
+        }
+
+        [Fact]
+        public void CurrencyForCountryShouldBeFromResourceText()
+        {
+            var country = A.New<Country>();
+            Assert.True(ResourceLoader.Data(Properties.CurrencyNames).Contains(country.Currency));
+        }
+
+        [Fact]
+        public void CurrencyCodeForCountryShouldBeFromResourceText()
+        {
+            var country = A.New<Country>();
+            Assert.True(ResourceLoader.Data(Properties.CurrencyCodes).Contains(country.CurrencyCode));
+        }
+
     }
 }

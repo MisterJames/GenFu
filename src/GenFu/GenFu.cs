@@ -173,15 +173,20 @@ namespace GenFu
             public const string FILE_USA_STATE_ABREVIATIONS = "USAStateAbreviations";
             public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
             public const string FILE_CDN_PROVINCE_ABREVIATIONS = "CanadianProvinceAbreviations";
+            public const string FILE_COUNTRIES = "Countries";
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
             public const string FILE_INGREDIENTS = "Ingredients";
             public const string FILE_COMPANY_NAMES = "CompanyNames";
+            public const string FILE_JOB_TITLES = "JobTitles";
+            public const string FILE_UNIVERSITY_NAMES = "Universities";
             public const string FILE_INDUSTRIES = "Industries";
             public const string FILE_INJURIES = "Injuries";
             public const string FILE_GENDERS = "Genders";
             public const string FILE_DRUGS = "Drugs";
             public const string FILE_LOREM = "Lorem";
+            public const string FILE_FILE_CURRENCY_NAMES = "CurrencyNames";
+            public const string FILE_FILE_CURRENCY_CODES = "CurrencyCodes";
 
             public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
         }

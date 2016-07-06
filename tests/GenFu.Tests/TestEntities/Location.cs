@@ -49,4 +49,13 @@ namespace GenFu.Tests
         public string PostalCode { get; set; }
     }
 
+    class Country
+    {
+
+        public string CountryName { get; set; }
+        public string Currency { get; set; }
+        public string CurrencyCode { get; set; }
+
+    }
+
 }

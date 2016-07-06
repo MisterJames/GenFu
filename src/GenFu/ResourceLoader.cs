@@ -27,15 +27,20 @@ namespace GenFu
             _data.Add(Properties.CanadianProvinceAbreviations, LoadStrings(GenFu.Defaults.FILE_CDN_PROVINCE_ABREVIATIONS));
             _data.Add(Properties.UsaStates, LoadStrings(GenFu.Defaults.FILE_USA_STATE_NAMES));
             _data.Add(Properties.UsaStateAbreviations, LoadStrings(GenFu.Defaults.FILE_USA_STATE_ABREVIATIONS));
+            _data.Add(Properties.Countries, LoadStrings(GenFu.Defaults.FILE_COUNTRIES));
             _data.Add(Properties.MusicArtists, LoadStrings(GenFu.Defaults.FILE_MUSIC_ARTIST));
             _data.Add(Properties.MusicAlbums, LoadStrings(GenFu.Defaults.FILE_MUSIC_ALBUM));
             _data.Add(Properties.Ingredients, LoadStrings(GenFu.Defaults.FILE_INGREDIENTS));
             _data.Add(Properties.CompanyNames, LoadStrings(GenFu.Defaults.FILE_COMPANY_NAMES));
+            _data.Add(Properties.JobTitles, LoadStrings(GenFu.Defaults.FILE_JOB_TITLES));
+            _data.Add(Properties.Universities, LoadStrings(GenFu.Defaults.FILE_UNIVERSITY_NAMES));
             _data.Add(Properties.Industries, LoadStrings(GenFu.Defaults.FILE_INDUSTRIES));
             _data.Add(Properties.Injuries, LoadStrings(GenFu.Defaults.FILE_INJURIES));
             _data.Add(Properties.Genders, LoadStrings(GenFu.Defaults.FILE_GENDERS));
             _data.Add(Properties.Drugs, LoadStrings(GenFu.Defaults.FILE_DRUGS));
             _data.Add(Properties.Lorem, LoadStrings(GenFu.Defaults.FILE_LOREM));
+            _data.Add(Properties.CurrencyNames, LoadStrings(GenFu.Defaults.FILE_FILE_CURRENCY_NAMES));
+            _data.Add(Properties.CurrencyCodes, LoadStrings(GenFu.Defaults.FILE_FILE_CURRENCY_CODES));
         }
 
         public static List<string> Data (Properties propertyType) 

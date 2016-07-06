@@ -1,4 +1,7 @@
-﻿using GenFu.ValueGenerators.Geospatial;
+﻿using GenFu.ValueGenerators.Corporate;
+using GenFu.ValueGenerators.Education;
+using GenFu.ValueGenerators.Financial;
+using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.People;
 using System;
 using System.Text;
@@ -198,6 +201,71 @@ namespace GenFu
         public override object GetValue(object instance)
         {
             return Address.PostalCode();
+        }
+    }
+
+    public class CountryFiller : PropertyFiller<string>
+    {
+        public CountryFiller()
+            : base(new[] { "object" }, new[] { "country" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Address.Country();
+        }
+    }
+
+    public class CurrencyNameFiller : PropertyFiller<string>
+    {
+        public CurrencyNameFiller()
+            : base(new[] { "object" }, new[] { "currency", "currencyname", "currency_name" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Currency.CurrencyName();
+        }
+    }
+
+    public class CurrencyCodeFiller : PropertyFiller<string>
+    {
+        public CurrencyCodeFiller()
+            : base(new[] { "object" }, new[] { "currencycode", "currency_code" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Currency.CurrencyCode();
+        }
+    }
+
+    public class JobTitleFiller : PropertyFiller<string>
+    {
+        public JobTitleFiller()
+            : base(new[] { "person", "employee", "user" }, new[] { "job", "jobtitle", "job_title" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Jobs.JobTitles();
+        }
+    }
+
+    public class UniversityNameFiller : PropertyFiller<string>
+    {
+        public UniversityNameFiller()
+            : base(new[] { "object" }, new[] { "university", "universityname", "university_name" })
+        {
+        }
+
+        public override object GetValue(object instance)
+        {
+            return Universities.Name();
         }
     }
 

@@ -19,17 +19,22 @@ namespace GenFu
         CanadianProvinceAbreviations,
         UsaStates,
         UsaStateAbreviations,
+        Countries,
         MusicArtists,
         MusicGenre,
         MusicAlbums,
         Ingredients,
         CompanyNames,
         Industries,
+        JobTitles,
+        Universities,
         Drugs,
         MedicalProcedures,
         Injuries,
         Genders,
-        Lorem
+        Lorem,
+        CurrencyNames,
+        CurrencyCodes
     }
 
     [Flags]

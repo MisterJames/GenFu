@@ -55,5 +55,9 @@ namespace GenFu.Tests
         public DateTime? DateOfDeath { get; set; }
 
         public int? NumberOfCats { get; set; }
+
+        public string JobTitle { get; set; }
+        public string UndergraduateUniversity { get; set; }
+
     }
 }

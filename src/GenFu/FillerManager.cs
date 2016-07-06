@@ -31,6 +31,8 @@ namespace GenFu
                 _propertyFillers.Add(new PriceFiller());
 
                 _propertyFillers.Add(new CompanyNameFiller());
+                _propertyFillers.Add(new JobTitleFiller());
+                _propertyFillers.Add(new UniversityNameFiller());
 
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
@@ -58,6 +60,8 @@ namespace GenFu
                 _propertyFillers.Add(new ProvinceFiller());
                 _propertyFillers.Add(new ZipCodeFiller());
                 _propertyFillers.Add(new PostalCodeFiller());
+                _propertyFillers.Add(new CountryFiller());
+
                 _propertyFillers.Add(new PhoneNumberFiller());
 
                 _propertyFillers.Add(new MusicAlbumTitleFiller());
@@ -70,6 +74,9 @@ namespace GenFu
 
                 _propertyFillers.Add(new DrugFiller());
                 _propertyFillers.Add(new MedicalProcedureFiller());
+
+                _propertyFillers.Add(new CurrencyNameFiller());
+                _propertyFillers.Add(new CurrencyCodeFiller());
 
                 _propertyFillers.Add(new StringFiller());
 
@@ -217,13 +224,29 @@ namespace GenFu
         private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IDictionary<string, IPropertyFiller> propertyFillers)
         {
             IPropertyFiller result = null;
+
+            //try and see if there is an exact match for the property name
             foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
             {
                 if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
-                    propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
+                    propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Equals(s.ToLowerInvariant())))
                 {
                     result = propertyFiller;
                     break;
+                }
+            }
+
+            //if there is no exact match, then check for a contains
+            if (result == null)
+            {
+                foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
+                {
+                    if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
+                        propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
+                    {
+                        result = propertyFiller;
+                        break;
+                    }
                 }
             }
             return result;
