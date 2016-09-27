@@ -57,7 +57,7 @@ namespace GenFu
                         SetPropertyValue(instance, property);
                     }
                 }
-                foreach (var method in type.GetTypeInfo().GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
+                foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
                 {
                     if (method.GetParameters().Count() == 1)
                     {
