@@ -77,7 +77,9 @@ namespace GenFu
             List<string> lines = new List<string>();
             try
             {
-                using (StreamReader reader = new StreamReader(typeof(ResourceLoader).GetTypeInfo().Assembly.GetManifestResourceStream(filename)))
+                var asm = typeof(ResourceLoader).GetTypeInfo().Assembly;
+                var stream = asm.GetManifestResourceStream(filename);
+                using (var reader = new StreamReader(stream))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -87,7 +89,7 @@ namespace GenFu
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // fallback - add one empty string
                 lines.Add(string.Empty);

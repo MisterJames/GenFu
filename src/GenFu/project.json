@@ -1,25 +1,20 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.1",  
   "description": "GenFu is a library you can use to generate realistic test data. It is composed of several property fillers that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers and give GenFu hints on how to fill properties.",
+  "copyright": "Please see license information on project site for more information. Ninja designed by Ridzal Zainal from the thenounproject.com",
+
   "authors": [
     "misterjames",
     "dpaquette",
     "stimms"
   ],
-  "packOptions": {
-    "projectUrl": "http://genfu.io/",
-    "licenseUrl": "https://github.com/MisterJames/GenFu/blob/master/LICENSE.txt",
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/MisterJames/GenFu"
-    },
-    "tags": [ "" ]
-  },
+
   "buildOptions": {
     "embed": {
       "include": "Resources/*.*"
     }
   },
+
   "dependencies": {
     "NETStandard.Library": "1.6.0"
   },
@@ -31,5 +26,23 @@
       }
     },
     "net45": {}
+  },
+
+  "packOptions": {
+    "projectUrl": "http://genfu.io/",
+    "licenseUrl": "https://github.com/MisterJames/GenFu/blob/master/LICENSE.txt",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/MisterJames/GenFu"
+    },
+    "owners": [
+      "misterjames",
+      "dpaquette",
+      "stimms"
+    ],
+    "summary": "GenFu is a library you can use to generate realistic test data. It is composed of several property fillers that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers and give GenFu hints on how to fill properties.",
+    "tags": [ ".NET Test Data Generation Fake Sample ASP.NET Core" ],
+    "iconUrl": "http://genfu.azurewebsites.net/content/ninja.png",
+    "releaseNotes": "Addressed issue in creating string resources."
   }
 }
