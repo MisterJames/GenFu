@@ -1,0 +1,34 @@
+﻿Data Scientist
+Software Engineer
+Systems Engineer
+Account Executive
+Architect
+Administrative Assistant
+Chief Executive Officer
+Controller
+Cook
+Copywriter
+General Manager
+Hair Stylist
+HR Generalist
+Inside Sales Representative
+IT Director
+Janitor
+Real Estate Agent
+Paralegal
+Manager
+Nurse
+Network Administrator
+Sales Associate
+Sales Manager
+Sous Chef
+Webmaster
+Yacht Broker
+Pilot
+Astronaut
+Zoo Keeper
+Zamboni Driver
+Field Engineer
+Flight Attendant
+Forklift Operator
+QA Specialist

@@ -1,0 +1,20 @@
+﻿United States dollar
+Euro
+Japanese yen
+Pound sterling
+Australian dollar
+Swiss franc
+Canadian dollar
+Mexican peso
+Chinese yuan
+New Zealand dollar
+Swedish krona
+Russian ruble
+Hong Kong dollar
+Norwegian krone
+Singapore dollar
+Turkish lira
+South Korean won
+South African rand
+Brazilian real
+Indian rupee

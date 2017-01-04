@@ -1,0 +1,64 @@
+﻿Amherst College
+Baylor University
+Baylor College of Medicine
+Berea College
+Boston College
+Boston University
+Bowdoin College
+Brown University
+California Institute of Technology
+Carnegie Mellon University
+Case Western Reserve University
+Columbia University
+Cornell University
+Dartmouth College
+Duke University
+Emory University
+George Washington University
+Georgetown University
+Georgia Institute of Technology
+Grinnell College
+Harvard University
+Indiana University
+Johns Hopkins University
+Lehigh University
+Massachusetts Institute of Technology
+Michigan State University
+Middlebury College
+New York University
+Northwestern University
+Ohio State University
+Pennsylvania State University
+Pomona College
+Princeton Theological Seminary
+Princeton University
+Purdue University
+Rice University
+Rockefeller University
+Saint Louis University
+Smith College
+Southern Methodist University
+Stanford University
+Swarthmore College
+Syracuse University
+Texas A&M University
+Texas Christian University
+Texas Tech University
+Trinity University (Texas)
+Tufts University
+Tulane University
+McGill University
+University of Toronto
+University of British Columbia
+University of Alberta
+Universite de Montreal
+McMaster University
+University of Waterloo
+Western University
+University of Calgary
+Queen's University
+Simon Fraser University
+Dalhousie University
+University of Ottawa
+University of Victoria
+Laval University

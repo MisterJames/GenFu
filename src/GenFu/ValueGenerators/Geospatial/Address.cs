@@ -63,6 +63,7 @@ namespace GenFu.ValueGenerators.Geospatial
         {
             return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinces));
         }
+
         public static string CanadianProvinceAbreviation()
         {
             return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinceAbreviations));
@@ -90,5 +91,11 @@ namespace GenFu.ValueGenerators.Geospatial
 
             return postalCode;
         }
+
+        public static string Country()
+        {
+            return GetRandomValue(ResourceLoader.Data(Properties.Countries));
+        }
+
     }
 }
