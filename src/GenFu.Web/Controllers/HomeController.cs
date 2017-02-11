@@ -86,10 +86,5 @@ namespace GenFu.Web.Controllers
 
             return File(randomObjectsJsonAsBytes, "application/json", "random-data.json");
         }
-
-        public IActionResult Wireframe()
-        {
-            return View();
-        }
     }
 }
