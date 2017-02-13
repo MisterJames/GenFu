@@ -6,6 +6,5 @@ namespace GenFu.Web.Controllers
     {
         public IActionResult Index() => View();
 
-        public IActionResult Docs() => View();
     }
 }
