@@ -56,4 +56,5 @@ namespace GenFu.Tests
 
         public int? NumberOfCats { get; set; }
     }
+
 }

@@ -102,7 +102,7 @@ namespace GenFu
         }
     }
 
-    public class PriceFiller : PropertyFiller<int>
+    public class PriceFiller : PropertyFiller<decimal>
     {
         private const int _maxPrice = 1000;
 
