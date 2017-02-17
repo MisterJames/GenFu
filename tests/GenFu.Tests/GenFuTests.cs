@@ -56,6 +56,15 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void Fills_datetime_offset()
+        {
+            A.Reset();
+            var person = A.New(new Person());
+
+            Assert.True(person.TimeSinceLastBath > DateTimeOffset.MinValue);
+        }
+
+        [Fact]
         public void Fills_using_price_filler()
         {
             A.Reset();

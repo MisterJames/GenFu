@@ -41,6 +41,8 @@ namespace GenFu
                 return false;
             else if (property.PropertyType == typeof(DateTime) && ((DateTime)value).Equals(default(DateTime)))
                 return false;
+            else if (property.PropertyType == typeof(DateTimeOffset) && ((DateTimeOffset)value).Equals(default(DateTimeOffset)))
+                return false;
             return true;
         }
     }
