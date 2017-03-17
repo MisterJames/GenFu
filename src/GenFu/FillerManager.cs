@@ -220,7 +220,7 @@ namespace GenFu
             foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
             {
                 if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
-                    propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant())))
+                    propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Equals(s.ToLowerInvariant())))
                 {
                     result = propertyFiller;
                     break;

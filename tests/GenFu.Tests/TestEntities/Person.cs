@@ -8,6 +8,7 @@ namespace GenFu.Tests
     {
         private string _middleName
             ;
+
         // firstname FirstName fname first_name
         public string FirstName { get; set; }
 
@@ -51,5 +52,8 @@ namespace GenFu.Tests
         public DateTime? DateOfDeath { get; set; }
 
         public int? NumberOfCats { get; set; }
-    }
+
+        public int Id { get; set;}
+        public int BlogId { get; set; }
+}
 }
