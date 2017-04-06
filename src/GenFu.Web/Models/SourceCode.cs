@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc.Razor;
+﻿using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
@@ -9,19 +9,45 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-using Microsoft.Dnx.Compilation;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Dnx.Compilation.CSharp;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.DotNet.ProjectModel.Compilation;
+using System.Runtime.Loader;
+using GenFu.Web.Helpers;
 
 namespace GenFu.Web.Models
 {
     public class SourceCode
     {
-        // todo: make not hacky
-        public IAssemblyLoadContextAccessor Accessor { get; set; }
-        public ILibraryExporter LibraryExporter { get; set; }
-        private Type _compiledType;
+		public SourceCode()
+		{
+			//Check to see if we need to compute Metadata References
+			// build references up
+			if (references == null || references.Count == 0)
+			{
+				foreach (var type in SourceCodeHelpers.SupportedTypes)
+				{
+					references.Add(type.GetMeta());
+				}
+
+				//compare to see if we got duplicate data
+				var noDuplicatesList = references.GroupBy(x => x.Display).Select(x => x.First()).ToList();
+
+				references.Clear();
+
+				references.AddRange(noDuplicatesList);
+			}
+
+
+		}
+
+		// todo: make not hacky
+		public AssemblyLoadContext Accessor { get; set; }
+
+		//cache meta data, these bits are costly to load and can cause frequent GC
+		//also since we have a hard coded list there's no need to recompute this per request
+		private static readonly List<MetadataReference> references = new List<MetadataReference>();
+
+		private Type _compiledType;
         private bool _isCompiled;
 
 
@@ -60,42 +86,38 @@ namespace GenFu.Web.Models
 
         }
 
-        public CompileResult Compile()
+		public CompileResult Compile()
         {
             var result = new CompileResult();
 
             //var assemblyPath = Path.GetDirectoryName(typeof(object).GetTypeInfo().Assembly.Location);
             var assemblyName = Guid.NewGuid().ToString();
+
             this.Source = CleanSource(this.Source);
 
             var syntaxTrees = CSharpSyntaxTree.ParseText(this.Source);
 
-            // build references up
-            var references = new List<MetadataReference>();
-            //typeof(object).GetTypeInfo().Assembly.GetName().Name
-            var export = LibraryExporter.GetAllExports("GenFu.Web");
-            foreach (var reference in export.MetadataReferences.Where(r=> r.Name == "System.Runtime"))
-            {
-                references.Add(reference.ConvertMetadataReference(MetadataReferenceExtensions.CreateAssemblyMetadata));                
-            }
-            // set up compilation
-            var compilation = CSharpCompilation.Create(assemblyName)
+			// set up compilation
+			var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
                 .AddReferences(references)
                 .AddSyntaxTrees(syntaxTrees);
             
             // build the assembly
             Assembly assembly = null;
+
             using (var stream = new MemoryStream())
             {
                 // this is broked...
                 EmitResult compileResult = compilation.Emit(stream);
+
                 // we get here, with diagnostic errors (check compileResult.Diagnostics)
                 if (compileResult.Success)
                 {
                     stream.Position = 0;
-                    assembly = Accessor.Default.LoadStream(stream, null);
-                }
+					
+					assembly = Accessor.LoadFromStream(stream, null);
+				}
                 else
                 {
                     result.IsValid = false;

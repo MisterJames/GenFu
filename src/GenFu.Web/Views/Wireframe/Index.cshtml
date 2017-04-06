@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Generate Wireframe Prototypes";
+}
+<style>
+.documentation dt, .documentation dd {
+  padding: 5px;
+}
+.documentation dt {
+  font-weight: bold;
+  background-color: #5cb85c;
+  color: #fff;
+}
+.documentation dd {
+  border: #5cb85c 1px solid;
+  margin-bottom: 10px;
+}
+</style>
+<div class="row">
+    <div class="col-12-sm">
+        <div class="jumbotron">
+            <h2>GenFu Wireframes</h2><h3>The ultimate code first UI/UX prototyping tool</h3>
+            <p class="lead">
+                The GenFu Wireframes is a package that provides a fluent API that creates placeholder HTML and images at runtime using simple helper extension methods. GenFu Wireframes is specifically for <strong>reducing prototyping markup</strong>.
+                Since GenFu injects placeholder conent at runtime, your markup remains untouched and your source code remains clean.
+            </p>
+        </div>
+        <h3>How does it work?</h3>
+        <ol>
+            <li>
+                <p><strong>Install the package</strong></p>
+                <pre>PM&gt; Install-Package GenFu.HtmlHelpers.Wireframes</pre>
+            </li>
+            <li>
+                <p><strong>Add a reference</strong></p>
+                <pre>@@using GenFu.HtmlHelpers.WireframeHelper;</pre>
+            </li>
+            <li>
+                <p><strong>Use the helpers to generate text and images</strong></p>
+                <pre>//Generate ..
+//a Paragraph
+@@Html.GenFu().P()
+//an Image placeholder
+@@Html.GenFu().Image(300, 300)
+//a Table
+@@Html.Genfu().Table()
+//a page using the Fluent api
+@@Html.GenFu().H1().P().H2().P().H3().Ol(10, 3, true)
+                </pre>
+            </li>
+        </ol>
+        <h2>Documentation</h2>
+        <dl class="documentation">
+            <dt>GenFu()</dt>
+            <dd>Gets a random paragraph</dd>
+            <dt>GenFu().P([int paragraphCount = 1], [int sentenceCount = 5], [object htmlAttributes = null])</dt>
+            <dd>Gets a paragraph(s) of specific length</dd>
+            <dt>GenFu().H1([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H1 heading</dd>
+            <dt>GenFu().H2([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H2 heading</dd>
+            <dt>GenFu().H3([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H3 heading</dd>
+            <dt>GenFu().H4([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H4 heading</dd>
+            <dt>GenFu().H5([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H5 heading</dd>
+            <dt>GenFu().H6([int wordCount = 2], [object htmlAttributes = null])</dt>
+            <dd>Gets an H6 heading</dd>
+            <dt>GenFu().UL([int listCount = 5], [int wordCount = 2], [bool links = false], [object ulAttributes = null], [object liAttributes = null])</dt>
+            <dd>Gets an UL element with list items</dd>
+            <dt>GenFu().OL([int listCount = 5], [int wordCount = 2], [bool links = false], [object olAttributes = null], [object liAttributes = null])</dt>
+            <dd>Gets an OL element with list items</dd>
+            <dt>GenFu().DL([int listCount = 5], [int wordCount = 2], [bool links = false], [object dlAttributes = null], [object ddAttributes = null])</dt>
+            <dd>Gets an OL element with list items</dd>
+            <dt>GenFu().Paragraphs(int count)</dt>
+            <dd>Gets paragraphs without the HTML tag</dd>
+            <dt>GenFu().Words(int count)</dt>
+            <dd>Gets Words without an HTML tag</dd>
+            <dt>
+                Image(int width, int height, [string text = null], [string backgroundColor], [string foregroundColor], [object htmlAttributes = null], [ImgFormat format = ImgFormt.Gif])
+            </dt>
+            <dd>Gets a placeholder image via Placehold.it</dd>
+        </dl>
+
+    </div>
+</div>

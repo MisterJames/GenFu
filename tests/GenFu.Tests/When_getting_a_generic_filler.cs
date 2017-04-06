@@ -1,10 +1,9 @@
-﻿using System;
-using GenFu;
-using System.Linq;
+﻿using GenFu.Fillers;
+using System;
 using Xunit;
-using System.Collections.Generic;
 
-namespace GenFu.Tests { 
+namespace GenFu.Tests
+{
 
     public class When_getting_a_generic_filler
     {
@@ -30,10 +29,24 @@ namespace GenFu.Tests {
         }
 
         [Fact]
+        public void An_datetimeoffset_filler_is_returned()
+        {
+            var manager = new global::GenFu.FillerManager();
+            Assert.NotNull(manager.GetGenericFiller<DateTimeOffset, DateTimeOffsetFiller>());
+        }
+
+        [Fact]
         public void A_decimal_filler_is_returned()
         {
             var manager = new global::GenFu.FillerManager();
             Assert.NotNull(manager.GetGenericFiller<decimal, DecimalFiller>());
+        }
+
+        [Fact]
+        public void A_guid_filler_is_returned()
+        {
+            var manager = new global::GenFu.FillerManager();
+            Assert.NotNull(manager.GetGenericFiller<Guid, GuidFiller>());
         }
     }
 }

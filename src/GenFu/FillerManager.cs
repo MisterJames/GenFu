@@ -34,11 +34,12 @@ namespace GenFu
 
                 _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
-                {
-                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
-                    _propertyFillers.Add(new DateTimeFiller());
-                    _propertyFillers.Add(DateTimeNullableFiller);
-                }
+
+                DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
+                _propertyFillers.Add(new DateTimeFiller());
+                _propertyFillers.Add(new DateTimeOffsetFiller());
+                _propertyFillers.Add(DateTimeNullableFiller);
+
 
                 _propertyFillers.Add(new BirthDateFiller());
                 _propertyFillers.Add(new GuidFiller());
@@ -110,7 +111,7 @@ namespace GenFu
                 IDictionary<string, IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
                 foreach (var key in filler.PropertyNames)
                 {
-                    typeFillers[key] =  filler;
+                    typeFillers[key] = filler;
                 }
 
             }
@@ -124,7 +125,7 @@ namespace GenFu
             {
                 //First try to get a specific filler based on a full type name (including namespace)
                 string fullTypeName = objectType.FullName.ToLowerInvariant();
-                
+
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
                     IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
@@ -177,7 +178,7 @@ namespace GenFu
                     result = GetMatchingMethodFiller(methodInfo, propertyFillers);
                 }
 
-        
+
                 //Second try to get a more generic filler based on only the class name (no namespace)
                 if (result == null)
                 {
@@ -192,24 +193,24 @@ namespace GenFu
                 objectType = objectType.GetTypeInfo().BaseType;
             }
 
-//            // TODO: Would like to exclude methods for fill unless we explicity specify to include
-//            if (result == null)
-//            {
-//                var paramType = methodInfo.GetParameters()[0].ParameterType;
-//
-//                //Finally, grab a generic property filler for that property type
-//                if (_genericPropertyFillersByPropertyType.ContainsKey(paramType))
-//                {
-//                    result = _genericPropertyFillersByPropertyType[paramType];
-//                }
-//                else
-//                {
-//                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-//                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
-//
-//                    _genericPropertyFillersByPropertyType.Add(paramType, result);
-//                }
-//            }
+            //            // TODO: Would like to exclude methods for fill unless we explicity specify to include
+            //            if (result == null)
+            //            {
+            //                var paramType = methodInfo.GetParameters()[0].ParameterType;
+            //
+            //                //Finally, grab a generic property filler for that property type
+            //                if (_genericPropertyFillersByPropertyType.ContainsKey(paramType))
+            //                {
+            //                    result = _genericPropertyFillersByPropertyType[paramType];
+            //                }
+            //                else
+            //                {
+            //                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
+            //                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
+            //
+            //                    _genericPropertyFillersByPropertyType.Add(paramType, result);
+            //                }
+            //            }
 
             return result;
         }
@@ -243,7 +244,7 @@ namespace GenFu
             foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
             {
                 if (propertyFiller.PropertyType == methodInfo.GetParameters()[0].ParameterType &&
-                   ( propertyFiller.PropertyNames.Any(s => methodInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant()))
+                   (propertyFiller.PropertyNames.Any(s => methodInfo.Name.ToLowerInvariant().Contains(s.ToLowerInvariant()))
                    || (cleanName != null && propertyFiller.PropertyNames.Any(s => cleanName.ToLowerInvariant().Contains(s.ToLowerInvariant())))))
                 {
                     result = propertyFiller;

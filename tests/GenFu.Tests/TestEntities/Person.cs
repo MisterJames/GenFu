@@ -37,6 +37,10 @@ namespace GenFu.Tests
         // decimal
         public decimal HeightInMetres { get; set; }
 
+        //long
+        public long HeightInMiliMeters { get; set; }
+        public ulong HeightInCentiMeters { get; set; }
+
         public short NumberOfToes { get; set; }
 
         public void SetMiddleName(string middleName)
@@ -55,5 +59,9 @@ namespace GenFu.Tests
 
         public int Id { get; set;}
         public int BlogId { get; set; }
-}
+    
+        public DateTimeOffset TimeSinceLastBath { get; set; }
+
+    }
+
 }

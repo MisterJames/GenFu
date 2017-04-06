@@ -46,6 +46,10 @@ namespace GenFu
             if (instance != null)
             {
                 var type = instance.GetType();
+                if (type.FullName == "System.Guid")
+                {
+                    instance = Guid.NewGuid();
+                }
                 foreach (var property in type.GetTypeInfo().GetAllProperties())
                 {
                     if (!DefaultValueChecker.HasValue(instance, property) && property.CanWrite)
@@ -60,7 +64,6 @@ namespace GenFu
                         CallSetterMethod(instance, method);
                     }
                 }
-
             }
             return instance;
         }
@@ -75,15 +78,20 @@ namespace GenFu
         {
             return BuildList(type, _listCount);
         }
-        
-        public static List<T> ListOf<T>(int personCount) where T : new()
+        /// <summary>
+        /// Creates a new list of <typeparamref name="T"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="itemCount">Number of items to add</param>
+        /// <returns></returns>
+        public static List<T> ListOf<T>(int itemCount) where T : new()
         {
-            return ListOf(typeof(T), personCount).Cast<T>().ToList();
+            return ListOf(typeof(T), itemCount).Cast<T>().ToList();
         }
 
-        public static List<object> ListOf(Type type, int personCount)
+        public static List<object> ListOf(Type type, int itemCount)
         {
-            return BuildList(type, personCount);
+            return BuildList(type, itemCount);
         }
 
         private static List<object> BuildList(Type type, int itemCount)
@@ -162,13 +170,19 @@ namespace GenFu
             public const string FILE_STREET_NAMES = "StreetNames";
             public const string FILE_CITY_NAMES = "CityNames";
             public const string FILE_USA_STATE_NAMES = "USAStateNames";
+            public const string FILE_USA_STATE_ABREVIATIONS = "USAStateAbreviations";
             public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
+            public const string FILE_CDN_PROVINCE_ABREVIATIONS = "CanadianProvinceAbreviations";
             public const string FILE_MUSIC_ARTIST = "MusicArtists";
             public const string FILE_MUSIC_ALBUM = "MusicAlbums";
             public const string FILE_INGREDIENTS = "Ingredients";
             public const string FILE_COMPANY_NAMES = "CompanyNames";
             public const string FILE_INDUSTRIES = "Industries";
-            
+            public const string FILE_INJURIES = "Injuries";
+            public const string FILE_GENDERS = "Genders";
+            public const string FILE_DRUGS = "Drugs";
+            public const string FILE_LOREM = "Lorem";
+
             public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
         }
 

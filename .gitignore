@@ -170,3 +170,4 @@ pip-log.txt
 *.ide
 
 wwwroot/lib/*
+project.lock.json

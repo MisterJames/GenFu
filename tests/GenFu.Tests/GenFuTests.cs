@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using GenFu.ValueGenerators.Temporal;
 using Xunit;
+using GenFu.Tests.TestEntities;
 
 namespace GenFu.Tests
 {
@@ -52,6 +53,27 @@ namespace GenFu.Tests
             Assert.True(!string.IsNullOrEmpty(person.FirstName));
             Assert.True(person.Age != default(int));
             Assert.True(person.BirthDate != default(DateTime));
+        }
+
+        [Fact]
+        public void Fills_datetime_offset()
+        {
+            A.Reset();
+            var person = A.New(new Person());
+
+            Assert.True(person.TimeSinceLastBath > DateTimeOffset.MinValue);
+        }
+
+        [Fact]
+        public void Fills_using_price_filler()
+        {
+            A.Reset();
+            var person = A.New(new CheckoutItem());
+
+            // for test brievity
+            Assert.True(person.Price1Amt > 0);
+            Assert.True(person.Price2Amt > 0);
+
         }
 
         [Fact]
@@ -271,7 +293,7 @@ namespace GenFu.Tests
         public void DateTimesHaveDateInitialized()
         {
             var post = A.New<BlogPost>();
-            Assert.True(post.CreateDate.Year  > 1);
+            Assert.True(post.CreateDate.Year > 1);
         }
 
         [Fact]
@@ -398,17 +420,17 @@ namespace GenFu.Tests
         {
             const string theTitle = "THE TITLE";
 
-             A
-                .Configure<BlogPost>()
-                .Fill(b => b.Title, () => theTitle)
-                .Fill(b => b.Comments, delegate ()
-                {
-                    A
-                       .Configure<BlogComment>()
-                       .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
-                    return A.ListOf<BlogComment>();
-                });
-            var blogposts =A.ListOf<BlogPost>();
+            A
+               .Configure<BlogPost>()
+               .Fill(b => b.Title, () => theTitle)
+               .Fill(b => b.Comments, delegate ()
+               {
+                   A
+                      .Configure<BlogComment>()
+                      .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
+                   return A.ListOf<BlogComment>();
+               });
+            var blogposts = A.ListOf<BlogPost>();
 
             foreach (var blogPost in blogposts)
             {
@@ -462,7 +484,7 @@ namespace GenFu.Tests
             GenFu.Defaults.SEED_PERCENTAGE = 0.2;
 
             var dates = new List<DateTime?>();
-            for(int x = 0; x<100; x++)
+            for (int x = 0; x < 100; x++)
             {
                 A.Reset();
                 var person = A.New(new Person());
@@ -477,7 +499,7 @@ namespace GenFu.Tests
             Assert.True(notNullItems > 0);
         }
 
-        [Fact(Skip ="Not yet supported but should be")]
+        [Fact(Skip = "Not yet supported but should be")]
         public void IntIsPopulatedIfNullable()
         {
             A.Reset();
@@ -490,7 +512,7 @@ namespace GenFu.Tests
         public void StringIsPopulatedIfNullable()
         {
             A.Reset();
-            var person = A.New(new Person() { FirstName = null } );
+            var person = A.New(new Person() { FirstName = null });
 
             Assert.NotNull(person.FirstName);
         }
