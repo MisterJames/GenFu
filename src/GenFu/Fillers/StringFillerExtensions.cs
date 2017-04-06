@@ -4,6 +4,7 @@ using GenFu.ValueGenerators.People;
 using System;
 using System.Text;
 using GenFu.Utilities;
+using GenFu.Services;
 
 namespace GenFu
 {
@@ -257,18 +258,10 @@ namespace GenFu
             string text = null,
             string backgroundColor = null,
             string textColor = null,
-            object htmlAttributes = null,
             ImgFormat format = ImgFormat.GIF) where T : new()
         {
             CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), 
-                () => new StringBuilder()
-                .Append("http://placehold.it/")
-                .Append($"{width}x{height}")
-                .AppendWhen($".{format}", format != ImgFormat.GIF)
-                .AppendWhen($"/{backgroundColor}", !string.IsNullOrWhiteSpace(backgroundColor))
-                .AppendWhen($"/{textColor}", !string.IsNullOrWhiteSpace(textColor))
-                .AppendWhen($"?text={text}", !string.IsNullOrWhiteSpace(text))
-                .ToString());
+                () => PlaceholditUrlBuilder.UrlFor(width,height, text ,backgroundColor,textColor, format));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
