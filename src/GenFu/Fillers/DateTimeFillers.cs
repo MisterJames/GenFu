@@ -13,11 +13,16 @@ namespace GenFu
         public DateTimeFiller()
             : base(new[] { "object" }, new[] { "*" }, true)
         {
-            
+
         }
 
-      
+
         public override object GetValue(object instance)
+        {
+            return GetRandomDate();
+        }
+
+        public DateTime GetRandomDate()
         {
             int totalDays = (Max - Min).Days;
             int randomDays = _random.Next(totalDays);
@@ -26,10 +31,27 @@ namespace GenFu
         }
     }
 
+    public class DateTimeOffsetFiller : PropertyFiller<DateTimeOffset>
+    {
+        private Random _random = new Random();
+
+        public DateTimeOffsetFiller()
+            : base(new[] { "object" }, new[] { "*" }, true)
+        {
+
+        }
+
+        public override object GetValue(object instance)
+        {
+            
+            return new DateTimeOffset(new DateTimeFiller().GetRandomDate());
+        }
+    }
+
     public class BirthDateFiller : PropertyFiller<DateTime>
     {
         public BirthDateFiller()
-            : base(new[] { "object" }, new[] { "birthdate", "birth_date"})
+            : base(new[] { "object" }, new[] { "birthdate", "birth_date" })
         {
         }
 
@@ -50,7 +72,7 @@ namespace GenFu
         public static GenFuConfigurator<T> AsPastDate<T>(this GenFuDateTimeConfigurator<T> configurator)
             where T : new()
         {
-            CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof (T),
+            CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),
                                                                    () => CalendarDate.Date(DateRules.PastDate));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
@@ -63,7 +85,7 @@ namespace GenFu
         /// <param name="configurator"></param>
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsFutureDate<T>(this GenFuDateTimeConfigurator<T> configurator)
-            where T: new ()
+            where T : new()
         {
             CustomFiller<DateTime> filler = new CustomFiller<DateTime>(configurator.PropertyInfo.Name, typeof(T),
                                                                    () => CalendarDate.Date(DateRules.FutureDates));

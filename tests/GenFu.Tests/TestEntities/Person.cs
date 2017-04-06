@@ -55,5 +55,9 @@ namespace GenFu.Tests
         public DateTime? DateOfDeath { get; set; }
 
         public int? NumberOfCats { get; set; }
+    
+        public DateTimeOffset TimeSinceLastBath { get; set; }
+
     }
+
 }

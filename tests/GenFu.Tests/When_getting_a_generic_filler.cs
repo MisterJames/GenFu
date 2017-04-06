@@ -29,6 +29,13 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void An_datetimeoffset_filler_is_returned()
+        {
+            var manager = new global::GenFu.FillerManager();
+            Assert.NotNull(manager.GetGenericFiller<DateTimeOffset, DateTimeOffsetFiller>());
+        }
+
+        [Fact]
         public void A_decimal_filler_is_returned()
         {
             var manager = new global::GenFu.FillerManager();
