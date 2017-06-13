@@ -1,13 +1,57 @@
-﻿Plumbing
-Investments
-Manufacturing
+﻿Accounting
+Aircraft
+Alcohol
 Automotive
-Welding
-Hot Dogs
-Accounting
-Shoes
-Toys
+Banking
+Chemical
+Cosmetic
+Electronics
 Entertainment
+Fashion
+Fishing
+Food
+Glass
 Growth Hacking
-Security
+Healthcare
+Hot Dogs
+Insurance
+Investments
+Leathermaking
+Manufactured Goods
+Manufacturing
+Marketing
+Media
+Military
+Mining
+Nuclear
+Packaging
+Petrochemical
+Petroleum
+Plastics
+Plumbing
 Professional Wrestling
+Pulp and Paper
+Rail
+Real Estate
+Recycling
+Rubber
+Security
+Service
+Shipping
+Shoes
+Space
+Sports
+Steel
+Sugar
+Tabacco
+Tea
+Telecommunication
+Television
+Textiles
+Timber
+Toys
+Transport
+Vehicle
+Waste
+Welding
+Wool
