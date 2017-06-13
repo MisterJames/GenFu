@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu", "GenFu\GenFu.xproj", "{C1050C58-58E7-482E-9AD8-655B4D82AABA}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu.Tests", "..\tests\GenFu.Tests\GenFu.Tests.xproj", "{8FF288DE-1A52-4E3C-8BEE-67F30A65BE51}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu.Web", "GenFu.Web\GenFu.Web.xproj", "{8BF0DFE7-71DA-4387-A416-78AC1CB3C41B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38470B82-E767-47A5-88F0-60375754324D}"
 	ProjectSection(SolutionItems) = preProject
 		..\global.json = ..\global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GenFu.HtmlHelpers", "GenFu.HtmlHelpers\GenFu.HtmlHelpers.xproj", "{91A6B50B-00A0-4F2E-9158-8F91E6ED08B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFu", "GenFu\GenFu.csproj", "{C1050C58-58E7-482E-9AD8-655B4D82AABA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFu.Tests", "..\tests\GenFu.Tests\GenFu.Tests.csproj", "{8FF288DE-1A52-4E3C-8BEE-67F30A65BE51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFu.Web", "GenFu.Web\GenFu.Web.csproj", "{8BF0DFE7-71DA-4387-A416-78AC1CB3C41B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFu.HtmlHelpers", "GenFu.HtmlHelpers\GenFu.HtmlHelpers.csproj", "{91A6B50B-00A0-4F2E-9158-8F91E6ED08B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
