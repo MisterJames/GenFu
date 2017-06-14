@@ -171,3 +171,4 @@ pip-log.txt
 
 wwwroot/lib/*
 project.lock.json
+*.pubxml
