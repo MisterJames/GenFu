@@ -3,9 +3,9 @@
   <PropertyGroup>
     <Description>GenFu is a library you can use to generate realistic test data. It is composed of several property fillers that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers and give GenFu hints on how to fill properties.</Description>
     <Copyright>Please see license information on project site for more information. Ninja designed by Ridzal Zainal from the thenounproject.com</Copyright>
-    <VersionPrefix>1.2.2</VersionPrefix>
+    <VersionPrefix>1.3.2</VersionPrefix>
     <Authors>misterjames;dpaquette;stimms</Authors>
-    <TargetFrameworks>netstandard1.3;net45;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net45;net46;net461</TargetFrameworks>
     <AssemblyName>GenFu</AssemblyName>
     <PackageId>GenFu</PackageId>
     <PackageTags>.NET Test Data Generation Fake Sample ASP.NET Core</PackageTags>
