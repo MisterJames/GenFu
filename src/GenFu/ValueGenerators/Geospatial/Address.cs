@@ -16,7 +16,7 @@ namespace GenFu.ValueGenerators.Geospatial
             var number = _random.Next(100, 9999);
             number = _random.Next(1, 5) == 5 ? _random.Next(100, 99999) : number;
 
-            var streetName = GetRandomValue(ResourceLoader.Data(Properties.StreetNames));
+            var streetName = GetRandomValue(ResourceLoader.Data(PropertyType.StreetNames));
             var direction = _random.Next(1, 1) > 8 ? GetRandomValue(suffixes) : string.Empty;
 
             var result = string.Format("{0} {1} {2}", number, streetName, direction);
@@ -46,26 +46,26 @@ namespace GenFu.ValueGenerators.Geospatial
 
         public static string City()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.CityNames));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.CityNames));
         }
 
         public static string UsaState()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.UsaStates));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.UsaStates));
         }
 
         public static string UsaStateAbreviation()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.UsaStateAbreviations));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.UsaStateAbreviations));
         }
         
         public static string CanadianProvince()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinces));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.CanadianProvinces));
         }
         public static string CanadianProvinceAbreviation()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.CanadianProvinceAbreviations));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.CanadianProvinceAbreviations));
         }
 
         public static string ZipCode()

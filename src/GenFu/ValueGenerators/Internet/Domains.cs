@@ -8,7 +8,7 @@ namespace GenFu.ValueGenerators.Internet
     {
         public static string DomainName()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Domains));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Domains));
 
         }
     }

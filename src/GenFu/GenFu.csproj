@@ -9,7 +9,7 @@
     <AssemblyName>GenFu</AssemblyName>
     <PackageId>GenFu</PackageId>
     <PackageTags>.NET Test Data Generation Fake Sample ASP.NET Core</PackageTags>
-    <PackageReleaseNotes>Addressed issue in creating string resources.</PackageReleaseNotes>
+    <PackageReleaseNotes>Addressed issue in creating string resources. Again.</PackageReleaseNotes>
     <PackageIconUrl>http://genfu.azurewebsites.net/content/ninja.png</PackageIconUrl>
     <PackageProjectUrl>http://genfu.io/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/MisterJames/GenFu/blob/master/LICENSE.txt</PackageLicenseUrl>
@@ -22,11 +22,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Version>1.3.4-preview</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\*.*" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
-  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
@@ -35,6 +32,21 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

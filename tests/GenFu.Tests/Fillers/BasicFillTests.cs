@@ -139,7 +139,7 @@ namespace GenFu.Tests
         [Fact]
         public void UseSuppliedResourceDataTest()
         {
-            GenFu.Configure().Data(Properties.FirstNames, @"testdata\singlename.txt");
+            GenFu.Configure().Data(PropertyType.FirstNames, @"testdata\singlename.txt");
             var people = A.ListOf<Person>(25);
             Assert.Equal(25, people.Where(p=>p.FirstName == "Angela").Count());
         }

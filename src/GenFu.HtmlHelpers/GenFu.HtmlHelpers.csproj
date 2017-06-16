@@ -4,12 +4,24 @@
     <VersionPrefix>1.0.2</VersionPrefix>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>GenFu.HtmlHelpers</AssemblyName>
-    <PackageId>GenFu.HtmlHelpers</PackageId>
+    <PackageId>GenFu.HtmlHelpers.Wireframes</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Authors>misterjames;dpaquette;stimms;edcharbeneau</Authors>
+    <Copyright>Copyright ©  2017</Copyright>
+    <Description>The ultimate code first UI/UX prototyping tool. The GenFu Wireframes is a package that provides a fluent API that creates placeholder HTML and images at runtime using simple helper extension methods. GenFu Wireframes is specifically for reducing prototyping markup. Since GenFu injects placeholder conent at runtime, your markup remains untouched and your source code remains clean.</Description>
+    <PackageLicenseUrl>https://github.com/MisterJames/GenFu/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://genfu.io/</PackageProjectUrl>
+    <PackageIconUrl>http://genfu.azurewebsites.net/content/ninja.png</PackageIconUrl>
+    <RepositoryUrl>git://github.com/MisterJames/GenFu</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>.NET Wireframe ASP.NET Core</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

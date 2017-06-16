@@ -10,8 +10,8 @@ namespace GenFu.ValueGenerators.Music
 
         public static string Title()
         {
-            int index = _random.Next(0, ResourceLoader.Data(Properties.MusicAlbums).Count());
-            return ResourceLoader.Data(Properties.MusicAlbums)[index];
+            int index = _random.Next(0, ResourceLoader.Data(PropertyType.MusicAlbums).Count());
+            return ResourceLoader.Data(PropertyType.MusicAlbums)[index];
         }
     }
 }

@@ -8,7 +8,7 @@ namespace GenFu.ValueGenerators.Cooking
     {
         public static string Ingredient()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Ingredients));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Ingredients));
         }
     }
 }

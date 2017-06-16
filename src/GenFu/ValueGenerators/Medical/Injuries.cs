@@ -8,7 +8,7 @@ namespace GenFu.ValueGenerators.Medical
     {
         public static string Injury()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Injuries));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Injuries));
         }
     }
 }

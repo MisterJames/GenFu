@@ -10,22 +10,22 @@ namespace GenFu.ValueGenerators.People
     {
         public static string Title()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Titles));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Titles));
         }
 
         public static string LastName()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.LastNames));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.LastNames));
         }
 
         public static string FirstName()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.FirstNames));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.FirstNames));
         }
 
         public static string PersonTitle()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.PersonTitles));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.PersonTitles));
         }
 
         public static string UserName()
