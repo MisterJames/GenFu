@@ -14,7 +14,7 @@ namespace GenFu.ValueGenerators.People
         /// <returns>A complete email address for the specified domain.</returns>
         public static string Email(string domain)
         {
-            return string.Format("{0}.{1}@{2}", GetRandomValue(ResourceLoader.Data(Properties.FirstNames)), GetRandomValue(ResourceLoader.Data(Properties.LastNames)), domain);
+            return string.Format("{0}.{1}@{2}", GetRandomValue(ResourceLoader.Data(PropertyType.FirstNames)), GetRandomValue(ResourceLoader.Data(PropertyType.LastNames)), domain);
         }
 
         /// <summary>
@@ -23,15 +23,15 @@ namespace GenFu.ValueGenerators.People
         /// <returns>A complete email address with a random account and domain.</returns>
         public static string Email()
         {
-            int firstNameIndex = _random.Next(0, ResourceLoader.Data(Properties.FirstNames).Count());
-            int lastNameIndex = _random.Next(0, ResourceLoader.Data(Properties.LastNames).Count());
-            int domainNameIndex = _random.Next(0, ResourceLoader.Data(Properties.Domains).Count());
+            int firstNameIndex = _random.Next(0, ResourceLoader.Data(PropertyType.FirstNames).Count());
+            int lastNameIndex = _random.Next(0, ResourceLoader.Data(PropertyType.LastNames).Count());
+            int domainNameIndex = _random.Next(0, ResourceLoader.Data(PropertyType.Domains).Count());
 
             // failing test on names with spaces
-            string firstname = ResourceLoader.Data(Properties.FirstNames)[firstNameIndex].Replace(" ", "");
-            string lastname = ResourceLoader.Data(Properties.LastNames)[lastNameIndex].Replace(" ", "");
+            string firstname = ResourceLoader.Data(PropertyType.FirstNames)[firstNameIndex].Replace(" ", "");
+            string lastname = ResourceLoader.Data(PropertyType.LastNames)[lastNameIndex].Replace(" ", "");
 
-            return string.Format("{0}.{1}@{2}", firstname, lastname, ResourceLoader.Data(Properties.Domains)[domainNameIndex]);
+            return string.Format("{0}.{1}@{2}", firstname, lastname, ResourceLoader.Data(PropertyType.Domains)[domainNameIndex]);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace GenFu.ValueGenerators.People
         public static string Twitter()
         {
             return string.Format("@{0}{1}",
-                       ResourceLoader.Data(Properties.FirstNames).GetRandomElement().ToCharArray().First(),
-                       ResourceLoader.Data(Properties.LastNames).GetRandomElement());
+                       ResourceLoader.Data(PropertyType.FirstNames).GetRandomElement().ToCharArray().First(),
+                       ResourceLoader.Data(PropertyType.LastNames).GetRandomElement());
         }
 
         /// <summary>

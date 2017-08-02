@@ -8,7 +8,7 @@ namespace GenFu.ValueGenerators.People
     {
         public static string Gender()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Genders));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Genders));
         }
     }
 }

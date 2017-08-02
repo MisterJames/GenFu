@@ -14,8 +14,8 @@ namespace GenFu
         public static string Word()
         {
             // aww, shucks.  we did our best!
-            int index = _random.Next(0, ResourceLoader.Data(Properties.Words).Count());
-            return ResourceLoader.Data(Properties.Words)[index];
+            int index = _random.Next(0, ResourceLoader.Data(PropertyType.Words).Count());
+            return ResourceLoader.Data(PropertyType.Words)[index];
         }
        
 

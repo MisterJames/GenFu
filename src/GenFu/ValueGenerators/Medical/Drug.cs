@@ -9,7 +9,7 @@ namespace GenFu.ValueGenerators.Medical
     {
         public static string Drug()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Drugs));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Drugs));
         }
     }
 }

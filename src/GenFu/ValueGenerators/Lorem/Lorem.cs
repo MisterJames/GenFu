@@ -7,7 +7,7 @@ namespace GenFu.ValueGenerators.Lorem
     {
         private static string GenerateWord()
         {
-            return GetRandomValue(ResourceLoader.Data(Properties.Lorem));
+            return GetRandomValue(ResourceLoader.Data(PropertyType.Lorem));
         }
 
         public static string GenerateWords(int numberOfWords, int commaPosition = 0) =>

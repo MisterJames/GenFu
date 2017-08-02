@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace GenFu
 {
 
-    public enum Properties
+    public enum PropertyType
     {
         FirstNames,
         LastNames,
