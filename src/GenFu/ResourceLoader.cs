@@ -72,7 +72,7 @@ namespace GenFu
             var namespaceName = "GenFu";
 
             //todo: correct this format when resource strings/names are fixed by .net team
-            filename = string.Format("{0}.Resources.{1}.txt", namespaceName, resourceName);
+            filename = $"{namespaceName}.Resources.{resourceName}.txt";
             
             List<string> lines = new List<string>();
             try
