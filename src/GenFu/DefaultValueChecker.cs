@@ -43,6 +43,8 @@ namespace GenFu
                 return false;
             else if (property.PropertyType == typeof(DateTimeOffset) && ((DateTimeOffset)value).Equals(default(DateTimeOffset)))
                 return false;
+            else if (property.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum) && ((int)value) == 0)
+                return false;
             return true;
         }
     }

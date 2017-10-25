@@ -17,7 +17,6 @@ namespace GenFu
             return BaseValueGenerator.Word();
         }
     }
-
     public class ArticleTitleFiller : PropertyFiller<string>
     {
         public ArticleTitleFiller()

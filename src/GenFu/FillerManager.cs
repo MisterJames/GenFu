@@ -153,6 +153,10 @@ namespace GenFu
                 {
                     result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
                 }
+                else if(propertyInfo.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum))
+                {
+                    result = new EnumFiller(propertyInfo.PropertyType);
+                }
                 else
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)

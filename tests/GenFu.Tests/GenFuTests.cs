@@ -297,6 +297,13 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void An_enum_should_be_filled()
+        {
+            var post = A.New<BlogPost>();
+            Assert.True((int)post.Type > 0);
+        }
+
+        [Fact]
         public void DateTimesStayWithinConfiguredDates()
         {
             var success = true;
