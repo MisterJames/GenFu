@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenFu.Tests.TestEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -106,6 +107,20 @@ namespace GenFu.Tests
         {
             var post = new BlogPost { CreateDate = DateTime.Now };
             Assert.True(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == "CreateDate")));
+        }
+
+        [Fact]
+        public void Filled_enum_should_return_true()
+        {
+            var post = new BlogPost { Type = BlogTypeEnum.Post};
+            Assert.True(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == "Type")));
+        }
+
+        [Fact]
+        public void Empty_enum_should_return_false()
+        {
+            var post = new BlogPost();
+            Assert.False(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == "Type")));
         }
     }
 }

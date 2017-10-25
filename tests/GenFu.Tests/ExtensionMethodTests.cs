@@ -1,6 +1,7 @@
 ﻿using GenFu;
 using Xunit;
 using System.Linq;
+using GenFu.Tests.TestEntities;
 
 namespace GenFu.Tests
 {

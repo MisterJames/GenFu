@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.Medical;
 using GenFu.ValueGenerators.People;
+using GenFu.Tests.TestEntities;
 
 namespace GenFu.Tests
 {

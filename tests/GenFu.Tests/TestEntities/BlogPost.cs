@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace GenFu.Tests
+namespace GenFu.Tests.TestEntities
 {
     internal class BlogPost
     {
         public int BlogPostId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public BlogTypeEnum Type { get; set; }
         public virtual ICollection<BlogComment> Comments { get; set; }
         public DateTime CreateDate { get; set; }
     }
