@@ -24,9 +24,22 @@ namespace GenFu
             {
                 _propertyFillers = new List<IPropertyFiller>();
 
+                _propertyFillers.Add(new CharFiller());
+                _propertyFillers.Add(new NullableCharFiller());
                 _propertyFillers.Add(new IntFiller());
+                _propertyFillers.Add(new NullableIntFiller());
+                _propertyFillers.Add(new NullableUIntFiller());
+                _propertyFillers.Add(new LongFiller());
+                _propertyFillers.Add(new NullableLongFiller());
+                _propertyFillers.Add(new NullableULongFiller());
                 _propertyFillers.Add(new DecimalFiller());
+                _propertyFillers.Add(new NullableDecimalFiller());
                 _propertyFillers.Add(new ShortFiller());
+                _propertyFillers.Add(new NullableShortFiller());
+                _propertyFillers.Add(new NullableUShortFiller());
+                _propertyFillers.Add(new BooleanFiller());
+                _propertyFillers.Add(new NullableBooleanFiller());
+
                 _propertyFillers.Add(new AgeFiller());
                 _propertyFillers.Add(new PriceFiller());
 
