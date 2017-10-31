@@ -14,7 +14,7 @@ namespace GenFu.Fillers
             {
                 if (this.SeedPercentage < rand.NextDouble())
                 {
-                    return null;
+                    //eturn null;
                 }
                 else
                 {

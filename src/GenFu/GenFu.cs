@@ -147,10 +147,20 @@ namespace GenFu
             public const int MIN_INT = 1;
             public const int MAX_INT = 100;
 
+            public const uint MIN_UINT = 1;
+            public const uint MAX_UINT = 100;
+
+            public static double MIN_DOUBLE = 1;
+            public static double MAX_DOUBLE = 10000;
+
+
             public static short MIN_SHORT = 1;
             public static short MAX_SHORT = Int16.MaxValue;
 
-            
+            public static ushort MIN_USHORT = 100;
+            public static ushort MAX_USHORT = UInt16.MaxValue;
+
+
             public const decimal MIN_DECIMAL = 0;
             public const decimal MAX_DECIMAL = 100;
 
