@@ -13,6 +13,7 @@ namespace GenFu.Tests.TestEntities
         public BlogTypeEnum Type { get; set; }
         public virtual ICollection<BlogComment> Comments { get; set; }
         public DateTime CreateDate { get; set; }
+        public List<string> Tags { get; set; }
     }
 
     internal class BlogComment
