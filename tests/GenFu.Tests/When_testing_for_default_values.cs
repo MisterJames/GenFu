@@ -124,6 +124,14 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void Null_collections_should_return_false()
+        {
+            var post = new BlogPost();
+            post.Tags = null;
+            Assert.False(DefaultValueChecker.HasValue(post, typeof(BlogPost).GetProperties().First(x => x.Name == nameof(BlogPost.Tags))));
+        }
+
+        [Fact]
         public void Empty_collections_should_return_false()
         {
             var post = new BlogPost();
