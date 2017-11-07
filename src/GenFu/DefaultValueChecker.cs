@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using System.Reflection;
 
 namespace GenFu
@@ -44,6 +46,8 @@ namespace GenFu
             else if (property.PropertyType == typeof(DateTimeOffset) && ((DateTimeOffset)value).Equals(default(DateTimeOffset)))
                 return false;
             else if (property.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum) && ((int)value) == 0)
+                return false;
+            else if (property.PropertyType.GetTypeInfo().ImplementedInterfaces.Contains(typeof(IEnumerable)) && !(value as IEnumerable).GetEnumerator().MoveNext())
                 return false;
             return true;
         }

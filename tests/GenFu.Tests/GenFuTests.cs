@@ -431,6 +431,25 @@ namespace GenFu.Tests
             Assert.Equal("default", result.Tags.Single());
         }
 
+
+        [Fact]
+        public void Should_fill_from_a_configured_list_using_lambda()
+        {
+            GenFu.Reset();
+            GenFu.Configure<BlogPost>().Fill(x => x.Tags, () => new List<string> { "default" });
+            var result = A.New<BlogPost>();
+            Assert.Equal("default", result.Tags.Single());
+        }
+
+        [Fact]
+        public void Should_fill_a_list_of_objects_from_a_configured_list_using_lambda()
+        {
+            GenFu.Reset();
+            GenFu.Configure<BlogPost>().Fill(x => x.Tags, () => new List<string> { "default" });
+            var results = A.ListOf<BlogPost>(5);
+            foreach (var result in results)
+                Assert.Equal("default", result.Tags.Single());
+        }
         [Fact]
         public void CustomPropertyFillsAreChainableUsingConfigure()
         {
