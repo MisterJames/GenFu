@@ -89,7 +89,7 @@ namespace GenFu
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // fallback - add one empty string
                 lines.Add(string.Empty);

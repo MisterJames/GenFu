@@ -15,13 +15,13 @@ namespace GenFu.Tests
         [Fact]
         public void GetRandomValueFromArray()
         {
-            string[] possibleValues = new[] {"A", "B", "C", "D", "E"};
+            string[] possibleValues = new[] { "A", "B", "C", "D", "E" };
             for (int i = 0; i < 500; i++)
             {
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
                 Assert.NotNull(randomValue);
                 Assert.NotEmpty(randomValue);
-                Assert.True(possibleValues.Contains(randomValue));
+                Assert.Contains(possibleValues, x => x == randomValue);
             }
         }
 
@@ -34,20 +34,20 @@ namespace GenFu.Tests
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
                 Assert.NotNull(randomValue);
                 Assert.NotEmpty(randomValue);
-                Assert.True(possibleValues.Contains(randomValue));
+                Assert.Contains(possibleValues, x => x == randomValue);
             }
         }
 
         [Fact]
         public void GetRandomValueFromEnumerable()
         {
-            IEnumerable<string> possibleValues = (new []{ "1A", "2A", "3A", "4A", "5A" }).Select(s => s);
+            IEnumerable<string> possibleValues = (new[] { "1A", "2A", "3A", "4A", "5A" }).Select(s => s);
             for (int i = 0; i < 500; i++)
             {
                 string randomValue = BaseValueGenerator.GetRandomValue(possibleValues);
                 Assert.NotNull(randomValue);
                 Assert.NotEmpty(randomValue);
-                Assert.True(possibleValues.Contains(randomValue));
+                Assert.Contains(possibleValues, x => x == randomValue);
             }
         }
 
@@ -101,7 +101,7 @@ namespace GenFu.Tests
         {
             var domain = "foofoofoobarbarbar.com";
             var email = ContactInformation.Email(domain);
-            Assert.True(email.Contains(domain));
+            Assert.Contains(domain, email);
         }
 
         [Fact]
