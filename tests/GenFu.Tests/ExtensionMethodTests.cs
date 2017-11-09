@@ -23,7 +23,7 @@ namespace GenFu.Tests
 
             var person = A.New<Person>();
 
-            Assert.True(person.EmailAddress.Contains(domain));
+            Assert.Contains(domain, person.EmailAddress);
         }
 
         [Fact]
