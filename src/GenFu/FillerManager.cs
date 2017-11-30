@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using GenFu.Fillers;
 
 namespace GenFu
@@ -13,6 +14,9 @@ namespace GenFu
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
         private IList<IPropertyFiller> _propertyFillers;
 
+        static ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+
+
         public FillerManager()
         {
             ResetFillers();
@@ -20,216 +24,266 @@ namespace GenFu
 
         public void ResetFillers()
         {
-            if (_propertyFillers == null)
+            try
             {
-                _propertyFillers = new List<IPropertyFiller>();
+                rwl.EnterWriteLock();
+                if (_propertyFillers == null)
+                {
+                    _propertyFillers = new List<IPropertyFiller>();
 
-                _propertyFillers.Add(new CharFiller());
-                _propertyFillers.Add(new NullableCharFiller());
-                _propertyFillers.Add(new IntFiller());
-                _propertyFillers.Add(new NullableIntFiller());
-                _propertyFillers.Add(new NullableUIntFiller());
-                _propertyFillers.Add(new LongFiller());
-                _propertyFillers.Add(new NullableLongFiller());
-                _propertyFillers.Add(new NullableULongFiller());
-                _propertyFillers.Add(new DecimalFiller());
-                _propertyFillers.Add(new NullableDecimalFiller());
-                _propertyFillers.Add(new ShortFiller());
-                _propertyFillers.Add(new NullableShortFiller());
-                _propertyFillers.Add(new NullableUShortFiller());
-                _propertyFillers.Add(new BooleanFiller());
-                _propertyFillers.Add(new NullableBooleanFiller());
+                    _propertyFillers.Add(new CharFiller());
+                    _propertyFillers.Add(new NullableCharFiller());
+                    _propertyFillers.Add(new IntFiller());
+                    _propertyFillers.Add(new NullableIntFiller());
+                    _propertyFillers.Add(new NullableUIntFiller());
+                    _propertyFillers.Add(new LongFiller());
+                    _propertyFillers.Add(new NullableLongFiller());
+                    _propertyFillers.Add(new NullableULongFiller());
+                    _propertyFillers.Add(new DecimalFiller());
+                    _propertyFillers.Add(new NullableDecimalFiller());
+                    _propertyFillers.Add(new ShortFiller());
+                    _propertyFillers.Add(new NullableShortFiller());
+                    _propertyFillers.Add(new NullableUShortFiller());
+                    _propertyFillers.Add(new BooleanFiller());
+                    _propertyFillers.Add(new NullableBooleanFiller());
 
-                _propertyFillers.Add(new AgeFiller());
-                _propertyFillers.Add(new PriceFiller());
+                    _propertyFillers.Add(new AgeFiller());
+                    _propertyFillers.Add(new PriceFiller());
 
-                _propertyFillers.Add(new CompanyNameFiller());
+                    _propertyFillers.Add(new CompanyNameFiller());
 
-                _propertyFillers.Add(new CookingFiller.IngredientFiller());
-
-
-                DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
-                _propertyFillers.Add(new DateTimeFiller());
-                _propertyFillers.Add(new DateTimeOffsetFiller());
-                _propertyFillers.Add(DateTimeNullableFiller);
+                    _propertyFillers.Add(new CookingFiller.IngredientFiller());
 
 
-                _propertyFillers.Add(new BirthDateFiller());
-                _propertyFillers.Add(new GuidFiller());
-                _propertyFillers.Add(new ArticleTitleFiller());
+                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
+                    _propertyFillers.Add(new DateTimeFiller());
+                    _propertyFillers.Add(new DateTimeOffsetFiller());
+                    _propertyFillers.Add(DateTimeNullableFiller);
 
-                _propertyFillers.Add(new FirstNameFiller());
-                _propertyFillers.Add(new LastNameFiller());
-                _propertyFillers.Add(new EmailFiller());
-                _propertyFillers.Add(new PersonTitleFiller());
 
-                _propertyFillers.Add(new TwitterFiller());
+                    _propertyFillers.Add(new BirthDateFiller());
+                    _propertyFillers.Add(new GuidFiller());
+                    _propertyFillers.Add(new ArticleTitleFiller());
 
-                _propertyFillers.Add(new AddressFiller());
-                _propertyFillers.Add(new AddressLine2Filler());
-                _propertyFillers.Add(new CityFiller());
-                _propertyFillers.Add(new StateFiller());
-                _propertyFillers.Add(new ProvinceFiller());
-                _propertyFillers.Add(new ZipCodeFiller());
-                _propertyFillers.Add(new PostalCodeFiller());
-                _propertyFillers.Add(new PhoneNumberFiller());
+                    _propertyFillers.Add(new FirstNameFiller());
+                    _propertyFillers.Add(new LastNameFiller());
+                    _propertyFillers.Add(new EmailFiller());
+                    _propertyFillers.Add(new PersonTitleFiller());
 
-                _propertyFillers.Add(new MusicAlbumTitleFiller());
-                _propertyFillers.Add(new MusicArtistNameFiller());
-                _propertyFillers.Add(new MusicGenreDescriptionFiller());
-                _propertyFillers.Add(new MusicGenreNameFiller());
+                    _propertyFillers.Add(new TwitterFiller());
 
-                _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller());
-                _propertyFillers.Add(new USASocialSecurityNumberFiller());
+                    _propertyFillers.Add(new AddressFiller());
+                    _propertyFillers.Add(new AddressLine2Filler());
+                    _propertyFillers.Add(new CityFiller());
+                    _propertyFillers.Add(new StateFiller());
+                    _propertyFillers.Add(new ProvinceFiller());
+                    _propertyFillers.Add(new ZipCodeFiller());
+                    _propertyFillers.Add(new PostalCodeFiller());
+                    _propertyFillers.Add(new PhoneNumberFiller());
 
-                _propertyFillers.Add(new DrugFiller());
-                _propertyFillers.Add(new MedicalProcedureFiller());
+                    _propertyFillers.Add(new MusicAlbumTitleFiller());
+                    _propertyFillers.Add(new MusicArtistNameFiller());
+                    _propertyFillers.Add(new MusicGenreDescriptionFiller());
+                    _propertyFillers.Add(new MusicGenreNameFiller());
 
-                _propertyFillers.Add(new StringFiller());
+                    _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller());
+                    _propertyFillers.Add(new USASocialSecurityNumberFiller());
 
+                    _propertyFillers.Add(new DrugFiller());
+                    _propertyFillers.Add(new MedicalProcedureFiller());
+
+                    _propertyFillers.Add(new StringFiller());
+
+                }
+
+                _specificPropertyFillersByObjectType = new Dictionary<string, IDictionary<string, IPropertyFiller>>();
+
+                foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => !p.IsGenericFiller))
+                {
+                    RegisterFiller(propertyFiller);
+                }
+
+                _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
+                foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => p.IsGenericFiller))
+                {
+                    _genericPropertyFillersByPropertyType.Add(propertyFiller.PropertyType, propertyFiller);
+                }
             }
-
-            _specificPropertyFillersByObjectType = new Dictionary<string, IDictionary<string, IPropertyFiller>>();
-
-            foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => !p.IsGenericFiller))
+            finally
             {
-                RegisterFiller(propertyFiller);
+                rwl.ExitWriteLock();
             }
-
-            _genericPropertyFillersByPropertyType = new Dictionary<Type, IPropertyFiller>();
-            foreach (IPropertyFiller propertyFiller in _propertyFillers.Where(p => p.IsGenericFiller))
-            {
-                _genericPropertyFillersByPropertyType.Add(propertyFiller.PropertyType, propertyFiller);
-            }
-
         }
 
         public void ResetFillers<T>()
         {
-            string objectTypeName = typeof(T).FullName.ToLowerInvariant();
-            if (_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+            try
             {
-                _specificPropertyFillersByObjectType.Remove(objectTypeName);
+                rwl.EnterWriteLock();
+                string objectTypeName = typeof(T).FullName.ToLowerInvariant();
+                if (_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+                {
+                    _specificPropertyFillersByObjectType.Remove(objectTypeName);
+                }
+            }
+            finally
+            {
+                rwl.ExitWriteLock();
             }
         }
 
         public void RegisterFiller(IPropertyFiller filler)
         {
-            foreach (string objectTypeName in filler.ObjectTypeNames.Select(s => s.ToLowerInvariant()))
+            try
             {
-                if (!_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+                rwl.EnterWriteLock();
+                foreach (string objectTypeName in filler.ObjectTypeNames.Select(s => s.ToLowerInvariant()))
                 {
-                    _specificPropertyFillersByObjectType[objectTypeName] = new Dictionary<string, IPropertyFiller>();
-                }
-                IDictionary<string, IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
-                foreach (var key in filler.PropertyNames)
-                {
-                    typeFillers[key] = filler;
-                }
+                    if (!_specificPropertyFillersByObjectType.ContainsKey(objectTypeName))
+                    {
+                        _specificPropertyFillersByObjectType[objectTypeName] = new Dictionary<string, IPropertyFiller>();
+                    }
+                    IDictionary<string, IPropertyFiller> typeFillers = _specificPropertyFillersByObjectType[objectTypeName];
+                    foreach (var key in filler.PropertyNames)
+                    {
+                        typeFillers[key] = filler;
+                    }
 
+                }
+            }
+            finally
+            {
+                rwl.ExitWriteLock();
             }
         }
 
         public IPropertyFiller GetFiller(PropertyInfo propertyInfo)
         {
+            rwl.EnterReadLock();
+            var newRegistrations = new Dictionary<Type, IPropertyFiller>();
             IPropertyFiller result = null;
-            Type objectType = propertyInfo.DeclaringType;
-            while (objectType != null && result == null)
+            try
             {
-                //First try to get a specific filler based on a full type name (including namespace)
-                string fullTypeName = objectType.FullName.ToLowerInvariant();
-
-                if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
+                Type objectType = propertyInfo.DeclaringType;
+                while (objectType != null && result == null)
                 {
-                    IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
-                    result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
-                }
+                    //First try to get a specific filler based on a full type name (including namespace)
+                    string fullTypeName = objectType.FullName.ToLowerInvariant();
 
-                //Second try to get a more generic filler based on only the class name (no namespace)
-                if (result == null)
-                {
-                    string classTypeName = objectType.Name.ToLowerInvariant();
-                    if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
+                    if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                     {
-                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
                         result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
                     }
+
+                    //Second try to get a more generic filler based on only the class name (no namespace)
+                    if (result == null)
+                    {
+                        string classTypeName = objectType.Name.ToLowerInvariant();
+                        if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
+                        {
+                            IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                            result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
+                        }
+                    }
+
+                    objectType = objectType.GetTypeInfo().BaseType;
                 }
 
-                objectType = objectType.GetTypeInfo().BaseType;
-            }
-
-            if (result == null)
-            {
-                //Finally, grab a generic property filler for that property type
-                if (_genericPropertyFillersByPropertyType.ContainsKey(propertyInfo.PropertyType))
-                {
-                    result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
-                }
-                else if(propertyInfo.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum))
-                {
-                    result = new EnumFiller(propertyInfo.PropertyType);
-                }
-                else
-                {
-                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
-
-                    _genericPropertyFillersByPropertyType.Add(propertyInfo.PropertyType, result);
-                }
-            }
-
-            return result;
-        }
-        public IPropertyFiller GetMethodFiller(MethodInfo methodInfo)
-        {
-            IPropertyFiller result = null;
-            Type objectType = methodInfo.DeclaringType;
-            while (objectType != null && result == null)
-            {
-                //First try to get a specific filler based on a full type name (including namespace)
-                string fullTypeName = objectType.FullName.ToLowerInvariant();
-                if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
-                {
-                    IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
-                    result = GetMatchingMethodFiller(methodInfo, propertyFillers);
-                }
-
-
-                //Second try to get a more generic filler based on only the class name (no namespace)
                 if (result == null)
                 {
-                    string classTypeName = objectType.Name.ToLowerInvariant();
-                    if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
+                    //Finally, grab a generic property filler for that property type
+                    if (_genericPropertyFillersByPropertyType.ContainsKey(propertyInfo.PropertyType))
                     {
-                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
-                        result = GetMatchingMethodFiller(methodInfo, propertyFillers);
+                        result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
+                    }
+                    else if (propertyInfo.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum))
+                    {
+                        result = new EnumFiller(propertyInfo.PropertyType);
+                    }
+                    else
+                    {
+                        //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
+                        result = new CustomFiller<object>("*", typeof(object), true, () => null);
+                        newRegistrations[propertyInfo.PropertyType] = result;
                     }
                 }
-
-                objectType = objectType.GetTypeInfo().BaseType;
+            }
+            finally
+            {
+                rwl.ExitReadLock();
             }
 
-            //            // TODO: Would like to exclude methods for fill unless we explicity specify to include
-            //            if (result == null)
-            //            {
-            //                var paramType = methodInfo.GetParameters()[0].ParameterType;
-            //
-            //                //Finally, grab a generic property filler for that property type
-            //                if (_genericPropertyFillersByPropertyType.ContainsKey(paramType))
-            //                {
-            //                    result = _genericPropertyFillersByPropertyType[paramType];
-            //                }
-            //                else
-            //                {
-            //                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-            //                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
-            //
-            //                    _genericPropertyFillersByPropertyType.Add(paramType, result);
-            //                }
-            //            }
-
+            if (newRegistrations.Any())
+            {
+                rwl.EnterWriteLock();
+                foreach (var newRegistration in newRegistrations)
+                {
+                    _genericPropertyFillersByPropertyType[newRegistration.Key] = newRegistration.Value;
+                }
+                rwl.ExitWriteLock();
+            }
             return result;
+        }
+
+        public IPropertyFiller GetMethodFiller(MethodInfo methodInfo)
+        {
+            try
+            {
+                rwl.EnterReadLock();
+
+                IPropertyFiller result = null;
+                Type objectType = methodInfo.DeclaringType;
+                while (objectType != null && result == null)
+                {
+                    //First try to get a specific filler based on a full type name (including namespace)
+                    string fullTypeName = objectType.FullName.ToLowerInvariant();
+                    if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
+                    {
+                        IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
+                        result = GetMatchingMethodFiller(methodInfo, propertyFillers);
+                    }
+
+
+                    //Second try to get a more generic filler based on only the class name (no namespace)
+                    if (result == null)
+                    {
+                        string classTypeName = objectType.Name.ToLowerInvariant();
+                        if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
+                        {
+                            IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
+                            result = GetMatchingMethodFiller(methodInfo, propertyFillers);
+                        }
+                    }
+
+                    objectType = objectType.GetTypeInfo().BaseType;
+                }
+
+                //            // TODO: Would like to exclude methods for fill unless we explicity specify to include
+                //            if (result == null)
+                //            {
+                //                var paramType = methodInfo.GetParameters()[0].ParameterType;
+                //
+                //                //Finally, grab a generic property filler for that property type
+                //                if (_genericPropertyFillersByPropertyType.ContainsKey(paramType))
+                //                {
+                //                    result = _genericPropertyFillersByPropertyType[paramType];
+                //                }
+                //                else
+                //                {
+                //                    //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
+                //                    result = new CustomFiller<object>("*", typeof(object), true, () => null);
+                //
+                //                    _genericPropertyFillersByPropertyType.Add(paramType, result);
+                //                }
+                //            }
+
+                return result;
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
 
         private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IDictionary<string, IPropertyFiller> propertyFillers)

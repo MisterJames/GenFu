@@ -24,7 +24,8 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> Configure<T>() where T : new()
         {
-            Reset<T>();
+            //see reference test: When_running_in_parallel.registrations_are_configurable
+            //Reset<T>(); remove the reset to make this operation atomic, GenFuConfigurator will replace the current registration, we don't need to remove it explicitly
             return new GenFuConfigurator<T>(_genfu, _fillerManager);
         }
 
