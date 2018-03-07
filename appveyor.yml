@@ -1,0 +1,24 @@
+version: 1.4.{build}.0
+branches:
+  only:
+  - master
+image: Visual Studio 2017
+build_script:
+- cmd: >-
+    echo %APPVEYOR_BUILD_VERSION%
+
+    dotnet restore src/GenFu.sln
+
+    dotnet build src\GenFu.sln /p:AssemblyVersion=%appveyor_build_version% /p:InformationalVersion=%appveyor_build_version%
+
+    dotnet pack .\src\GenFu\GenFu.csproj --include-symbols /p:PackageVersion=%appveyor_build_version% /p:AssemblyVersion=%appveyor_build_version% /p:InformationalVersion=%appveyor_build_version%
+test_script:
+- ps: dotnet test tests\GenFu.Tests\GenFu.Tests.csproj
+artifacts:
+- path: '**\*.nupkg'
+deploy:
+  provider: NuGet
+  api_key:
+    secure: qjbfJcH1Lyp3ENSjX53F09cBYmHpTmkXer1i5ZYa8AjJe4qktQCJT/A7/v3tNpm2
+  skip_symbols: false
+  artifact: /.*\.nupkg/
