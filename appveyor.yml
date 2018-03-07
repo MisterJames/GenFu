@@ -16,9 +16,3 @@ test_script:
 - ps: dotnet test tests\GenFu.Tests\GenFu.Tests.csproj
 artifacts:
 - path: '**\*.nupkg'
-deploy:
-  provider: NuGet
-  api_key:
-    secure: qjbfJcH1Lyp3ENSjX53F09cBYmHpTmkXer1i5ZYa8AjJe4qktQCJT/A7/v3tNpm2
-  skip_symbols: false
-  artifact: /.*\.nupkg/
