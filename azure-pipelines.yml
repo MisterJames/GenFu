@@ -13,5 +13,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/GenFu.sln
   displayName: 'dotnet build $(buildConfiguration)'
   
-- script: dotnet pack --configuration $(buildConfiguration) src/GenFu/GenFu.csproj
+- script: dotnet pack --configuration $(buildConfiguration) src/GenFu/GenFu.csproj -o $(build.ArtifactStagingDirectory)
   displayName: 'dotnet pack $(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
