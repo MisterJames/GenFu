@@ -34,6 +34,10 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
     <PackageReference Include="xunit" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.0" />
+    <PackageReference Include="Coverlet.msbuild" Version="2.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCLIToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc6"/>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
