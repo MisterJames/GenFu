@@ -37,7 +37,7 @@
     <PackageReference Include="Coverlet.msbuild" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCLIToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc6"/>
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc6"/>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
