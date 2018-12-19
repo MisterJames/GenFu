@@ -328,12 +328,27 @@ namespace GenFu
         public Result GetGenericFiller<Input, Result>()
         {
             var type = typeof(Input);
-            return (Result)_genericPropertyFillersByPropertyType[type];
+            try
+            {
+                rwl.EnterReadLock();
+                return (Result) _genericPropertyFillersByPropertyType[type];
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
         public IPropertyFiller GetGenericFillerForType(Type t)
         {
-            return _genericPropertyFillersByPropertyType[t];
+            try
+            {
+                rwl.EnterReadLock();
+                return _genericPropertyFillersByPropertyType[t];
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
-
     }
 }
