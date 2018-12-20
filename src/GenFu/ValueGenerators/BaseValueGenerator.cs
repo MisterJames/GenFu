@@ -9,7 +9,14 @@ namespace GenFu
 
         protected static Random _random = new Random(Environment.TickCount);
 
+        public GenFuInstance GenFu { get; }
 
+        public BaseValueGenerator() { }
+
+        public BaseValueGenerator(GenFuInstance genFu)
+        {
+            GenFu = genFu;
+        }
 
         public static string Word()
         {
@@ -17,7 +24,6 @@ namespace GenFu
             int index = _random.Next(0, ResourceLoader.Data(PropertyType.Words).Count());
             return ResourceLoader.Data(PropertyType.Words)[index];
         }
-       
 
         public static T GetRandomValue<T>(T[] values)
         {

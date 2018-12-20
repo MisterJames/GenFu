@@ -54,16 +54,17 @@ namespace GenFu.Tests
         [Fact]
         public void MakeDateRuleFutureIsCorrect()
         {
-            A.Reset();
-            var date = CalendarDate.Date(DateRules.FutureDates);
-            Assert.True(date > DateTime.Now);
+            var genfu = new GenFuInstance();
+            var date = new CalendarDate(genfu).Date(DateRules.FutureDates);
+            if (!(date > DateTime.Now))
+                Assert.True(date > DateTime.Now);
         }
 
         [Fact]
         public void MakeDateRulePastIsCorrect()
         {
             A.Reset();
-            var date = CalendarDate.Date(DateRules.PastDate);
+            var date = new CalendarDate().Date(DateRules.PastDate);
             Assert.True(DateTime.Now > date);
         }
 
@@ -77,7 +78,7 @@ namespace GenFu.Tests
 
             for (int i = 0; i < 1000; i++)
             {
-                var date = CalendarDate.Date(minDate, maxDate);
+                var date = new CalendarDate().Date(minDate, maxDate);
                 Assert.True(date >= minDate);
                 Assert.True(date <= maxDate);
             }

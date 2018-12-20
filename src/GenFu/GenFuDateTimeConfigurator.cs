@@ -8,7 +8,7 @@ namespace GenFu
     {
         private MemberInfo _propertyInfo;
 
-        public GenFuDateTimeConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+        public GenFuDateTimeConfigurator(GenFuInstance genfu, FillerManager fillerManager, MemberInfo propertyInfo)
             : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;

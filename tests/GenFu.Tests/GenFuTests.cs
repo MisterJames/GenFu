@@ -361,7 +361,7 @@ namespace GenFu.Tests
 
             A
                 .Configure<BlogComment>()
-                .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.FutureDates); });
+                .Fill(b => b.CommentDate, delegate () { return new CalendarDate().Date(DateRules.FutureDates); });
             var comments = A.ListOf<BlogComment>();
 
             foreach (var comment in comments)
@@ -408,12 +408,12 @@ namespace GenFu.Tests
 
             A
                 .Configure<BlogPost>()
-                .Fill(b => b.CreateDate, delegate () { return CalendarDate.Date(DateRules.PastDate); })
+                .Fill(b => b.CreateDate, delegate () { return new CalendarDate().Date(DateRules.PastDate); })
                 .Fill(b => b.Comments, delegate ()
                 {
                     A
                         .Set<BlogComment>()
-                        .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
+                        .Fill(b => b.CommentDate, delegate () { return new CalendarDate().Date(DateRules.PastDate); });
                     return A.ListOf<BlogComment>();
                 });
             var blogpost = A.New<BlogPost>();
@@ -462,7 +462,7 @@ namespace GenFu.Tests
                {
                    A
                       .Configure<BlogComment>()
-                      .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.PastDate); });
+                      .Fill(b => b.CommentDate, delegate () { return new CalendarDate().Date(DateRules.PastDate); });
                    return A.ListOf<BlogComment>();
                });
             var blogposts = A.ListOf<BlogPost>();

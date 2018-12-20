@@ -4,10 +4,10 @@ namespace GenFu
 {
     public class GenFuDefaulturator
     {
-        protected GenFu _genfu;
+        protected GenFuInstance _genfu;
         protected FillerManager _fillerManager;
 
-        public GenFuDefaulturator(GenFu genfu, FillerManager maggie)
+        public GenFuDefaulturator(GenFuInstance genfu, FillerManager maggie)
         {
             _genfu = genfu;
             _fillerManager = maggie;
@@ -77,7 +77,7 @@ namespace GenFu
             return this;
         }
 
-        public GenFu GenFu
+        public GenFuInstance GenFu
         {
             get { return _genfu; }
         }

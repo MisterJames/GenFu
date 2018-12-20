@@ -10,8 +10,10 @@ namespace GenFu
         public DateTime Max { get; set; }
         public double SeedPercentage { get; set; } = 1;
 
-        public DateTimeNullableFiller()
-            : base(new[] { "object" }, new[] { "*" }, true)
+        public DateTimeNullableFiller() : this(A.GenFuInstance) { }
+
+        public DateTimeNullableFiller(GenFuInstance genFu)
+            : base(genFu, new[] { "object" }, new[] { "*" }, true)
         {
         }
 

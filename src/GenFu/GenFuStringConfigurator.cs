@@ -7,7 +7,7 @@ namespace GenFu
     {
         private MemberInfo _propertyInfo;
 
-        public GenFuStringConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+        public GenFuStringConfigurator(GenFuInstance genfu, FillerManager fillerManager, MemberInfo propertyInfo)
             : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;
@@ -20,7 +20,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(string[] values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -32,7 +32,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(List<string> values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -44,7 +44,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(IEnumerable<string> values)
         {
-            CustomFiller<string> customFiller = new CustomFiller<string>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<string> customFiller = new CustomFiller<string>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }

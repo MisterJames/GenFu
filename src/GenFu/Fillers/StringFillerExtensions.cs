@@ -18,7 +18,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsEmailAddress<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -33,7 +33,7 @@ namespace GenFu
 
         public static GenFuConfigurator<T> AsEmailAddressForDomain<T>(this GenFuStringConfigurator<T> configurator, string domain) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email(domain));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Email(domain));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -46,7 +46,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsTwitterHandle<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Twitter());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.Twitter());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -59,7 +59,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsArticleTitle<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.Title());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Names.Title());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -72,7 +72,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsPhoneNumber<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.PhoneNumber());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ContactInformation.PhoneNumber());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -85,7 +85,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsFirstName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Names.FirstName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -98,7 +98,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsPersonTitle<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.PersonTitle());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Names.PersonTitle());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -111,7 +111,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsLastName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Names.LastName());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Names.LastName());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -124,7 +124,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsAddress<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu, configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -137,7 +137,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsAddressLine2<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine2());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Address.AddressLine2());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -150,7 +150,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsCity<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.City());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Address.City());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -163,7 +163,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsCanadianProvince<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.CanadianProvince());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Address.CanadianProvince());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -176,7 +176,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsUsaState<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => Address.UsaState());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => Address.UsaState());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -189,7 +189,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsMusicArtistName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Artist.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Artist.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -202,7 +202,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsMusicGenreName<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Name());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Name());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -215,7 +215,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsMusicGenreDescription<T>(this GenFuStringConfigurator<T> configurator) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Description());
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Music.Genre.Description());
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -232,7 +232,7 @@ namespace GenFu
 
         public static GenFuConfigurator<T> AsLoremIpsumWords<T>(this GenFuStringConfigurator<T> configurator, int numberOfWords = 1) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateWords(numberOfWords));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateWords(numberOfWords));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -245,7 +245,7 @@ namespace GenFu
         /// <returns>A configurator for the specified object type</returns>
         public static GenFuConfigurator<T> AsLoremIpsumSentences<T>(this GenFuStringConfigurator<T> configurator, int numberOfSentences = 1) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateSentences(numberOfSentences));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T), () => ValueGenerators.Lorem.Lorem.GenerateSentences(numberOfSentences));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }
@@ -260,8 +260,8 @@ namespace GenFu
             string textColor = null,
             ImgFormat format = ImgFormat.GIF) where T : new()
         {
-            CustomFiller<string> filler = new CustomFiller<string>(configurator.PropertyInfo.Name, typeof(T), 
-                () => PlaceholditUrlBuilder.UrlFor(width,height, text ,backgroundColor,textColor, format));
+            CustomFiller<string> filler = new CustomFiller<string>(configurator.GenFu,configurator.PropertyInfo.Name, typeof(T),
+                () => PlaceholditUrlBuilder.UrlFor(width, height, text, backgroundColor, textColor, format));
             configurator.Maggie.RegisterFiller(filler);
             return configurator;
         }

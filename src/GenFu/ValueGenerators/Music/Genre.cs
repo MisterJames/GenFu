@@ -7,6 +7,10 @@ namespace GenFu.ValueGenerators.Music
 
     public class Genre : BaseValueGenerator
     {
+        public Genre(GenFuInstance genfu) : base()
+        {
+        }
+
         public static string Name()
         {
             var prefixes = new string[] { "Acid ", "Jazzy ", "Fresh ", "Classic ", "Free ", "Hard ", "Electronic ", "Modern ", "Brazillian ", "Caribbean ", "African ", "Asian ", "Avant-Garde ", "Kansas City ", "Glam ", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };

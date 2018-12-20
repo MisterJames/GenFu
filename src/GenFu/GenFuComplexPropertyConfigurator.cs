@@ -7,7 +7,7 @@ namespace GenFu
     {
         private MemberInfo _propertyInfo;
 
-        public GenFuComplexPropertyConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+        public GenFuComplexPropertyConfigurator(GenFuInstance genfu, FillerManager fillerManager, MemberInfo propertyInfo)
             : base(genfu, fillerManager)
         {
             _propertyInfo = propertyInfo;
@@ -20,7 +20,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(IList<T2> values)
         {
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -32,7 +32,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(IEnumerable<T2> values)
         {
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -44,7 +44,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(T2[] values)
         {
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(this.GenFu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }

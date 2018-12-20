@@ -5,7 +5,20 @@ namespace GenFu.Fillers
 {
     public class DateTimeAdapterFiller<T> : DateTimeNullableFiller
     {
-        DateTimeFiller dateTimeFiller = new DateTimeFiller();
+        public DateTimeAdapterFiller(GenFuInstance genFu) : base(genFu)
+        {
+
+        }
+
+        DateTimeFiller _dateTimeFiller = null;
+        DateTimeFiller DateTimeFiller
+        {
+            get
+            {
+                _dateTimeFiller = _dateTimeFiller ?? new DateTimeFiller(this.GenFu);
+                return _dateTimeFiller;
+            }
+        }
         private Random rand = new Random();
 
         public override object GetValue(object instance)
@@ -18,11 +31,11 @@ namespace GenFu.Fillers
                 }
                 else
                 {
-                    return dateTimeFiller.GetValue(instance);
+                    return DateTimeFiller.GetValue(instance);
                 }
             }
 
-            return dateTimeFiller.GetValue(instance);
+            return DateTimeFiller.GetValue(instance);
         }
     }
 }

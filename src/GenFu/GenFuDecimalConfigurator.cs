@@ -6,11 +6,13 @@ namespace GenFu
 {
     public class GenFuDecimalConfigurator<T> : GenFuConfigurator<T> where T : new()
     {
+        private readonly GenFuInstance genfu;
         private MemberInfo _propertyInfo;
 
-        public GenFuDecimalConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+        public GenFuDecimalConfigurator(GenFuInstance genfu, FillerManager fillerManager, MemberInfo propertyInfo)
             : base(genfu, fillerManager)
         {
+            this.genfu = genfu;
             _propertyInfo = propertyInfo;
         }
 
@@ -22,7 +24,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithinRange(int min, int max)
         {
-            DecimalFiller filler = new DecimalFiller(typeof(T), _propertyInfo.Name, min, max);
+            DecimalFiller filler = new DecimalFiller(genfu, typeof(T), _propertyInfo.Name, min, max);
             _fillerManager.RegisterFiller(filler);
             return this;
         }
@@ -34,7 +36,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(decimal[] values)
         {
-            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(genfu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -46,7 +48,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(List<decimal> values)
         {
-            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(genfu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -58,7 +60,7 @@ namespace GenFu
         /// <returns>A configurator for the target object type</returns>
         public GenFuConfigurator<T> WithRandom(IEnumerable<decimal> values)
         {
-            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
+            CustomFiller<decimal> customFiller = new CustomFiller<decimal>(genfu, PropertyInfo.Name, typeof(T), () => BaseValueGenerator.GetRandomValue(values));
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }

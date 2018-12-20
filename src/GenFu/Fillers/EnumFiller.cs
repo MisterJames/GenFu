@@ -6,8 +6,14 @@ namespace GenFu
     public class EnumFiller : PropertyFiller<Enum>
     {
         readonly Type _type;
+
         public EnumFiller(Type type)
-            : base(new[] { "object" }, new[] { "*" }, true)
+            : this(A.GenFuInstance, type)
+        {
+        }
+
+        public EnumFiller(GenFuInstance genFu, Type type)
+            : base(genFu, new[] { "object" }, new[] { "*" }, true)
         {
             this._type = type;
         }
