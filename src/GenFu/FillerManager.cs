@@ -14,11 +14,18 @@ namespace GenFu
         private IDictionary<Type, IPropertyFiller> _genericPropertyFillersByPropertyType;
         private IList<IPropertyFiller> _propertyFillers;
 
-        static ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
-
+        private ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+        public GenFuInstance GenFu { get; }
 
         public FillerManager()
         {
+            GenFu = A.GenFuInstance;
+            ResetFillers();
+        }
+
+        public FillerManager(GenFuInstance genFu)
+        {
+            GenFu = genFu;
             ResetFillers();
         }
 
@@ -31,68 +38,68 @@ namespace GenFu
                 {
                     _propertyFillers = new List<IPropertyFiller>();
 
-                    _propertyFillers.Add(new CharFiller());
-                    _propertyFillers.Add(new NullableCharFiller());
-                    _propertyFillers.Add(new IntFiller());
-                    _propertyFillers.Add(new NullableIntFiller());
-                    _propertyFillers.Add(new NullableUIntFiller());
-                    _propertyFillers.Add(new LongFiller());
-                    _propertyFillers.Add(new NullableLongFiller());
-                    _propertyFillers.Add(new NullableULongFiller());
-                    _propertyFillers.Add(new DecimalFiller());
-                    _propertyFillers.Add(new NullableDecimalFiller());
-                    _propertyFillers.Add(new ShortFiller());
-                    _propertyFillers.Add(new NullableShortFiller());
-                    _propertyFillers.Add(new NullableUShortFiller());
-                    _propertyFillers.Add(new BooleanFiller());
-                    _propertyFillers.Add(new NullableBooleanFiller());
+                    _propertyFillers.Add(new CharFiller(GenFu));
+                    _propertyFillers.Add(new NullableCharFiller(GenFu));
+                    _propertyFillers.Add(new IntFiller(GenFu));
+                    _propertyFillers.Add(new NullableIntFiller(GenFu));
+                    _propertyFillers.Add(new NullableUIntFiller(GenFu));
+                    _propertyFillers.Add(new LongFiller(GenFu));
+                    _propertyFillers.Add(new NullableLongFiller(GenFu));
+                    _propertyFillers.Add(new NullableULongFiller(GenFu));
+                    _propertyFillers.Add(new DecimalFiller(GenFu));
+                    _propertyFillers.Add(new NullableDecimalFiller(GenFu));
+                    _propertyFillers.Add(new ShortFiller(GenFu));
+                    _propertyFillers.Add(new NullableShortFiller(GenFu));
+                    _propertyFillers.Add(new NullableUShortFiller(GenFu));
+                    _propertyFillers.Add(new BooleanFiller(GenFu));
+                    _propertyFillers.Add(new NullableBooleanFiller(GenFu));
 
-                    _propertyFillers.Add(new AgeFiller());
-                    _propertyFillers.Add(new PriceFiller());
+                    _propertyFillers.Add(new AgeFiller(GenFu));
+                    _propertyFillers.Add(new PriceFiller(GenFu));
 
-                    _propertyFillers.Add(new CompanyNameFiller());
+                    _propertyFillers.Add(new CompanyNameFiller(GenFu));
 
-                    _propertyFillers.Add(new CookingFiller.IngredientFiller());
+                    _propertyFillers.Add(new CookingFiller.IngredientFiller(GenFu));
 
 
-                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>();
-                    _propertyFillers.Add(new DateTimeFiller());
-                    _propertyFillers.Add(new DateTimeOffsetFiller());
+                    DateTimeNullableFiller DateTimeNullableFiller = new DateTimeAdapterFiller<DateTime?>(GenFu);
+                    _propertyFillers.Add(new DateTimeFiller(GenFu));
+                    _propertyFillers.Add(new DateTimeOffsetFiller(GenFu));
                     _propertyFillers.Add(DateTimeNullableFiller);
 
 
-                    _propertyFillers.Add(new BirthDateFiller());
-                    _propertyFillers.Add(new GuidFiller());
-                    _propertyFillers.Add(new ArticleTitleFiller());
+                    _propertyFillers.Add(new BirthDateFiller(GenFu));
+                    _propertyFillers.Add(new GuidFiller(GenFu));
+                    _propertyFillers.Add(new ArticleTitleFiller(GenFu));
 
-                    _propertyFillers.Add(new FirstNameFiller());
-                    _propertyFillers.Add(new LastNameFiller());
-                    _propertyFillers.Add(new EmailFiller());
-                    _propertyFillers.Add(new PersonTitleFiller());
+                    _propertyFillers.Add(new FirstNameFiller(GenFu));
+                    _propertyFillers.Add(new LastNameFiller(GenFu));
+                    _propertyFillers.Add(new EmailFiller(GenFu));
+                    _propertyFillers.Add(new PersonTitleFiller(GenFu));
 
-                    _propertyFillers.Add(new TwitterFiller());
+                    _propertyFillers.Add(new TwitterFiller(GenFu));
 
-                    _propertyFillers.Add(new AddressFiller());
-                    _propertyFillers.Add(new AddressLine2Filler());
-                    _propertyFillers.Add(new CityFiller());
-                    _propertyFillers.Add(new StateFiller());
-                    _propertyFillers.Add(new ProvinceFiller());
-                    _propertyFillers.Add(new ZipCodeFiller());
-                    _propertyFillers.Add(new PostalCodeFiller());
-                    _propertyFillers.Add(new PhoneNumberFiller());
+                    _propertyFillers.Add(new AddressFiller(GenFu));
+                    _propertyFillers.Add(new AddressLine2Filler(GenFu));
+                    _propertyFillers.Add(new CityFiller(GenFu));
+                    _propertyFillers.Add(new StateFiller(GenFu));
+                    _propertyFillers.Add(new ProvinceFiller(GenFu));
+                    _propertyFillers.Add(new ZipCodeFiller(GenFu));
+                    _propertyFillers.Add(new PostalCodeFiller(GenFu));
+                    _propertyFillers.Add(new PhoneNumberFiller(GenFu));
 
-                    _propertyFillers.Add(new MusicAlbumTitleFiller());
-                    _propertyFillers.Add(new MusicArtistNameFiller());
-                    _propertyFillers.Add(new MusicGenreDescriptionFiller());
-                    _propertyFillers.Add(new MusicGenreNameFiller());
+                    _propertyFillers.Add(new MusicAlbumTitleFiller(GenFu));
+                    _propertyFillers.Add(new MusicArtistNameFiller(GenFu));
+                    _propertyFillers.Add(new MusicGenreDescriptionFiller(GenFu));
+                    _propertyFillers.Add(new MusicGenreNameFiller(GenFu));
 
-                    _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller());
-                    _propertyFillers.Add(new USASocialSecurityNumberFiller());
+                    _propertyFillers.Add(new CanadianSocialInsuranceNumberFiller(GenFu));
+                    _propertyFillers.Add(new USASocialSecurityNumberFiller(GenFu));
 
-                    _propertyFillers.Add(new DrugFiller());
-                    _propertyFillers.Add(new MedicalProcedureFiller());
+                    _propertyFillers.Add(new DrugFiller(GenFu));
+                    _propertyFillers.Add(new MedicalProcedureFiller(GenFu));
 
-                    _propertyFillers.Add(new StringFiller());
+                    _propertyFillers.Add(new StringFiller(GenFu));
 
                 }
 
@@ -199,12 +206,12 @@ namespace GenFu
                     }
                     else if (propertyInfo.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum))
                     {
-                        result = new EnumFiller(propertyInfo.PropertyType);
+                        result = new EnumFiller(this.GenFu, propertyInfo.PropertyType);
                     }
                     else
                     {
                         //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
-                        result = new CustomFiller<object>("*", typeof(object), true, () => null);
+                        result = new CustomFiller<object>(GenFu, "*", typeof(object), true, () => null);
                         newRegistrations[propertyInfo.PropertyType] = result;
                     }
                 }
@@ -328,12 +335,27 @@ namespace GenFu
         public Result GetGenericFiller<Input, Result>()
         {
             var type = typeof(Input);
-            return (Result)_genericPropertyFillersByPropertyType[type];
+            try
+            {
+                rwl.EnterReadLock();
+                return (Result) _genericPropertyFillersByPropertyType[type];
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
         public IPropertyFiller GetGenericFillerForType(Type t)
         {
-            return _genericPropertyFillersByPropertyType[t];
+            try
+            {
+                rwl.EnterReadLock();
+                return _genericPropertyFillersByPropertyType[t];
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
-
     }
 }

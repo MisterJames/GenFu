@@ -9,8 +9,10 @@ namespace GenFu.Fillers
     {
         public class IngredientFiller : PropertyFiller<string>
         {
-            public IngredientFiller()
-                : base(new[] { "object" }, new[] { "ingredient", "ingredients" })
+            public IngredientFiller() : this(A.GenFuInstance) { }
+
+            public IngredientFiller(GenFuInstance genFu)
+                : base(genFu, new[] { "object" }, new[] { "ingredient", "ingredients" })
             {
             }
 
@@ -19,6 +21,6 @@ namespace GenFu.Fillers
                 return ValueGenerators.Cooking.Ingredients.Ingredient();
             }
         }
-     
+
     }
 }

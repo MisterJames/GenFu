@@ -3,45 +3,38 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using Angela.vNext.Reflection;
+using StaticGenfu = GenFu.GenFu;
 
 namespace GenFu
 {
-    public class A : GenFu { }
-    
-
-    public class Eh : GenFu { }
-
-    public partial class GenFu
+    public partial class GenFuInstance
     {
-        private static GenFu _genfu = new GenFu();
-        private static FillerManager _fillerManager = new FillerManager();
+        private FillerManager _fillerManager;
+        private int _listCount = StaticGenfu.Defaults.LIST_COUNT;
 
-        private static int _listCount = GenFu.Defaults.LIST_COUNT;
-
-        static GenFu()
+        public GenFuInstance()
         {
-            _fillerManager = new FillerManager();
+            _fillerManager = new FillerManager(this);
             Random = new Random();
         }
 
-        public static T New<T>() where T : new()
+        public T New<T>() where T : new()
         {
-            return (T) New(typeof(T));
+            return (T)New(typeof(T));
         }
 
-        public static object New(Type type)
+        public object New(Type type)
         {
             object instance = Activator.CreateInstance(type);
             return New(instance);
         }
 
-        public static T New<T>(T instance)
+        public T New<T>(T instance)
         {
-            return (T) New((object) instance);
-      
+            return (T)New((object)instance);
         }
 
-        public static object New(object instance)
+        public object New(object instance)
         {
             if (instance != null)
             {
@@ -69,12 +62,12 @@ namespace GenFu
         }
 
 
-        public static List<T> ListOf<T>() where T : new()
+        public List<T> ListOf<T>() where T : new()
         {
             return ListOf(typeof(T)).Cast<T>().ToList();
         }
 
-        public static List<object> ListOf(Type type)
+        public List<object> ListOf(Type type)
         {
             return BuildList(type, _listCount);
         }
@@ -84,46 +77,46 @@ namespace GenFu
         /// <typeparam name="T"></typeparam>
         /// <param name="itemCount">Number of items to add</param>
         /// <returns></returns>
-        public static List<T> ListOf<T>(int itemCount) where T : new()
+        public List<T> ListOf<T>(int itemCount) where T : new()
         {
             return ListOf(typeof(T), itemCount).Cast<T>().ToList();
         }
 
-        public static List<object> ListOf(Type type, int itemCount)
+        public List<object> ListOf(Type type, int itemCount)
         {
             return BuildList(type, itemCount);
         }
 
-        private static List<object> BuildList(Type type, int itemCount)
+        private List<object> BuildList(Type type, int itemCount)
         {
             var result = new List<object>();
 
             for (int i = 0; i < itemCount; i++)
             {
-                result.Add(GenFu.New(type));
+                result.Add(New(type));
             }
 
             return result;
         }
 
-        private static void SetPropertyValue(object instance, PropertyInfo property)
+        private void SetPropertyValue(object instance, PropertyInfo property)
         {
             IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(instance), null);
         }
-        
-        private static void CallSetterMethod(object instance, MethodInfo method)
+
+        private void CallSetterMethod(object instance, MethodInfo method)
         {
             IPropertyFiller filler = _fillerManager.GetMethodFiller(method);
             if (filler != null)
-                method.Invoke(instance, new[] {filler.GetValue(instance)});
+                method.Invoke(instance, new[] { filler.GetValue(instance) });
         }
 
 
 
-        public static DateTime MinDateTime
+        public DateTime MinDateTime
         {
-            get {  return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
+            get { return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
 
             set
             {
@@ -131,7 +124,7 @@ namespace GenFu
             }
         }
 
-        public static DateTime MaxDateTime
+        public DateTime MaxDateTime
         {
             get { return new GenericFillerDefaults(_fillerManager).GetMaxDateTime(); }
             set
@@ -140,65 +133,11 @@ namespace GenFu
             }
         }
 
-        public static Random Random { get; private set; }
-
-        public class Defaults
-        {
-            public const int MIN_INT = 1;
-            public const int MAX_INT = 100;
-
-            public const uint MIN_UINT = 1;
-            public const uint MAX_UINT = 100;
-
-            public static double MIN_DOUBLE = 1;
-            public static double MAX_DOUBLE = 10000;
+        public Random Random { get; private set; }
 
 
-            public static short MIN_SHORT = 1;
-            public static short MAX_SHORT = Int16.MaxValue;
+        public GenFu.DefaultValues Defaults { get => _defaults; }
 
-            public static ushort MIN_USHORT = 100;
-            public static ushort MAX_USHORT = UInt16.MaxValue;
-
-
-            public const decimal MIN_DECIMAL = 0;
-            public const decimal MAX_DECIMAL = 100;
-
-            public const int LIST_COUNT = 25;
-
-            public static DateTime MIN_DATETIME = DateTime.Now.AddYears(-30);
-            public static DateTime MAX_DATETIME = DateTime.Now.AddYears(30);
-            
-            public static double SEED_PERCENTAGE = 0.2;
-
-            public const string FILE_DOMAIN_NAMES = "DomainNames";
-            public const string FILE_FIRST_NAMES = "FirstNames";
-            public const string FILE_LAST_NAMES = "LastNames";
-            public const string FILE_PERSON_TITLES = "PersonTitles";
-            public const string FILE_TITLES = "Titles";
-            public const string FILE_WORDS = "Words";
-            public const string FILE_STREET_NAMES = "StreetNames";
-            public const string FILE_CITY_NAMES = "CityNames";
-            public const string FILE_USA_STATE_NAMES = "USAStateNames";
-            public const string FILE_USA_STATE_ABREVIATIONS = "USAStateAbreviations";
-            public const string FILE_CDN_PROVINCE_NAMES = "CanadianProvinceNames";
-            public const string FILE_CDN_PROVINCE_ABREVIATIONS = "CanadianProvinceAbreviations";
-            public const string FILE_MUSIC_ARTIST = "MusicArtists";
-            public const string FILE_MUSIC_ALBUM = "MusicAlbums";
-            public const string FILE_INGREDIENTS = "Ingredients";
-            public const string FILE_COMPANY_NAMES = "CompanyNames";
-            public const string FILE_INDUSTRIES = "Industries";
-            public const string FILE_INJURIES = "Injuries";
-            public const string FILE_GENDERS = "Genders";
-            public const string FILE_DRUGS = "Drugs";
-            public const string FILE_LOREM = "Lorem";
-
-            public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
-        }
-
-
+        private GenFu.DefaultValues _defaults = new GenFu.DefaultValues();
     }
-
-
-
 }

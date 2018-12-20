@@ -6,8 +6,8 @@ namespace GenFu.Tests
     public class PluginPropertyFiller : PropertyFiller<string>
     {
         public const string Value = "This is the expected value";
-        public PluginPropertyFiller() : 
-            base(new []{"TestClass"}, new []{"TestProperty"})
+        public PluginPropertyFiller() :
+            base(A.GenFuInstance, new[] { "TestClass" }, new[] { "TestProperty" })
         {
         }
 

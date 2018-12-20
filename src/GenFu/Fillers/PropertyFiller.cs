@@ -10,16 +10,17 @@ namespace GenFu
         /// </summary>
         /// <param name="objectTypeNames">The names of the object types that this property filler will target</param>
         /// <param name="propertyNames">The names of the properties that this property filler will target</param>
-        protected PropertyFiller(string[] objectTypeNames, string[] propertyNames)
-            : this(objectTypeNames, propertyNames, false)
+        protected PropertyFiller(GenFuInstance genfu, string[] objectTypeNames, string[] propertyNames)
+            : this(genfu, objectTypeNames, propertyNames, false)
         {
-
+            GenFu = genfu;
         }
 
-        internal PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
+        internal PropertyFiller(GenFuInstance genfu, string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
         {
             ObjectTypeNames = objectTypeNames.Select(o => o.ToLowerInvariant()).ToArray();
             PropertyNames = propertyNames.Select(p => p.ToLowerInvariant()).ToArray();
+            GenFu = genfu;
             IsGenericFiller = isGenericFiller;
         }
 
@@ -29,7 +30,9 @@ namespace GenFu
         public bool IsGenericFiller { get; private set; }
 
         public Type PropertyType { get { return typeof(T); } }
-        
+
+        public GenFuInstance GenFu { get; }
+
         /// <summary>
         /// Returns a value that will be used to a particular property
         /// </summary>

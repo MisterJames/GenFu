@@ -7,10 +7,10 @@ namespace GenFu
 {
     public class GenFuConfigurator
     {
-        protected GenFu _genfu;
+        protected GenFuInstance _genfu;
         protected FillerManager _fillerManager;
 
-        public GenFuConfigurator(GenFu genfu, FillerManager filterManager)
+        public GenFuConfigurator(GenFuInstance genfu, FillerManager filterManager)
         {
             _genfu = genfu;
             _fillerManager = filterManager;
@@ -42,7 +42,7 @@ namespace GenFu
         public GenFuConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, T2 value)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T1), () => value);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(_genfu,propertyInfo.Name, typeof(T1), () => value);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -58,7 +58,7 @@ namespace GenFu
         public GenFuConfigurator Fill<T1, T2>(Expression<Func<T1, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T1), filler);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(_genfu, propertyInfo.Name, typeof(T1), filler);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -75,7 +75,7 @@ namespace GenFu
             return this;
         }
 
-        public GenFu GenFu
+        public GenFuInstance GenFu
         {
             get { return _genfu; }
         }
@@ -88,7 +88,7 @@ namespace GenFu
 
     public class GenFuConfigurator<T> : GenFuConfigurator where T : new()
     {
-        public GenFuConfigurator(GenFu genfu, FillerManager fillerManager)
+        public GenFuConfigurator(GenFuInstance genfu, FillerManager fillerManager)
             : base(genfu, fillerManager)
         {
         }
@@ -122,7 +122,7 @@ namespace GenFu
         public GenFuConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, T2 value)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T), () => value);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(_genfu, propertyInfo.Name, typeof(T), () => value);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -138,7 +138,7 @@ namespace GenFu
         public GenFuConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T2> filler)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(propertyInfo.Name, typeof(T), filler);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(_genfu, propertyInfo.Name, typeof(T), filler);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -154,7 +154,7 @@ namespace GenFu
         public GenFuConfigurator<T> Fill<T2>(Expression<Func<T, T2>> expression, Func<T, T2> filler)
         {
             PropertyInfo propertyInfo = GetPropertyInfoFromExpression(expression);
-            CustomFiller<T, T2> customFiller = new CustomFiller<T, T2>(propertyInfo.Name, typeof(T), filler);
+            CustomFiller<T, T2> customFiller = new CustomFiller<T, T2>(_genfu, propertyInfo.Name, typeof(T), filler);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -246,7 +246,7 @@ namespace GenFu
         public GenFuConfigurator<T> MethodFill<T2>(Expression<Action<T>> expression, Func<T2> filler)
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
-            CustomFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name, typeof(T), filler);
+            CustomFiller<T2> customFiller = new CustomFiller<T2>(_genfu, methodInfo.Name, typeof(T), filler);
             _fillerManager.RegisterFiller(customFiller);
             return this;
         }
@@ -263,7 +263,7 @@ namespace GenFu
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
             IPropertyFiller filler = _fillerManager.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
-            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue(null));
+            PropertyFiller<T2> customFiller = new CustomFiller<T2>(_genfu, methodInfo.Name,  typeof(T), () => (T2)filler.GetValue(null));
             _fillerManager.RegisterFiller(customFiller);
             return new GenFuComplexPropertyConfigurator<T, T2>(_genfu, _fillerManager, methodInfo);
         }

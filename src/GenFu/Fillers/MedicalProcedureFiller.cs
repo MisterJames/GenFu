@@ -6,8 +6,10 @@ namespace GenFu.Fillers
 {
     public class MedicalProcedureFiller : PropertyFiller<string>
     {
-        public MedicalProcedureFiller()
-            : base(new[] { "object" }, new[] { "procedure", "MedicalProcedure" })
+        public MedicalProcedureFiller() : this(A.GenFuInstance) { }
+
+        public MedicalProcedureFiller(GenFuInstance genFu)
+            : base(genFu, new[] { "object" }, new[] { "procedure", "MedicalProcedure" })
         {
         }
 
