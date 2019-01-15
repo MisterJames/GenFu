@@ -304,6 +304,20 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void An_enum_with_various_base_types_should_be_filled()
+        {
+            var target = A.New<EnumExample>();
+            Assert.True(target.Byte > 0);
+            Assert.True(target.Int > 0);
+            Assert.True(target.Long > 0);
+            Assert.True(target.SByte > 0);
+            Assert.True(target.Short > 0);
+            Assert.True(target.UInt > 0);
+            Assert.True(target.ULong > 0);
+            Assert.True(target.UShort > 0);
+        }
+
+        [Fact]
         public void DateTimesStayWithinConfiguredDates()
         {
             var success = true;

@@ -45,11 +45,27 @@ namespace GenFu
                 return false;
             else if (property.PropertyType == typeof(DateTimeOffset) && ((DateTimeOffset)value).Equals(default(DateTimeOffset)))
                 return false;
-            else if (property.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum) && ((int)value) == 0)
+            else if (property.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum) && IsDefaultEnum(property.PropertyType, value))
                 return false;
             else if (property.PropertyType.GetTypeInfo().ImplementedInterfaces.Contains(typeof(IEnumerable)) && !(value as IEnumerable).GetEnumerator().MoveNext())
                 return false;
             return true;
+        }
+
+
+        private static bool IsDefaultEnum(Type type, object value)
+        {
+            var t = Enum.GetUnderlyingType(type);
+            if (t == typeof(byte)) return ((byte)value) == 0;
+            if (t == typeof(int)) return ((int)value) == 0;
+            if (t == typeof(long)) return ((long)value) == 0;
+            if (t == typeof(sbyte)) return ((sbyte)value) == 0;
+            if (t == typeof(short)) return ((short)value) == 0;
+            if (t == typeof(uint)) return ((uint)value) == 0;
+            if (t == typeof(ulong)) return ((ulong)value) == 0;
+            if (t == typeof(ushort)) return ((ushort)value) == 0;
+            return false;
+
         }
     }
 }
