@@ -47,4 +47,69 @@ namespace GenFu.Tests.TestEntities
         public string LastName { get; set; }
     }
 
+    public class EnumExample
+    {
+        public ByteEnum Byte { get; set; }
+        public ShortEnum Short { get; set; }
+        public IntEnum Int { get; set; }
+        public LongEnum Long { get; set; }
+        public SByteEnum SByte { get; set; }
+        public UShortEnum UShort { get; set; }
+        public UIntEnum UInt { get; set; }
+        public ULongEnum ULong { get; set; }
+    }
+
+    public enum ByteEnum : byte
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+
+    public enum ShortEnum : short
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+
+    public enum IntEnum : int
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+
+    public enum LongEnum : long
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+
+    public enum SByteEnum : sbyte
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+    public enum UShortEnum : ushort
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+    public enum UIntEnum : uint
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
+
+    public enum ULongEnum : ulong
+    {
+        A = 1,
+        B = 2,
+        C = 4
+    }
 }
