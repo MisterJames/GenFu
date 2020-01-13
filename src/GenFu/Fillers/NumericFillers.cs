@@ -11,7 +11,8 @@ namespace GenFu
             Max = GenFu.Defaults.MAX_INT;
         }
 
-        public IntFiller(Type objectType, string propertyName, int min, int max) : base(new []{objectType.FullName}, new []{propertyName})
+        public IntFiller(Type objectType, string propertyName, int min, int max) 
+            : base(objectType, propertyName, false)
         {
             Min = min;
             Max = max;

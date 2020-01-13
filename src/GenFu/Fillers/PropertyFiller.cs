@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace GenFu
 {
@@ -16,13 +18,33 @@ namespace GenFu
 
         }
 
+        internal PropertyFiller(Type objectType, string propertyName,  bool isGeneric)
+            : this(new[] { objectType.FullName }, new[] { propertyName }, isGeneric)
+        {
+            if (objectType != typeof(Object))
+                AddAllBaseTypes(propertyName, objectType);
+        }
+
         internal PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
         {
             ObjectTypeNames = objectTypeNames.Select(o => o.ToLowerInvariant()).ToArray();
             PropertyNames = propertyNames.Select(p => p.ToLowerInvariant()).ToArray();
-            IsGenericFiller = isGenericFiller;
+            IsGenericFiller = isGenericFiller;   
         }
 
+
+        private void AddAllBaseTypes(string propertyName, Type objectType)
+        {
+            var objectTypeNames = new List<string> { objectType.FullName };
+
+            var baseType = objectType.GetTypeInfo().BaseType;
+            while (baseType.GetProperties().Any(x => x.Name == propertyName) && baseType != typeof(Object))
+            {
+                objectTypeNames.Add(baseType.FullName);
+                baseType = baseType.GetTypeInfo().BaseType;
+            }
+            ObjectTypeNames = objectTypeNames.ToArray();
+        }
 
         public string[] PropertyNames { get; private set; }
         public string[] ObjectTypeNames { get; protected set; }
