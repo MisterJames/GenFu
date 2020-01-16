@@ -18,6 +18,12 @@ namespace GenFu
 
         }
 
+        /// <summary>
+        /// Creates a property filler targeting the specified object types and properties
+        /// </summary>
+        /// <param name="objectTypeNames">The names of the object types that this property filler will target</param>
+        /// <param name="propertyNames">The names of the properties that this property filler will target</param>
+
         internal PropertyFiller(Type objectType, string propertyName,  bool isGeneric)
             : this(new[] { objectType.FullName }, new[] { propertyName }, isGeneric)
         {
@@ -25,7 +31,7 @@ namespace GenFu
                 AddAllBaseTypes(propertyName, objectType);
         }
 
-        internal PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
+        private PropertyFiller(string[] objectTypeNames, string[] propertyNames, bool isGenericFiller)
         {
             ObjectTypeNames = objectTypeNames.Select(o => o.ToLowerInvariant()).ToArray();
             PropertyNames = propertyNames.Select(p => p.ToLowerInvariant()).ToArray();

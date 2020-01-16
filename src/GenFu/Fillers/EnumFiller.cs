@@ -7,7 +7,7 @@ namespace GenFu
     {
         readonly Type _type;
         public EnumFiller(Type type)
-            : base(new[] { "object" }, new[] { "*" }, true)
+             : base(typeof(object), "*", true)
         {
             this._type = type;
         }

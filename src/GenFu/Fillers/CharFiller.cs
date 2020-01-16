@@ -7,7 +7,7 @@ namespace GenFu.Fillers
     public class CharFiller : PropertyFiller<char>
     {
 
-        public CharFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public CharFiller() : base(typeof(object), "*", true)
         {
 
         }
@@ -26,7 +26,7 @@ namespace GenFu.Fillers
     public class NullableCharFiller : PropertyFiller<char?>
     {
 
-        public NullableCharFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public NullableCharFiller() : base(typeof(object), "*", true)
         {
 
         }

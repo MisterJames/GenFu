@@ -11,7 +11,7 @@ namespace GenFu
         public DateTime Max { get; set; } = new DateTime(2020, 12, 31);
 
         public DateTimeFiller()
-            : base(new[] { "object" }, new[] { "*" }, true)
+            : base(typeof(object), "*", true)
         {
 
         }
@@ -36,7 +36,7 @@ namespace GenFu
         private Random _random = new Random();
 
         public DateTimeOffsetFiller()
-            : base(new[] { "object" }, new[] { "*" }, true)
+            : base(typeof(object), "*", true)
         {
 
         }

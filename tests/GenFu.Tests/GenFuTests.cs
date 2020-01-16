@@ -140,7 +140,7 @@ namespace GenFu.Tests
                        .Fill(q => q.Id, new Guid("FFC42A97-C75D-4F8B-85D7-9044BE829755"));
                 var user = A.New<ApplicationUser>();
 
-                success = (user.AccessFailedCount>= 0 && user.AccessFailedCount <= 3);
+                success = (user.AccessFailedCount >= 0 && user.AccessFailedCount <= 3);
 
                 Assert.True(success);
             }
@@ -306,6 +306,20 @@ namespace GenFu.Tests
         {
             var post = A.New<BlogPost>();
             Assert.True(post.CreateDate != default(DateTime));
+        }
+
+        [Fact]
+        public void DateTimesInFutureForPropertyOnBaseClass()
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                A.Configure<ApplicationUser>()
+                    .Fill(a => a.CreatedOn).AsFutureDate();
+
+                var user = A.New<ApplicationUser>();
+
+                Assert.True(user.CreatedOn > DateTime.Now);
+            }
         }
 
         [Fact]

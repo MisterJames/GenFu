@@ -7,6 +7,8 @@ namespace GenFu.Tests.TestEntities
         public Guid Id { get; set; }
 
         public int AccessFailedCount { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 
     public class ApplicationUser : ApplicationUserBase
