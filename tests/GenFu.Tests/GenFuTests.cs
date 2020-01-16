@@ -128,7 +128,7 @@ namespace GenFu.Tests
         }
 
         [Fact]
-        public void IntRangeWithinBoundsOnGeneratedValueForComplexConfiguration()
+        public void IntRangeWithinBoundsOnGeneratedValueForPropertyOnBaseClass()
         {
             var success = true;
             A.Reset();
@@ -137,12 +137,6 @@ namespace GenFu.Tests
             {
                 A.Configure<ApplicationUser>()
                        .Fill(q => q.AccessFailedCount).WithinRange(0, 3)
-                       .Fill(q => q.Email, q => { return string.Format("{0}.{1}@gmail.com", q.UserName, q.PhoneNumber); })
-                       .Fill(q => q.PhoneNumber, "905384811896")
-                       .Fill(q => q.CreatedAt, DateTime.Now)
-                       .Fill(q => q.Gender, Gender.Female)
-                       .Fill(q => q.EmailConfirmed, true)
-                       .Fill(q => q.PhoneNumberConfirmed, true)
                        .Fill(q => q.Id, new Guid("FFC42A97-C75D-4F8B-85D7-9044BE829755"));
                 var user = A.New<ApplicationUser>();
 
