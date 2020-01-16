@@ -12,7 +12,7 @@ namespace GenFu
         }
 
         public IntFiller(Type objectType, string propertyName, int min, int max) 
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -37,7 +37,7 @@ namespace GenFu
         }
 
         public NullableIntFiller(Type objectType, string propertyName, int min, int max) 
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -62,7 +62,7 @@ namespace GenFu
         }
 
         public NullableUIntFiller(Type objectType, string propertyName, uint min, uint max) 
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -87,7 +87,7 @@ namespace GenFu
         }
 
         public ShortFiller(Type objectType, string propertyName, short min, short max)
-            : base(new[] { objectType.FullName }, new[] { propertyName })
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -113,7 +113,7 @@ namespace GenFu
         }
 
         public NullableShortFiller(Type objectType, string propertyName, short min, short max)
-            : base(new[] { objectType.FullName }, new[] { propertyName })
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -139,7 +139,7 @@ namespace GenFu
         }
 
         public NullableUShortFiller(Type objectType, string propertyName, ushort min, ushort max)
-            : base(new[] { objectType.FullName }, new[] { propertyName })
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -165,7 +165,7 @@ namespace GenFu
         }
 
         public LongFiller(Type objectType, string propertyName, int min, int max) 
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -240,7 +240,7 @@ namespace GenFu
         }
 
         public DecimalFiller(Type objectType, string propertyName, decimal min, decimal max)
-            : base(new[] { objectType.FullName }, new[] { propertyName })
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -273,7 +273,7 @@ namespace GenFu
         }
 
         public NullableDecimalFiller(Type objectType, string propertyName, decimal min, decimal max)
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -307,7 +307,7 @@ namespace GenFu
         }
 
         public DoubleFiller(Type objectType, string propertyName, double min, double max)
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;
@@ -333,7 +333,7 @@ namespace GenFu
         }
 
         public NullableDoubleFiller(Type objectType, string propertyName, double min, double max)
-            : base(objectType, propertyName, false)
+            : base(objectType, propertyName)
         {
             Min = min;
             Max = max;

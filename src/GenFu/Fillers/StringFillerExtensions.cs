@@ -1,9 +1,6 @@
 using GenFu.Fillers;
 using GenFu.ValueGenerators.Geospatial;
 using GenFu.ValueGenerators.People;
-using System;
-using System.Text;
-using GenFu.Utilities;
 using GenFu.Services;
 
 namespace GenFu

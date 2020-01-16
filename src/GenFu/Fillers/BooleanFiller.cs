@@ -12,7 +12,8 @@ namespace GenFu.Fillers
 
         }
 
-        public BooleanFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public BooleanFiller(Type objectType, string propertyName) 
+            : base( objectType, propertyName, false)
         {
 
         }
@@ -31,7 +32,8 @@ namespace GenFu.Fillers
 
         }
 
-        public NullableBooleanFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public NullableBooleanFiller(Type objectType, string propertyName)
+            : base(objectType, propertyName, false)
         {
 
         }

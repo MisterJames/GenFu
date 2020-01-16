@@ -24,7 +24,7 @@ namespace GenFu
         /// <param name="objectTypeNames">The names of the object types that this property filler will target</param>
         /// <param name="propertyNames">The names of the properties that this property filler will target</param>
 
-        internal PropertyFiller(Type objectType, string propertyName,  bool isGeneric)
+        internal PropertyFiller(Type objectType, string propertyName,  bool isGeneric = false)
             : this(new[] { objectType.FullName }, new[] { propertyName }, isGeneric)
         {
             if (objectType != typeof(Object))
