@@ -8,7 +8,7 @@ namespace GenFu
     public class StringFiller : PropertyFiller<string>
     {
         public StringFiller()
-            : base(new[] { "object" }, new[] { "*" }, true)
+             : base(typeof(object), "*", true)
         {
         }
 

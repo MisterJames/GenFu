@@ -7,7 +7,7 @@ namespace GenFu.Tests
     {
         public const string Value = "This is the expected value";
         public PluginPropertyFiller() : 
-            base(new []{"TestClass"}, new []{"TestProperty"})
+            base(typeof(TestClass), "TestProperty")
         {
         }
 

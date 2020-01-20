@@ -7,12 +7,13 @@ namespace GenFu.Fillers
     public class CharFiller : PropertyFiller<char>
     {
 
-        public CharFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public CharFiller() : base(typeof(object), "*", true)
         {
 
         }
 
-        public CharFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public CharFiller(Type objectType, string propertyName)
+            : base(objectType, propertyName)
         {
 
         }
@@ -26,12 +27,13 @@ namespace GenFu.Fillers
     public class NullableCharFiller : PropertyFiller<char?>
     {
 
-        public NullableCharFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public NullableCharFiller() : base(typeof(object), "*", true)
         {
 
         }
 
-        public NullableCharFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public NullableCharFiller(Type objectType, string propertyName) 
+            : base(objectType, propertyName)
         {
 
         }

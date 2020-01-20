@@ -7,12 +7,13 @@ namespace GenFu.Fillers
     public class BooleanFiller : PropertyFiller<bool>
     {
 
-        public BooleanFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public BooleanFiller() : base(typeof(object), "*" , true)
         {
 
         }
 
-        public BooleanFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public BooleanFiller(Type objectType, string propertyName) 
+            : base( objectType, propertyName, false)
         {
 
         }
@@ -26,12 +27,13 @@ namespace GenFu.Fillers
     public class NullableBooleanFiller : PropertyFiller<bool?>
     {
 
-        public NullableBooleanFiller() : base(new[] { "object" }, new[] { "*" }, true)
+        public NullableBooleanFiller() : base(typeof(object), "*", true)
         {
 
         }
 
-        public NullableBooleanFiller(Type objectType, string propertyName) : base(new[] { objectType.FullName }, new[] { propertyName })
+        public NullableBooleanFiller(Type objectType, string propertyName)
+            : base(objectType, propertyName, false)
         {
 
         }
