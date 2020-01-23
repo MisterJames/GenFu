@@ -1,4 +1,4 @@
-name: .NET Core
+name: Continuous Integration
 
 on: [push]
 
