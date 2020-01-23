@@ -3,7 +3,7 @@ GenFu
 
 http://genfu.io/ 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/4lahunpwdpl70wk9/branch/master?svg=true)](https://ci.appveyor.com/project/stimms/genfu/branch/master)
+![Build status](https://github.com/MisterJames/GenFu/workflows/Continuous%20Integration/badge.svg)
 
 > **GenFu** is a library you can use to generate realistic test data. It is composed of several *property fillers* that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers, give **GenFu** hints on how to fill them.
 
