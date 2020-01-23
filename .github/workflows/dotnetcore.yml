@@ -15,3 +15,7 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build --configuration Release
+      working-directory: .\src
+    - name: Test
+      run: dotnet test
+      working-directory: .\src
