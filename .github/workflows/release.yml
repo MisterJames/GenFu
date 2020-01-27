@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Create NuGet Package
-      run: dotnet pack -c Release /p:Version=${{ github.event.release.tag_name }} https://github.com/MisterJames/GenFu/releases/tag/${{ github.event.release.tag_name }}
+      run: dotnet pack -c Release /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/MisterJames/GenFu/releases/tag/${{ github.event.release.tag_name }}"
       working-directory: .\src\GenFu
     - name: Archive NuGet Package
       uses: actions/upload-artifact@v1
