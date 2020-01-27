@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace GenFu
 {
@@ -15,7 +14,7 @@ namespace GenFu
         public override object GetValue(object instance)
         {
             var values = Enum.GetValues(_type);
-            return values.GetValue(new Random().Next(values.Length-1));
+            return values.GetValue(new Random().Next(values.Length));
         }
     }
 }
