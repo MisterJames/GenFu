@@ -21,5 +21,5 @@ jobs:
     - name: Archive NuGet Package
       uses: actions/upload-artifact@v1
       with:
-        name: nupkg
+        name: GenFu.${{ github.event.release.tag_name }}.nupkg
         path: .\src\GenFu\bin\Release\GenFu.${{ github.event.release.tag_name }}.nupkg
