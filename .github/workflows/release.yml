@@ -23,4 +23,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: nupkg
-        path: .\src\GenFu\bin\Release\GenFu.*.nupkg
+        path: .\src\GenFu\bin\Release\GenFu.${{ github.event.release.tag_name }}.nupkg
