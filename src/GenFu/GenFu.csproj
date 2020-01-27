@@ -5,7 +5,7 @@
     <Summary>GenFu is composed of several property fillers that can populate commonly named properties through reflection using an internal database of values or randomly created data. You can override any of the fillers and give GenFu hints on how to fill properties.</Summary>
     <Copyright>Please see license information on project site for more information. Ninja designed by Ridzal Zainal from the thenounproject.com</Copyright>
     <Authors>misterjames;dpaquette;stimms</Authors>
-    <TargetFrameworks>netstandard1.3;net45;net46;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.3;net45;net46;net461</TargetFrameworks>
     <AssemblyName>GenFu</AssemblyName>
     <PackageId>GenFu</PackageId>
     <PackageTags>.NET Test Data Generation Fake Sample ASP.NET Core</PackageTags>
@@ -24,6 +24,10 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <Version>1.6.0</Version>
   </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
+  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
