@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Emit;
 using System;
 using System.Collections.Generic;
@@ -9,10 +7,9 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.DotNet.ProjectModel.Compilation;
 using System.Runtime.Loader;
 using GenFu.Web.Helpers;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace GenFu.Web.Models
 {

@@ -12,8 +12,6 @@ using Microsoft.Extensions.PlatformAbstractions;
 //using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 using Newtonsoft.Json;
 using System.Runtime.Loader;
-using Microsoft.DotNet.ProjectModel.Compilation;
-using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 
 namespace GenFu.Web.Controllers
 {

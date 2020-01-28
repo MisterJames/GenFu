@@ -10,10 +10,8 @@
     <h2>GenFu Your Objects</h2>
 
     <p class="lead">
-        GenFu is a test and prototype data generation library targeting ASP.NET 5.
-        It understands different topics - such as "contact details" or "blog posts"
-        and uses that understanding to populate commonly named properties
-        using reflection and an internal database of values or randomly created data.
+        GenFu is a test and prototype data generation library targeting .NET Framework and .NET Core.
+        It understands different topics - such as "contact details" or "blog posts" and uses that understanding to populate commonly named properties using reflection and an internal database of values or randomly created data.
     </p>
     <div class="">
         <a href="#installation" class="btn btn-primary btn-lg"><span class="fa fa-arrow-circle-down"></span> Installation</a>
@@ -89,22 +87,13 @@
 <div class="row" >
     <h2>Installation</h2>
     <p>
-        The easiest way to add GenFu to your Asp.Net 5 project is through the Package Manager Console.
+        GenFu is available as a <a href="https://www.nuget.org/packages/GenFu/" target="_blank">NuGet package</a>.
+        The easiest way to add GenFu to your .NET project is through Package Manager Console.
         Just type the following command:
     </p>
-    <pre>
-        install-package GenFu
-    </pre>
-    <h3>No, Wait!</h3>
-    <p>
-        This is the <b>New Web Order</b>! Why not try editing your project.json file? Add the following to the dependencies section:
-        <pre>
-    "dependencies": {
-        // other dependencies would be here ...
-        "GenFu": "1.0.3"
-    }
-</pre>
-    </p>
+    <pre>Install-Package GenFu</pre>
+    <h3>Or using the dotnet cli</h3>
+                    <pre> dotnet add package GenFu</pre>
     <h3>No model, no problem.</h3>
     <p>
         Start your next project with a <a href="@Url.Action("Index","Wireframe")">Wireframe Prototype</a>.
