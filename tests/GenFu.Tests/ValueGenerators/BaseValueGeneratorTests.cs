@@ -55,16 +55,18 @@ namespace GenFu.Tests
         public void MakeDateRuleFutureIsCorrect()
         {
             A.Reset();
+            var now = DateTime.Now;
             var date = CalendarDate.Date(DateRules.FutureDates);
-            Assert.True(date > DateTime.Now);
+            Assert.True(date > now);
         }
 
         [Fact]
         public void MakeDateRulePastIsCorrect()
         {
             A.Reset();
+            var now = DateTime.Now;
             var date = CalendarDate.Date(DateRules.PastDate);
-            Assert.True(DateTime.Now > date);
+            Assert.True(now > date);
         }
 
         [Fact]

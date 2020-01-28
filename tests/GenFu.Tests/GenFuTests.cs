@@ -311,14 +311,15 @@ namespace GenFu.Tests
         [Fact]
         public void DateTimesInFutureForPropertyOnBaseClass()
         {
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 1000; i++)
             {
+                var now = DateTime.Now;
                 A.Configure<ApplicationUser>()
                     .Fill(a => a.CreatedOn).AsFutureDate();
 
                 var user = A.New<ApplicationUser>();
 
-                Assert.True(user.CreatedOn > DateTime.Now);
+                Assert.True(user.CreatedOn > now);
             }
         }
 
@@ -401,14 +402,10 @@ namespace GenFu.Tests
         [Fact]
         public void DateTimeFilledWithExpectedDateGivenRules()
         {
-            var future = DateTime.Now.AddSeconds(1);
+            var future = DateTime.Now.AddMilliseconds(0.01);
 
-            A.Default()
-                .ListCount(1000);
-
-            A
-                .Configure<BlogComment>()
-                .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.FutureDates); });
+            A.Configure<BlogComment>()
+              .Fill(b => b.CommentDate, delegate () { return CalendarDate.Date(DateRules.FutureDates); });
             var comments = A.ListOf<BlogComment>();
 
             foreach (var comment in comments)
