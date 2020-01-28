@@ -16,12 +16,14 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
 
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Update="TestData\singlename.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="xunit.runner.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
@@ -37,7 +39,7 @@
     <PackageReference Include="Coverlet.msbuild" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc6"/>
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc6" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
