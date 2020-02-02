@@ -76,11 +76,13 @@ namespace GenFu
             defaults.SetSeedPercentage(GenFu.Defaults.SEED_PERCENTAGE);
 
             ResourceLoader.PropertyFillers.Clear();
+            IgnorePropertyCollection.Reset();
         }
 
         public static void Reset<T>()
         {
             _fillerManager.ResetFillers<T>();
+            IgnorePropertyCollection.Reset<T>();
 
         }
 
