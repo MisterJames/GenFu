@@ -64,6 +64,24 @@ namespace GenFu.Tests
             Assert.True(person.TimeSinceLastBath > DateTimeOffset.MinValue);
         }
 
+        
+        [Fact]
+        public void Fills_datetime_offset_with_different_values()
+        {
+            var people = A.ListOf<Person>(10);
+            var formattedDates = people.Select(p => p.TimeSinceLastBath.ToString("g"));
+            var uniqueDates = formattedDates.Distinct();
+            Assert.Equal(10, uniqueDates.Count());
+        }
+        
+
+        internal class TestClass
+        {
+            public DateTimeOffset Timestamp { get; set; }
+        }
+
+
+
         [Fact]
         public void Fills_using_price_filler()
         {
