@@ -2,6 +2,10 @@ name: Continuous Integration
 
 on: 
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this manually?'
+        required: true
   push:
     branches:
       - master
