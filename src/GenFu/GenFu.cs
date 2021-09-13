@@ -106,6 +106,59 @@ namespace GenFu
             return result;
         }
 
+        public static IEnumerable<T> LazyOf<T>() where T : new()
+        {
+            return LazyOf(typeof(T)).Cast<T>();
+        }
+
+        public static IEnumerable<object> LazyOf(Type type)
+        {
+            return BuildLazy(type, _listCount);
+        }
+
+        /// <summary>
+        /// Creates a new lazy collection of <typeparamref name="T"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="itemCount">Number of items to add</param>
+        /// <returns></returns>
+        public static IEnumerable<T> LazyOf<T>(int itemCount) where T : new()
+        {
+            return LazyOf(typeof(T), itemCount).Cast<T>();
+        }
+
+        private static IEnumerable<object> LazyOf(Type type, int itemCount)
+        {
+            return BuildLazy(type, itemCount);
+        }
+
+
+        private static IEnumerable<object> BuildLazy(Type type, int itemCount)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                yield return GenFu.New(type);
+            }
+        }
+
+        public static IEnumerable<T> ForeverOf<T>() where T : new()
+        {
+            return ForeverOf(typeof(T)).Cast<T>();
+        }
+
+        private static IEnumerable<object> ForeverOf(Type type)
+        {
+            return BuildForever(type);
+        }
+
+        private static IEnumerable<object> BuildForever(Type type)
+        {
+            while (true)
+            {
+                yield return GenFu.New(type);
+            }
+        }
+
         private static void SetPropertyValue(object instance, PropertyInfo property)
         {
             IPropertyFiller filler = _fillerManager.GetFiller(property);
