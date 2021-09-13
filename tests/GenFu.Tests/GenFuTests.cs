@@ -265,6 +265,23 @@ namespace GenFu.Tests
         }
 
         [Fact]
+        public void LazyOfDefaultGenerates25Entries()
+        {
+            var people = A.LazyOf<Person>();
+
+            Assert.Equal(A.Defaults.LIST_COUNT, people.Count());
+        }
+
+        [Fact]
+        public void LazyOfGeneratesCorrectNumberOfEntries()
+        {
+            var personCount = 17;
+            var people = A.LazyOf<Person>(personCount);
+            Assert.Equal(people.Count(), personCount);
+        }
+
+
+        [Fact]
         public void ListOfGeneratesCorrectNumberOfEntries()
         {
             var personCount = 17;
