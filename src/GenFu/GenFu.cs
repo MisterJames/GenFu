@@ -9,7 +9,6 @@ namespace GenFu
 {
     public class A : GenFu { }
 
-
     public class Eh : GenFu { }
 
     public partial class GenFu
