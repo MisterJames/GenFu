@@ -1,148 +1,147 @@
-﻿using System;
-using GenFu;
+﻿namespace GenFu.Tests;
+
+using global::GenFu.Tests.TestEntities;
+using global::GenFu.ValueGenerators.Geospatial;
+using global::GenFu.ValueGenerators.Medical;
+using global::GenFu.ValueGenerators.People;
+
 using System.Linq;
+
 using Xunit;
-using System.Collections.Generic;
-using GenFu.ValueGenerators.Geospatial;
-using GenFu.ValueGenerators.Medical;
-using GenFu.ValueGenerators.People;
-using GenFu.Tests.TestEntities;
 
-namespace GenFu.Tests
+public class BasicFillTests
 {
-    public class BasicFillTests
+    public BasicFillTests()
     {
-        public BasicFillTests()
-        {
-            A.Reset();
-        }
+        A.Reset();
+    }
 
-        [Fact]
-        public void FirstNamesResourcesLoad()
-        {
-            var person = A.New<Person>();
-            
-            Assert.NotEqual(string.Empty, person.FirstName);
-        }
+    [Fact]
+    public void FirstNamesResourcesLoad()
+    {
+        var person = A.New<Person>();
 
-        [Fact]
-        public void LastNamesResourcesLoad()
-        {
-            var person = A.New<Person>();
-            
-            Assert.NotEqual(string.Empty, person.LastName);
-        }
+        Assert.NotEqual(string.Empty, person.FirstName);
+    }
 
-        [Fact]
-        public void TitleResourcesLoad()
-        {
-            var post = A.New<BlogPost>();
-            
-            Assert.NotEqual(string.Empty, post.Title);
-        }
+    [Fact]
+    public void LastNamesResourcesLoad()
+    {
+        var person = A.New<Person>();
 
-        [Fact]
-        public void WordsResourcesLoad()
-        {
-            var person = A.New<Person>();
-            
-            Assert.NotEqual(string.Empty, person.Title);
-        }
+        Assert.NotEqual(string.Empty, person.LastName);
+    }
 
-        [Fact]
-        public void DomainResourceTest()
-        {
-            var person = A.New<Person>();
-            
-            Assert.NotEqual(string.Empty, person.Twitter);
-        }
+    [Fact]
+    public void TitleResourcesLoad()
+    {
+        var post = A.New<BlogPost>();
 
-        [Fact]
-        public void TwitterResourceTest()
-        {
-            var person = A.New<Person>();
-            
-            Assert.NotEqual(string.Empty, person.EmailAddress);
-        }
+        Assert.NotEqual(string.Empty, post.Title);
+    }
+
+    [Fact]
+    public void WordsResourcesLoad()
+    {
+        var person = A.New<Person>();
+
+        Assert.NotEqual(string.Empty, person.Title);
+    }
+
+    [Fact]
+    public void DomainResourceTest()
+    {
+        var person = A.New<Person>();
+
+        Assert.NotEqual(string.Empty, person.Twitter);
+    }
+
+    [Fact]
+    public void TwitterResourceTest()
+    {
+        var person = A.New<Person>();
+
+        Assert.NotEqual(string.Empty, person.EmailAddress);
+    }
 
 
-        [Fact]
-        public void StreetNameResourceTest()
-        {
-            var addressLine = Address.AddressLine();
+    [Fact]
+    public void StreetNameResourceTest()
+    {
+        var addressLine = Address.AddressLine();
 
-            Assert.NotEqual(string.Empty, addressLine);
-        }
+        Assert.NotEqual(string.Empty, addressLine);
+    }
 
-        [Fact]
-        public void CityNameResourceTest()
-        {   var city = Address.City();
+    [Fact]
+    public void CityNameResourceTest()
+    {
+        var city = Address.City();
 
-            Assert.NotEqual(string.Empty, city);
-        }
+        Assert.NotEqual(string.Empty, city);
+    }
 
-        [Fact]
-        public void CanadianProvinceResourceTest()
-        {
-            var city = Address.CanadianProvince();
+    [Fact]
+    public void CanadianProvinceResourceTest()
+    {
+        var city = Address.CanadianProvince();
 
-            Assert.NotEqual(string.Empty, city);
-        }
+        Assert.NotEqual(string.Empty, city);
+    }
 
-        [Fact]
-        public void UsaStatesResourceTest()
-        {
-            var state = Address.UsaState();
+    [Fact]
+    public void UsaStatesResourceTest()
+    {
+        var state = Address.UsaState();
 
-            Assert.NotEqual(string.Empty, state);
-        }
+        Assert.NotEqual(string.Empty, state);
+    }
 
-        [Fact]
-        public void CanadianProvinceAbreviationsResourceTest()
-        {
-            var canadianProvinceAbreviation = Address.CanadianProvinceAbreviation();
+    [Fact]
+    public void CanadianProvinceAbbreviationsResourceTest()
+    {
+        var canadianProvinceAbbreviation = Address.CanadianProvinceAbbreviation();
 
-            Assert.NotEqual(string.Empty, canadianProvinceAbreviation);
-        }
+        Assert.NotEqual(string.Empty, canadianProvinceAbbreviation);
+    }
 
-        [Fact]
-        public void UsaStateAbreviationsResourceTest()
-        {
-            var stateAbreviation = Address.UsaStateAbreviation();
+    [Fact]
+    public void UsaStateAbbreviationsResourceTest()
+    {
+        var stateAbbreviation = Address.UsaStateAbbreviation();
 
-            Assert.NotEqual(string.Empty, stateAbreviation);
-        }
+        Assert.NotEqual(string.Empty, stateAbbreviation);
+    }
 
-        [Fact]
-        public void InjuryResourceTest()
-        {
-            var injury =  Injuries.Injury();
+    [Fact]
+    public void InjuryResourceTest()
+    {
+        var injury = Injuries.Injury();
 
-            Assert.NotEqual(string.Empty, injury);
-        }
+        Assert.NotEqual(string.Empty, injury);
+    }
 
-        [Fact]
-        public void GenderResourceTest()
-        {
-            var gender =  Qualities.Gender();
+    [Fact]
+    public void GenderResourceTest()
+    {
+        var gender = Qualities.Gender();
 
-            Assert.NotEqual(string.Empty, gender);
-        }
+        Assert.NotEqual(string.Empty, gender);
+    }
 
-        [Fact]
-        public void DrugResourceTest()
-        {
-            var drug = Drugs.Drug();
+    [Fact]
+    public void DrugResourceTest()
+    {
+        var drug = Drugs.Drug();
 
-            Assert.NotEqual(string.Empty, drug);
-        }
+        Assert.NotEqual(string.Empty, drug);
+    }
 
-        [Fact]
-        public void UseSuppliedResourceDataTest()
-        {
-            GenFu.Configure().Data(PropertyType.FirstNames, @"testdata\singlename.txt");
-            var people = A.ListOf<Person>(25);
-            Assert.Equal(25, people.Where(p=>p.FirstName == "Angela").Count());
-        }
+    [Fact]
+    public void UseSuppliedResourceDataTest()
+    {
+        GenFu.Configure().Data(PropertyType.FirstNames, @"testdata\singlename.txt");
+        var people = A.ListOf<Person>(25);
+        Assert.Equal(25, people.Where(p => p.FirstName == "Angela").Count());
     }
 }

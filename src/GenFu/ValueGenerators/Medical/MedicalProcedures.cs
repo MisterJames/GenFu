@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace GenFu.ValueGenerators.Medical;
 
-namespace GenFu.ValueGenerators.Medical
+public class MedicalProcedures : BaseValueGenerator
 {
-    public class MedicalProcedures : BaseValueGenerator
+    public static string MedicalProcedure()
     {
-        public static string MedicalProcedure()
-        {
-            return GetRandomValue(ResourceLoader.Data(PropertyType.MedicalProcedures));
-        }
+        return GetRandomValue(ResourceLoader.Data(PropertyType.MedicalProcedures));
     }
 }

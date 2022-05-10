@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace GenFu.Web.Controllers;
 
-namespace GenFu.Web.Controllers
+using Microsoft.AspNetCore.Mvc;
+
+public class WireframeController : Controller
 {
-    public class WireframeController : Controller
-    {
-        public IActionResult Index() => View();
-
-    }
+    public IActionResult Index() => View();
 }

@@ -1,22 +1,16 @@
-using System;
+namespace GenFu;
+
 using System.Reflection;
-using System.Collections.Generic;
 
-namespace GenFu
+public class GenFuDateTimeConfigurator<T> : GenFuConfigurator<T> where T : new()
 {
-    public class GenFuDateTimeConfigurator<T> : GenFuConfigurator<T> where T : new()
+    private MemberInfo _propertyInfo;
+
+    public GenFuDateTimeConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
+        : base(genfu, fillerManager)
     {
-        private MemberInfo _propertyInfo;
-
-        public GenFuDateTimeConfigurator(GenFu genfu, FillerManager fillerManager, MemberInfo propertyInfo)
-            : base(genfu, fillerManager)
-        {
-            _propertyInfo = propertyInfo;
-        }
-
-        public MemberInfo PropertyInfo
-        {
-            get { return _propertyInfo; }
-        }
+        _propertyInfo = propertyInfo;
     }
+
+    public MemberInfo PropertyInfo => _propertyInfo;
 }

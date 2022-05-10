@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace GenFu.Fillers;
 
-namespace GenFu.Fillers
+class CookingFiller
 {
-    class CookingFiller
+    public class IngredientFiller : PropertyFiller<string>
     {
-        public class IngredientFiller : PropertyFiller<string>
-        {
-            public IngredientFiller()
-                : base(new[] { "object" }, new[] { "ingredient", "ingredients" })
-            {
-            }
+        public IngredientFiller()
+            : base(new[] { "object" }, new[] { "ingredient", "ingredients" }) { }
 
-            public override object GetValue(object instance)
-            {
-                return ValueGenerators.Cooking.Ingredients.Ingredient();
-            }
-        }
-     
+        public override object GetValue(object instance)
+         => ValueGenerators.Cooking.Ingredients.Ingredient();
     }
 }

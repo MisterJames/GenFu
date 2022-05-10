@@ -1,46 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GenFu.Fillers;
 
-namespace GenFu.Fillers
+using System;
+
+public class BooleanFiller : PropertyFiller<bool>
 {
-    public class BooleanFiller : PropertyFiller<bool>
-    {
+    public BooleanFiller() : base(typeof(object), "*", true) { }
 
-        public BooleanFiller() : base(typeof(object), "*" , true)
-        {
+    public BooleanFiller(Type objectType, string propertyName)
+        : base(objectType, propertyName, false) { }
 
-        }
+    public override object GetValue(object instance) => GenFu.Random.Next() % 2 == 0;
+}
 
-        public BooleanFiller(Type objectType, string propertyName) 
-            : base( objectType, propertyName, false)
-        {
+public class NullableBooleanFiller : PropertyFiller<bool?>
+{
 
-        }
+    public NullableBooleanFiller() : base(typeof(object), "*", true) { }
 
-        public override object GetValue(object instance)
-        {
-            return GenFu.Random.Next() % 2 == 0;
-        }
-    }
+    public NullableBooleanFiller(Type objectType, string propertyName)
+        : base(objectType, propertyName, false) { }
 
-    public class NullableBooleanFiller : PropertyFiller<bool?>
-    {
-
-        public NullableBooleanFiller() : base(typeof(object), "*", true)
-        {
-
-        }
-
-        public NullableBooleanFiller(Type objectType, string propertyName)
-            : base(objectType, propertyName, false)
-        {
-
-        }
-
-        public override object GetValue(object instance)
-        {
-            return GenFu.Random.Next() % 2 == 0;
-        }
-    }
+    public override object GetValue(object instance) => GenFu.Random.Next() % 2 == 0;
 }
