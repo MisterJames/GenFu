@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GenFu.Web.Models;
+﻿using GenFu.Web.Models;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using System.Linq;
 //using Microsoft.DotNet.Tools.Compiler;
-using Microsoft.Extensions.PlatformAbstractions;
 //using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
-using Newtonsoft.Json;
 using System.Runtime.Loader;
+using System.Text;
+using System.Text.Json;
 
 namespace GenFu.Web.Controllers
 {
@@ -19,10 +16,10 @@ namespace GenFu.Web.Controllers
     {
         private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
 
-		private readonly AssemblyLoadContext _accessor;
+        private readonly AssemblyLoadContext _accessor;
 
         public HomeController(AssemblyLoadContext accessor)
-		{
+        {
             _accessor = accessor;
         }
 
@@ -63,8 +60,8 @@ namespace GenFu.Web.Controllers
             {
                 model.RandomObjects = sourceCode.GenerateData(10);
                 model.PropertyNames = model.RandomObjects.First().Keys;
-                
-                HttpContext.Session.SetString(RandomObjectsSessionKey, JsonConvert.SerializeObject(model.RandomObjects));
+
+                HttpContext.Session.SetString(RandomObjectsSessionKey, JsonSerializer.Serialize(model.RandomObjects));
             }
 
             return View(model);

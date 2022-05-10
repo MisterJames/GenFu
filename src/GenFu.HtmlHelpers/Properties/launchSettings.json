@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GenFu.HtmlHelpers": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:3122;http://localhost:3123"
+    }
+  }
+}
