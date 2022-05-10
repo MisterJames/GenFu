@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using System;
 using System.Runtime.Loader;
 
@@ -18,10 +19,11 @@ namespace GenFu.Web
                 s.IdleTimeout = TimeSpan.FromMinutes(1);
             });
 
-			//add a Assembly Loader to services
-			services.AddScoped<AssemblyLoadContext, AssemblyLoadContext>(x => {
-				return AssemblyLoadContext.Default;
-			});
+            //add a Assembly Loader to services
+            services.AddScoped<AssemblyLoadContext, AssemblyLoadContext>(x =>
+            {
+                return AssemblyLoadContext.Default;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

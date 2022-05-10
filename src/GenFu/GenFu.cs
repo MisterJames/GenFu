@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Angela.vNext.Reflection;
+
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
-using Angela.vNext.Reflection;
 
 namespace GenFu
 {
     public class A : GenFu { }
-    
+
 
     public class Eh : GenFu { }
 
@@ -26,7 +27,7 @@ namespace GenFu
 
         public static T New<T>() where T : new()
         {
-            return (T) New(typeof(T));
+            return (T)New(typeof(T));
         }
 
         public static object New(Type type)
@@ -37,8 +38,8 @@ namespace GenFu
 
         public static T New<T>(T instance)
         {
-            return (T) New((object) instance);
-      
+            return (T)New((object)instance);
+
         }
 
         public static object New(object instance)
@@ -50,14 +51,16 @@ namespace GenFu
                 {
                     instance = Guid.NewGuid();
                 }
-                foreach (var property in type.GetTypeInfo().GetAllProperties())
+
+                TypeInfo typeInfo = type.GetTypeInfo();
+                foreach (var property in typeInfo.GetAllProperties())
                 {
                     if (!DefaultValueChecker.HasValue(instance, property) && property.CanWrite)
                     {
                         SetPropertyValue(instance, property);
                     }
                 }
-                foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
+                foreach (var method in typeInfo.GetMethods(BindingFlags.Public | BindingFlags.Instance).Where(x => !x.IsSpecialName && x.GetBaseDefinition().DeclaringType != typeof(object)))
                 {
                     if (method.GetParameters().Count() == 1)
                     {
@@ -164,19 +167,19 @@ namespace GenFu
             IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(instance), null);
         }
-        
+
         private static void CallSetterMethod(object instance, MethodInfo method)
         {
             IPropertyFiller filler = _fillerManager.GetMethodFiller(method);
             if (filler != null)
-                method.Invoke(instance, new[] {filler.GetValue(instance)});
+                method.Invoke(instance, new[] { filler.GetValue(instance) });
         }
 
 
 
         public static DateTime MinDateTime
         {
-            get {  return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
+            get { return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
 
             set
             {
@@ -221,7 +224,7 @@ namespace GenFu
 
             public static DateTime MIN_DATETIME = DateTime.Now.AddYears(-30);
             public static DateTime MAX_DATETIME = DateTime.Now.AddYears(30);
-            
+
             public static double SEED_PERCENTAGE = 0.2;
 
             public const string FILE_DOMAIN_NAMES = "DomainNames";

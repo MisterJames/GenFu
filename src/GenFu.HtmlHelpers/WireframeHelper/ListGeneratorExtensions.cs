@@ -1,5 +1,6 @@
 ﻿using GenFu.HtmlHelpers.Utilities;
 using GenFu.ValueGenerators.Lorem;
+
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

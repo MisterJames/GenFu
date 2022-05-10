@@ -24,7 +24,7 @@ namespace GenFu
         /// <param name="objectTypeNames">The names of the object types that this property filler will target</param>
         /// <param name="propertyNames">The names of the properties that this property filler will target</param>
 
-        internal PropertyFiller(Type objectType, string propertyName,  bool isGeneric = false)
+        internal PropertyFiller(Type objectType, string propertyName, bool isGeneric = false)
             : this(new[] { objectType.FullName }, new[] { propertyName }, isGeneric)
         {
             if (objectType != typeof(Object))
@@ -35,7 +35,7 @@ namespace GenFu
         {
             ObjectTypeNames = objectTypeNames.Select(o => o.ToLowerInvariant()).ToArray();
             PropertyNames = propertyNames.Select(p => p.ToLowerInvariant()).ToArray();
-            IsGenericFiller = isGenericFiller;   
+            IsGenericFiller = isGenericFiller;
         }
 
 
@@ -44,7 +44,8 @@ namespace GenFu
             var objectTypeNames = new List<string> { objectType.FullName };
 
             var baseType = objectType.GetTypeInfo().BaseType;
-            while (baseType.GetProperties().Any(x => x.Name == propertyName) && baseType != typeof(Object))
+            var baseTypeInfo = baseType.GetTypeInfo();
+            while (baseTypeInfo.GetProperties().Any(x => x.Name == propertyName) && baseType != typeof(Object))
             {
                 objectTypeNames.Add(baseType.FullName);
                 baseType = baseType.GetTypeInfo().BaseType;
@@ -57,7 +58,7 @@ namespace GenFu
         public bool IsGenericFiller { get; private set; }
 
         public Type PropertyType { get { return typeof(T); } }
-        
+
         /// <summary>
         /// Returns a value that will be used to a particular property
         /// </summary>
