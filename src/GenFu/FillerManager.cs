@@ -17,11 +17,7 @@ public class FillerManager
 
     static ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
-
-    public FillerManager()
-    {
-        ResetFillers();
-    }
+    public FillerManager() => ResetFillers();
 
     public void ResetFillers()
     {
@@ -94,7 +90,6 @@ public class FillerManager
                 _propertyFillers.Add(new MedicalProcedureFiller());
 
                 _propertyFillers.Add(new StringFiller());
-
             }
 
             _specificPropertyFillersByObjectType = new Dictionary<string, IDictionary<string, IPropertyFiller>>();
@@ -149,7 +144,6 @@ public class FillerManager
                 {
                     typeFillers[key] = filler;
                 }
-
             }
         }
         finally
@@ -159,13 +153,19 @@ public class FillerManager
     }
 
     public IPropertyFiller GetFiller(PropertyInfo propertyInfo)
+        => GetFiller(propertyInfo.DeclaringType, propertyInfo.Name, propertyInfo.PropertyType);
+
+    public IPropertyFiller GetFiller(ParameterInfo parameterInfo)
+        => GetFiller(parameterInfo.Member.DeclaringType, parameterInfo.Name, parameterInfo.ParameterType);
+
+    public IPropertyFiller GetFiller(Type declaringType, string name, Type type)
     {
         rwl.EnterReadLock();
         var newRegistrations = new Dictionary<Type, IPropertyFiller>();
         IPropertyFiller result = null;
         try
         {
-            Type objectType = propertyInfo.DeclaringType;
+            Type objectType = declaringType;
             while (objectType != null && result == null)
             {
                 //First try to get a specific filler based on a full type name (including namespace)
@@ -174,7 +174,7 @@ public class FillerManager
                 if (_specificPropertyFillersByObjectType.ContainsKey(fullTypeName))
                 {
                     IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[fullTypeName];
-                    result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
+                    result = GetMatchingPropertyFiller(name, type, propertyFillers);
                 }
 
                 //Second try to get a more generic filler based on only the class name (no namespace)
@@ -184,7 +184,7 @@ public class FillerManager
                     if (_specificPropertyFillersByObjectType.ContainsKey(classTypeName))
                     {
                         IDictionary<string, IPropertyFiller> propertyFillers = _specificPropertyFillersByObjectType[classTypeName];
-                        result = GetMatchingPropertyFiller(propertyInfo, propertyFillers);
+                        result = GetMatchingPropertyFiller(name, type, propertyFillers);
                     }
                 }
 
@@ -194,19 +194,19 @@ public class FillerManager
             if (result == null)
             {
                 //Finally, grab a generic property filler for that property type
-                if (_genericPropertyFillersByPropertyType.ContainsKey(propertyInfo.PropertyType))
+                if (_genericPropertyFillersByPropertyType.ContainsKey(type))
                 {
-                    result = _genericPropertyFillersByPropertyType[propertyInfo.PropertyType];
+                    result = _genericPropertyFillersByPropertyType[type];
                 }
-                else if (propertyInfo.PropertyType.GetTypeInfo().BaseType == typeof(System.Enum))
+                else if (type.GetTypeInfo().BaseType == typeof(System.Enum))
                 {
-                    result = new EnumFiller(propertyInfo.PropertyType);
+                    result = new EnumFiller(type);
                 }
                 else
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
                     result = new CustomFiller<object>("*", typeof(object), true, () => null);
-                    newRegistrations[propertyInfo.PropertyType] = result;
+                    newRegistrations[type] = result;
                 }
             }
         }
@@ -287,13 +287,13 @@ public class FillerManager
         }
     }
 
-    private static IPropertyFiller GetMatchingPropertyFiller(PropertyInfo propertyInfo, IDictionary<string, IPropertyFiller> propertyFillers)
+    private static IPropertyFiller GetMatchingPropertyFiller(string name, Type type, IDictionary<string, IPropertyFiller> propertyFillers)
     {
         IPropertyFiller result = null;
         foreach (IPropertyFiller propertyFiller in propertyFillers.Values)
         {
-            if (propertyFiller.PropertyType == propertyInfo.PropertyType &&
-                propertyFiller.PropertyNames.Any(s => propertyInfo.Name.ToLowerInvariant().Equals(s.ToLowerInvariant())))
+            if (propertyFiller.PropertyType == type &&
+                propertyFiller.PropertyNames.Any(s => name.ToLowerInvariant().Equals(s.ToLowerInvariant())))
             {
                 result = propertyFiller;
                 break;
@@ -301,7 +301,6 @@ public class FillerManager
         }
         return result;
     }
-
 
     private static IPropertyFiller GetMatchingMethodFiller(MethodInfo methodInfo, IDictionary<string, IPropertyFiller> propertyFillers)
     {
