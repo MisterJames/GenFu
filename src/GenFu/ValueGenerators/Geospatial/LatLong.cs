@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿namespace GenFu.ValueGenerators.Geospatial;
 
-namespace GenFu.ValueGenerators.Geospatial
+using System;
+
+public class LatLong : BaseValueGenerator
 {
-    public class LatLong:BaseValueGenerator
+    public static string LatitudeAndLongitude()
     {
-        public static string LatitudeAndLongitude()
-        {
-            return String.Format("{0},{1}", _random.Next(-180, 180), _random.Next(-180, 180));
-        }
+        return String.Format("{0},{1}", _random.Next(-180, 180), _random.Next(-180, 180));
     }
 }

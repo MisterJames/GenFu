@@ -1,13 +1,12 @@
-﻿using System;
+﻿namespace GenFu;
 
-namespace GenFu
+using System;
+
+public interface IPropertyFiller
 {
-    public interface IPropertyFiller
-    {
-        string[] PropertyNames { get; }
-        string[] ObjectTypeNames { get; }
-        bool IsGenericFiller { get; }
-        Type PropertyType { get; }
-        object GetValue(object instance);
-    }
+    string[] PropertyNames { get; }
+    string[] ObjectTypeNames { get; }
+    bool IsGenericFiller { get; }
+    Type PropertyType { get; }
+    object GetValue(object instance);
 }

@@ -1,16 +1,11 @@
-﻿using System;
+﻿namespace GenFu.Fillers;
 
-namespace GenFu.Fillers
+using System;
+
+class GuidFiller : PropertyFiller<Guid>
 {
-    class GuidFiller:PropertyFiller<Guid>
-    {
-        public GuidFiller()
-             : base(typeof(object), "*", true)
-        { }
+    public GuidFiller()
+         : base(typeof(object), "*", true) { }
 
-        public override object GetValue(object instance)
-        {
-            return Guid.NewGuid();
-        }
-    }
+    public override object GetValue(object instance) => Guid.NewGuid();
 }

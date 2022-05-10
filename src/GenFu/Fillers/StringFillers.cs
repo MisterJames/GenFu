@@ -1,268 +1,264 @@
-﻿using GenFu.ValueGenerators.Geospatial;
-using GenFu.ValueGenerators.People;
-using System;
-using System.Text;
+﻿namespace GenFu;
 
-namespace GenFu
+using global::GenFu.ValueGenerators.Geospatial;
+using global::GenFu.ValueGenerators.People;
+
+public class StringFiller : PropertyFiller<string>
 {
-    public class StringFiller : PropertyFiller<string>
+    public StringFiller()
+         : base(typeof(object), "*", true)
     {
-        public StringFiller()
-             : base(typeof(object), "*", true)
-        {
-        }
-
-        public override object GetValue(object instance)
-        {
-            return BaseValueGenerator.Word();
-        }
-    }
-    public class ArticleTitleFiller : PropertyFiller<string>
-    {
-        public ArticleTitleFiller()
-            : base(new[] { "object" }, new[] { "title" })
-        {
-        }
-
-        public override object GetValue(object instance)
-        {
-            return Names.Title();
-        }
     }
 
-    public class FirstNameFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public FirstNameFiller()
-            : base(new[] { "object" }, new[] { "firstname", "fname", "first_name" })
-        {
-        }
-
-        public override object GetValue(object instance)
-        {
-            return Names.FirstName();
-        }
+        return BaseValueGenerator.Word();
+    }
+}
+public class ArticleTitleFiller : PropertyFiller<string>
+{
+    public ArticleTitleFiller()
+        : base(new[] { "object" }, new[] { "title" })
+    {
     }
 
-    public class PersonTitleFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public PersonTitleFiller()
-            : base(new[] { "person", "employee", "user" }, new[] { "title" })
-        {
-        }
+        return Names.Title();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Names.PersonTitle();
-        }
+public class FirstNameFiller : PropertyFiller<string>
+{
+    public FirstNameFiller()
+        : base(new[] { "object" }, new[] { "firstname", "fname", "first_name" })
+    {
     }
 
-    public class LastNameFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public LastNameFiller()
-            : base(new[] { "object" }, new[] { "lastname", "lname", "last_name" })
-        {
-        }
+        return Names.FirstName();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Names.LastName();
-        }
+public class PersonTitleFiller : PropertyFiller<string>
+{
+    public PersonTitleFiller()
+        : base(new[] { "person", "employee", "user" }, new[] { "title" })
+    {
     }
 
-    public class EmailFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public EmailFiller()
-            : base(new[] { "object" }, new[] { "email", "emailaddress", "email_address" })
-        {
-        }
+        return Names.PersonTitle();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ContactInformation.Email();
-        }
+public class LastNameFiller : PropertyFiller<string>
+{
+    public LastNameFiller()
+        : base(new[] { "object" }, new[] { "lastname", "lname", "last_name" })
+    {
     }
 
-    public class TwitterFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public TwitterFiller()
-            : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" })
-        {
-        }
+        return Names.LastName();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ContactInformation.Twitter();
-        }
+public class EmailFiller : PropertyFiller<string>
+{
+    public EmailFiller()
+        : base(new[] { "object" }, new[] { "email", "emailaddress", "email_address" })
+    {
     }
 
-    public class AddressFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public AddressFiller()
-            : base(new[] { "object" }, new[] { "address", "address1", "address_1", "billingaddress", "billing_address" })
-        {
-        }
+        return ContactInformation.Email();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.AddressLine();
-        }
+public class TwitterFiller : PropertyFiller<string>
+{
+    public TwitterFiller()
+        : base(new[] { "object" }, new[] { "twitter", "twitterhandle", "twitter_handle", "twittername" })
+    {
     }
 
-    public class AddressLine2Filler : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public AddressLine2Filler()
-            : base(new[] { "object" }, new[] { "address2", "address_2" })
-        {
-        }
+        return ContactInformation.Twitter();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.AddressLine2();
-        }
+public class AddressFiller : PropertyFiller<string>
+{
+    public AddressFiller()
+        : base(new[] { "object" }, new[] { "address", "address1", "address_1", "billingaddress", "billing_address" })
+    {
     }
 
-    public class CityFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public CityFiller()
-            : base(new[] { "object" }, new[] { "city", "cityname", "city_name" })
-        {
-        }
+        return Address.AddressLine();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.City();
-        }
+public class AddressLine2Filler : PropertyFiller<string>
+{
+    public AddressLine2Filler()
+        : base(new[] { "object" }, new[] { "address2", "address_2" })
+    {
     }
 
-    public class StateFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public StateFiller()
-            : base(new[] { "object" }, new[] { "state", "statename", "state_name" })
-        {
-        }
+        return Address.AddressLine2();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.UsaState();
-        }
+public class CityFiller : PropertyFiller<string>
+{
+    public CityFiller()
+        : base(new[] { "object" }, new[] { "city", "cityname", "city_name" })
+    {
     }
 
-    public class StateAbreviationFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public StateAbreviationFiller()
-            : base(new[] { "object" }, new[] { "stateAbreviation" })
-        {
-        }
+        return Address.City();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.UsaStateAbreviation();
-        }
+public class StateFiller : PropertyFiller<string>
+{
+    public StateFiller()
+        : base(new[] { "object" }, new[] { "state", "statename", "state_name" })
+    {
     }
 
-
-    public class ProvinceFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public ProvinceFiller()
-            : base(new[] { "object" }, new[] { "province", "provincename", "province_name" })
-        {
-        }
+        return Address.UsaState();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.CanadianProvince();
-        }
+public class StateAbbreviationFiller : PropertyFiller<string>
+{
+    public StateAbbreviationFiller()
+        : base(new[] { "object" }, new[] { "stateAbbreviation" })
+    {
     }
 
-    public class ZipCodeFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public ZipCodeFiller()
-            : base(new[] { "object" }, new[] { "zip", "zipcode", "zip_code" })
-        {
-        }
+        return Address.UsaStateAbbreviation();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.ZipCode();
-        }
+
+public class ProvinceFiller : PropertyFiller<string>
+{
+    public ProvinceFiller()
+        : base(new[] { "object" }, new[] { "province", "provincename", "province_name" })
+    {
     }
 
-    public class PostalCodeFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public PostalCodeFiller()
-            : base(new[] { "object" }, new[] { "postalcode", "postal_code" })
-        {
-        }
+        return Address.CanadianProvince();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return Address.PostalCode();
-        }
+public class ZipCodeFiller : PropertyFiller<string>
+{
+    public ZipCodeFiller()
+        : base(new[] { "object" }, new[] { "zip", "zipcode", "zip_code" })
+    {
     }
 
-    public class PhoneNumberFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public PhoneNumberFiller()
-            : base(new[] { "object" }, new[] { "fax", "phone", "phonenumber", "phone_number", "homenumber", "worknumber" })
-        {
-        }
+        return Address.ZipCode();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ContactInformation.PhoneNumber();
-        }
+public class PostalCodeFiller : PropertyFiller<string>
+{
+    public PostalCodeFiller()
+        : base(new[] { "object" }, new[] { "postalcode", "postal_code" })
+    {
     }
 
-    public class MusicAlbumTitleFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public MusicAlbumTitleFiller()
-            : base(new[] { "album", "musicalbum", "music_album" }, new[] { "title", "albumname", "name" })
-        {
-        }
+        return Address.PostalCode();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ValueGenerators.Music.Album.Title();
-        }
+public class PhoneNumberFiller : PropertyFiller<string>
+{
+    public PhoneNumberFiller()
+        : base(new[] { "object" }, new[] { "fax", "phone", "phonenumber", "phone_number", "homenumber", "worknumber" })
+    {
     }
 
-    public class MusicArtistNameFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public MusicArtistNameFiller()
-            : base(new[] { "artist" }, new[] { "name", "artistname", "artist_name" })
-        {
-        }
+        return ContactInformation.PhoneNumber();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ValueGenerators.Music.Artist.Name();
-        }
+public class MusicAlbumTitleFiller : PropertyFiller<string>
+{
+    public MusicAlbumTitleFiller()
+        : base(new[] { "album", "musicalbum", "music_album" }, new[] { "title", "albumname", "name" })
+    {
     }
 
-    public class MusicGenreNameFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public MusicGenreNameFiller()
-            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
-        {
-        }
+        return ValueGenerators.Music.Album.Title();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ValueGenerators.Music.Genre.Name();
-        }
+public class MusicArtistNameFiller : PropertyFiller<string>
+{
+    public MusicArtistNameFiller()
+        : base(new[] { "artist" }, new[] { "name", "artistname", "artist_name" })
+    {
     }
 
-    public class MusicGenreDescriptionFiller : PropertyFiller<string>
+    public override object GetValue(object instance)
     {
-        public MusicGenreDescriptionFiller()
-            : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
-        {
-        }
+        return ValueGenerators.Music.Artist.Name();
+    }
+}
 
-        public override object GetValue(object instance)
-        {
-            return ValueGenerators.Music.Genre.Description();
-        }
+public class MusicGenreNameFiller : PropertyFiller<string>
+{
+    public MusicGenreNameFiller()
+        : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "title", "name", "genre_title", "genre_name" })
+    {
     }
 
+    public override object GetValue(object instance)
+    {
+        return ValueGenerators.Music.Genre.Name();
+    }
+}
+
+public class MusicGenreDescriptionFiller : PropertyFiller<string>
+{
+    public MusicGenreDescriptionFiller()
+        : base(new[] { "genre", "musicgenre", "music_genre" }, new[] { "description", "desc", "genre_description", "genre_desc" })
+    {
+    }
+
+    public override object GetValue(object instance)
+    {
+        return ValueGenerators.Music.Genre.Description();
+    }
 }

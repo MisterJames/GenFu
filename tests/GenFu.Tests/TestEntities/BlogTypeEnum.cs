@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GenFu.Tests.TestEntities;
 
-namespace GenFu.Tests.TestEntities
+enum BlogTypeEnum
 {
-    enum BlogTypeEnum
-    {
-        Post = 1,
-        Update = 2,
-        ProductRelease = 3
-    }
+    Post = 1,
+    Update = 2,
+    ProductRelease = 3
 }

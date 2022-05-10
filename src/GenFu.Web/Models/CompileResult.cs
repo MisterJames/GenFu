@@ -1,12 +1,10 @@
-﻿using System;
+﻿namespace GenFu.Web.Models;
+
 using System.Collections.Generic;
 
-namespace GenFu.Web.Models
+public class CompileResult
 {
-    public class CompileResult
-    {
-        public bool IsValid { get; set; }
+    public bool IsValid { get; set; }
 
-        public IEnumerable<string> Errors { get; set; }
-    }
+    public IEnumerable<string> Errors { get; set; }
 }

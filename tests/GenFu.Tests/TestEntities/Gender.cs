@@ -1,9 +1,8 @@
-﻿namespace GenFu.Tests.TestEntities
+﻿namespace GenFu.Tests.TestEntities;
+
+public enum Gender
 {
-    public enum Gender
-    {
-        Male,
-        Female,
-        NotSpecified
-    }
+    Male,
+    Female,
+    NotSpecified
 }

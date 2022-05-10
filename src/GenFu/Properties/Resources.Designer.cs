@@ -8,11 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GenFu.Properties {
+namespace GenFu.Properties
+{
     using System;
     using System.Reflection;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,44 +24,52 @@ namespace GenFu.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
-        
+    public class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GenFu.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to AB
         ///BC
@@ -76,12 +85,14 @@ namespace GenFu.Properties {
         ///SK
         ///YT.
         /// </summary>
-        public static string CanadianProvinceAbreviations {
-            get {
-                return ResourceManager.GetString("CanadianProvinceAbreviations", resourceCulture);
+        public static string CanadianProvinceAbbreviations
+        {
+            get
+            {
+                return ResourceManager.GetString("CanadianProvinceAbbreviations", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ontario
         ///Quebec
@@ -97,12 +108,14 @@ namespace GenFu.Properties {
         ///Yukon
         ///Nunavut.
         /// </summary>
-        public static string CanadianProvinceNames {
-            get {
+        public static string CanadianProvinceNames
+        {
+            get
+            {
                 return ResourceManager.GetString("CanadianProvinceNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Brandon
         ///Carberry
@@ -152,12 +165,14 @@ namespace GenFu.Properties {
         ///Port Alberni
         ///Port Coquitlam [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string CityNames {
-            get {
+        public static string CityNames
+        {
+            get
+            {
                 return ResourceManager.GetString("CityNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to AGT
         ///KIO
@@ -175,12 +190,14 @@ namespace GenFu.Properties {
         ///Pepsi
         ///Coca-cola.
         /// </summary>
-        public static string CompanyNames {
-            get {
+        public static string CompanyNames
+        {
+            get
+            {
                 return ResourceManager.GetString("CompanyNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to gmail.com
         ///hotmail.com
@@ -192,12 +209,14 @@ namespace GenFu.Properties {
         ///rogers.ca
         ///att.com.
         /// </summary>
-        public static string DomainNames {
-            get {
+        public static string DomainNames
+        {
+            get
+            {
                 return ResourceManager.GetString("DomainNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Abacavir
         ///Aciclovir
@@ -236,12 +255,14 @@ namespace GenFu.Properties {
         ///Zanamivir (Relenza)
         ///Zidovudine.
         /// </summary>
-        public static string Drugs {
-            get {
+        public static string Drugs
+        {
+            get
+            {
                 return ResourceManager.GetString("Drugs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Angela
         ///Ang
@@ -309,12 +330,14 @@ namespace GenFu.Properties {
         ///Tarra
         ///Ja [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string FirstNames {
-            get {
+        public static string FirstNames
+        {
+            get
+            {
                 return ResourceManager.GetString("FirstNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Agender
         ///Androgyne
@@ -359,12 +382,14 @@ namespace GenFu.Properties {
         ///Trans* Woman
         ///Transfemini [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Genders {
-            get {
+        public static string Genders
+        {
+            get
+            {
                 return ResourceManager.GetString("Genders", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Accounting
         ///Aircraft
@@ -415,12 +440,14 @@ namespace GenFu.Properties {
         ///Tea
         ///Telecommun [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Industries {
-            get {
+        public static string Industries
+        {
+            get
+            {
                 return ResourceManager.GetString("Industries", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sugar
         ///Spice
@@ -471,12 +498,14 @@ namespace GenFu.Properties {
         ///Asparagus
         ///Cook [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Ingredients {
-            get {
+        public static string Ingredients
+        {
+            get
+            {
                 return ResourceManager.GetString("Ingredients", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Abrasions and &apos;Road Rash&apos;
         ///ACL Injury
@@ -504,12 +533,14 @@ namespace GenFu.Properties {
         ///Carpal Tunnel Syndrome
         ///Cartil [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Injuries {
-            get {
+        public static string Injuries
+        {
+            get
+            {
                 return ResourceManager.GetString("Injuries", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Iginla
         ///Smith
@@ -574,24 +605,101 @@ namespace GenFu.Properties {
         ///Phillips
         ///C [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string LastNames {
-            get {
+        public static string LastNames
+        {
+            get
+            {
                 return ResourceManager.GetString("LastNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to lorem
-        ///ipsum        ///dolor        ///sit        ///amet
+        ///ipsum
+        ///dolor
+        ///sit
+        ///amet
         ///consectetur
-        ///adipiscing        ///elit        ///ut        ///aliquam        ///purus        ///sit        ///amet        ///luctus        ///venenatis        ///lectus        ///magna        ///fringilla        ///urna        ///porttitor        ///rhoncus        ///dolor        ///purus        ///non        ///enim        ///praesent        ///elementum        ///facilisis        ///leo        ///vel        ///fringilla        ///est        ///ullamcorper        ///eget        ///nulla        ///facilisi        ///etiam        ///dignissim        ///diam        ///quis        ///enim        ///lobortis        ///scelerisque        ///fermentum        ///dui        ///faucibus        ///in        ///ornare        ///quam        ///viverra        ///orci        ///sagittis        ///eu        ///volutpat        ///odio        ///facilisis        ///mauris        ///sit        ///amet        ///massa        ///vitae        ///tortor        ///condimentum        ///lacinia        ///quis        ///vel        ///eros        ///donec        ///ac        ///odio        ///tempor        ///orci        ///dapibus        ///ultrices        ///in        ///iaculis        ///n [rest of string was truncated]&quot;;.
+        ///adipiscing
+        ///elit
+        ///ut
+        ///aliquam
+        ///purus
+        ///sit
+        ///amet
+        ///luctus
+        ///venenatis
+        ///lectus
+        ///magna
+        ///fringilla
+        ///urna
+        ///porttitor
+        ///rhoncus
+        ///dolor
+        ///purus
+        ///non
+        ///enim
+        ///praesent
+        ///elementum
+        ///facilisis
+        ///leo
+        ///vel
+        ///fringilla
+        ///est
+        ///ullamcorper
+        ///eget
+        ///nulla
+        ///facilisi
+        ///etiam
+        ///dignissim
+        ///diam
+        ///quis
+        ///enim
+        ///lobortis
+        ///scelerisque
+        ///fermentum
+        ///dui
+        ///faucibus
+        ///in
+        ///ornare
+        ///quam
+        ///viverra
+        ///orci
+        ///sagittis
+        ///eu
+        ///volutpat
+        ///odio
+        ///facilisis
+        ///mauris
+        ///sit
+        ///amet
+        ///massa
+        ///vitae
+        ///tortor
+        ///condimentum
+        ///lacinia
+        ///quis
+        ///vel
+        ///eros
+        ///donec
+        ///ac
+        ///odio
+        ///tempor
+        ///orci
+        ///dapibus
+        ///ultrices
+        ///in
+        ///iaculis
+        ///n [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Lorem {
-            get {
+        public static string Lorem
+        {
+            get
+            {
                 return ResourceManager.GetString("Lorem", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cardiac stress test
         ///Electrocardiography
@@ -623,12 +731,14 @@ namespace GenFu.Properties {
         ///Coronary angiography
         ///Lym [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string MedicalProcedures {
-            get {
+        public static string MedicalProcedures
+        {
+            get
+            {
                 return ResourceManager.GetString("MedicalProcedures", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Thriller
         ///Back in Black
@@ -659,12 +769,14 @@ namespace GenFu.Properties {
         ///The Wall
         ///Supe [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string MusicAlbums {
-            get {
+        public static string MusicAlbums
+        {
+            get
+            {
                 return ResourceManager.GetString("MusicAlbums", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Santana
         ///Gloria Estefan
@@ -704,12 +816,14 @@ namespace GenFu.Properties {
         ///Mystery
         /// [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string MusicArtists {
-            get {
+        public static string MusicArtists
+        {
+            get
+            {
                 return ResourceManager.GetString("MusicArtists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mr. 
         ///Mrs.
@@ -722,12 +836,14 @@ namespace GenFu.Properties {
         ///Princess
         ///Air Marshall.
         /// </summary>
-        public static string PersonTitles {
-            get {
+        public static string PersonTitles
+        {
+            get
+            {
                 return ResourceManager.GetString("PersonTitles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Abbey Court
         ///Aberdeen Street
@@ -765,12 +881,14 @@ namespace GenFu.Properties {
         ///Ashland Place
         ///Aste [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string StreetNames {
-            get {
+        public static string StreetNames
+        {
+            get
+            {
                 return ResourceManager.GetString("StreetNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Attourney Accidentally Sues Himself
         ///County to Pay $250,000 to Advertise Lack of Funds
@@ -782,14 +900,17 @@ namespace GenFu.Properties {
         ///Utah Poison Control Center Asks People to not Consume Poison
         ///Most Earthquake Damage is Caused by Shaking
         ///City Unsure Why the Sewer Smells
-        ///State Prisons to Replace Easy-Open Locks        /// [rest of string was truncated]&quot;;.
+        ///State Prisons to Replace Easy-Open Locks
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Titles {
-            get {
+        public static string Titles
+        {
+            get
+            {
                 return ResourceManager.GetString("Titles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to AL
         ///AK
@@ -844,12 +965,14 @@ namespace GenFu.Properties {
         ///WY
         ///.
         /// </summary>
-        public static string USAStateAbreviations {
-            get {
-                return ResourceManager.GetString("USAStateAbreviations", resourceCulture);
+        public static string USAStateAbbreviations
+        {
+            get
+            {
+                return ResourceManager.GetString("USAStateAbbreviations", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to California
         ///Texas
@@ -901,12 +1024,14 @@ namespace GenFu.Properties {
         ///Alaska
         ///North Dak [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string USAStateNames {
-            get {
+        public static string USAStateNames
+        {
+            get
+            {
                 return ResourceManager.GetString("USAStateNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to year
         ///way
@@ -978,8 +1103,10 @@ namespace GenFu.Properties {
         ///photo
         ///bo [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Words {
-            get {
+        public static string Words
+        {
+            get
+            {
                 return ResourceManager.GetString("Words", resourceCulture);
             }
         }

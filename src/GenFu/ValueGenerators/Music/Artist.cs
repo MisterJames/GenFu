@@ -1,15 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿namespace GenFu.ValueGenerators.Music;
 
-namespace GenFu.ValueGenerators.Music
+using System.Linq;
+
+public class Artist : BaseValueGenerator
 {
-    public class Artist:BaseValueGenerator
+    public static string Name()
     {
-        public static string Name()
-        {
-            int index = _random.Next(0, ResourceLoader.Data(PropertyType.MusicArtists).Count());
-            return ResourceLoader.Data(PropertyType.MusicArtists)[index];
-        }
+        int index = _random.Next(0, ResourceLoader.Data(PropertyType.MusicArtists).Count());
+        return ResourceLoader.Data(PropertyType.MusicArtists)[index];
     }
 }

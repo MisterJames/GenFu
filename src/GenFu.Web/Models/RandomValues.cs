@@ -1,9 +1,5 @@
-﻿using System;
+﻿namespace GenFu.Web.Models;
+
 using System.Collections.Generic;
 
-namespace GenFu.Web.Models
-{
-    public class RandomValues : Dictionary<string, string>
-    {
-    }
-}
+public class RandomValues : Dictionary<string, string> { }

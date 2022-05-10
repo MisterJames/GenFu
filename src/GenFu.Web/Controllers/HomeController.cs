@@ -1,4 +1,6 @@
-﻿using GenFu.Web.Models;
+﻿namespace GenFu.Web.Controllers;
+
+using global::GenFu.Web.Models;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,23 +12,21 @@ using System.Runtime.Loader;
 using System.Text;
 using System.Text.Json;
 
-namespace GenFu.Web.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
+
+    private readonly AssemblyLoadContext _accessor;
+
+    public HomeController(AssemblyLoadContext accessor)
     {
-        private const string RandomObjectsSessionKey = nameof(GenerateDataModel.RandomObjects);
+        _accessor = accessor;
+    }
 
-        private readonly AssemblyLoadContext _accessor;
-
-        public HomeController(AssemblyLoadContext accessor)
-        {
-            _accessor = accessor;
-        }
-
-        public IActionResult Index()
-        {
-            GenerateDataModel model = new GenerateDataModel();
-            model.Source =
+    public IActionResult Index()
+    {
+        GenerateDataModel model = new GenerateDataModel();
+        model.Source =
 @"public class Person
 {
     public string FirstName { get; set; }
@@ -35,51 +35,50 @@ namespace GenFu.Web.Controllers
     public string EmailAddress { get; set; }
     //Add your own properties here
 }";
-            return View(model);
-        }
+        return View(model);
+    }
 
-        [HttpPost]
-        public IActionResult Index(SourceCode sourceCode)
+    [HttpPost]
+    public IActionResult Index(SourceCode sourceCode)
+    {
+        GenerateDataModel model = new GenerateDataModel();
+        model.Source = sourceCode.Source;
+
+        // todo: make not hacky
+        sourceCode.Accessor = _accessor;
+
+        var compileResult = sourceCode.Compile();
+
+        if (!compileResult.IsValid)
         {
-            GenerateDataModel model = new GenerateDataModel();
-            model.Source = sourceCode.Source;
+            model.HasCompileErrors = true;
+            model.CompileErrors = compileResult.Errors;
 
-            // todo: make not hacky
-            sourceCode.Accessor = _accessor;
-
-            var compileResult = sourceCode.Compile();
-
-            if (!compileResult.IsValid)
-            {
-                model.HasCompileErrors = true;
-                model.CompileErrors = compileResult.Errors;
-
-                HttpContext.Session.Remove(RandomObjectsSessionKey);
-            }
-            else
-            {
-                model.RandomObjects = sourceCode.GenerateData(10);
-                model.PropertyNames = model.RandomObjects.First().Keys;
-
-                HttpContext.Session.SetString(RandomObjectsSessionKey, JsonSerializer.Serialize(model.RandomObjects));
-            }
-
-            return View(model);
+            HttpContext.Session.Remove(RandomObjectsSessionKey);
         }
-
-        [HttpGet]
-        public IActionResult Download()
+        else
         {
-            var randomObjectsJson = HttpContext.Session.GetString(RandomObjectsSessionKey);
+            model.RandomObjects = sourceCode.GenerateData(10);
+            model.PropertyNames = model.RandomObjects.First().Keys;
 
-            if (randomObjectsJson == null)
-            {
-                return BadRequest();
-            }
-
-            var randomObjectsJsonAsBytes = new UTF8Encoding().GetBytes(randomObjectsJson);
-
-            return File(randomObjectsJsonAsBytes, "application/json", "random-data.json");
+            HttpContext.Session.SetString(RandomObjectsSessionKey, JsonSerializer.Serialize(model.RandomObjects));
         }
+
+        return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult Download()
+    {
+        var randomObjectsJson = HttpContext.Session.GetString(RandomObjectsSessionKey);
+
+        if (randomObjectsJson == null)
+        {
+            return BadRequest();
+        }
+
+        var randomObjectsJsonAsBytes = new UTF8Encoding().GetBytes(randomObjectsJson);
+
+        return File(randomObjectsJsonAsBytes, "application/json", "random-data.json");
     }
 }
