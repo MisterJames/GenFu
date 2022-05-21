@@ -163,6 +163,8 @@ namespace GenFu
 
         private static void SetPropertyValue(object instance, PropertyInfo property)
         {
+            if (IgnorePropertyCollection.IsPropertyInIgnoreList(property))
+                return;
             IPropertyFiller filler = _fillerManager.GetFiller(property);
             property.SetValue(instance, filler.GetValue(instance), null);
         }

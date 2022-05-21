@@ -93,13 +93,13 @@ namespace GenFu
         {
         }
 
- 
+
         private PropertyInfo GetPropertyInfoFromExpression<T2>(Expression<Func<T, T2>> expression)
         {
             PropertyInfo propertyInfo = (expression.Body as MemberExpression).Member as PropertyInfo;
             return propertyInfo;
         }
-        
+
         private MethodInfo GetMethodInfoFromExpression(Expression<Action<T>> expression)
         {
 
@@ -263,9 +263,33 @@ namespace GenFu
         {
             MethodInfo methodInfo = GetMethodInfoFromExpression(expression);
             IPropertyFiller filler = _fillerManager.GetGenericFillerForType(methodInfo.GetParameters()[0].ParameterType);
-            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name,  typeof(T), () => (T2)filler.GetValue(null));
+            PropertyFiller<T2> customFiller = new CustomFiller<T2>(methodInfo.Name, typeof(T), () => (T2)filler.GetValue(null));
             _fillerManager.RegisterFiller(customFiller);
             return new GenFuComplexPropertyConfigurator<T, T2>(_genfu, _fillerManager, methodInfo);
+        }
+
+        /// <summary>
+        /// Configure which property should be ignored while creating new object
+        /// </summary>
+        /// <param name="expression">Property on which needs to be ignored</param>
+        /// <returns></returns>
+        public GenFuConfigurator<T> Ignore(Expression<Func<T, object>> expression)
+        {
+            MemberInfo memberInfoOfIgnoredProperty;
+            if (expression.Body is MemberExpression)
+            {
+                MemberExpression memberExpression = expression.Body as MemberExpression;
+                memberInfoOfIgnoredProperty = memberExpression.Member;
+            }
+            else
+            {
+                UnaryExpression unaryExpression = expression.Body as UnaryExpression;
+                MemberExpression memberExpression = unaryExpression.Operand as MemberExpression;
+                memberInfoOfIgnoredProperty = memberExpression.Member;
+            }
+            IgnorePropertyCollection.AddPropertyToIgnoreList(memberInfoOfIgnoredProperty);
+            
+            return this;
         }
     }
 }
