@@ -24,26 +24,28 @@ public partial class GenFu
         Random = new Random();
     }
 
-    public static T New<T>() where T : new()
+    public static T New<T>()
     {
         return (T)New(typeof(T));
     }
 
     public static object New(Type type)
     {
-        object instance = Activator.CreateInstance(type);
+        var ctor = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance)
+                       .OrderByDescending(c => c.GetParameters().Length).First();
+        var parameters =
+            ctor.GetParameters()
+                .Select(p => _fillerManager.GetFiller(p).GetValue(null))
+                .ToArray();
+        object instance = Activator.CreateInstance(type, parameters);
         return New(instance);
     }
 
-    public static T New<T>(T instance)
-    {
-        return (T)New((object)instance);
-
-    }
+    public static T New<T>(T instance) => (T)New((object)instance);
 
     public static object New(object instance)
     {
-        if (instance != null)
+        if (instance is not null)
         {
             var type = instance.GetType();
             if (type.FullName == "System.Guid")
@@ -71,30 +73,21 @@ public partial class GenFu
     }
 
 
-    public static List<T> ListOf<T>() where T : new()
-    {
-        return ListOf(typeof(T)).Cast<T>().ToList();
-    }
+    public static List<T> ListOf<T>() => ListOf(typeof(T)).Cast<T>().ToList();
 
-    public static List<object> ListOf(Type type)
-    {
-        return BuildList(type, _listCount);
-    }
+    public static List<object> ListOf(Type type) => BuildList(type, _listCount);
+
     /// <summary>
     /// Creates a new list of <typeparamref name="T"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="itemCount">Number of items to add</param>
     /// <returns></returns>
-    public static List<T> ListOf<T>(int itemCount) where T : new()
-    {
-        return ListOf(typeof(T), itemCount).Cast<T>().ToList();
-    }
+    public static List<T> ListOf<T>(int itemCount)
+     => ListOf(typeof(T), itemCount).Cast<T>().ToList();
 
     public static List<object> ListOf(Type type, int itemCount)
-    {
-        return BuildList(type, itemCount);
-    }
+     => BuildList(type, itemCount);
 
     private static List<object> BuildList(Type type, int itemCount)
     {
@@ -108,15 +101,9 @@ public partial class GenFu
         return result;
     }
 
-    public static IEnumerable<T> LazyOf<T>() where T : new()
-    {
-        return LazyOf(typeof(T)).Cast<T>();
-    }
+    public static IEnumerable<T> LazyOf<T>() => LazyOf(typeof(T)).Cast<T>();
 
-    public static IEnumerable<object> LazyOf(Type type)
-    {
-        return BuildLazy(type, _listCount);
-    }
+    public static IEnumerable<object> LazyOf(Type type) => BuildLazy(type, _listCount);
 
     /// <summary>
     /// Creates a new lazy collection of <typeparamref name="T"/>
@@ -124,15 +111,9 @@ public partial class GenFu
     /// <typeparam name="T"></typeparam>
     /// <param name="itemCount">Number of items to add</param>
     /// <returns></returns>
-    public static IEnumerable<T> LazyOf<T>(int itemCount) where T : new()
-    {
-        return LazyOf(typeof(T), itemCount).Cast<T>();
-    }
+    public static IEnumerable<T> LazyOf<T>(int itemCount) => LazyOf(typeof(T), itemCount).Cast<T>();
 
-    private static IEnumerable<object> LazyOf(Type type, int itemCount)
-    {
-        return BuildLazy(type, itemCount);
-    }
+    private static IEnumerable<object> LazyOf(Type type, int itemCount) => BuildLazy(type, itemCount);
 
 
     private static IEnumerable<object> BuildLazy(Type type, int itemCount)
@@ -143,15 +124,9 @@ public partial class GenFu
         }
     }
 
-    public static IEnumerable<T> ForeverOf<T>() where T : new()
-    {
-        return ForeverOf(typeof(T)).Cast<T>();
-    }
+    public static IEnumerable<T> ForeverOf<T>() => ForeverOf(typeof(T)).Cast<T>();
 
-    private static IEnumerable<object> ForeverOf(Type type)
-    {
-        return BuildForever(type);
-    }
+    private static IEnumerable<object> ForeverOf(Type type) => BuildForever(type);
 
     private static IEnumerable<object> BuildForever(Type type)
     {
@@ -174,25 +149,16 @@ public partial class GenFu
             method.Invoke(instance, new[] { filler.GetValue(instance) });
     }
 
-
-
     public static DateTime MinDateTime
     {
-        get { return new GenericFillerDefaults(_fillerManager).GetMinDateTime(); }
-
-        set
-        {
-            new GenericFillerDefaults(_fillerManager).SetMinDateTime(value);
-        }
+        get => new GenericFillerDefaults(_fillerManager).GetMinDateTime();
+        set => new GenericFillerDefaults(_fillerManager).SetMinDateTime(value);
     }
 
     public static DateTime MaxDateTime
     {
-        get { return new GenericFillerDefaults(_fillerManager).GetMaxDateTime(); }
-        set
-        {
-            new GenericFillerDefaults(_fillerManager).SetMaxDateTime(value);
-        }
+        get => new GenericFillerDefaults(_fillerManager).GetMaxDateTime();
+        set => new GenericFillerDefaults(_fillerManager).SetMaxDateTime(value);
     }
 
     public static Random Random { get; private set; }
@@ -250,9 +216,4 @@ public partial class GenFu
 
         public const string STRING_LOADFAIL = "The resource list for {0} failed to load.";
     }
-
-
 }
-
-
-
