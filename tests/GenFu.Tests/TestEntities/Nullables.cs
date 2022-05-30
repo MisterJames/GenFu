@@ -14,4 +14,5 @@ public class Nullables
     public short? NullableShort { get; set; }
     public bool? NullableBoolean { get; set; }
     public char? NullableChar { get; set; }
+    public PropertyType? NullableEnum { get; set; }
 }
