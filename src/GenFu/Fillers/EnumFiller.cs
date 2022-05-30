@@ -17,3 +17,19 @@ public class EnumFiller : PropertyFiller<Enum>
         return values.GetValue(new Random().Next(values.Length));
     }
 }
+
+public class NullableEnumFiller : PropertyFiller<Enum?>
+{
+    readonly Type _type;
+    public NullableEnumFiller(Type type)
+        : base(typeof(object), "*", true)
+    {
+        this._type = type;
+    }
+
+    public override object GetValue(object instance)
+    {
+        var values = Enum.GetValues(_type);
+        return values.GetValue(new Random().Next(values.Length));
+    }
+}

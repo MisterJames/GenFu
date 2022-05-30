@@ -59,4 +59,10 @@ public class When_filling_nullables
     {
         Assert.True(A.New<Nullables>().NullableChar.HasValue);
     }
+
+    [Fact]
+    void A_nullable_enum_should_be_filled()
+    {
+        Assert.True(A.New<Nullables>().NullableEnum.HasValue);
+    }
 }

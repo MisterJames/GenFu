@@ -202,6 +202,10 @@ public class FillerManager
                 {
                     result = new EnumFiller(propertyInfo.PropertyType);
                 }
+                else if (propertyInfo.PropertyType.GetNullableUnderlyingType().IsEnum)
+                {
+                    result = new NullableEnumFiller(propertyInfo.PropertyType.GetNullableUnderlyingType());
+                }
                 else
                 {
                     //TODO: Can we build a custom filler here for other value types that we have not explicitly implemented (eg. long, decimal, etc.)
