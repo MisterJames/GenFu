@@ -26,7 +26,7 @@ Example Usage
 ===========
 Let's say you have a Person class like so:
 
-```
+``` cs
 class Person
 {
     public string FirstName { get; set; }
@@ -42,7 +42,7 @@ class Person
 
 And you want a new instance of Person.  With GenFu, you just do this:
 
-```
+``` cs
 var person = A.New<Person>();
 ```
 
@@ -54,7 +54,7 @@ Tada!  Your `person` is now filled with all the data you could ever dream of!
 
 Easy-peasy lemon squeezy, my friend!  Ask for a list instead of a single instance like so:
 
-```
+``` cs
 var people = A.ListOf<Person>();
 ```
 
@@ -64,7 +64,7 @@ There...you have 25 people, this is the default in a list.
 
 Cool beans, my brother or sister.  Here's how GenFu rolls:
 
-```
+``` cs
 GenFu.Configure<Person>()
     .Fill(p => p.Age)
     .WithinRange(19, 25);
@@ -78,7 +78,7 @@ Custom Property Fillers
 
 If you want to control how the property is set, you can use your own function (anonymous or otherwise) to do so.
 
-```
+``` cs
 var blogTitle = "GenFu";
 
 GenFu.Configure<BlogPost>()
@@ -93,7 +93,7 @@ Method Fillers
 
 If your project uses one-parameter setter methods, you can use GenFu too!
 
-```
+``` cs
 GenFu.Configure<Person>()
     .MethodFill<string>(x => x.SetMiddleName(null))
 var post = A.New<Person>();
