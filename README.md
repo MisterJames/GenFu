@@ -27,23 +27,23 @@ Example Usage
 Let's say you have a Person class like so:
 
 ```
-    class Person
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Title { get; set; }
-        public int Age { get; set; }
-        public int NumberOfKids { get; set; }
-		
-		private string _middleName;
-		public void SetMiddleName(string name){ _middleName = name; }
-    }
+class Person
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Title { get; set; }
+    public int Age { get; set; }
+    public int NumberOfKids { get; set; }
+	
+	private string _middleName;
+	public void SetMiddleName(string name){ _middleName = name; }
+}
 ```
 
 And you want a new instance of Person.  With GenFu, you just do this:
 
 ```
-    var person = A.New<Person>();
+var person = A.New<Person>();
 ```
 
 Tada!  Your `person` is now filled with all the data you could ever dream of!
@@ -55,7 +55,7 @@ Tada!  Your `person` is now filled with all the data you could ever dream of!
 Easy-peasy lemon squeezy, my friend!  Ask for a list instead of a single instance like so:
 
 ```
-    var people = A.ListOf<Person>();
+var people = A.ListOf<Person>();
 ```
 
 There...you have 25 people, this is the default in a list.
@@ -65,12 +65,10 @@ There...you have 25 people, this is the default in a list.
 Cool beans, my brother or sister.  Here's how GenFu rolls:
 
 ```
-
-    GenFu.Configure<Person>()
-        .Fill(p => p.Age)
-        .WithinRange(19, 25);
-    var people = A.ListOf<Person>();
-
+GenFu.Configure<Person>()
+    .Fill(p => p.Age)
+    .WithinRange(19, 25);
+var people = A.ListOf<Person>();
 ```
 
 And you're off to the races!  Don't worry, I won't tell your boss how long that took.  ;)
@@ -81,12 +79,12 @@ Custom Property Fillers
 If you want to control how the property is set, you can use your own function (anonymous or otherwise) to do so.
 
 ```
-    var blogTitle = "GenFu";
+var blogTitle = "GenFu";
 
-    GenFu.Configure<BlogPost>()
-        .Fill(b => b.Title, () => { return blogTitle; })
-    
-    var post = A.New<BlogPost>();
+GenFu.Configure<BlogPost>()
+    .Fill(b => b.Title, () => { return blogTitle; })
+
+var post = A.New<BlogPost>();
 ```
 
 
@@ -96,9 +94,9 @@ Method Fillers
 If your project uses one-parameter setter methods, you can use GenFu too!
 
 ```
-    GenFu.Configure<Person>()
-        .MethodFill<string>(x => x.SetMiddleName(null))
-    var post = A.New<Person>();
+GenFu.Configure<Person>()
+    .MethodFill<string>(x => x.SetMiddleName(null))
+var post = A.New<Person>();
 ```
 
 You can use any of the helper methods with setter methods, just like with properties.
