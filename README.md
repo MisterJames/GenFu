@@ -35,8 +35,8 @@ class Person
     public int Age { get; set; }
     public int NumberOfKids { get; set; }
 	
-	private string _middleName;
-	public void SetMiddleName(string name){ _middleName = name; }
+    private string _middleName;
+    public void SetMiddleName(string name){ _middleName = name; }
 }
 ```
 
